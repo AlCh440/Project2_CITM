@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<save_state>
+	<window />
+	<input />
+	<textures />
+	<audio />
+	<map />
+	<physics>
+		<physics />
+	</physics>
+	<guiManager />
+	<:anonymous />
+	<levelManager>
+		<levelManager currentLevel="4" />
+	</levelManager>
+	<:anonymous />
+	<intro />
+	<start_menu />
+	<level1>
+		<level1 keys_to_collect="2" />
+	</level1>
+	<level2>
+		<level1 keys_to_collect="3" />
+	</level2>
+	<game_over />
+	<entities>
+		<Gem type="0" x="11.5" y="27.5" />
+		<Gem type="0" x="16.5" y="25.5" />
+		<Gem type="0" x="21.5" y="27.5" />
+		<HealthPotion type="13" x="448" y="432" />
+		<Key type="1" x="33.5" y="27.5" />
+		<Gem type="0" x="43.5" y="21.5" />
+		<Gem type="0" x="54.5" y="26.5" />
+		<Gem type="0" x="50.5" y="15.5" />
+		<Gem type="0" x="65.5" y="20.5" />
+		<Gem type="0" x="75.5" y="18.5" />
+		<Key type="1" x="76.5" y="25.5" />
+		<HealthPotion type="13" x="1104" y="400" />
+		<musher type="3" x="24.5" y="27.4950199" state="0" />
+		<bat type="2" x="54.5" y="22.4646816" state="0" />
+		<musher type="3" x="37.5" y="27.4950199" state="0" />
+		<player type="9" x="9.12884903" y="18.4309464" lives="1" state="0" coins="0" keys="0" />
+		<musher type="3" x="73.5" y="25.4950199" state="0" />
+		<Portal type="8" x="79" y="12" />
+		<CheckPoint type="5" x="54.5" y="14.5" />
+	</entities>
+	<renderer>
+		<camera x="0" y="0" />
+	</renderer>
+</save_state>
