@@ -1,5 +1,5 @@
 #include "Gem.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 
 Gem::Gem(iPoint pos) : Collectable(pos)
 {

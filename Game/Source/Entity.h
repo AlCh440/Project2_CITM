@@ -2,7 +2,7 @@
 #define __ENTITY_H__
 
 #include "App.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "Globals.h"
 #include "Point.h"
 #include "Animation.h"

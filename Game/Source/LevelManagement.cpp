@@ -1,7 +1,7 @@
 #include "LevelManagement.h"
 #include "Log.h"
 #include "Player.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 #include "Map.h"
 #include <string>
 #include <iostream>

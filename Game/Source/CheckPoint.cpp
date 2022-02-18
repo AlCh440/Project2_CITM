@@ -1,5 +1,5 @@
 #include "CheckPoint.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 
 CheckPoint::CheckPoint(iPoint pos) : Entity(pos)
 {

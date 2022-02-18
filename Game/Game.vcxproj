@@ -112,9 +112,9 @@
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Map.cpp" />
-    <ClCompile Include="Source\ModuleEntities.cpp" />
-    <ClCompile Include="Source\ModuleFonts.cpp" />
-    <ClCompile Include="Source\ModulePhysics.cpp" />
+    <ClCompile Include="Source\Entities.cpp" />
+    <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Musher.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
@@ -149,9 +149,9 @@
     <ClInclude Include="Source\Key.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Map.h" />
-    <ClInclude Include="Source\ModuleEntities.h" />
-    <ClInclude Include="Source\ModuleFonts.h" />
-    <ClInclude Include="Source\ModulePhysics.h" />
+    <ClInclude Include="Source\Entities.h" />
+    <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Source\Musher.h" />
     <ClInclude Include="Source\p2List.h" />
     <ClInclude Include="Source\Pathfinding.h" />

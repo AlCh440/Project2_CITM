@@ -12,10 +12,10 @@
 #include "Scene2.h"
 #include "GameOver.h"
 #include "Map.h"
-#include "ModulePhysics.h"
-#include "ModuleEntities.h"
+#include "Physics.h"
+#include "Entities.h"
 #include "GuiManager.h"
-#include "ModuleFonts.h"
+#include "Fonts.h"
 
 
 #include "Defs.h"

@@ -6,7 +6,7 @@
 #include "Window.h"
 #include "Intro.h"
 #include "Map.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "player.h"
 
 #include "Defs.h"

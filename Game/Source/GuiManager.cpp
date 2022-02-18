@@ -1,7 +1,7 @@
 #include "GuiManager.h"
 #include "App.h"
 #include "Textures.h"
-#include "ModuleFonts.h"
+#include "Fonts.h"
 #include "Window.h"
 #include "Render.h"
 #include "Audio.h"

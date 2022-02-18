@@ -4,9 +4,9 @@
 #include "Map.h"
 #include "Input.h"
 #include "Player.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "LevelManagement.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 #include "Render.h"
 #include "Log.h"
 

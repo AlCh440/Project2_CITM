@@ -1,7 +1,7 @@
 #include "GuiButton.h"
 #include "GuiManager.h"
 #include "Render.h"
-#include "ModuleFonts.h"
+#include "Fonts.h"
 #include "App.h"
 #include "Audio.h"
 

@@ -8,7 +8,7 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "LevelManagement.h"
-#include "ModuleFonts.h"
+#include "Fonts.h"
 #include "Defs.h"
 #include "Log.h"
 

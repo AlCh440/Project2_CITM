@@ -1,5 +1,5 @@
 #include "Key.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 Key::Key(iPoint pos) : Collectable(pos)
 {
 	spawnPos = pos;

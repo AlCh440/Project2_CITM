@@ -4,7 +4,7 @@
 #include "Input.h"
 #include "Render.h"
 #include "Module.h"
-#include "ModuleFonts.h"
+#include "Fonts.h"
 #include "Point.h"
 #include "SString.h"
 

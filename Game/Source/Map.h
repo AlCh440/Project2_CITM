@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "Entity.h"
 
 #include "PugiXml\src\pugixml.hpp"

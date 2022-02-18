@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "p2List.h"
 #include "Globals.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "Animation.h"
 
 #include "GuiButton.h"

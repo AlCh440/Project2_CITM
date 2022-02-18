@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "App.h"
-#include "ModulePhysics.h"
+#include "Physics.h"
 #include "Audio.h"
 #include "Render.h"
 #include "Player.h"

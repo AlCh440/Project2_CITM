@@ -1,5 +1,5 @@
 #include "HPotion.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 HPotion::HPotion(iPoint pos) : Collectable(pos)
 {
 	name = "hpotion";

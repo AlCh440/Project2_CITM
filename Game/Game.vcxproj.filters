@@ -75,10 +75,10 @@
     <ClCompile Include="Source\Render.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModulePhysics.cpp">
+    <ClCompile Include="Source\Physics.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModuleEntities.cpp">
+    <ClCompile Include="Source\Entities.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Source\Map.cpp">
@@ -102,7 +102,7 @@
     <ClCompile Include="Source\FadeToBlack.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModuleFonts.cpp">
+    <ClCompile Include="Source\Fonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Source\GuiSlider.cpp">
@@ -211,10 +211,10 @@
     <ClInclude Include="Source\Render.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ModulePhysics.h">
+    <ClInclude Include="Source\Physics.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ModuleEntities.h">
+    <ClInclude Include="Source\Entities.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\Module.h">
@@ -253,7 +253,7 @@
     <ClInclude Include="Source\Animation.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ModuleFonts.h">
+    <ClInclude Include="Source\Fonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\GuiSlider.h">

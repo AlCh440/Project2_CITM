@@ -1,5 +1,5 @@
 #include "Portal.h"
-#include "ModuleEntities.h"
+#include "Entities.h"
 
 Portal::Portal(iPoint pos) : Entity(pos)
 {
