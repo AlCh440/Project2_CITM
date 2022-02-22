@@ -553,21 +553,22 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 	//Load object group attributes
 	layer->name = node.attribute("name").as_string();
 
-	//Check what type of object is 
-	if (strcmp(layer->name.GetString(), "Gems") == 0)
-	{
-		layer->texture = app->tex->Load("../Output/Assets/Spritesx16/gems.png");
-		if (layer->texture == NULL)
-			LOG("Gems texture not loaded...");
+	//Check layer and load the texture
 
-	}else if (strcmp(layer->name.GetString(), "checkpoints" )== 0)
-	{
-		layer->texture = NULL;
+	//if (strcmp(layer->name.GetString(), "Gems") == 0)
+	//{
+	//	layer->texture = app->tex->Load("../Output/Assets/Spritesx16/gems.png");
+	//	if (layer->texture == NULL)
+	//		LOG("Gems texture not loaded...");
 
-	}else if (strcmp(layer->name.GetString(), "Potions" )== 0)
-	{
-		layer->texture = layer->texture = app->tex->Load("../Output/Assets/Spritesx16/props.png");;
-	}
+	//}else if (strcmp(layer->name.GetString(), "checkpoints" )== 0)
+	//{
+	//	layer->texture = NULL;
+
+	//}else if (strcmp(layer->name.GetString(), "Potions" )== 0)
+	//{
+	//	layer->texture = layer->texture = app->tex->Load("../Output/Assets/Spritesx16/props.png");;
+	//}
 
 	LOG("LOADING OBJECT LAYER....");
 	//Create and load each object property
@@ -587,44 +588,44 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		obj->height = object.attribute("height").as_int();
 
 		LOG("OBJECT ID: %i", obj->id);
-		//Check what type of object is 
+		//Check what type of object is and set it 
 
-		if (strcmp(object.attribute("type").as_string(), "Player") == 0) {
+		//if (strcmp(object.attribute("type").as_string(), "Player") == 0) {
 
-			obj->type = Collider_Type::PLAYER;
+		//	obj->type = Collider_Type::PLAYER;
 
-		}else if (strcmp(object.attribute("type").as_string(), "Gem") == 0){
+		//}else if (strcmp(object.attribute("type").as_string(), "Gem") == 0){
 
-			obj->type = Collider_Type::GEM;
+		//	obj->type = Collider_Type::GEM;
 
-		}else if (strcmp(object.attribute("type").as_string(), "Key") == 0){
+		//}else if (strcmp(object.attribute("type").as_string(), "Key") == 0){
 
-			obj->type = Collider_Type::KEY;
-			
-		}else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0){
+		//	obj->type = Collider_Type::KEY;
+		//	
+		//}else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0){
 
-			obj->type = Collider_Type::POTION;
-			
-		}else if (strcmp(object.attribute("type").as_string(), "Portal") == 0){
+		//	obj->type = Collider_Type::POTION;
+		//	
+		//}else if (strcmp(object.attribute("type").as_string(), "Portal") == 0){
 
-			obj->type = Collider_Type::PORTAL;
+		//	obj->type = Collider_Type::PORTAL;
 
-		}else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
+		//}else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
 
-			obj->type = Collider_Type::CHECK_POINT;
+		//	obj->type = Collider_Type::CHECK_POINT;
 
-		}else if (strcmp(object.attribute("type").as_string(), "Bat") == 0) {
+		//}else if (strcmp(object.attribute("type").as_string(), "Bat") == 0) {
 
-			obj->type = Collider_Type::BAT;
-		}
-		else if (strcmp(object.attribute("type").as_string(), "Musher") == 0) {
+		//	obj->type = Collider_Type::BAT;
+		//}
+		//else if (strcmp(object.attribute("type").as_string(), "Musher") == 0) {
 
-			obj->type = Collider_Type::MUSHER;
-		}
-		else if (strcmp(object.attribute("type").as_string(), "BigMusher") == 0) {
+		//	obj->type = Collider_Type::MUSHER;
+		//}
+		//else if (strcmp(object.attribute("type").as_string(), "BigMusher") == 0) {
 
-			obj->type = Collider_Type::BIG_MUSHER;
-		}
+		//	obj->type = Collider_Type::BIG_MUSHER;
+		//}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
@@ -730,50 +731,48 @@ bool Map::SetMapColliders()
 
 			iPoint spawnPos;
 			spawnPos.x = object->data->x + object->data->width * 0.5;
-			//spawnPos.x = object->data->x;
-			spawnPos.y = object->data->y + object->data->height * 0.5; //tile height, the position tile is in the left-bot corner
-			//spawnPos.y = object->data->y; //tile height, the position tile is in the left-bot corner
+			spawnPos.y = object->data->y + object->data->height * 0.5;
 			
 
 			switch (object->data->type)
 			{
 	
-				case PLAYER:
-					app->entities->AddEntity(PLAYER, spawnPos);
-					LOG("SPAWN PLAYER...");
-					break;
-				case BAT:
-					app->entities->AddEntity(BAT, spawnPos);
-					LOG("SPAWN BAT...");
-					break;
-				case MUSHER:
-					app->entities->AddEntity(MUSHER, spawnPos);
-					LOG("SPAWN MUSHER...");
-					break;
-				case BIG_MUSHER:
-					app->entities->AddEntity(BIG_MUSHER, spawnPos);
-					LOG("SPAWN BIG MUSHER...");
-					break;
-				case GEM:
-					app->entities->AddEntity(Collider_Type::GEM, spawnPos);
-					LOG("SETTING GEM COLLIDER...");
-					break;
-				case KEY:
-					app->entities->AddEntity(Collider_Type::KEY, spawnPos);
-					LOG("SETTING KEY COLLIDER...");
-					break;
-				case POTION:
-					app->entities->AddEntity(Collider_Type::POTION, spawnPos);
-					LOG("SETTING POTION COLLIDER...");
-					break;
-				case PORTAL:
-					app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
-					LOG("SETTING PORTAL COLLIDER...");
-					break;
-				case CHECK_POINT:
-					app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
-					LOG("SETTING CHECKPOINT COLLIDER...");
-					break;
+				//case PLAYER:
+				//	app->entities->AddEntity(PLAYER, spawnPos);
+				//	LOG("SPAWN PLAYER...");
+				//	break;
+				//case BAT:
+				//	app->entities->AddEntity(BAT, spawnPos);
+				//	LOG("SPAWN BAT...");
+				//	break;
+				//case MUSHER:
+				//	app->entities->AddEntity(MUSHER, spawnPos);
+				//	LOG("SPAWN MUSHER...");
+				//	break;
+				//case BIG_MUSHER:
+				//	app->entities->AddEntity(BIG_MUSHER, spawnPos);
+				//	LOG("SPAWN BIG MUSHER...");
+				//	break;
+				//case GEM:
+				//	app->entities->AddEntity(Collider_Type::GEM, spawnPos);
+				//	LOG("SETTING GEM COLLIDER...");
+				//	break;
+				//case KEY:
+				//	app->entities->AddEntity(Collider_Type::KEY, spawnPos);
+				//	LOG("SETTING KEY COLLIDER...");
+				//	break;
+				//case POTION:
+				//	app->entities->AddEntity(Collider_Type::POTION, spawnPos);
+				//	LOG("SETTING POTION COLLIDER...");
+				//	break;
+				//case PORTAL:
+				//	app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
+				//	LOG("SETTING PORTAL COLLIDER...");
+				//	break;
+				//case CHECK_POINT:
+				//	app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
+				//	LOG("SETTING CHECKPOINT COLLIDER...");
+				//	break;
 				default:
 					break;
 			}
