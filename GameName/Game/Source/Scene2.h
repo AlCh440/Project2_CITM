@@ -47,7 +47,7 @@ public:
 	int KeysToTake = 3;
 private:
 	SDL_Texture* img;
-	p2List_item<PhysBody*>* collider;
+	p2ListItem<PhysBody*>* collider;
 
 	uint music;
 };

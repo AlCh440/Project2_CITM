@@ -5,7 +5,7 @@
 
 #include "GuiControl.h"
 
-#include "List.h"
+#include "p2List.h"
 
 class GuiManager : public Module
 {
@@ -29,15 +29,6 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	//bool OnGuiMouseClickEvent(GuiControl* control);
-
-
-	//void CreateStartMenu();
-	//void CreateSettingsMenu();
-	//void CreatePauseMenu();
-	//void CreateGameOverMenu();
-	//void CreateInGameUI();
-
 	// Additional methods
 	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, int fontid, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
 	void DestroyGuiControl(GuiControl* entity);
@@ -45,7 +36,7 @@ public:
 
 public:
 
-	List<GuiControl*> controls;
+	p2List<GuiControl*> controls;
 
 	float accumulatedTime = 0.0f;
 	float updateMsCycle = 0.0f;
@@ -57,6 +48,14 @@ public:
 	int numberFont;
 	bool Debug = false;
 
+	enum GuiElementID {
+		START,
+		SETTINGS,
+		LOAD,
+		EXIT,
+		//etc
+
+	};
 
 	//GuiButton* startButton;//1
 	//GuiButton* settingsButton;//2

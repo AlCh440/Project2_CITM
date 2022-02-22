@@ -89,9 +89,9 @@ const DynArray<iPoint>* PathFinding::GetLastPath() const
 // PathList ------------------------------------------------------------------------
 // Looks for a node in this list and returns it's list node or NULL
 // ---------------------------------------------------------------------------------
-ListItem<PathNode>* PathList::Find(const iPoint& point) const
+p2ListItem<PathNode>* PathList::Find(const iPoint& point) const
 {
-	ListItem<PathNode>* item = list.start;
+	p2ListItem<PathNode>* item = list.start;
 	while(item)
 	{
 		if(item->data.pos == point)
@@ -104,12 +104,12 @@ ListItem<PathNode>* PathList::Find(const iPoint& point) const
 // PathList ------------------------------------------------------------------------
 // Returns the Pathnode with lowest score in this list or NULL if empty
 // ---------------------------------------------------------------------------------
-ListItem<PathNode>* PathList::GetNodeLowestScore() const
+p2ListItem<PathNode>* PathList::GetNodeLowestScore() const
 {
-	ListItem<PathNode>* ret = NULL;
+	p2ListItem<PathNode>* ret = NULL;
 	int min = 65535;
 
-	ListItem<PathNode>* item = list.end;
+	p2ListItem<PathNode>* item = list.end;
 	while(item)
 	{
 		if(item->data.Score() < min)
@@ -200,8 +200,8 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 	open.list.add(nodeStart);
 
-	ListItem<PathNode>* current = open.list.start;
-	ListItem<PathNode>* lowest;
+	p2ListItem<PathNode>* current = open.list.start;
+	p2ListItem<PathNode>* lowest;
 	lastPath.Clear();
 
 	if (IsWalkable(origin) && IsWalkable(destination))
@@ -231,7 +231,7 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 			current->data.FindWalkableAdjacents(adjacents, this);
 
-			ListItem<PathNode>* adj = adjacents.list.start;
+			p2ListItem<PathNode>* adj = adjacents.list.start;
 			while (adj != NULL)
 			{
 				if (close.Find(adj->data.pos) != NULL)
@@ -240,7 +240,7 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 					continue;
 				}
 
-				ListItem<PathNode>* adjacentInOpen = open.Find(adj->data.pos);
+				p2ListItem<PathNode>* adjacentInOpen = open.Find(adj->data.pos);
 
 				if (adjacentInOpen == NULL)
 				{

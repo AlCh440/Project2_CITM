@@ -55,7 +55,7 @@ public:
 	float timer = 0;//millis
 private:
 	SDL_Texture* img;
-	p2List_item<PhysBody*>* collider;
+	p2ListItem<PhysBody*>* collider;
 
 	Animation* currentLivesAnim = nullptr;
 	Animation*	lives2Anim, lives3Anim;

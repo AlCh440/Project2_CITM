@@ -73,7 +73,7 @@ bool Audio::CleanUp()
 		Mix_FreeMusic(music);
 	}
 
-	ListItem<Mix_Chunk*>* item;
+	p2ListItem<Mix_Chunk*>* item;
 	for(item = fx.start; item != NULL; item = item->next)
 		Mix_FreeChunk(item->data);
 

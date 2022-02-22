@@ -7,19 +7,19 @@
 * Contains items from double linked list
 */
 template<class tdata>
-struct p2List_item
+struct p2ListItem
 {
 	tdata                 data;
-	p2List_item<tdata>*   next;
-	p2List_item<tdata>*   prev;
+	p2ListItem<tdata>*   next;
+	p2ListItem<tdata>*   prev;
 
-	inline p2List_item(const tdata& _data)
+	inline p2ListItem(const tdata& _data)
 	{
 		data = _data;
 		next = prev = NULL;
 	}
 
-	~p2List_item()
+	~p2ListItem()
 	{}
 };
 
@@ -30,10 +30,10 @@ template<class tdata>
 class p2List
 {
 
-private:
+public:
 
-	p2List_item<tdata>*   start;
-	p2List_item<tdata>*   end;
+	p2ListItem<tdata>*   start;
+	p2ListItem<tdata>*   end;
 	unsigned int  size;
 
 public:
@@ -55,12 +55,12 @@ public:
 		clear();
 	}
 
-	p2List_item<tdata>* getFirst() const
+	p2ListItem<tdata>* getFirst() const
 	{
 		return start;
 	}
 
-	p2List_item<tdata>* getLast() const
+	p2ListItem<tdata>* getLast() const
 	{
 		return end;
 	}
@@ -76,10 +76,10 @@ public:
 	/**
 	* Add new item
 	*/
-	p2List_item<tdata>* add(const tdata& item)
+	p2ListItem<tdata>* add(const tdata& item)
 	{
-		p2List_item<tdata>*   p_data_item;
-		p_data_item = new p2List_item < tdata >(item);
+		p2ListItem<tdata>*   p_data_item;
+		p_data_item = new p2ListItem < tdata >(item);
 
 		if(start == NULL)
 		{
@@ -102,7 +102,7 @@ public:
 	{
 		bool ret = false;
 		unsigned int i = 0;
-		p2List_item<tdata>*   p_data = start;
+		p2ListItem<tdata>*   p_data = start;
 
 		for(unsigned int i = 0; i < index && p_data != NULL; ++i)
 			p_data = p_data->next;
@@ -119,7 +119,7 @@ public:
 	/**
 	* Deletes an item from the list
 	*/
-	bool del(p2List_item<tdata>* item)
+	bool del(p2ListItem<tdata>* item)
 	{
 		if(item == NULL)
 		{
@@ -163,8 +163,8 @@ public:
 	*/
 	void clear()
 	{
-		p2List_item<tdata>*   p_data;
-		p2List_item<tdata>*   p_next;
+		p2ListItem<tdata>*   p_data;
+		p2ListItem<tdata>*   p_next;
 		p_data = start;
 
 		while(p_data != NULL)
@@ -183,7 +183,7 @@ public:
 	*/
 	bool find(const tdata& data)
 	{
-		p2List_item<tdata>* tmp = start;
+		p2ListItem<tdata>* tmp = start;
 		int index = 0;
 
 		while(tmp != NULL)
@@ -201,9 +201,9 @@ public:
 	/**
 	* returns the first apperance of data as index (-1 if not found)
 	*/
-	p2List_item<tdata>* findNode(const tdata& data)
+	p2ListItem<tdata>* findNode(const tdata& data)
 	{
-		p2List_item<tdata>* tmp = start;
+		p2ListItem<tdata>* tmp = start;
 
 		while(tmp != NULL)
 		{
@@ -214,5 +214,28 @@ public:
 
 		return (NULL);
 	}
+
+	// Read/write operator access directly to a position in the list
+	tdata& operator [](const unsigned int index)
+	{
+		long pos;
+		p2ListItem<tdata>* pItem;
+		pos = 0;
+		pItem = start;
+
+		while (pItem != NULL)
+		{
+			if (pos == index)
+			{
+				break;
+			}
+
+			++pos;
+			pItem = pItem->next;
+		}
+
+		return(pItem->data);
+	}
+
 };
 #endif /*__p2List_H__*/

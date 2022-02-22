@@ -2,7 +2,7 @@
 #define __APP_H__
 
 #include "Module.h"
-#include "List.h"
+#include "p2List.h"
 #include "PerfTimer.h"
 #include "Timer.h"
 #include "PugiXml/src/pugixml.hpp"
@@ -124,7 +124,7 @@ private:
 	SString title;
 	SString organization;
 
-	List<Module *> modules;
+	p2List<Module *> modules;
 
 	uint frames;
 	

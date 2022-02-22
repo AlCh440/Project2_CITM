@@ -40,7 +40,7 @@ bool GuiPanel::UpdateAll(float dt, bool logic)
 
 	if (doLogic) {
 
-		ListItem<GuiControl*>* control = controls.start;
+		p2ListItem<GuiControl*>* control = controls.start;
 
 		while (control != nullptr)
 		{
@@ -60,7 +60,7 @@ bool GuiPanel::Draw()
 
 	app->render->DrawTexture(app->guiManager->UItexture,position.x, position.y,&bounds);
 
-	ListItem<GuiControl*>* control = controls.start;
+	p2ListItem<GuiControl*>* control = controls.start;
 
 	while (control != nullptr)
 	{
@@ -72,7 +72,7 @@ bool GuiPanel::Draw()
 
 bool GuiPanel::CleanUp()
 {
-	ListItem<GuiControl*>* control = controls.start;
+	p2ListItem<GuiControl*>* control = controls.start;
 
 	while (control != nullptr)
 	{

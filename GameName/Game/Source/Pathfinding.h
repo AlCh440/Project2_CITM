@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Point.h"
 #include "DynArray.h"
-#include "List.h"
+#include "p2List.h"
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
@@ -94,13 +94,13 @@ struct PathNode
 struct PathList
 {
 	// Looks for a node in this list and returns it's list node or NULL
-	ListItem<PathNode>* Find(const iPoint& point) const;
+	p2ListItem<PathNode>* Find(const iPoint& point) const;
 
 	// Returns the Pathnode with lowest score in this list or NULL if empty
-	ListItem<PathNode>* GetNodeLowestScore() const;
+	p2ListItem<PathNode>* GetNodeLowestScore() const;
 
 	// The list itself, note they are not pointers!
-	List<PathNode> list;
+	p2List<PathNode> list;
 };
 
 #endif // __PATHFINDING_H__

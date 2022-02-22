@@ -83,7 +83,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 App::~App()
 {
 	// Release modules
-	ListItem<Module*>* item = modules.end;
+	p2ListItem<Module*>* item = modules.end;
 
 	while(item != NULL)
 	{
@@ -124,7 +124,7 @@ bool App::Awake()
 
 	if (ret == true)
 	{
-		ListItem<Module*>* item;
+		p2ListItem<Module*>* item;
 		item = modules.start;
 
 		while ((item != NULL) && (ret == true))
@@ -145,7 +145,7 @@ bool App::Start()
 	startupTime.Start();
 	lastSecFrameTime.Start();
 
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	item = modules.start;
 
 	while(item != NULL && ret == true && item->data->active)
@@ -255,7 +255,7 @@ bool App::PreUpdate()
 {
 	bool ret = true;
 
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	Module* pModule = NULL;
 
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
@@ -283,7 +283,7 @@ bool App::DoUpdate()
 {
 	bool ret = true;
 	PERF_START(ptimer);
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	item = modules.start;
 	Module* pModule = NULL;
 
@@ -305,7 +305,7 @@ bool App::DoUpdate()
 bool App::PostUpdate()
 {
 	bool ret = true;
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	Module* pModule = NULL;
 
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
@@ -326,7 +326,7 @@ bool App::PostUpdate()
 bool App::CleanUp()
 {
 	bool ret = true;
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	item = modules.end;
 
 	while(item != NULL && ret == true)
@@ -425,7 +425,7 @@ bool App::LoadGame()
 		ret = false;
 	}
 	else {
-		ListItem<Module*>* item;
+		p2ListItem<Module*>* item;
 		item = modules.start;
 
 		while (item != NULL)
@@ -450,7 +450,7 @@ bool App::SaveGame() const
 	pugi::xml_document* saveDoc = new pugi::xml_document();
 	pugi::xml_node  saveStateNode = saveDoc->append_child("save_state");
 
-	ListItem<Module*>* item;
+	p2ListItem<Module*>* item;
 	item = modules.start;
 
 	while (item != NULL)

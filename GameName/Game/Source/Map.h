@@ -2,7 +2,7 @@
 #define __MAP_H__
 
 #include "Module.h"
-#include "List.h"
+#include "p2List.h"
 #include "Point.h"
 #include "Physics.h"
 #include "Entity.h"
@@ -53,7 +53,7 @@ struct Properties
 	
 	~Properties()
 	{
-		ListItem<Property*>* item;
+		p2ListItem<Property*>* item;
 		item = list.start;
 
 		while (item != NULL)
@@ -69,7 +69,7 @@ struct Properties
 	int GetProperty(const char* name, int default_value = 0) const;
 	bool SetProperty(const char* name, int set_value);
 
-	List<Property*> list;
+	p2List<Property*> list;
 };
 // L04: DONE 1: Create a struct for the map layer
 struct MapLayer
@@ -111,7 +111,7 @@ struct ObjectLayer {
 
 	SString name;
 	SDL_Texture* texture;
-	List<Object*> objects;
+	p2List<Object*> objects;
 	int width;
 	int height;
 	uint* data;
@@ -132,9 +132,9 @@ struct MapData
 	int	tileHeight;
 	SDL_Color backgroundColor;
 	MapTypes type;
-	List<TileSet*> tilesets;
-	List<ObjectLayer*> objectLayers;
-	List<MapLayer*> layers;
+	p2List<TileSet*> tilesets;
+	p2List<ObjectLayer*> objectLayers;
+	p2List<MapLayer*> layers;
 };
 
 class Map : public Module

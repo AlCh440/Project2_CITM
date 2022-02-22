@@ -1,7 +1,7 @@
 #include "App.h"
 #include "Render.h"
 #include "Textures.h"
-
+#include "p2List.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -48,7 +48,7 @@ bool Textures::Start()
 bool Textures::CleanUp()
 {
 	LOG("Freeing textures and Image library");
-	ListItem<SDL_Texture*>* item;
+	p2ListItem<SDL_Texture*>* item;
 
 	for(item = textures.start; item != NULL; item = item->next)
 	{
@@ -82,7 +82,7 @@ SDL_Texture* const Textures::Load(const char* path)
 // Unload texture
 bool Textures::UnLoad(SDL_Texture* texture)
 {
-	ListItem<SDL_Texture*>* item;
+	p2ListItem<SDL_Texture*>* item;
 
 	for(item = textures.start; item != NULL; item = item->next)
 	{

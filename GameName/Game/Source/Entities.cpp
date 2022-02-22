@@ -246,7 +246,7 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             break;
         case Collider_Type::CHECK_POINT:
             {  
-                p2List_item<CheckPoint*>* p = checkPoint.getFirst();
+                p2ListItem<CheckPoint*>* p = checkPoint.getFirst();
                 while (p != NULL)
                 {
                     if (p->data->physBody == bodyB)

@@ -64,11 +64,11 @@ bool ModulePhysics::PreUpdate()
 
 	static bool temp = false;
 
-	p2List_item<PhysBody*>* current = allPhysicBodies.getFirst();
+	p2ListItem<PhysBody*>* current = allPhysicBodies.getFirst();
 	while (current != NULL)
 	{
 		bool removeItem = false;
-		p2List_item<PhysBody*>* itemToRemove = current;
+		p2ListItem<PhysBody*>* itemToRemove = current;
 		if (itemToRemove->data->pendingToDelete) {
 			removeItem = true;
 		}
@@ -278,7 +278,7 @@ void ModulePhysics::DrawColliders()
 
 	// Bonus code: this will iterate all objects in the world and draw the circles
 	// You need to provide your own macro to translate meters to pixels
-	for (p2List_item<PhysBody*>* pb = allPhysicBodies.getFirst(); pb; pb = pb->next)
+	for (p2ListItem<PhysBody*>* pb = allPhysicBodies.getFirst(); pb; pb = pb->next)
 	{
 		for (b2Fixture* f = pb->data->body->GetFixtureList(); f; f = f->GetNext())
 		{
@@ -355,7 +355,7 @@ void ModulePhysics::DrawColliders()
 void ModulePhysics::ClearAllCollidersLists()
 {
 
-	p2List_item<PhysBody*>* current = allPhysicBodies.getFirst();
+	p2ListItem<PhysBody*>* current = allPhysicBodies.getFirst();
 	while (current != nullptr)
 	{
 		current->data->pendingToDelete = true;
@@ -439,13 +439,6 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
-
-
-	//if (physA && physA->entityListener != NULL)
-	//	physA->listener->OnCollision(physB);
-
-	//if (physB && physB->entityListener != NULL)
-	//	physB->listener->OnCollision(physA);
 }
 
 bool ModulePhysics::LoadState(pugi::xml_node& data)
