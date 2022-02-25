@@ -14,7 +14,7 @@
 
 Player::Player(iPoint pos) : Entity(pos)
 {
-	name = "player";
+	name = "player"; // Maybe change when we create multiple characters
 }
 
 Player::Player(Collider_Type type, iPoint pos) : Entity(type, pos)
@@ -39,10 +39,12 @@ bool Player::PreUpdate()
 	return true;
 }
 
-// Update: draw background
+
 bool Player::Update(float dt)
 {
 	bool ret = true;
+
+
 
 	return ret;
 
@@ -96,8 +98,22 @@ void Player::SkillAttack()
 
 }
 
+void GodMovement() 
+{
+
+}
+
+void UpdateSensorsPosition()
+{
+
+}
+
 void Player::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
+	if ((bodyA != nullptr) && (bodyB != nullptr))
+	{
+
+	}
 }
 
 bool Player::LoadState(pugi::xml_node& data)
