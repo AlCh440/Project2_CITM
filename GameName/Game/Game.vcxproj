@@ -89,23 +89,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Bat.cpp" />
-    <ClCompile Include="Source\BigMusher.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Collectable.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
-    <ClCompile Include="Source\Gem.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\GuiPanel.cpp" />
     <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\GuiToggle.cpp" />
-    <ClCompile Include="Source\HPotion.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
-    <ClCompile Include="Source\Key.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
@@ -115,11 +110,9 @@
     <ClCompile Include="Source\Entities.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
-    <ClCompile Include="Source\Musher.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\Portal.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />
     <ClCompile Include="Source\Scene2.cpp" />
@@ -128,15 +121,12 @@
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
-    <ClInclude Include="Source\Bat.h" />
-    <ClInclude Include="Source\BigMusher.h" />
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Collectable.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\GameOver.h" />
-    <ClInclude Include="Source\Gem.h" />
     <ClInclude Include="Source\Globals.h" />
     <ClInclude Include="Source\GuiButton.h" />
     <ClInclude Include="Source\GuiControl.h" />
@@ -144,15 +134,12 @@
     <ClInclude Include="Source\GuiPanel.h" />
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\GuiToggle.h" />
-    <ClInclude Include="Source\HPotion.h" />
     <ClInclude Include="Source\Intro.h" />
-    <ClInclude Include="Source\Key.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
     <ClInclude Include="Source\Physics.h" />
-    <ClInclude Include="Source\Musher.h" />
     <ClInclude Include="Source\p2List.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PerfTimer.h" />
@@ -161,7 +148,6 @@
     <ClInclude Include="Source\App.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\Portal.h" />
     <ClInclude Include="Source\PQueue.h" />
     <ClInclude Include="Source\Queue.h" />
     <ClInclude Include="Source\Render.h" />

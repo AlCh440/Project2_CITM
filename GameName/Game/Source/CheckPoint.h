@@ -20,13 +20,13 @@ private:
 	bool Cleanup();
 
 public:
-	enum ShrineState
+	enum CheckPointState
 	{
 		S_IDLE,
 		S_TRANSITION,
 		S_OPEN
 	};
-	ShrineState shrineState;
+	CheckPointState state;
 	Animation idleShrineAnim, transitionShrineAnim, openShrineAnim;
 	int frameCounter;
 };

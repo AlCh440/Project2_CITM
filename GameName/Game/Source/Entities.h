@@ -6,7 +6,6 @@
 #include "Point.h"
 #include "Entity.h"
 #include "Player.h"
-#include "Portal.h"
 #include "CheckPoint.h"
 
 #define MAX_ENTITIES 150
@@ -46,14 +45,8 @@ public:
 	//Player instance reference
 	Player* playerInstance;
 
-	Portal* portalInstance;
-//	CheckPoint* checkPoint;
+	//CheckPoint list reference
 	p2List<CheckPoint*> checkPoint;
-
-	//should not be here
-	int playerLives,coinsCollected = 0;
-
-	int coinFx, hitFx;
 	
 };
 

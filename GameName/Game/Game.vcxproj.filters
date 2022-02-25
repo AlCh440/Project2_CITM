@@ -9,12 +9,6 @@
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp">
       <Filter>External\PugiXml</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bat.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Musher.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
@@ -22,12 +16,6 @@
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collectable.cpp">
-      <Filter>Entities\Collectable</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Gem.cpp">
-      <Filter>Entities\Collectable</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Key.cpp">
       <Filter>Entities\Collectable</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scene1.cpp">
@@ -48,13 +36,7 @@
     <ClCompile Include="Source\LevelManagement.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HPotion.cpp">
-      <Filter>Entities\Collectable</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CheckPoint.cpp">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Portal.cpp">
       <Filter>Entities\CheckPoints</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
@@ -114,9 +96,6 @@
     <ClCompile Include="Source\GuiPanel.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BigMusher.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -142,12 +121,6 @@
       <Filter>External\PugiXml</Filter>
     </ClInclude>
     <ClInclude Include="Source\Globals.h" />
-    <ClInclude Include="Source\Bat.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Musher.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Entity.h">
       <Filter>Entities</Filter>
     </ClInclude>
@@ -155,12 +128,6 @@
       <Filter>Entities\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\Collectable.h">
-      <Filter>Entities\Collectable</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Gem.h">
-      <Filter>Entities\Collectable</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Key.h">
       <Filter>Entities\Collectable</Filter>
     </ClInclude>
     <ClInclude Include="Source\StartMenu.h">
@@ -178,13 +145,7 @@
     <ClInclude Include="Source\LevelManagement.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HPotion.h">
-      <Filter>Entities\Collectable</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CheckPoint.h">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Portal.h">
       <Filter>Entities\CheckPoints</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
@@ -264,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="Source\Intro.h">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BigMusher.h">
-      <Filter>Entities\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
