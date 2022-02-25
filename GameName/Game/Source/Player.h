@@ -1,6 +1,6 @@
 #pragma once
 #include "Entity.h"
-#include "Globals.h"
+#include "Defs.h"
 #include "Point.h"
 #include "Animation.h"
 #include "Textures.h"

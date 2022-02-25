@@ -2,6 +2,7 @@
 #define __DEFS_H__
 
 #include <stdio.h>
+#include <windows.h>
 
 //  NULL just in case ----------------------
 
@@ -63,5 +64,32 @@ inline const char* const PATH(const char* folder, const char* file)
 // Performance macros
 #define PERF_START(timer) timer.Start()
 #define PERF_PEEK(timer) LOG("%s took %f ms", __FUNCTION__, timer.ReadMs())
+
+#define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+
+void log(const char file[], int line, const char* format, ...);
+
+#define CAP(n) ((n <= 0.0f) ? n=0.0f : (n >= 1.0f) ? n=1.0f : n=n)
+
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.295779513082320876f
+
+enum update_status
+{
+	UPDATE_CONTINUE = 1,
+	UPDATE_STOP,
+	UPDATE_ERROR
+};
+
+// Configuration -----------
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 480
+#define SCREEN_SIZE 1
+#define PORTAL_FULLSCREEN false
+#define PORTAL_RESIZABLE false
+#define PORTAL_BORDERLESS false
+#define PORTAL_FULLSCREEN_DESKTOP false
+#define VSYNC true
+#define TITLE " Project 2 "
 
 #endif

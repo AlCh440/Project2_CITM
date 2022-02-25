@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "Globals.h"
+#include "Defs.h"
 #include "App.h"
 #include "Audio.h"
 #include "Input.h"

@@ -2,7 +2,7 @@
 
 #include "App.h"
 #include "Render.h"
-#include "Globals.h"
+#include "Defs.h"
 #include "Log.h"
 
 #include "SDL/include/SDL_render.h"

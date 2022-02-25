@@ -3,7 +3,7 @@
 
 #include "Module.h"
 #include "p2List.h"
-#include "Globals.h"
+#include "Defs.h"
 #include "Physics.h"
 #include "Animation.h"
 

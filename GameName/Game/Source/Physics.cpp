@@ -7,7 +7,7 @@
 #include "Point.h"
 #include "math.h"
 #include "Log.h"
-#include "Globals.h"
+#include "Defs.h"
 #include "Entity.h"
 
 //#ifdef _DEBUG
