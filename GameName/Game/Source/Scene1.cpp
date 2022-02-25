@@ -12,8 +12,8 @@
 #include "LevelManagement.h"
 #include "Entities.h"
 #include "player.h"
-#include "Musher.h"
-#include "Bat.h"
+//#include "Musher.h"
+//#include "Bat.h"
 
 #include "Defs.h"
 #include "Log.h"
