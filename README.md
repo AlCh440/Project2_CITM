@@ -1,13 +1,10 @@
 # Intro
 
-
 # Controls
 
-## Player
+# Player
 
-
-
-## Game 
+# Game 
 
 F1-> Start level 1
 
