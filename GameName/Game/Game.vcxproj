@@ -101,6 +101,7 @@
     <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\GuiToggle.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
+    <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
+    <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />

@@ -49,5 +49,19 @@ public:
 
 public:
 	Animation* currentAnim = nullptr;
+
+private:
+
+	int typeOfPlayer = 0; 
+
+	// The type of Player is the variable that decides whitch player we are creating: Knight, Ranger or Mage
+	// 1 for Knight
+	// 2 for Ranger
+	// 3 for Mage
+	// else ERROR
+
+	int lifePoints = 1;
+	int manaPoints = 1;
+
 };
 

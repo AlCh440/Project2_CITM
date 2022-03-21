@@ -15,6 +15,7 @@
 Player::Player(iPoint pos) : Entity(pos)
 {
 	name = "player"; // Maybe change when we create multiple characters
+	
 }
 
 Player::Player(Collider_Type type, iPoint pos) : Entity(type, pos)
@@ -29,6 +30,9 @@ Player::~Player()
 bool Player::Start()
 {
 	//Initializing player struct data
+	lifePoints = 1;
+	manaPoints = 1;
+	typeOfPlayer = 0;
 	
 	return true;
 }
