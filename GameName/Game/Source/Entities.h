@@ -14,6 +14,8 @@
 
 
 class Entity;
+// this will be deleted
+class EnemyDummy;
 struct SDL_Texture;
 struct PhysicBody;
 
@@ -47,6 +49,7 @@ public:
 
 	//CheckPoint list reference
 	p2List<CheckPoint*> checkPoint;
-	
+	//This will be deleted
+	EnemyDummy* a;
 };
 

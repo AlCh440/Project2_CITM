@@ -1,10 +1,11 @@
 #pragma once
-#include "Entity.h"
+
+#include "Enemy.h"
 #include "Pathfinding.h"
 
 
 
-struct Stats
+struct Statistics
 {
 	int hp;
 	int mana;
@@ -12,18 +13,21 @@ struct Stats
 	int momevent;
 };
 
-class Enemy :  public Entity
+class EnemyDummy : public Enemy
 {
 public:
 
-	Enemy(iPoint pos);
-	Enemy(Collider_Type type, iPoint pos);
+	EnemyDummy(iPoint pos);
+	EnemyDummy(Collider_Type type, iPoint pos);
 	virtual void Move(float dt);
 	virtual void UpdatePath();
 
 	int hitPoints;
 	int score;
 	float detectionDistance = 10; // in pixels
+
+	bool PostUpdate() override;
+
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
@@ -35,7 +39,7 @@ protected:
 	PathFinding* pathfinding;
 	int scorePoints = 0;
 
-
+	
 
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
 };

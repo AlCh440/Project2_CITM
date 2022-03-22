@@ -39,6 +39,7 @@ bool Scene1::Awake()
 // Called before the first frame
 bool Scene1::Start()
 {
+
 	return true;
 }
 

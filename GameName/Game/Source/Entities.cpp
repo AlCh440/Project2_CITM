@@ -8,6 +8,8 @@
 
 #include "Entity.h"
 
+#include "EnemyDummy.h"
+
 #include "Player.h"
 #include "CheckPoint.h"
 
@@ -16,6 +18,7 @@
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
     name.Create("entities");
+    
 }
 
 ModuleEntities::~ModuleEntities()
@@ -25,6 +28,7 @@ ModuleEntities::~ModuleEntities()
 bool ModuleEntities::Awake()
 {
     //test
+   
     return true;
 }
 
@@ -39,6 +43,7 @@ bool ModuleEntities::Start()
         }
     }
 
+   
     return true;
 }
 
@@ -79,7 +84,13 @@ bool ModuleEntities::PostUpdate()
             entities[i]->PostUpdate();
         
     }
+
+    //this will be deleted
+    a->PostUpdate();
+
     return true;
+
+   
 }
 
 bool ModuleEntities::CleanUp()

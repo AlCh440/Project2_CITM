@@ -16,13 +16,16 @@
 #include "Entities.h"
 #include "GuiManager.h"
 #include "Fonts.h"
-
+#include "Brofiler/include/optick.h"
 
 #include "Defs.h"
 #include "Log.h"
 
 #include <iostream>
 #include <sstream>
+
+//toDelete
+#include "EnemyDummy.h"
 
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
@@ -154,7 +157,8 @@ bool App::Start()
 		item = item->next;
 	}
 
-
+	// this will be deleted
+	app->entities->a = new EnemyDummy(iPoint(0, 0));
 
 	return ret;
 }
@@ -178,6 +182,10 @@ bool App::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
+	if (input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;
+
 	return ret;
 }
 
@@ -239,13 +247,12 @@ void App::FinishUpdate()
 
 	float delay =  float(1000 / maxFrameRate) - frameDuration.ReadMs();
 
-//	LOG("F: %f Delay:%f", frameDuration.ReadMs(), delay);
 
 
 	PerfTimer* delayt = new PerfTimer();
 	delayt->Start();
 	if (maxFrameRate > 0 && delay > 0) SDL_Delay(delay);
-//	LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
+
 
 	app->win->SetTitle(title);
 }
