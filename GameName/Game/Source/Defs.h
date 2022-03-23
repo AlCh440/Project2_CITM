@@ -81,6 +81,14 @@ enum update_status
 	UPDATE_ERROR
 };
 
+struct Enemy_Statistics
+{
+	int hp;
+	int mana;
+	int baseDamage;
+	int momevent;
+};
+
 // Configuration -----------
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 480

@@ -3,6 +3,10 @@
 #include "App.h"
 #include "Textures.h"
 #include "Render.h"
+#include "Enemy.h"
+#include "Player.h"
+#include "Player.cpp"
+
 
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
@@ -24,7 +28,17 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::PostUpdate()
 {
+	int hp;
+	
 	app->render->DrawTexture(texture, position.x, position.y);
 
 	return true;
+
+	if (  hp  = 0)
+	{
+		state = DEATH;
+	}
+	
+	
+
 }
