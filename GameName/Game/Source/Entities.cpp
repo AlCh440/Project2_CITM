@@ -8,8 +8,6 @@
 
 #include "Entity.h"
 
-#include "EnemyDummy.h"
-
 #include "Player.h"
 #include "CheckPoint.h"
 
@@ -84,9 +82,6 @@ bool ModuleEntities::PostUpdate()
             entities[i]->PostUpdate();
         
     }
-
-    //this will be deleted
-    a->PostUpdate();
 
     return true;
 

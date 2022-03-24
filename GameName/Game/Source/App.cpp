@@ -24,9 +24,6 @@
 #include <iostream>
 #include <sstream>
 
-//toDelete
-#include "EnemyDummy.h"
-
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
@@ -59,8 +56,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(physics);
-	AddModule(guiManager);
 	AddModule(fonts);
+	AddModule(guiManager);
+	
 
 	
 	AddModule(levelManagement);
@@ -156,9 +154,6 @@ bool App::Start()
 		ret = item->data->Start();
 		item = item->next;
 	}
-
-	// this will be deleted
-	app->entities->a = new EnemyDummy(iPoint(0, 0));
 
 	return ret;
 }
