@@ -47,6 +47,7 @@ bool StartMenu::PreUpdate()
 // Called each loop iteration
 bool StartMenu::Update(float dt)
 {
+
 	return true;
 }
 

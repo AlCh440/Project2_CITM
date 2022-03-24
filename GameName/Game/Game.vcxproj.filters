@@ -99,6 +99,9 @@
     <ClCompile Include="Source\Knight.cpp">
       <Filter>Entities\SpecificPlayers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EnemyDummy.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -230,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="Source\Knight.h">
       <Filter>Entities\SpecificPlayers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyDummy.h">
+      <Filter>Entities\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

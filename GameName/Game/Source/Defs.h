@@ -83,7 +83,7 @@ enum update_status
 
 // Configuration -----------
 #define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 480
+#define SCREEN_HEIGHT 720
 #define SCREEN_SIZE 1
 #define PORTAL_FULLSCREEN false
 #define PORTAL_RESIZABLE false

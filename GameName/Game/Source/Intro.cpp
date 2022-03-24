@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "player.h"
+#include "EnemyDummy.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -45,8 +46,10 @@ bool Intro::PreUpdate()
 // Called each loop iteration
 bool Intro::Update(float dt)
 {
-	bool ret = true;
-	return ret;
+	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		yes = new EnemyDummy(iPoint(0, 0));
+
+	return true;
 }
 
 // Called each loop iteration
