@@ -21,14 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -104,6 +104,7 @@
     <ClCompile Include="Source\Intro.cpp" />
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
+    <ClCompile Include="Source\Mage.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -115,6 +116,7 @@
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Ranger.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />
     <ClCompile Include="Source\Scene2.cpp" />
@@ -139,6 +141,7 @@
     <ClInclude Include="Source\Intro.h" />
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
+    <ClInclude Include="Source\Mage.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
@@ -153,6 +156,7 @@
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PQueue.h" />
     <ClInclude Include="Source\Queue.h" />
+    <ClInclude Include="Source\Ranger.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Scene1.h" />
     <ClInclude Include="Source\Scene2.h" />

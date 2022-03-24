@@ -1,4 +1,4 @@
-#include "Knight.h"
+#include "Ranger.h"
 #include "Defs.h"
 #include "App.h"
 #include "Audio.h"
@@ -13,12 +13,12 @@
 
 // Update Code
 
-bool Knight::Start()
+bool Ranger::Start()
 {
 
-	lifePoints = 100;
-	manaPoints = 50;
-	typeOfPlayer = 1;
+	lifePoints = 75;
+	manaPoints = 75;
+	typeOfPlayer = 2;
 	actionPoints = 10; // To determine
 	isAlive = true;
 	// movement t defined in th spawn
@@ -26,10 +26,10 @@ bool Knight::Start()
 	return true;
 }
 
-bool Knight::PreUpdate()
+bool Ranger::PreUpdate()
 {
 
-	if(movType == COMBATMOVE)
+	if (movType == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{
@@ -46,56 +46,56 @@ bool Knight::PreUpdate()
 
 	}
 
-	
+
 
 	return true;
 }
 
-bool Knight::Update(float dt)
+bool Ranger::Update(float dt)
 {
 
 
 	return true;
 }
 
-bool Knight::PostUpdate()
+bool Ranger::PostUpdate()
 {
 
 
 	return true;
 }
 
-bool Knight::CleanUp()
+bool Ranger::CleanUp()
 {
 	// destroy the physbody
 
 	return true;
 }
 
-// Knight 
+// Ranger 
 
-bool Knight::BasicAttack() // pass an ennemy
+bool Ranger::BasicAttack() // pass an ennemy
 {
 
 
 	return true;
 }
 
-bool Knight::TauntHability()
+bool Ranger::PrecisionShot()
 {
 
 
 	return true;
 }
 
-bool Knight::BindHability()
+bool Ranger::MultyShot()
 {
 
 
 	return true;
 }
 
-bool Knight::ConcusionHability()
+bool Ranger::PowerfullStrike()
 {
 
 
@@ -103,20 +103,20 @@ bool Knight::ConcusionHability()
 }
 
 // OnCollision
-void Knight::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+void Ranger::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
 }
 
 // Load / Save
-bool Knight::LoadState(pugi::xml_node& data) 
+bool Ranger::LoadState(pugi::xml_node& data)
 {
 
 
 	return true;
 }
 
-bool Knight::SaveState(pugi::xml_node& data) const
+bool Ranger::SaveState(pugi::xml_node& data) const
 {
 
 

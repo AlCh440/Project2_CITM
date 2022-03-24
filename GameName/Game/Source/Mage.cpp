@@ -1,4 +1,4 @@
-#include "Knight.h"
+#include "Mage.h"
 #include "Defs.h"
 #include "App.h"
 #include "Audio.h"
@@ -13,12 +13,12 @@
 
 // Update Code
 
-bool Knight::Start()
+bool Mage::Start()
 {
 
-	lifePoints = 100;
-	manaPoints = 50;
-	typeOfPlayer = 1;
+	lifePoints = 50;
+	manaPoints = 100;
+	typeOfPlayer = 3;
 	actionPoints = 10; // To determine
 	isAlive = true;
 	// movement t defined in th spawn
@@ -26,10 +26,10 @@ bool Knight::Start()
 	return true;
 }
 
-bool Knight::PreUpdate()
+bool Mage::PreUpdate()
 {
 
-	if(movType == COMBATMOVE)
+	if (movType == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{
@@ -46,56 +46,49 @@ bool Knight::PreUpdate()
 
 	}
 
-	
+
 
 	return true;
 }
 
-bool Knight::Update(float dt)
+bool Mage::Update(float dt)
 {
 
 
 	return true;
 }
 
-bool Knight::PostUpdate()
+bool Mage::PostUpdate()
 {
 
 
 	return true;
 }
 
-bool Knight::CleanUp()
+bool Mage::CleanUp()
 {
 	// destroy the physbody
 
 	return true;
 }
 
-// Knight 
+// Mage 
 
-bool Knight::BasicAttack() // pass an ennemy
+bool Mage::MagicMissile()
 {
 
 
 	return true;
 }
 
-bool Knight::TauntHability()
+bool Mage::Heal()
 {
 
 
 	return true;
 }
 
-bool Knight::BindHability()
-{
-
-
-	return true;
-}
-
-bool Knight::ConcusionHability()
+bool Mage::PowerfullStrike()
 {
 
 
@@ -103,20 +96,20 @@ bool Knight::ConcusionHability()
 }
 
 // OnCollision
-void Knight::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+void Mage::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
 }
 
 // Load / Save
-bool Knight::LoadState(pugi::xml_node& data) 
+bool Mage::LoadState(pugi::xml_node& data)
 {
 
 
 	return true;
 }
 
-bool Knight::SaveState(pugi::xml_node& data) const
+bool Mage::SaveState(pugi::xml_node& data) const
 {
 
 

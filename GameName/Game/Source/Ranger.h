@@ -7,17 +7,17 @@
 #include "Render.h"
 #include "Player.h"
 
-class Knight : public Player
+class Ranger : public Player
 {
 public:
 
-	Knight(iPoint pos);// remember to define the type of player
-	~Knight();
+	Ranger(iPoint pos);// remember to define the type of player
+	~Ranger();
 
 	bool BasicAttack(); // pass an ennemy
-	bool TauntHability();
-	bool BindHability();
-	bool ConcusionHability();
+	bool PrecisionShot();
+	bool MultyShot();
+	bool PowerfullStrike();
 
 	bool Start() override;
 	bool PreUpdate() override;
@@ -25,7 +25,7 @@ public:
 	bool PostUpdate() override;
 	bool CleanUp() override;
 
-	
+
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 
 	// Load / Save
@@ -34,7 +34,7 @@ public:
 
 private:
 
-	
+
 
 
 
