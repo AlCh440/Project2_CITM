@@ -34,6 +34,8 @@ bool Intro::Awake()
 // Called before the first frame
 bool Intro::Start()
 {
+	yes = new EnemyDummy(iPoint(0, 0));
+
 	return true;
 }
 
@@ -46,16 +48,15 @@ bool Intro::PreUpdate()
 // Called each loop iteration
 bool Intro::Update(float dt)
 {
-	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-		yes = new EnemyDummy(iPoint(0, 0));
-
+	
+	
 	return true;
 }
 
 // Called each loop iteration
 bool Intro::PostUpdate()
 {
-
+	yes->PostUpdate();
 	return true;
 }
 
