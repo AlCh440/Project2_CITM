@@ -54,14 +54,7 @@ public:
 
 public:
 
-	enum Direction
-	{
-		UP,
-		DOWN,
-		RIGHT,
-		LEFT,
-		NONE
-	};
+	
 	enum State
 	{
 		IDLE,
@@ -92,7 +85,6 @@ public:
 
 	//If Enemy
 	State state;
-	Direction direction;
 	PhysBody* physBody = nullptr;
 
 	//Entity Name

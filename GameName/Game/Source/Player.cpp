@@ -92,15 +92,6 @@ void Player::Movement()
 
 }
 
-void Player::MeleeAttack()
-{
-	
-}
-
-void Player::SkillAttack()
-{
-
-}
 
 void GodMovement() 
 {
