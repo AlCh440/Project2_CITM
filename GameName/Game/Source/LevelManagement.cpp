@@ -98,15 +98,7 @@ bool LevelManagement::Update(float dt)
 	switch (gameState)
 	{
 	case INTRO:
-		if (currentScene == nullptr) {
-			currentScene = (Module*)app->intro;
-			LOG("INTRO");
-
-		}
-		else {
-			gameState = START;
-			app->fade->Fade(currentScene, (Module*)app->intro, 60);
-		}
+		
 		break;
 	case START:
 		if (currentScene != (Module*)app->start) {
