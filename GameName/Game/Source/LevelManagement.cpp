@@ -50,23 +50,13 @@ bool LevelManagement::PreUpdate()
 
 		if ((app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) && currentScene->active == true)
 		{
-			gameState = SCENE2;
+			//gameState = SCENE2;
 		}
 		break;
 	case SCENE1:
 		if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN && currentScene->active == true)
 		{
-			gameState = SCENE2;
-		}
-		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentScene->active == true)
-		{
-			RestartLevel();
-		}
-		break;
-	case SCENE2:
-		if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN && currentScene->active == true)
-		{
-			gameState = GAME_OVER;
+			//gameState = SCENE2;
 		}
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentScene->active == true)
 		{
@@ -128,18 +118,6 @@ bool LevelManagement::Update(float dt)
 			}
 		}
 		break;
-	case SCENE2:
-
-		if (currentScene != (Module*)app->scene2)
-		{
-			if (app->fade->Fade(currentScene, (Module*)app->scene2, 30))
-			{
-				currentScene = (Module*)app->scene2;
-				currentLevel = (Module*)app->scene2;
-				LOG("LEVEL 2");
-			}
-		}
-		break;
 	case GAME_OVER:
 
 		if (currentScene != (Module*)app->gameOver) {
@@ -165,13 +143,6 @@ void LevelManagement::NextLevel()
 		if (levelsPassed < 1) {
 			levelsPassed++;
 		}
-		gameState = SCENE2;
-		break;
-	case GameState::SCENE2:
-		if (levelsPassed < 2) {
-			levelsPassed++;
-		}
-		gameState = START;
 		break;
 	default:
 		break;
@@ -213,9 +184,6 @@ bool LevelManagement::LoadState(pugi::xml_node& data)
 	if (gameState == SCENE1)
 	{
 		app->fade->Fade(currentScene, app->scene1, 60.0f);
-	}
-	else if (gameState == SCENE2) {
-		app->fade->Fade(currentScene, app->scene2, 60.0f);
 	}
 	loadLevel = true;
 	return true;

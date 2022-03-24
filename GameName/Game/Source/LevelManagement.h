@@ -5,7 +5,6 @@
 
 #include "App.h"
 #include "Scene1.h"
-#include "Scene2.h"
 #include "Intro.h"
 #include "StartMenu.h"
 #include "GameOver.h"
@@ -38,7 +37,7 @@ public:
 		INTRO = 1,
 		START = 2,
 		SCENE1 = 4,
-		SCENE2 = 5,
+		
 		GAME_OVER = 6
 	};
 	GameState gameState;

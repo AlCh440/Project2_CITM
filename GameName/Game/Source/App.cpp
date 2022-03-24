@@ -9,7 +9,6 @@
 #include "Intro.h"
 #include "StartMenu.h"
 #include "Scene1.h"
-#include "Scene2.h"
 #include "GameOver.h"
 #include "Map.h"
 #include "Physics.h"
@@ -44,7 +43,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	intro = new Intro(true);
 	start = new StartMenu(false);
 	scene1 = new Scene1(false);
-	scene2 = new Scene2(false);
 	gameOver = new GameOver(false);
 
 
@@ -69,7 +67,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(intro);
 	AddModule(start);
 	AddModule(scene1);
-	AddModule(scene2);
 	AddModule(gameOver);
 
 	

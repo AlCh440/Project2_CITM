@@ -9,7 +9,6 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Scene1.h"
-#include "Scene2.h"
 #include<iostream>
 
 
