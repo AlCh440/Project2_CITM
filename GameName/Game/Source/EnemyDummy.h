@@ -26,6 +26,7 @@ public:
 	int score;
 	float detectionDistance = 10; // in pixels
 
+	bool Update(float dt) override;
 	bool PostUpdate() override;
 
 protected:
@@ -39,7 +40,7 @@ protected:
 	PathFinding* pathfinding;
 	int scorePoints = 0;
 
-
+	Statistics stats;
 
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
 };
