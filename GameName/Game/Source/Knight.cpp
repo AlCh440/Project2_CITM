@@ -28,14 +28,20 @@ bool Knight::Start()
 
 bool Knight::PreUpdate()
 {
-	if (lifePoints > 0)
+
+	if(movType == COMBATMOVE)
 	{
-		isAlive = true;
+		if (lifePoints > 0)
+		{
+			isAlive = true;
+		}
+		else
+		{
+			isAlive = false;
+		}
 	}
-	else
-	{
-		isAlive = false;
-	}
+
+	
 
 	return true;
 }
