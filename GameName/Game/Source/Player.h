@@ -64,6 +64,7 @@ public:
 	int manaPoints = 1;
 	int actionPoints = 1;
 	TypeOfMovement movType = DEFAULT;
+	bool isAlive = true;
 	
 private:
 

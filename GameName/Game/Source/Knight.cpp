@@ -20,6 +20,7 @@ bool Knight::Start()
 	manaPoints = 50;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
+	isAlive = true;
 	// movement t defined in th spawn
 	// physBody = app->physics->CreateCircle(30, 30, 15, b2_kinematicBody);
 	return true;
@@ -27,7 +28,14 @@ bool Knight::Start()
 
 bool Knight::PreUpdate()
 {
-	
+	if (lifePoints > 0)
+	{
+		isAlive = true;
+	}
+	else
+	{
+		isAlive = false;
+	}
 
 	return true;
 }
