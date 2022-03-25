@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Module.h"
 #include "p2List.h"
 #include "Defs.h"
@@ -8,14 +7,14 @@
 
 struct SDL_Texture;
 
-class TheVillage :   public Module
+class BattleTestScene : public Module
 {
 public:
 
-	TheVillage(bool isActive);
+	BattleTestScene(bool isActive);
 
 	// Destructor
-	virtual ~TheVillage();
+	virtual ~BattleTestScene();
 
 	// Called before render is available
 	bool Awake();
@@ -39,4 +38,3 @@ private:
 	SDL_Texture* img;
 	SDL_Rect rect;
 };
-

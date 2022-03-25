@@ -114,6 +114,12 @@
     <ClCompile Include="Source\GuiSlider.cpp">
       <Filter>GUI\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BattleTestScene.cpp">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorldTestScene.cpp">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -261,6 +267,12 @@
     <ClInclude Include="Source\GuiControl.h">
       <Filter>GUI\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BattleTestScene.h">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WorldTestScene.h">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -304,6 +316,9 @@
     </Filter>
     <Filter Include="GUI\Controls">
       <UniqueIdentifier>{89c55ae2-b5f1-476f-b410-90a6cab08a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Game\Test">
+      <UniqueIdentifier>{9034a389-e168-4c51-9078-e1c1754ace1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

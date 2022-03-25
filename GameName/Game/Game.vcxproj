@@ -91,6 +91,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BattleTestScene.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Collectable.cpp" />
     <ClCompile Include="Source\DragonCliff.cpp" />
@@ -128,7 +129,9 @@
     <ClCompile Include="Source\TheVillage.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\WorldTestScene.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Collectable.h" />
     <ClInclude Include="Source\DragonCliff.h" />
@@ -179,6 +182,7 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
+    <ClInclude Include="Source\WorldTestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

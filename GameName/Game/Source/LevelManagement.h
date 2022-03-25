@@ -36,13 +36,22 @@ public:
 		NONE = 0,
 		INTRO = 1,
 		START = 2,
+		GAME_OVER = 3,
 		SCENE1 = 4,
-		
-		GAME_OVER = 6
+		THE_FALL = 5,
+		GREEN_PATH = 6,
+		RUINS = 7,
+		VILLAGE = 8,
+		FRACTURED_ROAD = 9,
+		DRAGRON_CLIFF = 10,
+		COMBAT = 11,
+		WORLD_TEST = 12
 	};
+
 	GameState gameState;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;
+
 	int gemCount = 0;
 	int frameCounter = 0;
 	int delayTime = 100;
