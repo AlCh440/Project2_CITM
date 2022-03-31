@@ -11,9 +11,9 @@ public:
 	virtual void Move(float dt);
 	virtual void UpdatePath();
 
-	int hitPoints;
-	int score;
-	float detectionDistance = 10; // in pixels
+	//int hitPoints;
+	//int score;
+	//float detectionDistance = 10; // in pixels
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
@@ -23,7 +23,7 @@ protected:
 	b2Vec2 movementSpeed;
 
 	PathFinding* pathfinding;
-	int scorePoints = 0;
+	//int scorePoints = 0;
 
 
 

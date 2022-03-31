@@ -55,14 +55,15 @@ public:
 public:
 
 	
-	enum State
-	{
-		IDLE,
-		MOVE,
-		ATACK,
-		DEATH,
-		SCORE
-	};
+	//enum State
+	//{
+	//	IDLE,
+	//	MOVE,
+	//	ATACK,
+	//	DEATH,
+	//	SCORE
+	//};
+
 	// The current position in the world
 	iPoint spawnPos;
 	fPoint position;
@@ -84,7 +85,7 @@ public:
 	bool DEBUG;
 
 	//If Enemy
-	State state;
+	//State state;
 	PhysBody* physBody = nullptr;
 
 	//Entity Name
