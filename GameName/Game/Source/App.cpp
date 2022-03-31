@@ -12,6 +12,7 @@
 #include "Brofiler/include/optick.h"
 #include "LevelManagement.h"
 #include "FadeToBlack.h"
+#include "QuestManager.h"
 //Scenes 
 #include "Intro.h"
 #include "StartMenu.h"
@@ -44,8 +45,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
-	fonts = new ModuleFonts(true);
+	fonts = new Fonts(true);
 	fade = new FadeToBlack(true);
+	questManager = new QuestManager(true);
 
 	//systems
 	map = new Map(true);
@@ -84,6 +86,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(guiManager);
 	AddModule(levelManagement);
+	AddModule(questManager);
 
 
 	AddModule(intro);

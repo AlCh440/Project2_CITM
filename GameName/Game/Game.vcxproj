@@ -45,8 +45,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IncludePath>GameName\Game\Source\External\SDL\include;GameName\Game\Source\External\SDL_image\include;GameName\Game\Source\External\SDL_mixer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>GameName\Game\Source\External\SDL\libx86;GameName\Game\Source\External\SDL_image\libx86;GameName\Game\Source\External\SDL_mixer\libx86;$(LibraryPath)</LibraryPath>
+    <IncludePath>Source\External\SDL\include;Source\External\SDL_image\include;Source\External\SDL_mixer\include;Source\External\SDL_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>Source\External\SDL\libx86;Source\External\SDL_image\libx86;Source\External\SDL_mixer\libx86;Source\External\SDL_ttf\libx86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
@@ -67,7 +67,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Box2D.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Source\External\Box2D\libx86\Debug;$(ProjectDir)Source\External\SDL\libx86;$(ProjectDir)Source\External\SDL_image\libx86;$(ProjectDir)Source\External\SDL_mixer\libx86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Source\External\Box2D\libx86\Debug;$(ProjectDir)Source\External\SDL\libx86;$(ProjectDir)Source\External\SDL_image\libx86;$(ProjectDir)Source\External\SDL_mixer\libx86;$(ProjectDir)Source\External\SDL_ttf\libx86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,6 +119,8 @@
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\QuestManager.cpp" />
+    <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />
@@ -162,6 +164,8 @@
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PQueue.h" />
+    <ClInclude Include="Source\QuestManager.h" />
+    <ClInclude Include="Source\QuestPanel.h" />
     <ClInclude Include="Source\Queue.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Scene.h" />

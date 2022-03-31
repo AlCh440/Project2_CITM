@@ -1,11 +1,11 @@
 #include "GuiButton.h"
-#include "GuiManager.h"
 #include "Render.h"
 #include "Fonts.h"
 #include "App.h"
+#include "GuiManager.h"
 #include "Audio.h"
 
-GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid) : GuiControl(GuiControlType::BUTTON, id)
+GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor) : GuiControl(GuiControlType::BUTTON, id)
 {
 	this->bounds = bounds;
 	this->text = text;
@@ -14,8 +14,15 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid) :
 	fontPosY = bounds.y;
 	texture = app->guiManager->UItexture;
 	canClick = true;
-	drawBasic = false;
 	playfx = true;
+	textTex = app->fonts->LoadRenderedText(textRect, fontid, text, textcolor);
+	CenterText(bounds);
+	name.Create("Button");
+}
+
+GuiButton::GuiButton(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::BUTTON, id)
+{
+	name.Create("Button");
 }
 
 GuiButton::~GuiButton()
@@ -27,7 +34,6 @@ bool GuiButton::Update(float dt)
 {
 	if (state != GuiControlState::DISABLED)
 	{
-		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
 		app->input->GetMousePosition(mouseX, mouseY);
 
@@ -47,7 +53,7 @@ bool GuiButton::Update(float dt)
 				state = GuiControlState::PRESSED;
 			}
 
-			// If mouse button pressed -> Generate event!
+			// Generate event
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
 			{
 				NotifyObserver();
@@ -68,56 +74,72 @@ bool GuiButton::Draw(Render* render)
 {
 
 	// Draw the right button depending on state
-
-
 	switch (state)
 	{
 
 	case GuiControlState::DISABLED: 
 	{
 		if (app->guiManager->Debug)
-		render->DrawRectangle(bounds, 125, 200, 0, 0);
+			render->DrawRectangle(bounds, 125, 200, 0, 0);
 
-		if(texture != NULL)
+		if(texture != nullptr)
 			render->DrawTexture(texture, bounds.x, bounds.y, &disabledRec);
+
+		if (textTex != nullptr)
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+
 	} break;
 
 	case GuiControlState::NORMAL:
 	{
 		if (app->guiManager->Debug)
-		render->DrawRectangle(bounds, 125, 125, 0,125);
+			render->DrawRectangle(bounds, 125, 125, 0,125);
 
 		if (texture != NULL)
 			render->DrawTexture(texture, bounds.x, bounds.y, &normalRec);
+
+		if (textTex != nullptr)
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+
 	} break;
 	case GuiControlState::FOCUSED:
 	{
 		if (app->guiManager->Debug)
-		render->DrawRectangle(bounds, 255, 255, 255, 160);
+			render->DrawRectangle(bounds, 255, 255, 255, 160);
 
 		if (texture != NULL)
 			render->DrawTexture(texture, bounds.x, bounds.y, &focusedRec);
+
+		if (textTex != nullptr)
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+
 	} break;
 	case GuiControlState::PRESSED:
 	{
 	
 		if (app->guiManager->Debug)
-		render->DrawRectangle(bounds, 255, 255, 255, 255);
+			render->DrawRectangle(bounds, 255, 255, 255, 255);
 
 		app->audio->PlayFx(2);
 
 		if (texture != NULL)
 			render->DrawTexture(texture, bounds.x, bounds.y, &pressedRec);
 
+		if (textTex != nullptr)
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+
 	} break;
 
 	case GuiControlState::SELECTED:
 	{
 		if (app->guiManager->Debug)
-		render->DrawRectangle(bounds, 0, 255, 0, 255);
+			render->DrawRectangle(bounds, 0, 255, 0, 255);
 
 		if (texture != NULL)
 			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec);
+
+		if (textTex != nullptr)
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 	}break;
 
 	default:
@@ -125,4 +147,11 @@ bool GuiButton::Draw(Render* render)
 	}
 
 	return false;
+}
+
+bool GuiButton::CleanUp()
+{
+	textTex = nullptr;
+	texture = nullptr;
+	return true;
 }

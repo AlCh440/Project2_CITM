@@ -120,6 +120,12 @@
     <ClCompile Include="Source\WorldTestScene.cpp">
       <Filter>Scenes\Game\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Source\QuestPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuestManager.cpp">
+      <Filter>Quests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -273,6 +279,12 @@
     <ClInclude Include="Source\WorldTestScene.h">
       <Filter>Scenes\Game\Test</Filter>
     </ClInclude>
+    <ClInclude Include="Source\QuestPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\QuestManager.h">
+      <Filter>Quests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -319,6 +331,9 @@
     </Filter>
     <Filter Include="Scenes\Game\Test">
       <UniqueIdentifier>{9034a389-e168-4c51-9078-e1c1754ace1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quests">
+      <UniqueIdentifier>{b29a12b9-812b-48fa-9b22-d52346b1edb2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

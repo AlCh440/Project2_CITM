@@ -5,14 +5,8 @@
 #include "Window.h"
 #include "Render.h"
 #include "Audio.h"
-#include "LevelManagement.h"
 
-#include "GuiButton.h"
-#include "GuiSlider.h"
-#include "GuiToggle.h"
-#include "GuiPanel.h"
-
-
+#include "QuestPanel.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -25,51 +19,31 @@ GuiManager::~GuiManager() {}
 bool GuiManager::Start()
 {
 
-	mainFont = app->fonts->Load("Assets/GUI/Fonts/Font.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", 1);
-	mainFont = app->fonts->Load("Assets/GUI/Fonts/numbers.png", "1234567890:", 1);
 	UItexture = app->tex->Load("Assets/Spritesx16/GUI.png");
+	UItexture2 = app->tex->Load("Assets/Spritesx16/GUI2.png");
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
 	Debug = false;
 
+	questPanel = new QuestPanel(true);
+
+	panels.add(questPanel);
+
+
+	//init panels
+	p2ListItem<GuiPanel*>* panel = panels.start;
+
+	while (panel != nullptr && panel->data->Active)
+	{
+		panel->data->Start();
+		panel = panel->next;
+	}
+
+
 	return true;
 }
 
-GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char* text,int fontid, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds)
-{
-
-	GuiControl* control = nullptr;
-
-	//Call the constructor according to the GuiControlType
-	switch (type)
-	{
-	case GuiControlType::BUTTON:
-		control = new GuiButton(id, bounds, text, fontid);
-		break;
-	case GuiControlType::SLIDER:
-		control = new GuiSlider(id, bounds, sliderBounds);
-		break;
-	case GuiControlType::CHECKBOX:
-		control = new GuiToggle(id, bounds);
-		break;
-	
-	// More Gui Controls can go here
-
-	default:
-		break;
-	}
-
-	//Set the observer
-
-	control->SetObserver(observer);
-	//control->SetTexture(texture);
-
-	// Created GuiControls are added to the list of controls
-	if (control != nullptr) controls.add(control);
-
-	return control;
-}
 
 bool GuiManager::Update(float dt)
 {	
@@ -95,12 +69,12 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 	if (doLogic) {
 
-		p2ListItem<GuiControl*>* control = controls.start;
+		p2ListItem<GuiPanel*>* panel = panels.start;
 
-		while (control != nullptr)
+		while (panel != nullptr && panel->data->Active)
 		{
-			control->data->Update(dt);
-			control = control->next;
+			panel->data->Update(dt,doLogic);
+			panel = panel->next;
 		}
 
 	}
@@ -108,14 +82,14 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 }
 
-bool GuiManager::Draw() {
+bool GuiManager::PostUpdate() {
 
-	p2ListItem<GuiControl*>* control = controls.start;
+	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (control != nullptr)
+	while (panel != nullptr && panel->data->Active)
 	{
-		control->data->Draw(app->render);
-		control = control->next;
+		panel->data->Draw();
+		panel = panel->next;
 	}
 
 	return true;
@@ -124,15 +98,40 @@ bool GuiManager::Draw() {
 
 bool GuiManager::CleanUp()
 {
-	p2ListItem<GuiControl*>* control = controls.start;
+	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (control != nullptr)
+	while (panel != nullptr)
 	{
-		RELEASE(control);
+		panel->data->CleanUp();
+		panel = panel->next;
+	}
+
+	panels.clear();
+
+	UItexture = nullptr;
+	UItexture2 = nullptr;
+
+	return true;
+}
+
+bool GuiManager::OnGuiMouseClickEvent(GuiControl* control)
+{
+
+	p2ListItem<GuiPanel*>* panel = panels.start;
+
+	while (panel != nullptr && panel->data->Active)
+	{
+		if (control->parent == panel->data)
+		{
+			panel->data->OnGuiMouseClickEvent(control);
+		}
+		panel = panel->next;
 	}
 
 	return true;
 }
+
+
 
 
 

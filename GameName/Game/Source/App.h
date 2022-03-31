@@ -17,13 +17,14 @@ class Render;
 class Textures;
 class Audio;
 class FadeToBlack;
-class ModuleFonts;
+class Fonts;
 
 class Map;
 class ModulePhysics;
 class ModuleEntities;
 class GuiManager;
 class LevelManagement;
+class QuestManager;
 
 class Intro;
 class StartMenu;
@@ -116,7 +117,8 @@ public:
 	ModulePhysics* physics;
 	ModuleEntities* entities;
 	GuiManager* guiManager;
-	ModuleFonts* fonts;
+	Fonts* fonts;
+	QuestManager* questManager;
 	
 	//scenes
 	LevelManagement* levelManagement;

@@ -1,8 +1,8 @@
 #include "GuiToggle.h"
-#include "GuiManager.h"
 #include "Render.h"
 #include "Fonts.h"
 #include "App.h"
+#include "GuiManager.h"
 #include "Audio.h"
 
 GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TOGGLE, id)
@@ -14,6 +14,8 @@ GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TO
 	State = false;
 	normalRec = { 0,240,22,22 };
 	selectedRec = { 66,240,22,22 };
+
+	name.Create("Toggle");
 }
 
 GuiToggle::~GuiToggle()
@@ -24,7 +26,7 @@ bool GuiToggle::Update(float dt)
 {
 	if (state != GuiControlState::DISABLED)
 	{
-		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
+		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
 		app->input->GetMousePosition(mouseX, mouseY);
 
@@ -81,5 +83,12 @@ bool GuiToggle::Draw(Render* render)
 	default:
 		break;
 	}
+	return false;
+}
+
+bool GuiToggle::CleanUp()
+{
+	delete textTex;
+	delete texture;
 	return false;
 }
