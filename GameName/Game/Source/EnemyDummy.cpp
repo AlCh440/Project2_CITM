@@ -29,6 +29,7 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::Update(float dt)
 {	
+	/*
 	switch (state)
 	{
 	case DEATH:
@@ -38,6 +39,7 @@ bool EnemyDummy::Update(float dt)
 	
 	}
 	return true;
+	*/
 }
 
 bool EnemyDummy::PostUpdate()
@@ -49,7 +51,23 @@ bool EnemyDummy::PostUpdate()
 
 	if (stats.hp <= 0)
 	{
-		state = DEATH;
+		//state = DEATH;
+	}
+
+
+
+}
+
+bool EnemyDummy::CleanUp()
+{
+
+	app->render->DrawTexture(texture, position.x, position.y);
+
+	return true;
+
+	if (stats.hp <= 0)
+	{
+		//state = DEATH;
 	}
 
 
