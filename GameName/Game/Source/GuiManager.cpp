@@ -6,6 +6,7 @@
 #include "Render.h"
 #include "Audio.h"
 
+//add all panels here
 #include "QuestPanel.h"
 
 
@@ -19,8 +20,8 @@ GuiManager::~GuiManager() {}
 bool GuiManager::Start()
 {
 
-	UItexture = app->tex->Load("Assets/Spritesx16/GUI.png");
-	UItexture2 = app->tex->Load("Assets/Spritesx16/GUI2.png");
+	UItexture = app->tex->Load("Assets/Sprites/UI/GUI.png");
+	UItexture2 = app->tex->Load("Assets/Sprites/UI/GUI2.png");
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");

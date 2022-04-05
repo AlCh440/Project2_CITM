@@ -1,0 +1,18 @@
+<!-- Quests file for the game -->
+<quests_list>
+	<quest title ="Intro" id="0" progress = "2"> 
+		<description>
+This is the begining of your quests manager.
+		</description>
+	</quest>
+	<quest title ="First" id="1" progress = "0">
+		<description >
+This quest is only available after completing the tutorial.
+		</description>
+	</quest>
+	<quest title ="Second" id="2" progress = "0">
+		<description >
+This quest is only available after completing the first mission.
+		</description>
+	</quest>
+</quests_list>

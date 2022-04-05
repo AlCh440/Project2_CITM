@@ -23,6 +23,7 @@ bool QuestManager::Awake(pugi::xml_node& config)
 	{
 		LOG("Could not load quest folder");
 	}
+
 	folder = "Assets/";
 	questFile = "quests.xml";
 
@@ -176,7 +177,6 @@ bool QuestManager::Load(const char* path)
 	else {
 
 		currentQuest = questsFile.child("quests_list").first_child();
-		p2ListItem<Quest*>* quest = questList->start;
 
 		while (currentQuest != NULL)
 		{

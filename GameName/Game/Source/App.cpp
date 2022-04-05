@@ -84,9 +84,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	AddModule(map);
 	AddModule(physics);
+	AddModule(questManager);
 	AddModule(guiManager);
 	AddModule(levelManagement);
-	AddModule(questManager);
+
 
 
 	AddModule(intro);
