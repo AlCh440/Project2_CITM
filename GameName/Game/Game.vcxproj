@@ -112,9 +112,11 @@
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\MainMenuPanel.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Entities.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\PausePanel.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
@@ -124,6 +126,7 @@
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />
+    <ClCompile Include="Source\SettingsPanel.cpp" />
     <ClCompile Include="Source\StartMenu.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\TheFall.cpp" />
@@ -151,9 +154,11 @@
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
     <ClInclude Include="Source\LevelManagement.h" />
+    <ClInclude Include="Source\MainMenuPanel.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\PausePanel.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Source\p2List.h" />
     <ClInclude Include="Source\Pathfinding.h" />
@@ -170,6 +175,7 @@
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\Scene1.h" />
+    <ClInclude Include="Source\SettingsPanel.h" />
     <ClInclude Include="Source\StartMenu.h" />
     <ClInclude Include="Source\Textures.h" />
     <ClInclude Include="Source\TheFall.h" />

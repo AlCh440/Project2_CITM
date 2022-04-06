@@ -126,6 +126,15 @@
     <ClCompile Include="Source\QuestManager.cpp">
       <Filter>Quests</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MainMenuPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PausePanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SettingsPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -284,6 +293,15 @@
     </ClInclude>
     <ClInclude Include="Source\QuestManager.h">
       <Filter>Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MainMenuPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PausePanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SettingsPanel.h">
+      <Filter>GUI\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
