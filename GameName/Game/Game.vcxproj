@@ -45,7 +45,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IncludePath>Source\External\SDL\include;Source\External\SDL_image\include;Source\External\SDL_mixer\include;Source\External\SDL_ttf\include;$(IncludePath)</IncludePath>
+    <IncludePath>Source\External\SDL\include;Source\External\SDL_image\include;Source\External\SDL_mixer\include;Source\External\SDL_ttf\include;Source\External\Tweeny;$(IncludePath)</IncludePath>
     <LibraryPath>Source\External\SDL\libx86;Source\External\SDL_image\libx86;Source\External\SDL_mixer\libx86;Source\External\SDL_ttf\libx86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,8 +133,10 @@
     <ClCompile Include="Source\TheRuins.cpp" />
     <ClCompile Include="Source\TheVillage.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Tweening.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WorldTestScene.cpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="Source\TheRuins.h" />
     <ClInclude Include="Source\TheVillage.h" />
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Tweening.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\Log.h" />
@@ -193,6 +196,9 @@
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
     <ClInclude Include="Source\WorldTestScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -135,6 +135,9 @@
     <ClCompile Include="Source\SettingsPanel.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Tweening.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -303,6 +306,10 @@
     <ClInclude Include="Source\SettingsPanel.h">
       <Filter>GUI\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Source\Tweening.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -353,5 +360,8 @@
     <Filter Include="Quests">
       <UniqueIdentifier>{b29a12b9-812b-48fa-9b22-d52346b1edb2}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
 </Project>
