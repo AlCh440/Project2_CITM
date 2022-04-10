@@ -2,6 +2,8 @@
 #include "GuiPanel.h"
 class SettingsPanel :  public GuiPanel
 {
+public:
+
 	SettingsPanel(bool active);
 	~SettingsPanel();
 
@@ -13,5 +15,12 @@ class SettingsPanel :  public GuiPanel
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
 
+	GuiToggle* tg_fullScreen;
+	GuiToggle* tg_fixedFps;
+	GuiSlider* sl_fx;
+	GuiSlider* sl_music;
+	GuiButton* bt_return;
+
+	
 };
 

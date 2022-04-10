@@ -56,9 +56,6 @@ public:
 	int frameCounter = 0;
 	int delayTime = 100;
 	int levelsPassed = 0;
-
-	//to track current keys
-	int KeysToTake = 0;
 	bool loadLevel = false;
 
 };

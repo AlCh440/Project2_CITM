@@ -123,7 +123,7 @@ public:
 	SDL_Texture* texture;   // Texture atlas reference
 	SDL_Rect section;       // Texture atlas base section
 
-	Module* observer;     // Observer GuiManager Module (it should probably be an array/list)
+	Module* observer;       // Observer GuiManager Module (it should probably be an array/list)
 	GuiPanel* parent;		//Panel where the element is located
 	uint soundfx;
 

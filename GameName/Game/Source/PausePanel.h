@@ -3,6 +3,7 @@
 class PausePanel :  public GuiPanel
 {
 
+public:
 	PausePanel(bool active);
 	~PausePanel();
 
@@ -12,5 +13,13 @@ class PausePanel :  public GuiPanel
 	bool CleanUp();
 
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
+
+	GuiButton* bt_resume;
+	GuiButton* bt_settings;
+	GuiButton* bt_saveGame;
+	GuiButton* bt_menu;
+	GuiButton* bt_quit;
+	
+
 };
 

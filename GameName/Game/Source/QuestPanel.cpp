@@ -15,9 +15,11 @@ QuestPanel::~QuestPanel()
 
 bool QuestPanel::Start()
 {
+	//TODO add title
+
 	texture = app->guiManager->UItexture2;
 	bounds = { 81,414,558,266 };
-	position = { 81,414 };
+	position = { 0,400 };
 
 	notAvailableTex = app->fonts->LoadRenderedText(notavailable, 0, "Not available", {255,255,255});
 	availableTex = app->fonts->LoadRenderedText(rAvailable,0, "There is something new!", { 255,255,255 });
@@ -57,38 +59,14 @@ bool QuestPanel::Start()
 
 bool QuestPanel::Update(float dt, bool doLogic)
 {
-	if (!Active)
-		return false;
-
-	if (doLogic) {
-
-		p2ListItem<GuiControl*>* control = controls.start;
-
-		while (control != nullptr)
-		{
-			control->data->Update(dt);
-			control = control->next;
-		}
-
-	}
+	GuiPanel::Update(dt,doLogic);
+	return true;
 }
 
 bool QuestPanel::Draw()
 {
-	if (!Active)
-		return false;
 
-
-	if(texture != NULL)
-	 app->render->DrawTexture(texture, position.x, position.y, &bounds);
-
-	p2ListItem<GuiControl*>* control = controls.start;
-
-	while (control != nullptr)
-	{
-		control->data->Draw(app->render);
-		control = control->next;
-	}
+	GuiPanel::Draw();
 
 	if (currentQuest != nullptr && currentQuest->data->titleTex != NULL)
 		app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);
@@ -131,7 +109,8 @@ bool QuestPanel::Draw()
 		LOG("Quest is NULL");
 	}
 
-
+	
+	
 
 	return true;
 }

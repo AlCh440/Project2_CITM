@@ -2,6 +2,8 @@
 #include "GuiPanel.h"
 class MainMenuPanel : public GuiPanel
 {
+
+public:
 	MainMenuPanel(bool active);
 	~MainMenuPanel();
 
@@ -11,6 +13,12 @@ class MainMenuPanel : public GuiPanel
 	bool CleanUp();
 
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
+
+
+	GuiButton* bt_newGame;
+	GuiButton* bt_loadGame;
+	GuiButton* bt_settings;
+	GuiButton* bt_quit;
 
 };
 

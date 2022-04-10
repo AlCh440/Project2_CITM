@@ -56,6 +56,8 @@ bool GuiToggle::Update(float dt)
 bool GuiToggle::Draw(Render* render)
 {
 
+	//this text render could go to the state machine if necesary
+	render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	switch (state)
 	{
@@ -88,7 +90,5 @@ bool GuiToggle::Draw(Render* render)
 
 bool GuiToggle::CleanUp()
 {
-	delete textTex;
-	delete texture;
 	return false;
 }

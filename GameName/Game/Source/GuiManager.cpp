@@ -8,6 +8,9 @@
 
 //add all panels here
 #include "QuestPanel.h"
+#include "MainMenuPanel.h"
+#include "PausePanel.h"
+#include "SettingsPanel.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -27,10 +30,15 @@ bool GuiManager::Start()
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
 	Debug = false;
 
-	questPanel = new QuestPanel(true);
+	pn_quest = new QuestPanel(true);
+	pn_start = new MainMenuPanel(true);
+	pn_pause = new PausePanel(true);
+	pn_settings = new SettingsPanel(true);
 
-	panels.add(questPanel);
-
+	panels.add(pn_quest);
+	panels.add(pn_start);
+	panels.add(pn_pause);
+	panels.add(pn_settings);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -68,17 +76,14 @@ bool GuiManager::Update(float dt)
 
 bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
-	if (doLogic) {
+	p2ListItem<GuiPanel*>* panel = panels.start;
 
-		p2ListItem<GuiPanel*>* panel = panels.start;
-
-		while (panel != nullptr && panel->data->Active)
-		{
-			panel->data->Update(dt,doLogic);
-			panel = panel->next;
-		}
-
+	while (panel != nullptr && panel->data->Active)
+	{
+		panel->data->Update( dt, doLogic);
+		panel = panel->next;
 	}
+
 	return true; 
 
 }

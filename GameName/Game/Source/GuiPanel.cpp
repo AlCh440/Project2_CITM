@@ -18,7 +18,7 @@ bool GuiPanel::Start()
 	return true;
 }
 
-bool GuiPanel::Update(float dt ,bool doLogic)
+bool GuiPanel::Update(float dt, bool doLogic)
 {
 	if (!Active)
 		return false;
