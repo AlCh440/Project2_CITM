@@ -8,6 +8,7 @@
 #include "Animation.h"
 
 struct SDL_Texture;
+class EnemyDummy;
 
 class Intro : public Module
 {
@@ -36,6 +37,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	EnemyDummy* yes;
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;

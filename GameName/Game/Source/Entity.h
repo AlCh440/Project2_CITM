@@ -55,22 +55,16 @@ public:
 
 public:
 
-	enum Direction
-	{
-		UP,
-		DOWN,
-		RIGHT,
-		LEFT,
-		NONE
-	};
-	enum State
-	{
-		IDLE,
-		MOVE,
-		ATACK,
-		DEATH,
-		SCORE
-	};
+	
+	//enum State
+	//{
+	//	IDLE,
+	//	MOVE,
+	//	ATACK,
+	//	DEATH,
+	//	SCORE
+	//};
+
 	// The current position in the world
 	iPoint spawnPos;
 	fPoint position;
@@ -92,8 +86,7 @@ public:
 	bool DEBUG;
 
 	//If Enemy
-	State state;
-	Direction direction;
+	//State state;
 	PhysBody* physBody = nullptr;
 
 	//Entity Name

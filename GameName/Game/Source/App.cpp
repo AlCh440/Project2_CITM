@@ -197,16 +197,15 @@ bool App::Update()
 
 	if(input->GetWindowEvent(WE_QUIT) == true)
 		ret = false;
-
+	
 	if(ret == true)
 		ret = PreUpdate();
-
 	if(ret == true)
 		ret = DoUpdate();
 
 	if(ret == true)
 		ret = PostUpdate();
-
+	
 	FinishUpdate();
 
 	if (input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

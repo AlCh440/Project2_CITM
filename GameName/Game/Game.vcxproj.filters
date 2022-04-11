@@ -132,6 +132,18 @@
     <ClCompile Include="Source\Tweening.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Knight.cpp">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyDummy.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ranger.cpp">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mage.cpp">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -298,6 +310,18 @@
     <ClInclude Include="Source\Tweening.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Knight.h">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyDummy.h">
+      <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Ranger.h">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mage.h">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -330,6 +354,11 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{65327206-328c-4a47-bca9-88f401283938}</UniqueIdentifier>
     </Filter>
+
+    <Filter Include="Entities\SpecificPlayers">
+      <UniqueIdentifier>{dd0d00cd-c042-4d64-9a1e-35aae425b14e}</UniqueIdentifier>
+    </Filter>
+
     <Filter Include="Scenes\Game">
       <UniqueIdentifier>{2c26f1f8-c8b6-442e-af73-14229ff3f52f}</UniqueIdentifier>
     </Filter>
@@ -351,5 +380,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
+
   </ItemGroup>
 </Project>

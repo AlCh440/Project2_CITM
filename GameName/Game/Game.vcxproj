@@ -96,6 +96,7 @@
     <ClCompile Include="Source\Collectable.cpp" />
     <ClCompile Include="Source\DragonCliff.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\EnemyDummy.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\FracturedRoad.cpp" />
@@ -107,7 +108,9 @@
     <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\GuiToggle.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
+    <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
+    <ClCompile Include="Source\Mage.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -121,6 +124,7 @@
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Ranger.cpp" />
     <ClCompile Include="Source\QuestManager.cpp" />
     <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
@@ -141,6 +145,7 @@
     <ClInclude Include="Source\Collectable.h" />
     <ClInclude Include="Source\DragonCliff.h" />
     <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\EnemyDummy.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\FracturedRoad.h" />
@@ -153,7 +158,9 @@
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
+    <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
+    <ClInclude Include="Source\Mage.h" />
     <ClInclude Include="Source\MainMenuPanel.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
@@ -172,6 +179,7 @@
     <ClInclude Include="Source\QuestManager.h" />
     <ClInclude Include="Source\QuestPanel.h" />
     <ClInclude Include="Source\Queue.h" />
+    <ClInclude Include="Source\Ranger.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\SettingsPanel.h" />
     <ClInclude Include="Source\StartMenu.h" />

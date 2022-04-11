@@ -16,6 +16,13 @@ enum PlayerState
 	DEAD
 };
 
+enum TypeOfMovement
+{
+	OPENWORLD,
+	COMBATMOVE,
+	DEFAULT
+};
+
 class Player :  public Entity
 {
 public:
@@ -23,31 +30,45 @@ public:
 	Player(Collider_Type type, iPoint pos);
 	virtual ~Player();
 
-	bool Start();
-	bool PreUpdate();
-	bool Update(float dt);
-	bool PostUpdate();
-	bool CleanUp();
+	virtual bool Start();
+	virtual bool PreUpdate();
+	virtual bool Update(float dt);
+	virtual bool PostUpdate();
+	virtual bool CleanUp();
 	void SetPosition(iPoint pos);
 	fPoint GetPosition() { return position; };
-	void Spawn(iPoint pos);
+	virtual void Spawn(iPoint pos);
 
 	void Movement();
 	void GodMovement();
 	void UpdateSensorsPosition();
 
-	//attacks
-	void MeleeAttack();
-	void SkillAttack();
-	//skills?
-
-	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	// Load / Save
-	bool LoadState(pugi::xml_node& data);
-	bool SaveState(pugi::xml_node& data) const;
+	virtual bool LoadState(pugi::xml_node& data);
+	virtual bool SaveState(pugi::xml_node& data) const;
 
 public:
 	Animation* currentAnim = nullptr;
+
+	int typeOfPlayer = 0;
+
+	// The type of Player is the variable that decides whitch player we are creating: Knight, Ranger or Mage
+	// 1 for Knight
+	// 2 for Ranger
+	// 3 for Mage
+	// else ERROR
+
+	int lifePoints = 1;
+	int manaPoints = 1;
+	int actionPoints = 1;
+	TypeOfMovement movType = DEFAULT;
+	bool isAlive = true;
+	
+private:
+
+	
+
 };
 
