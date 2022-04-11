@@ -8,9 +8,7 @@
 
 Fonts::Fonts(bool isEnabled) : Module(isEnabled)
 {
-
-
-
+	name.Create("fonts");
 }
 
 Fonts::~Fonts()
@@ -20,9 +18,6 @@ Fonts::~Fonts()
 
 bool Fonts::Start()
 {
-
-	LOG("start fonts ");
-
 	SDL_version compiled;
 	SDL_version linked;
 

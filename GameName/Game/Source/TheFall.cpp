@@ -9,7 +9,7 @@ TheFall::~TheFall()
 {
 }
 
-bool TheFall::Awake()
+bool TheFall::Awake(pugi::xml_node&)
 {
 	return true;
 }

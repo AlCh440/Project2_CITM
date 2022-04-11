@@ -18,9 +18,6 @@
     <ClCompile Include="Source\Collectable.cpp">
       <Filter>Entities\Collectable</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scene1.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LevelManagement.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -71,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="Source\Fonts.cpp">
       <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Source\GreenPath.cpp">
       <Filter>Scenes\Game</Filter>
@@ -171,9 +165,6 @@
     <ClInclude Include="Source\Collectable.h">
       <Filter>Entities\Collectable</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scene1.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LevelManagement.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -239,9 +230,6 @@
     </ClInclude>
     <ClInclude Include="Source\Fonts.h">
       <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\GreenPath.h">
       <Filter>Scenes\Game</Filter>

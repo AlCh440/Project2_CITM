@@ -9,7 +9,7 @@ TheVillage::~TheVillage()
 {
 }
 
-bool TheVillage::Awake()
+bool TheVillage::Awake(pugi::xml_node&)
 {
 	return true;
 }

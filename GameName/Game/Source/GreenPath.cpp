@@ -9,7 +9,7 @@ GreenPath::~GreenPath()
 {
 }
 
-bool GreenPath::Awake()
+bool GreenPath::Awake(pugi::xml_node&)
 {
 	return true;
 }

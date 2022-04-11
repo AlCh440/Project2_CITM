@@ -9,7 +9,7 @@ TheRuins::~TheRuins()
 {
 }
 
-bool TheRuins::Awake()
+bool TheRuins::Awake(pugi::xml_node&)
 {
 	return true;
 }

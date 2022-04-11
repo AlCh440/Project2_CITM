@@ -57,8 +57,6 @@ bool MainMenuPanel::Update(float dt, bool doLogic)
 bool MainMenuPanel::Draw()
 {
     GuiPanel::Draw();
-
-
     return true;
 }
 

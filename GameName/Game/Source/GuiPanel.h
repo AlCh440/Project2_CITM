@@ -34,7 +34,8 @@ public:
 	// this funtion will handle events recived on the panel
 	virtual bool OnGuiMouseClickEvent(GuiControl* control);
 
-
+	void SetActive(bool active) { Active = active; };
+	bool GetActive() { return Active; };
 
 public:
 	p2List<GuiControl*> controls;

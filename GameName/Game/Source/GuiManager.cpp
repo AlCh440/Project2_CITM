@@ -15,10 +15,15 @@
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
 {
-	name.Create("guiManager");
+	name.Create("gui manager");
 }
 
 GuiManager::~GuiManager() {}
+
+bool GuiManager::Awake(pugi::xml_node&)
+{
+	return true;
+}
 
 bool GuiManager::Start()
 {
@@ -28,6 +33,7 @@ bool GuiManager::Start()
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
+
 	Debug = false;
 
 	pn_quest = new QuestPanel(true);
@@ -43,7 +49,7 @@ bool GuiManager::Start()
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (panel != nullptr && panel->data->Active)
+	while (panel != nullptr)
 	{
 		panel->data->Start();
 		panel = panel->next;
@@ -56,6 +62,17 @@ bool GuiManager::Start()
 
 bool GuiManager::Update(float dt)
 {	
+
+	if (app->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN)
+		pn_start->Active = !pn_start->GetActive();
+	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+		pn_settings->Active = !pn_settings->GetActive();
+	if (app->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+		pn_pause->Active = !pn_pause->GetActive();
+	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+		pn_quest->Active = !pn_quest->GetActive();
+
+
 	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		Debug = !Debug;
 
@@ -78,9 +95,11 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (panel != nullptr && panel->data->Active)
+	while (panel != nullptr )
 	{
-		panel->data->Update( dt, doLogic);
+		if(panel->data->Active)
+			panel->data->Update( dt, doLogic);
+		
 		panel = panel->next;
 	}
 
@@ -92,9 +111,11 @@ bool GuiManager::PostUpdate() {
 
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (panel != nullptr && panel->data->Active)
+	while (panel != nullptr)
 	{
-		panel->data->Draw();
+		if(panel->data->Active)
+			panel->data->Draw();
+		
 		panel = panel->next;
 	}
 
@@ -125,9 +146,9 @@ bool GuiManager::OnGuiMouseClickEvent(GuiControl* control)
 
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
-	while (panel != nullptr && panel->data->Active)
+	while (panel != nullptr)
 	{
-		if (control->parent == panel->data)
+		if (control->parent == panel->data && panel->data->Active)
 		{
 			panel->data->OnGuiMouseClickEvent(control);
 		}

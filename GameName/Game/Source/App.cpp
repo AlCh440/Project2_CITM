@@ -17,7 +17,6 @@
 #include "Intro.h"
 #include "StartMenu.h"
 #include "GameOver.h"
-#include "Scene1.h"
 #include "TheFall.h"
 #include "GreenPath.h"
 #include "TheVillage.h"
@@ -52,15 +51,14 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	//systems
 	map = new Map(true);
 	physics = new ModulePhysics(true);
-	guiManager = new GuiManager(true);
 	entities = new ModuleEntities(true);
 	levelManagement = new LevelManagement(true);
+	guiManager = new GuiManager(true);
 
 	//Scenes
 	intro = new Intro(false);
 	start = new StartMenu(false);
 	gameOver = new GameOver(false);
-	scene1 = new Scene1(false);
 	theFall = new TheFall(false);
 	greenPath = new GreenPath(false);
 	village = new TheVillage(false);
@@ -68,9 +66,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	ruins = new TheRuins(false);
 	dragonCliff = new DragonCliff(false);
 
-	worldTest = new WorldTestScene(true);
+	//test
+	worldTest = new WorldTestScene(false);
 	battleTest = new BattleTestScene(false);
-
 
 
 	// Ordered for awake / Start / Update
@@ -81,15 +79,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(fonts);
 	AddModule(fade);
-
+	AddModule(levelManagement);
 	AddModule(map);
 	AddModule(physics);
 	AddModule(questManager);
-	AddModule(guiManager);
-	AddModule(levelManagement);
-
-
-
+	
 	AddModule(intro);
 	AddModule(start);
 	AddModule(gameOver);
@@ -98,10 +92,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(village);
 	AddModule(fracturedRoad);
 	AddModule(ruins);
-	AddModule(dragonCliff);
+    AddModule(dragonCliff);
 
-	AddModule(worldTest);
 	AddModule(battleTest);
+	AddModule(worldTest);
+
+	AddModule(guiManager);
 
 	AddModule(entities);
 
@@ -179,9 +175,14 @@ bool App::Start()
 	p2ListItem<Module*>* item;
 	item = modules.start;
 
-	while(item != NULL && ret == true && item->data->active)
+	while(item != NULL && ret == true)
 	{
-		ret = item->data->Start();
+
+		if(item->data->active)
+			ret = item->data->Start();
+
+		LOG("Module Stared %s", item->data->name.GetString());
+
 		item = item->next;
 	}
 

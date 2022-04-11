@@ -124,8 +124,6 @@
     <ClCompile Include="Source\QuestManager.cpp" />
     <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
-    <ClCompile Include="Source\Scene.cpp" />
-    <ClCompile Include="Source\Scene1.cpp" />
     <ClCompile Include="Source\SettingsPanel.cpp" />
     <ClCompile Include="Source\StartMenu.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
@@ -175,8 +173,6 @@
     <ClInclude Include="Source\QuestPanel.h" />
     <ClInclude Include="Source\Queue.h" />
     <ClInclude Include="Source\Render.h" />
-    <ClInclude Include="Source\Scene.h" />
-    <ClInclude Include="Source\Scene1.h" />
     <ClInclude Include="Source\SettingsPanel.h" />
     <ClInclude Include="Source\StartMenu.h" />
     <ClInclude Include="Source\Textures.h" />

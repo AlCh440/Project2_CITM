@@ -9,17 +9,22 @@ using namespace std;
 
 LevelManagement::LevelManagement(bool isActive) : Module(isActive)
 {
-	name.Create("levelManager");
+	name.Create("Level Manager");
 }
 
 LevelManagement::~LevelManagement()
 {
 }
 
+bool LevelManagement::Awake(pugi::xml_node&)
+{
+	return true;
+}
+
 bool LevelManagement::Start()
 {
 	gameState = GameState::WORLD_TEST;
-	currentScene = (Module*)app->worldTest;
+	currentScene = (Module*)app->dragonCliff;
 	return true;
 }
 
@@ -233,7 +238,6 @@ bool LevelManagement::Update(float dt)
 	return true;
 }
 
-
 void LevelManagement::NextLevel()
 {
 	switch (gameState) {
@@ -279,10 +283,6 @@ bool LevelManagement::LoadState(pugi::xml_node& data)
 
 	gameState =  static_cast<GameState>(lm.attribute("currentLevel").as_int());
 
-	if (gameState == SCENE1)
-	{
-		app->fade->Fade(currentScene, app->scene1, 60.0f);
-	}
 	loadLevel = true;
 	return true;
 }
@@ -296,7 +296,6 @@ bool LevelManagement::SaveState(pugi::xml_node& data) const
 
 	return true;
 }
-
 
 bool LevelManagement::CleanUp()
 {

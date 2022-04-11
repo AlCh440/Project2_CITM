@@ -9,7 +9,7 @@ FracturedRoad::~FracturedRoad()
 {
 }
 
-bool FracturedRoad::Awake()
+bool FracturedRoad::Awake(pugi::xml_node&)
 {
 	return true;
 }

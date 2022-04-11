@@ -3,7 +3,7 @@
 
 QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
-	name.Create("quest_manager");
+	name.Create("quest manager");
 }
 
 QuestManager::~QuestManager()

@@ -1,4 +1,7 @@
 #include "WorldTestScene.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
 
 WorldTestScene::WorldTestScene(bool isActive) : Module(isActive)
 {
@@ -9,13 +12,19 @@ WorldTestScene::~WorldTestScene()
 {
 }
 
-bool WorldTestScene::Awake()
+bool WorldTestScene::Awake(pugi::xml_node&)
 {
+
+
 	return true;
 }
 
 bool WorldTestScene::Start()
 {
+	LOG("Loading World Test");
+
+	app->map->Load("WorldMapTest.tmx");
+
 	return true;
 }
 
@@ -31,6 +40,7 @@ bool WorldTestScene::Update(float dt)
 
 bool WorldTestScene::PostUpdate()
 {
+	app->map->Draw();
 	return true;
 }
 

@@ -4,7 +4,6 @@
 
 
 #include "App.h"
-#include "Scene1.h"
 #include "Intro.h"
 #include "StartMenu.h"
 #include "GameOver.h"
@@ -19,10 +18,11 @@ class LevelManagement : public Module
 public:
 	LevelManagement(bool isActive);
 	~LevelManagement();
-	bool Start() override;
-	bool PreUpdate() override;
-	bool Update(float dt) override;
-	bool CleanUp() override;
+	bool Awake(pugi::xml_node&);
+	bool Start();
+	bool PreUpdate() ;
+	bool Update(float dt) ;
+	bool CleanUp();
 	void NextLevel();
 	void ReturnToMainMenu();
 	void RestartLevel();

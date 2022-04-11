@@ -9,7 +9,7 @@ DragonCliff::~DragonCliff()
 {
 }
 
-bool DragonCliff::Awake()
+bool DragonCliff::Awake(pugi::xml_node&)
 {
 	return true;
 }
