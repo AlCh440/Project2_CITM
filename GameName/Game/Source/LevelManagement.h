@@ -4,8 +4,6 @@
 
 
 #include "App.h"
-#include "Scene1.h"
-#include "Scene2.h"
 #include "Intro.h"
 #include "StartMenu.h"
 #include "GameOver.h"
@@ -20,10 +18,11 @@ class LevelManagement : public Module
 public:
 	LevelManagement(bool isActive);
 	~LevelManagement();
-	bool Start() override;
-	bool PreUpdate() override;
-	bool Update(float dt) override;
-	bool CleanUp() override;
+	bool Awake(pugi::xml_node&);
+	bool Start();
+	bool PreUpdate() ;
+	bool Update(float dt) ;
+	bool CleanUp();
 	void NextLevel();
 	void ReturnToMainMenu();
 	void RestartLevel();
@@ -37,20 +36,26 @@ public:
 		NONE = 0,
 		INTRO = 1,
 		START = 2,
+		GAME_OVER = 3,
 		SCENE1 = 4,
-		SCENE2 = 5,
-		GAME_OVER = 6
+		THE_FALL = 5,
+		GREEN_PATH = 6,
+		RUINS = 7,
+		VILLAGE = 8,
+		FRACTURED_ROAD = 9,
+		DRAGRON_CLIFF = 10,
+		COMBAT = 11,
+		WORLD_TEST = 12
 	};
+
 	GameState gameState;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;
+
 	int gemCount = 0;
 	int frameCounter = 0;
 	int delayTime = 100;
 	int levelsPassed = 0;
-
-	//to track current keys
-	int KeysToTake = 0;
 	bool loadLevel = false;
 
 };

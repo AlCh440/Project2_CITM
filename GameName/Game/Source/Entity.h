@@ -16,6 +16,7 @@ struct PhysicBody;
 class Entity abstract
 {
 public:
+
 	// Constructor
 	// Saves the spawn position for later movement calculations
 	Entity(iPoint pos);

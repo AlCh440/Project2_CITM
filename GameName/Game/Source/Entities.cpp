@@ -16,6 +16,7 @@
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
     name.Create("entities");
+    
 }
 
 ModuleEntities::~ModuleEntities()
@@ -25,6 +26,7 @@ ModuleEntities::~ModuleEntities()
 bool ModuleEntities::Awake()
 {
     //test
+   
     return true;
 }
 
@@ -39,6 +41,7 @@ bool ModuleEntities::Start()
         }
     }
 
+   
     return true;
 }
 
@@ -79,7 +82,10 @@ bool ModuleEntities::PostUpdate()
             entities[i]->PostUpdate();
         
     }
+
     return true;
+
+   
 }
 
 bool ModuleEntities::CleanUp()

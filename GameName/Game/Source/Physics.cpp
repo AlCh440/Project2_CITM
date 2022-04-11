@@ -2,8 +2,6 @@
 #include "Input.h"
 #include "Render.h"
 #include "Physics.h"
-#include "Scene1.h"
-#include "Scene2.h"
 #include "Point.h"
 #include "math.h"
 #include "Log.h"

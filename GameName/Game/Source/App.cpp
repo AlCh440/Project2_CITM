@@ -4,19 +4,28 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "LevelManagement.h"
-#include "FadeToBlack.h"
-#include "Intro.h"
-#include "StartMenu.h"
-#include "Scene1.h"
-#include "Scene2.h"
-#include "GameOver.h"
-#include "Map.h"
 #include "Physics.h"
+#include "Fonts.h"
+#include "Map.h"
 #include "Entities.h"
 #include "GuiManager.h"
-#include "Fonts.h"
+#include "Brofiler/include/optick.h"
+#include "LevelManagement.h"
+#include "FadeToBlack.h"
+#include "QuestManager.h"
+//Scenes 
+#include "Intro.h"
+#include "StartMenu.h"
+#include "GameOver.h"
+#include "TheFall.h"
+#include "GreenPath.h"
+#include "TheVillage.h"
+#include "TheRuins.h"
+#include "FracturedRoad.h"
+#include "DragonCliff.h"
 
+#include "BattleTestScene.h"
+#include "WorldTestScene.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -29,23 +38,37 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	frames = 0;
 
+	//utils
 	win = new Window(true);
 	input = new Input(true);
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
-	levelManagement = new LevelManagement(true);
-	physics = new ModulePhysics(true);
-	guiManager = new GuiManager(true);
-	fonts = new ModuleFonts(true);
-	map = new Map(true);
-	entities = new ModuleEntities(true);
+	fonts = new Fonts(true);
 	fade = new FadeToBlack(true);
-	intro = new Intro(true);
+	questManager = new QuestManager(true);
+
+	//systems
+	map = new Map(true);
+	physics = new ModulePhysics(true);
+	entities = new ModuleEntities(true);
+	levelManagement = new LevelManagement(true);
+	guiManager = new GuiManager(true);
+
+	//Scenes
+	intro = new Intro(false);
 	start = new StartMenu(false);
-	scene1 = new Scene1(false);
-	scene2 = new Scene2(false);
 	gameOver = new GameOver(false);
+	theFall = new TheFall(false);
+	greenPath = new GreenPath(false);
+	village = new TheVillage(false);
+	fracturedRoad = new FracturedRoad(false);
+	ruins = new TheRuins(false);
+	dragonCliff = new DragonCliff(false);
+
+	//test
+	worldTest = new WorldTestScene(false);
+	battleTest = new BattleTestScene(false);
 
 
 	// Ordered for awake / Start / Update
@@ -54,24 +77,28 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(fonts);
+	AddModule(fade);
+	AddModule(levelManagement);
 	AddModule(map);
 	AddModule(physics);
-	AddModule(guiManager);
-	AddModule(fonts);
-
+	AddModule(questManager);
 	
-	AddModule(levelManagement);
-
-
-	AddModule(fade);
-
 	AddModule(intro);
 	AddModule(start);
-	AddModule(scene1);
-	AddModule(scene2);
 	AddModule(gameOver);
+	AddModule(theFall);
+	AddModule(greenPath);
+	AddModule(village);
+	AddModule(fracturedRoad);
+	AddModule(ruins);
+    AddModule(dragonCliff);
 
-	
+	AddModule(battleTest);
+	AddModule(worldTest);
+
+	AddModule(guiManager);
+
 	AddModule(entities);
 
 	// Render last to swap buffer
@@ -148,13 +175,16 @@ bool App::Start()
 	p2ListItem<Module*>* item;
 	item = modules.start;
 
-	while(item != NULL && ret == true && item->data->active)
+	while(item != NULL && ret == true)
 	{
-		ret = item->data->Start();
+
+		if(item->data->active)
+			ret = item->data->Start();
+
+		LOG("Module Stared %s", item->data->name.GetString());
+
 		item = item->next;
 	}
-
-
 
 	return ret;
 }
@@ -242,13 +272,12 @@ void App::FinishUpdate()
 
 	float delay =  float(1000 / maxFrameRate) - frameDuration.ReadMs();
 
-//	LOG("F: %f Delay:%f", frameDuration.ReadMs(), delay);
 
 
 	PerfTimer* delayt = new PerfTimer();
 	delayt->Start();
 	if (maxFrameRate > 0 && delay > 0) SDL_Delay(delay);
-//	LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
+
 
 	app->win->SetTitle(title);
 }

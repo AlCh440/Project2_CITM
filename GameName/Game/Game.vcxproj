@@ -45,6 +45,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IncludePath>Source\External\SDL\include;Source\External\SDL_image\include;Source\External\SDL_mixer\include;Source\External\SDL_ttf\include;Source\External\Tweeny;$(IncludePath)</IncludePath>
+    <LibraryPath>Source\External\SDL\libx86;Source\External\SDL_image\libx86;Source\External\SDL_mixer\libx86;Source\External\SDL_ttf\libx86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
@@ -64,8 +66,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Box2D.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)Source\External\Box2D\libx86\Debug;$(ProjectDir)Source\External\SDL\libx86;$(ProjectDir)Source\External\SDL_image\libx86;$(ProjectDir)Source\External\SDL_mixer\libx86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Source\External\Box2D\libx86\Debug;$(ProjectDir)Source\External\SDL\libx86;$(ProjectDir)Source\External\SDL_image\libx86;$(ProjectDir)Source\External\SDL_mixer\libx86;$(ProjectDir)Source\External\SDL_ttf\libx86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,13 +91,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BattleTestScene.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Collectable.cpp" />
+    <ClCompile Include="Source\DragonCliff.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\EnemyDummy.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
+    <ClCompile Include="Source\FracturedRoad.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
+    <ClCompile Include="Source\GreenPath.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\GuiPanel.cpp" />
@@ -109,29 +115,42 @@
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\MainMenuPanel.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Entities.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\PausePanel.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Ranger.cpp" />
+    <ClCompile Include="Source\QuestManager.cpp" />
+    <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
-    <ClCompile Include="Source\Scene1.cpp" />
-    <ClCompile Include="Source\Scene2.cpp" />
+    <ClCompile Include="Source\SettingsPanel.cpp" />
     <ClCompile Include="Source\StartMenu.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\TheFall.cpp" />
+    <ClCompile Include="Source\TheRuins.cpp" />
+    <ClCompile Include="Source\TheVillage.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Tweening.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\WorldTestScene.cpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Collectable.h" />
+    <ClInclude Include="Source\DragonCliff.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\EnemyDummy.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
+    <ClInclude Include="Source\FracturedRoad.h" />
     <ClInclude Include="Source\GameOver.h" />
+    <ClInclude Include="Source\GreenPath.h" />
     <ClInclude Include="Source\GuiButton.h" />
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiManager.h" />
@@ -142,9 +161,11 @@
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Mage.h" />
+    <ClInclude Include="Source\MainMenuPanel.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\PausePanel.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Source\p2List.h" />
     <ClInclude Include="Source\Pathfinding.h" />
@@ -155,14 +176,19 @@
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PQueue.h" />
+    <ClInclude Include="Source\QuestManager.h" />
+    <ClInclude Include="Source\QuestPanel.h" />
     <ClInclude Include="Source\Queue.h" />
     <ClInclude Include="Source\Ranger.h" />
     <ClInclude Include="Source\Render.h" />
-    <ClInclude Include="Source\Scene1.h" />
-    <ClInclude Include="Source\Scene2.h" />
+    <ClInclude Include="Source\SettingsPanel.h" />
     <ClInclude Include="Source\StartMenu.h" />
     <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\TheFall.h" />
+    <ClInclude Include="Source\TheRuins.h" />
+    <ClInclude Include="Source\TheVillage.h" />
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Tweening.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\Log.h" />
@@ -173,6 +199,10 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
+    <ClInclude Include="Source\WorldTestScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,6 +15,7 @@ public:
 
 	bool Update(float dt);
 	bool Draw(Render* render);
+	bool CleanUp();
 	int GetValue(float pos);
 	void SetValue(int value);
 

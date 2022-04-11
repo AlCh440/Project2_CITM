@@ -14,6 +14,8 @@
 
 
 class Entity;
+// this will be deleted
+class EnemyDummy;
 struct SDL_Texture;
 struct PhysicBody;
 
@@ -28,8 +30,14 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 	bool CleanUp() override;
+
+	//used to add entities 
 	void AddEntity(Collider_Type type ,iPoint spawnPos);
+
+	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);
+
+	//Check all entity collisions here
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	// Load / Save
@@ -48,6 +56,7 @@ public:
 
 	//CheckPoint list reference
 	p2List<CheckPoint*> checkPoint;
-	
+	//This will be deleted
+	EnemyDummy* a;
 };
 

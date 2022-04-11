@@ -2,6 +2,16 @@
 #include "Entity.h"
 #include "Pathfinding.h"
 
+
+
+struct Stats
+{
+	int hp;
+	int mana;
+	int baseDamage;
+	int momevent;
+};
+
 class Enemy :  public Entity
 {
 public:

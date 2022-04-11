@@ -18,21 +18,6 @@
     <ClCompile Include="Source\Collectable.cpp">
       <Filter>Entities\Collectable</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scene1.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene2.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StartMenu.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameOver.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Intro.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LevelManagement.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -41,9 +26,6 @@
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiButton.cpp">
-      <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\GuiManager.cpp">
       <Filter>GUI</Filter>
@@ -87,14 +69,68 @@
     <ClCompile Include="Source\Fonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GuiSlider.cpp">
-      <Filter>GUI</Filter>
+    <ClCompile Include="Source\GreenPath.cpp">
+      <Filter>Scenes\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GuiToggle.cpp">
-      <Filter>GUI</Filter>
+    <ClCompile Include="Source\TheFall.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TheRuins.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TheVillage.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DragonCliff.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FracturedRoad.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameOver.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Intro.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StartMenu.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiButton.cpp">
+      <Filter>GUI\Controls</Filter>
     </ClCompile>
     <ClCompile Include="Source\GuiPanel.cpp">
-      <Filter>GUI</Filter>
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiToggle.cpp">
+      <Filter>GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiSlider.cpp">
+      <Filter>GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BattleTestScene.cpp">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorldTestScene.cpp">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuestPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuestManager.cpp">
+      <Filter>Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainMenuPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PausePanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SettingsPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tweening.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\Knight.cpp">
       <Filter>Entities\SpecificPlayers</Filter>
@@ -141,18 +177,6 @@
     <ClInclude Include="Source\Collectable.h">
       <Filter>Entities\Collectable</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StartMenu.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene1.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene2.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameOver.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LevelManagement.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -161,12 +185,6 @@
     </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiButton.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiControl.h">
-      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Source\GuiManager.h">
       <Filter>GUI</Filter>
@@ -225,17 +243,72 @@
     <ClInclude Include="Source\Fonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GuiSlider.h">
-      <Filter>GUI</Filter>
+    <ClInclude Include="Source\GreenPath.h">
+      <Filter>Scenes\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GuiToggle.h">
-      <Filter>GUI</Filter>
+    <ClInclude Include="Source\TheFall.h">
+      <Filter>Scenes\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GuiPanel.h">
-      <Filter>GUI</Filter>
+    <ClInclude Include="Source\TheRuins.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TheVillage.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DragonCliff.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FracturedRoad.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameOver.h">
+      <Filter>Scenes\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Source\Intro.h">
-      <Filter>Scenes</Filter>
+      <Filter>Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StartMenu.h">
+      <Filter>Scenes\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiButton.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiToggle.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiSlider.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiControl.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BattleTestScene.h">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WorldTestScene.h">
+      <Filter>Scenes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\QuestPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\QuestManager.h">
+      <Filter>Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MainMenuPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PausePanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SettingsPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Source\Tweening.h">
+      <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\Knight.h">
       <Filter>Entities\SpecificPlayers</Filter>
@@ -281,8 +354,32 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{65327206-328c-4a47-bca9-88f401283938}</UniqueIdentifier>
     </Filter>
+
     <Filter Include="Entities\SpecificPlayers">
       <UniqueIdentifier>{dd0d00cd-c042-4d64-9a1e-35aae425b14e}</UniqueIdentifier>
     </Filter>
+
+    <Filter Include="Scenes\Game">
+      <UniqueIdentifier>{2c26f1f8-c8b6-442e-af73-14229ff3f52f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Menus">
+      <UniqueIdentifier>{396ab872-0fc4-4f8d-9eb7-1954a9fbb08d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Panels">
+      <UniqueIdentifier>{122196db-1032-4dee-b0c1-30bf34c5e870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Controls">
+      <UniqueIdentifier>{89c55ae2-b5f1-476f-b410-90a6cab08a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Game\Test">
+      <UniqueIdentifier>{9034a389-e168-4c51-9078-e1c1754ace1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quests">
+      <UniqueIdentifier>{b29a12b9-812b-48fa-9b22-d52346b1edb2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+
   </ItemGroup>
 </Project>
