@@ -2,10 +2,9 @@
 #define __GUIMANAGER_H__
 
 #include "Module.h"
-
-#include "GuiControl.h"
-
+#include "SDL/include/SDL.h"
 #include "p2List.h"
+#include "GuiPanel.h"
 
 class GuiManager : public Module
 {
@@ -18,65 +17,42 @@ public:
 	virtual ~GuiManager();
 
 	// Called before the first frame
-	 bool Start();
-
-	 bool Update(float dt);
-
+	bool Awake(pugi::xml_node&) override;
+	bool Start() override;
+	bool Update(float dt) override;
 	bool UpdateAll(float dt,bool logic);
-
-	bool Draw();
+	bool PostUpdate();
 
 	// Called before quitting
 	bool CleanUp();
 
-	// Additional methods
-	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, int fontid, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
-	void DestroyGuiControl(GuiControl* entity);
-	void AddGuiControl(GuiControl* entity);
+	bool OnGuiMouseClickEvent(GuiControl* control);
 
 public:
 
-	p2List<GuiControl*> controls;
+
+	p2List<GuiPanel*> panels;
 
 	float accumulatedTime = 0.0f;
 	float updateMsCycle = 0.0f;
 	bool doLogic = false;
 
-	SDL_Texture* UItexture;
+	SDL_Texture* UItexture = nullptr;
+	SDL_Texture* UItexture2 = nullptr;
 
 	int mainFont;
 	int numberFont;
 	bool Debug = false;
 
-	enum GuiElementID {
-		START,
-		SETTINGS,
-		LOAD,
-		EXIT,
-		//etc
 
-	};
-
-	//GuiButton* startButton;//1
-	//GuiButton* settingsButton;//2
-	//GuiButton* loadButton;//3
-	//GuiButton* exitButton;//4
-	//GuiButton* backToTitleButton;//5
-	//GuiButton* resumeButton;//6
-	//GuiButton* closePanelBttn;//7
-
-	//GuiSlider* volumeSlider;//8
-	//GuiSlider* fxSlider;//9
-	//GuiToggle* vsyncCheckbox;//10
-	//GuiToggle* fullScreenCheckbox;//11
+	//gui panels used in the game
+	GuiPanel* pn_quest;
+	GuiPanel* pn_start;
+	GuiPanel* pn_pause;
+	GuiPanel* pn_settings;
+	GuiPanel* pn_gameOver;
 
 
-	//GuiPanel* startMenuPanel;
-	//GuiPanel* settingsPanel;
-	//GuiPanel* pauseMenuPanel;
-	//GuiPanel* gameOverMenuPanel;
-
-	//GuiPanel* currentActivePanel;
 };
 
 #endif // __GUIMANAGER_H__

@@ -1,26 +1,23 @@
-#ifndef __SCENE2_H__
-#define __SCENE2_H__
-
+#pragma once
 #include "Module.h"
 #include "p2List.h"
 #include "Defs.h"
 #include "Physics.h"
 #include "Animation.h"
-#include "GuiPanel.h"
 
 struct SDL_Texture;
 
-class Scene2 : public Module
+class BattleTestScene : public Module
 {
 public:
 
-	Scene2(bool isActive);
+	BattleTestScene(bool isActive);
 
 	// Destructor
-	virtual ~Scene2();
+	virtual ~BattleTestScene();
 
 	// Called before render is available
-	bool Awake();
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -37,19 +34,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void Enable();
-	void Disable();
-
-	// Load / Save
-	bool LoadState(pugi::xml_node&);
-	bool SaveState(pugi::xml_node&) const;
-
-	int KeysToTake = 3;
 private:
 	SDL_Texture* img;
-	p2ListItem<PhysBody*>* collider;
-
-	uint music;
+	SDL_Rect rect;
 };
-
-#endif // __SCENE2_H__

@@ -16,18 +16,30 @@ class Input;
 class Render;
 class Textures;
 class Audio;
-class LevelManagement;
 class FadeToBlack;
-class Intro;
-class StartMenu;
-class Scene1;
-class Scene2;
-class GameOver;
+class Fonts;
+
 class Map;
 class ModulePhysics;
 class ModuleEntities;
 class GuiManager;
-class ModuleFonts;
+class LevelManagement;
+class QuestManager;
+
+class Intro;
+class StartMenu;
+class GameOver;
+class Scene1;
+class TheFall;
+class GreenPath;
+class TheVillage;
+class FracturedRoad;
+class TheRuins;
+class DragonCliff;
+
+class WorldTestScene;
+class BattleTestScene;
+
 
 
 class App
@@ -101,19 +113,30 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	LevelManagement* levelManagement;
-	FadeToBlack* fade;
-	Intro* intro;
-	StartMenu* start;
-	Scene1* scene1;
-	Scene2* scene2;
-	GameOver* gameOver;
 	Map* map;
 	ModulePhysics* physics;
 	ModuleEntities* entities;
 	GuiManager* guiManager;
-	ModuleFonts* fonts;
+	Fonts* fonts;
+	QuestManager* questManager;
 	
+	//scenes
+	LevelManagement* levelManagement;
+	FadeToBlack* fade;
+	Intro* intro;
+	StartMenu* start;
+	GameOver* gameOver;
+	Scene1* scene1;
+	TheFall* theFall;
+	GreenPath* greenPath;
+	TheVillage* village;
+	FracturedRoad* fracturedRoad;
+	TheRuins* ruins;
+	DragonCliff* dragonCliff;
+	//test
+	WorldTestScene* worldTest;
+	BattleTestScene* battleTest;
+
 	float dt;
 	bool exit = false;
 

@@ -8,8 +8,6 @@
 #include "Entities.h"
 #include "Entity.h"
 #include "Player.h"
-#include "Scene1.h"
-#include "Scene2.h"
 #include<iostream>
 
 
@@ -555,20 +553,13 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 
 	//Check layer and load the texture
 
-	//if (strcmp(layer->name.GetString(), "Gems") == 0)
-	//{
-	//	layer->texture = app->tex->Load("../Output/Assets/Spritesx16/gems.png");
-	//	if (layer->texture == NULL)
-	//		LOG("Gems texture not loaded...");
+	if (strcmp(layer->name.GetString(), "Buildings") == 0)
+	{
+		layer->texture = app->tex->Load("../Output/Assets/Sprites/Maptest/overworld type 2.png");
+		if (layer->texture == NULL)
+			LOG("Buildings texture not loaded...");
 
-	//}else if (strcmp(layer->name.GetString(), "checkpoints" )== 0)
-	//{
-	//	layer->texture = NULL;
-
-	//}else if (strcmp(layer->name.GetString(), "Potions" )== 0)
-	//{
-	//	layer->texture = layer->texture = app->tex->Load("../Output/Assets/Spritesx16/props.png");;
-	//}
+	}
 
 	LOG("LOADING OBJECT LAYER....");
 	//Create and load each object property
@@ -598,35 +589,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 
 		//	obj->type = Collider_Type::GEM;
 
-		//}else if (strcmp(object.attribute("type").as_string(), "Key") == 0){
-
-		//	obj->type = Collider_Type::KEY;
-		//	
-		//}else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0){
-
-		//	obj->type = Collider_Type::POTION;
-		//	
-		//}else if (strcmp(object.attribute("type").as_string(), "Portal") == 0){
-
-		//	obj->type = Collider_Type::PORTAL;
-
-		//}else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
-
-		//	obj->type = Collider_Type::CHECK_POINT;
-
-		//}else if (strcmp(object.attribute("type").as_string(), "Bat") == 0) {
-
-		//	obj->type = Collider_Type::BAT;
 		//}
-		//else if (strcmp(object.attribute("type").as_string(), "Musher") == 0) {
 
-		//	obj->type = Collider_Type::MUSHER;
-		//}
-		//else if (strcmp(object.attribute("type").as_string(), "BigMusher") == 0) {
-
-		//	obj->type = Collider_Type::BIG_MUSHER;
-		//}
 		layer->objects.add(obj);
+
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
 	}

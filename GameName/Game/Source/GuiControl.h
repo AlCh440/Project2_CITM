@@ -1,14 +1,19 @@
 #ifndef __GUICONTROL_H__
 #define __GUICONTROL_H__
 
+
+#include "Module.h"
 #include "Input.h"
 #include "Render.h"
-#include "Module.h"
 #include "Fonts.h"
 #include "Point.h"
 #include "SString.h"
+#include "Point.h"
+
 
 #include "SDL/include/SDL.h"
+
+
 
 enum class GuiControlType
 {
@@ -33,6 +38,8 @@ enum class GuiControlState
 	SELECTED
 };
 
+class GuiPanel;
+
 class GuiControl
 {
 public:
@@ -50,12 +57,21 @@ public:
 		texture = NULL;
 	}
 
+	~GuiControl() {
+
+	}
+
 	virtual bool Update(float dt)
 	{
 		return true;
 	}
 
 	virtual bool Draw(Render* render)
+	{
+		return true;
+	}
+
+	virtual bool CleanUp()
 	{
 		return true;
 	}
@@ -71,9 +87,20 @@ public:
 		observer = module;
 	}
 
+	void SetParent(GuiPanel* panel)
+	{
+		parent = panel;
+	}
+
 	void NotifyObserver()
 	{
 		observer->OnGuiMouseClickEvent(this);
+	}
+
+	void CenterText(SDL_Rect parent) 
+	{
+		textPosition.x = bounds.x + ((bounds.w - textRect.w) / 2);
+		textPosition.y = bounds.y + ((bounds.h - textRect.h) / 2);
 	}
 
 public:
@@ -82,16 +109,25 @@ public:
 	GuiControlType type;
 	GuiControlState state;
 
-	const char* text;           // Control text (if required)
+	const char* text;       // Control text (if required)
 	int font;				// font texture index
+	SDL_Texture* textTex;	// Text texture
+	SDL_Rect textRect;		// Text bounds
+	iPoint textPosition;	// Text position (center texture)
+	SDL_Color textColor;	// Text color
+
+
 	SDL_Rect bounds;        // Position and size
 	SDL_Color color;        // Tint color
 
 	SDL_Texture* texture;   // Texture atlas reference
 	SDL_Rect section;       // Texture atlas base section
 
-	Module* observer;        // Observer module (it should probably be an array/list)
+	Module* observer;       // Observer GuiManager Module (it should probably be an array/list)
+	GuiPanel* parent;		//Panel where the element is located
 	uint soundfx;
+
+	SString name;
 };
 
 #endif // __GUICONTROL_H__

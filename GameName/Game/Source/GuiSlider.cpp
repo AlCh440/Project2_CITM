@@ -1,7 +1,8 @@
 #include "GuiSlider.h"
+#include "Log.h"
 #include "App.h"
 #include "GuiManager.h"
-#include "Log.h"
+
 
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(GuiControlType::SLIDER, id)
 {
@@ -18,6 +19,8 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(Gu
 
 	backgroundRect = {89,240,82,8};
 	thumbRect = {172,240,6,10};
+
+	name.Create("Slider");
 }
 
 GuiSlider::~GuiSlider()
@@ -26,26 +29,33 @@ GuiSlider::~GuiSlider()
 
 bool GuiSlider::Update(float dt)
 {
+
 	if (state != GuiControlState::DISABLED)
 	{
-		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
+		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
-			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
+		if (((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
+			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h))) || 
+
+			(mouseX > thumbBounds.x) && (mouseX < (thumbBounds.x + thumbBounds.w)) &&
+			(mouseY > thumbBounds.y) && (mouseY < (thumbBounds.y + thumbBounds.h)))
 		{
 			state = GuiControlState::FOCUSED;
 
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
 			{
+
+				thumbBounds.x = mouseX;
+
 				if (mouseX < bounds.x)
 					thumbBounds.x = bounds.x + thumbBounds.w;
 
 				if (mouseX > (bounds.x + bounds.w))
-					thumbBounds.x = bounds.x - thumbBounds.w;
+					thumbBounds.x = (bounds.x + bounds.w);
 
-				thumbBounds.x = mouseX;
+				
 
 				value = GetValue(mouseX);
 				LOG("slider value:%f", GetValue(mouseX));
@@ -67,6 +77,9 @@ bool GuiSlider::Update(float dt)
 bool GuiSlider::Draw(Render* render)
 {
 
+
+	//this text render could go to the state machine if necesary
+	render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	switch (state)
 	{
@@ -149,6 +162,11 @@ bool GuiSlider::Draw(Render* render)
 	return true;
 }
 
+bool GuiSlider::CleanUp()
+{
+	return true;
+}
+
 int GuiSlider::GetValue(float pos)
 {
 
@@ -165,8 +183,5 @@ int GuiSlider::GetValue(float pos)
 
 void GuiSlider::SetValue(int _value)
 {
-
 	thumbBounds.x = bounds.x + ((bounds.x +bounds.w) - bounds.x) * ((_value - 0) / (128 - 0));
-
-
 }
