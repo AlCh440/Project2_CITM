@@ -56,7 +56,8 @@ public:
 
 	//CheckPoint list reference
 	p2List<CheckPoint*> checkPoint;
-	//This will be deleted
-	EnemyDummy* a;
+
+	//Dummy instance reference
+	EnemyDummy* dummyInstance;
 };
 

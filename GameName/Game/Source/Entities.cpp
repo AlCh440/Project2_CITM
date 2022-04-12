@@ -11,6 +11,8 @@
 #include "Player.h"
 #include "CheckPoint.h"
 
+#include "Enemy.h"
+#include "EnemyDummy.h"
 
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
@@ -113,7 +115,8 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
             case PLAYER:
                  entities[i] = playerInstance = new Player(type, spawnPos);
                 break;
-
+            case DUMMY:
+                entities[i] = dummyInstance = new EnemyDummy(type, spawnPos);
             default :
                 break;
             }

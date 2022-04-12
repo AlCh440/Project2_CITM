@@ -58,5 +58,7 @@ public:
 	int levelsPassed = 0;
 	bool loadLevel = false;
 
+	// Bool to activate physics debug
+	bool physDebug = false;
 };
 #endif // __LEVELMANAGEMENT_H__

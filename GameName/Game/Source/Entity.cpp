@@ -67,7 +67,7 @@ void Entity::SetToDelete()
 
 bool Entity::Cleanup()
 {
-	physBody->pendingToDelete = true;
+	if (physBody != nullptr) physBody->pendingToDelete = true;
 	texture = nullptr;
 	currentAnim = nullptr;
 	return true;

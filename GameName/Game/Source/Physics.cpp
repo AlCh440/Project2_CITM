@@ -7,7 +7,7 @@
 #include "Log.h"
 #include "Defs.h"
 #include "Entity.h"
-
+#include "LevelManagement.h"
 //#ifdef _DEBUG
 //#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
 //#else
@@ -94,6 +94,11 @@ bool ModulePhysics::Update(float dt)
 bool ModulePhysics::PostUpdate()
 {
 
+	if (app->levelManagement->physDebug)
+	{
+		DrawColliders();
+	}
+
 	return true;
 }
 
@@ -121,6 +126,7 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius, b2BodyType type,
 	pbody->width = pbody->height = radius;
 	pbody->color;
 
+	allPhysicBodies.add(pbody);
 	return pbody;
 }
 
@@ -146,6 +152,7 @@ PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height, b2
 	pbody->height = height * 0.5f;
 
 	pbody->color = _color;
+	allPhysicBodies.add(pbody);
 
 	return pbody;
 }
@@ -273,15 +280,13 @@ void ModulePhysics::RemoveBodyFromWorld(b2Body *body)
 void ModulePhysics::DrawColliders()
 {
 
-	if (!DEBUG)
-		return;
-
 	// Bonus code: this will iterate all objects in the world and draw the circles
 	// You need to provide your own macro to translate meters to pixels
 	for (p2ListItem<PhysBody*>* pb = allPhysicBodies.getFirst(); pb; pb = pb->next)
 	{
 		for (b2Fixture* f = pb->data->body->GetFixtureList(); f; f = f->GetNext())
 		{
+			
 			switch (f->GetType())
 			{
 				// Draw circles ------------------------------------------------
@@ -290,7 +295,7 @@ void ModulePhysics::DrawColliders()
 
 				b2CircleShape* shape = (b2CircleShape*)f->GetShape();
 				b2Vec2 pos = f->GetBody()->GetPosition();
-				app->render->DrawCircle(METERS_TO_PIXELS(pos.x), METERS_TO_PIXELS(pos.y), METERS_TO_PIXELS(shape->m_radius), pb->data->color.r, pb->data->color.g, pb->data->color.b);
+				app->render->DrawCircle(METERS_TO_PIXELS(pos.x), METERS_TO_PIXELS(pos.y), METERS_TO_PIXELS(shape->m_radius), 0, 255, 0, 255);
 
 			}
 			break;
@@ -301,16 +306,15 @@ void ModulePhysics::DrawColliders()
 				b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
 				int32 count = polygonShape->GetVertexCount();
 				b2Vec2 prev, v;
-
+				b2Vec2 pos = f->GetBody()->GetPosition();
 				for (int32 i = 0; i < count; ++i)
 				{
 					v = pb->data->body->GetWorldPoint(polygonShape->GetVertex(i));
 					if (i > 0)
-						app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), pb->data->color.r, pb->data->color.g, pb->data->color.b);
+						app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 0, 0, 255);
 
 					prev = v;
 				}
-
 				v = pb->data->body->GetWorldPoint(polygonShape->GetVertex(0));
 				app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), pb->data->color.r, pb->data->color.g, pb->data->color.b);
 			}
@@ -349,7 +353,7 @@ void ModulePhysics::DrawColliders()
 			}
 		}
 	}
-
+	
 }
 
 void ModulePhysics::ClearAllCollidersLists()

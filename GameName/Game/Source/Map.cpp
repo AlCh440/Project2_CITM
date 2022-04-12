@@ -100,6 +100,7 @@ void Map::Draw()
 		}
 		mapLayerItem = mapLayerItem->next;
 	}
+
 }
 
 // L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions

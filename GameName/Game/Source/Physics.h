@@ -26,7 +26,7 @@ enum Collider_Type {
 
 	GEM,
 	KEY, 
-	BAT,
+	DUMMY,
 	MUSHER,
 	BIG_MUSHER,
 	CHECK_POINT, 
