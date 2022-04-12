@@ -37,4 +37,7 @@ public:
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;
+
+	
+	PhysBody* testBody;
 };

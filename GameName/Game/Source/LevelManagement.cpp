@@ -253,10 +253,10 @@ void LevelManagement::ReturnToMainMenu()
 
 void LevelManagement::RestartLevel()
 {
-	if (app->entities->playerInstance->state == PlayerState::DEAD)
+	if (app->entities->playerInstance->lifePoints < 0)
 	{
 		gameState = GAME_OVER;
-
+	
 		app->fade->Fade(currentScene, (Module*)app->gameOver, 60.0f);
 	}
 	else {

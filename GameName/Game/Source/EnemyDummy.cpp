@@ -27,6 +27,16 @@ void EnemyDummy::UpdatePath()
 {
 }
 
+bool EnemyDummy::Start()
+{
+	return true;
+}
+
+bool EnemyDummy::PreUpdate()
+{
+	return true;
+}
+
 bool EnemyDummy::Update(float dt)
 {	
 	/*
@@ -40,6 +50,7 @@ bool EnemyDummy::Update(float dt)
 	}
 	return true;
 	*/
+	return true;
 }
 
 bool EnemyDummy::PostUpdate()
@@ -72,4 +83,26 @@ bool EnemyDummy::CleanUp()
 
 
 
+}
+
+bool EnemyDummy::BasicAttack() // pass an Player
+{
+	return true;
+}
+
+// 
+void EnemyDummy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+
+}
+
+// Load / Save
+bool EnemyDummy::LoadState(pugi::xml_node& data)
+{
+	return true;
+}
+
+bool EnemyDummy::SaveState(pugi::xml_node& data) const
+{
+	return true;
 }
