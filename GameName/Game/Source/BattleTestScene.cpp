@@ -25,7 +25,7 @@ bool BattleTestScene::Start()
 
 	app->map->Load("BattleGroundTest.tmx");
 
-	testBody = app->physics->CreateCircle(100, 100, 30);
+	testBody = app->physics->CreateCircle(100, 100, 30, b2_kinematicBody);
 
 	img=app->tex->Load("Assets/Sprites/dummySprite.png");
 
