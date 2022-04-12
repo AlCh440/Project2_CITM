@@ -40,7 +40,7 @@ public:
 	bool CleanUp() override;
 
 
-	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
+	void OnCollision(PhysBody* other) override;
 
 	// Load / Save
 	bool LoadState(pugi::xml_node& data) override;

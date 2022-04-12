@@ -94,7 +94,7 @@ bool ModuleEntities::CleanUp()
     {
         if (entities[i] != nullptr)
         {
-            entities[i]->Cleanup();
+            entities[i]->CleanUp();
             delete entities[i];
             entities[i] = nullptr;
         }
@@ -130,7 +130,7 @@ void ModuleEntities::RemoveEntity(PhysBody* entity)
         if (entities[i]!= nullptr && entity == entities[i]->physBody)
         {
             entities[i]->physBody->pendingToDelete = true;
-            entities[i]->Cleanup();
+            entities[i]->CleanUp();
           
             delete entities[i];
             entities[i] = nullptr;
@@ -154,7 +154,7 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
     {
         if (entities[i] != nullptr)
         {
-            entities[i]->Cleanup();
+            entities[i]->CleanUp();
             delete entities[i];
             entities[i] = nullptr;
         }

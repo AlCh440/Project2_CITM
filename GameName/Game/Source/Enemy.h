@@ -21,20 +21,18 @@ public:
 	virtual void Move(float dt);
 	virtual void UpdatePath();
 
-	virtual bool Start();
-	virtual bool PreUpdate();
+	bool Start() override;
+	bool PreUpdate() override;
 	// Updates animation and collider position
-	virtual bool Update(float dt);
-	virtual bool CleanUp();
+	bool Update(float dt) override;
+	bool CleanUp() override;
 	// Called from ModuleEntitys' Update
-	virtual bool PostUpdate();
+	bool PostUpdate() override;
 
 	// Collision response
-	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+	void OnCollision(PhysBody* other) override;
+	
 
-	//int hitPoints;
-	//int score;
-	//float detectionDistance = 10; // in pixels
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;

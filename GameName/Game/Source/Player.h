@@ -65,6 +65,7 @@ public:
 	int actionPoints = 1;
 	TypeOfMovement movType = DEFAULT;
 	bool isAlive = true;
+	PlayerState playerState;
 	
 private:
 

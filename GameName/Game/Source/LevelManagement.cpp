@@ -253,7 +253,7 @@ void LevelManagement::ReturnToMainMenu()
 
 void LevelManagement::RestartLevel()
 {
-	if (app->entities->playerInstance->state == PlayerState::DEAD)
+	if (app->entities->playerInstance->playerState == PlayerState::DEAD)
 	{
 		gameState = GAME_OVER;
 

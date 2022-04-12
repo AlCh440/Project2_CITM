@@ -42,7 +42,7 @@ public:
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
-	virtual bool Cleanup();
+	virtual bool CleanUp();
 
 	// Load / Save
 	virtual bool LoadState(pugi::xml_node& data);

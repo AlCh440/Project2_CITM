@@ -1,0 +1,2 @@
+activate/deactivate UI: U / I / O / P
+change playstyle: 1 battle / 2 world
