@@ -48,6 +48,10 @@ bool LevelManagement::PreUpdate()
 	{
 		RestartLevel();
 	}
+	if ((app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) && currentScene->active == true)
+	{
+		app->physics->DrawColliders();
+	}
 	switch (gameState)
 	{
 	case INTRO:
