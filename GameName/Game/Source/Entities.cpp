@@ -14,6 +14,9 @@
 #include "Enemy.h"
 #include "EnemyDummy.h"
 
+#include "Npc.h"
+#include "NpcDummy.h"
+
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
@@ -97,6 +100,9 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
         entities.add(dummyInstance);
+    case NPCDUMMY:
+        dummyNpcInstance = new NpcDummy(type, spawnPos);
+        entities.add(dummyNpcInstance);
     default :
         break;
     }

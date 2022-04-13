@@ -6,6 +6,7 @@
 #include "Point.h"
 #include "Entity.h"
 #include "Player.h"
+#include "NpcDummy.h"
 #include "CheckPoint.h"
 
 #define MAX_ENTITIES 150
@@ -58,5 +59,7 @@ public:
 
 	//Dummy instance reference
 	EnemyDummy* dummyInstance;
+
+	NpcDummy* dummyNpcInstance;
 };
 
