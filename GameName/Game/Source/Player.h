@@ -9,19 +9,18 @@
 enum PlayerState
 {
 	IDLE,
-	MOVE,
-	JUMP,
-	DOUBLE_JUMP,
+	COMBATMOVE,
+	FREEMOVE,
 	ATTACK,
 	DEAD
 };
 
-enum TypeOfMovement
-{
-	OPENWORLD,
-	COMBATMOVE,
-	DEFAULT
-};
+//enum TypeOfMovement
+//{
+//	OPENWORLD,
+//	COMBATMOVE,
+//	DEFAULT
+//};
 
 class Player :  public Entity
 {
@@ -63,7 +62,8 @@ public:
 	int lifePoints = 1;
 	int manaPoints = 1;
 	int actionPoints = 1;
-	TypeOfMovement movType = DEFAULT;
+	//TypeOfMovement movType = DEFAULT;
+	PlayerState state = IDLE;
 	bool isAlive = true;
 	
 private:

@@ -29,7 +29,7 @@ bool Ranger::Start()
 bool Ranger::PreUpdate()
 {
 
-	if (movType == COMBATMOVE)
+	if (state == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{

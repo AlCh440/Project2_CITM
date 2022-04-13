@@ -29,7 +29,7 @@ bool Knight::Start()
 bool Knight::PreUpdate()
 {
 
-	if(movType == COMBATMOVE)
+	if(state == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{
@@ -53,6 +53,60 @@ bool Knight::PreUpdate()
 
 bool Knight::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	{
+		state = FREEMOVE;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	{
+		state = COMBATMOVE;
+	}
+
+	switch (state)
+	{
+	case COMBATMOVE:
+	{
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+		{
+			position.x -= 48;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
+		{
+			position.x += 48;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
+		{
+			position.y -= 48;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+		{
+			position.y += 48;
+		}
+	}break;
+	case FREEMOVE:
+	{
+		if (app->input->GetKey(SDL_SCANCODE_A) == (KEY_REPEAT || KEY_DOWN))
+		{
+			position.x -= 2;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_D) == (KEY_REPEAT || KEY_DOWN))
+		{
+			position.x += 2;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_W) == (KEY_REPEAT || KEY_DOWN))
+		{
+			position.y -= 2;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_S) == (KEY_REPEAT || KEY_DOWN))
+		{
+			position.y += 2;
+		}
+	} break;
+	default:
+	{
+
+	}break;
+	}
 
 
 	return true;

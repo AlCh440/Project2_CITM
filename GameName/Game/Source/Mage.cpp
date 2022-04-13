@@ -29,7 +29,7 @@ bool Mage::Start()
 bool Mage::PreUpdate()
 {
 
-	if (movType == COMBATMOVE)
+	if (state == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{
