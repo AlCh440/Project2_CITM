@@ -3,6 +3,7 @@
 #include "App.h"
 #include "Map.h"
 #include "Physics.h"
+#include "LevelManagement.h"
 
 BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
@@ -51,6 +52,11 @@ bool BattleTestScene::PostUpdate()
 	
 	app->map->Draw();
 	app->render->DrawTexture(img, x, y, &rect);
+
+	if (app->levelManagement->physDebug)
+	{
+		app->physics->DrawColliders();
+	}
 	return true;
 }
 
