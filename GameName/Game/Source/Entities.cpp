@@ -34,31 +34,21 @@ bool ModuleEntities::Awake()
 
 bool ModuleEntities::Start()
 {
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-
-        if (entities[i] != nullptr)
-        {
-            entities[i]->Start();
-        }
+        aux->data->Start();
     }
 
-   
     return true;
 }
 
 bool ModuleEntities::PreUpdate()
 {
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
+        aux->data->DEBUG = DEBUG;
+        aux->data->PreUpdate();
 
-        if (entities[i] != nullptr)
-        {
-
-             entities[i]->DEBUG = DEBUG;
-             entities[i]->PreUpdate();
-       
-        }
     }
 
     return true;
@@ -66,78 +56,63 @@ bool ModuleEntities::PreUpdate()
 
 bool ModuleEntities::Update(float dt)
 {
-
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i] != nullptr)
-            entities[i]->Update(dt);
+        aux->data->Update(dt);
     }
-
+   
     return true;
 }
 
 bool ModuleEntities::PostUpdate()
 {
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i] != nullptr)
-            entities[i]->PostUpdate();
-        
+        aux->data->PostUpdate();
     }
-
+  
     return true;
-
-   
 }
 
 bool ModuleEntities::CleanUp()
 {
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i] != nullptr)
-        {
-            entities[i]->Cleanup();
-            delete entities[i];
-            entities[i] = nullptr;
-        }
+        aux->data->Cleanup();
+        delete aux->data;
+        aux->data = nullptr;
     }
+   
     return true;
 }
 
 void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
 {
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    switch (type)
     {
-        if (entities[i] == nullptr)
-        {
-            switch (type)
-            {
-            case PLAYER:
-                 entities[i] = playerInstance = new Player(type, spawnPos);
-                break;
-            case DUMMY:
-                entities[i] = dummyInstance = new EnemyDummy(type, spawnPos);
-            default :
-                break;
-            }
-
-            break;
-        }
+    case PLAYER:
+         playerInstance = new Player(type, spawnPos);
+         entities.add(playerInstance);
+        break;
+    case DUMMY:
+        dummyInstance = new EnemyDummy(type, spawnPos);
+        entities.add(dummyInstance);
+    default :
+        break;
     }
 }
 
 void ModuleEntities::RemoveEntity(PhysBody* entity)
 {
-    for (int i = 0; i < MAX_ENTITIES; i++)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i]!= nullptr && entity == entities[i]->physBody)
+        if (entity == aux->data->physBody)
         {
-            entities[i]->physBody->pendingToDelete = true;
-            entities[i]->Cleanup();
-          
-            delete entities[i];
-            entities[i] = nullptr;
+            aux->data->physBody->pendingToDelete = true;
+            aux->data->Cleanup();
 
+            delete aux->data;
+            aux->data = nullptr;
         }
     }
 }
@@ -153,14 +128,16 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
 {
 
     //clear all entities to load new ones
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        aux->data->Cleanup();
+        delete aux->data;
+        aux->data = nullptr;
+    }
+
     for (uint i = 0; i < MAX_ENTITIES; ++i)
     {
-        if (entities[i] != nullptr)
-        {
-            entities[i]->Cleanup();
-            delete entities[i];
-            entities[i] = nullptr;
-        }
+       
     }
     playerInstance = nullptr;
     pugi::xml_node currentEntitie = data.first_child();
@@ -178,26 +155,22 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
        currentEntitie = currentEntitie.next_sibling();
     }
 
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i] != nullptr)
-        {
-            entities[i]->Start();
-            entities[i]->LoadState(data);
-        }
+        aux->data->Start();
+        aux->data->LoadState(data);
+
     }
+
     return true;
 }
 
 bool ModuleEntities::SaveState(pugi::xml_node& data) const
 {
-  
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (entities[i] != nullptr)
-        {
-            entities[i]->SaveState(data);
-        }
+        aux->data->SaveState(data);
+        
     }
     return true;
 }

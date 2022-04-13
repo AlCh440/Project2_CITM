@@ -45,8 +45,7 @@ public:
 	bool SaveState(pugi::xml_node& data) const;
 
 	// All spawned enemies in the scene
-	// 
-	Entity* entities[MAX_ENTITIES] = { nullptr };
+	p2List<Entity*> entities;
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
