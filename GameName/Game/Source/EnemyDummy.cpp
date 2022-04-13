@@ -11,14 +11,14 @@ EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
 	stats.hp = 10;
-	physBody = app->physics->CreateCircle(position.x, position.y, 48);
+	physBody = app->physics->CreateCircle(position.x, position.y, 48, b2_staticBody);
 
 }
 
 EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
-	physBody = app->physics->CreateCircle(position.x, position.y, 48);
+	physBody = app->physics->CreateCircle(position.x, 48, b2_staticBody);
 	stats.hp = 10;
 	
 }
