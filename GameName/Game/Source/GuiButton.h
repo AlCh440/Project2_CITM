@@ -24,6 +24,7 @@ public:
 	unsigned int click;
 
 	bool canClick = true;
+	bool clicked = false;
 
 	int fontPosX,fontPosY;
 

@@ -17,7 +17,7 @@ NpcDummy::NpcDummy(iPoint pos) : Npc(pos)
 NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/shrek_PNG3.png");
-	physBody = app->physics->CreateCircle(position.x, 48, b2_staticBody);
+	physBody = app->physics->CreateCircle(position.x, position.y, 48, b2_staticBody);
 	
 
 }

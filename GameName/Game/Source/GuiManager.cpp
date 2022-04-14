@@ -11,6 +11,7 @@
 #include "MainMenuPanel.h"
 #include "PausePanel.h"
 #include "SettingsPanel.h"
+#include "Dialog.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -40,11 +41,13 @@ bool GuiManager::Start()
 	pn_start = new MainMenuPanel(true);
 	pn_pause = new PausePanel(true);
 	pn_settings = new SettingsPanel(true);
+	pn_dialog = new DialogPanel(true);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
 	panels.add(pn_pause);
 	panels.add(pn_settings);
+	panels.add(pn_dialog);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -71,7 +74,8 @@ bool GuiManager::Update(float dt)
 		pn_pause->Active = !pn_pause->GetActive();
 	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 		pn_quest->Active = !pn_quest->GetActive();
-
+	if (app->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
+		pn_dialog->Active = !pn_dialog->GetActive();
 
 	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		Debug = !Debug;

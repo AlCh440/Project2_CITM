@@ -47,6 +47,7 @@ public:
 
 	//gui panels used in the game
 	GuiPanel* pn_quest;
+	GuiPanel* pn_dialog;
 	GuiPanel* pn_start;
 	GuiPanel* pn_pause;
 	GuiPanel* pn_settings;

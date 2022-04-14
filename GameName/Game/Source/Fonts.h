@@ -17,6 +17,10 @@ struct Text
 	const char* text;
 	SDL_Rect dpsRect;// to store the text texture dimensions
 
+	uint totalLength;
+	uint rows, columns;
+	uint char_w, char_h;
+
 };
 
 class Fonts : public Module
