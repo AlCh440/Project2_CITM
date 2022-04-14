@@ -9,6 +9,8 @@
 #include "Entity.h"
 
 #include "Player.h"
+#include "Knight.h"
+
 #include "CheckPoint.h"
 
 #include "Enemy.h"
@@ -97,12 +99,18 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
          playerInstance = new Player(type, spawnPos);
          entities.add(playerInstance);
         break;
+    case PLAYERKNIGHT:
+        knightInstance = new Knight(type, spawnPos);
+        entities.add(knightInstance);
+        break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
         entities.add(dummyInstance);
+        break;
     case NPCDUMMY:
         dummyNpcInstance = new NpcDummy(type, spawnPos);
         entities.add(dummyNpcInstance);
+        break;
     default :
         break;
     }

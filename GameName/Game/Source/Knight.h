@@ -12,7 +12,8 @@ class Knight : public Player
 public:
 
 	Knight(iPoint pos);// remember to define the type of player
-	~Knight();
+	Knight(Collider_Type type, iPoint pos);
+	
 
 	bool BasicAttack(); // pass an ennemy
 	bool TauntHability();

@@ -39,8 +39,7 @@ bool LevelManagement::PreUpdate()
 	{
 		gameState = COMBAT;
 		app->entities->AddEntity(Collider_Type::DUMMY, iPoint(0, 0));
-		
-		app->entities->AddEntity(Collider_Type::NPCDUMMY, iPoint(400, 100));
+		app->entities->AddEntity(Collider_Type::PLAYERKNIGHT, iPoint(400, 400));
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) && currentScene->active == true)
 	{

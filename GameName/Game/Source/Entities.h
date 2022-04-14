@@ -5,7 +5,10 @@
 #include "Physics.h"
 #include "Point.h"
 #include "Entity.h"
+
 #include "Player.h"
+#include "Knight.h"
+
 #include "NpcDummy.h"
 #include "CheckPoint.h"
 
@@ -57,7 +60,8 @@ public:
 	//CheckPoint list reference
 	p2List<CheckPoint*> checkPoint;
 
-	//Dummy instance reference
+	//Instances 
+	Knight* knightInstance;
 	EnemyDummy* dummyInstance;
 
 	NpcDummy* dummyNpcInstance;

@@ -12,6 +12,11 @@
 #include "Player.h"
 
 // Update Code
+Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
+{
+	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_staticBody);
+}
 
 bool Knight::Start()
 {
@@ -85,19 +90,19 @@ bool Knight::Update(float dt)
 	}break;
 	case FREEMOVE:
 	{
-		if (app->input->GetKey(SDL_SCANCODE_A) == (KEY_REPEAT || KEY_DOWN))
+		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
 		{
 			position.x -= 2;
 		}
-		else if (app->input->GetKey(SDL_SCANCODE_D) == (KEY_REPEAT || KEY_DOWN))
+		else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN))
 		{
 			position.x += 2;
 		}
-		else if (app->input->GetKey(SDL_SCANCODE_W) == (KEY_REPEAT || KEY_DOWN))
+		else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN))
 		{
 			position.y -= 2;
 		}
-		else if (app->input->GetKey(SDL_SCANCODE_S) == (KEY_REPEAT || KEY_DOWN))
+		else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN))
 		{
 			position.y += 2;
 		}
@@ -114,7 +119,7 @@ bool Knight::Update(float dt)
 
 bool Knight::PostUpdate()
 {
-
+	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
 
 	return true;
 }
@@ -125,8 +130,6 @@ bool Knight::CleanUp()
 
 	return true;
 }
-
-// Knight 
 
 bool Knight::BasicAttack() // pass an ennemy
 {
