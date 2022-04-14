@@ -188,3 +188,28 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
     }
     return true;
 }
+
+PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)
+{
+    p2ListItem<Enemy*>* enemy = enemies.getFirst();
+    if (enemy != NULL)
+    {
+        int temp = enemy->data->CheckDistanceToPhysBody(Character);
+
+        PhysBody* NearEnemy = enemy->data->GetCollider();
+        for (int i = 0; enemy; enemy = enemy->next)
+        {
+
+
+            int j = enemy->data->CheckDistanceToPhysBody(Character);
+            if (j < temp)
+            {
+                temp = j;
+                NearEnemy = enemy->data->GetCollider();
+            }
+        }
+        return NearEnemy;
+    }
+    else return NULL;
+
+}

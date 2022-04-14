@@ -13,6 +13,7 @@
 #include "LevelManagement.h"
 #include "FadeToBlack.h"
 #include "QuestManager.h"
+#include "Pathfinding.h"
 //Scenes 
 #include "Intro.h"
 #include "StartMenu.h"
@@ -47,6 +48,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	fonts = new Fonts(true);
 	fade = new FadeToBlack(true);
 	questManager = new QuestManager(true);
+	pathFinding = new PathFinding(true);
 
 	//systems
 	map = new Map(true);
@@ -78,6 +80,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(fonts);
+	AddModule(pathFinding);
 	AddModule(fade);
 	AddModule(levelManagement);
 	AddModule(map);

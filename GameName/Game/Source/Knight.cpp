@@ -66,7 +66,10 @@ bool Knight::Update(float dt)
 	{
 		state = COMBATMOVE;
 	}
-
+	if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
+	{
+		state = CHOOSINGATTACK;
+	}
 	switch (state)
 	{
 	case COMBATMOVE:

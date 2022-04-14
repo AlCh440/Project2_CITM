@@ -26,7 +26,7 @@ public:
 	virtual ~Entity();
 
 	// Returns the Entity's collider
-	const PhysBody* GetCollider() const;
+	PhysBody* GetCollider();
 
 	virtual bool Start();
 	virtual bool PreUpdate();
@@ -75,7 +75,7 @@ public:
 	Collider_Type type;
 
 	//HP
-	int lives;
+	
 
 	// The Entity's texture
 	SDL_Texture* texture = nullptr;

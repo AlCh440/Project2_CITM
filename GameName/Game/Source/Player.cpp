@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Entity.h"
 #include "Defs.h"
 #include "App.h"
 #include "Audio.h"
@@ -8,6 +9,7 @@
 #include "LevelManagement.h"
 #include "Render.h"
 #include "Map.h"
+#include "Pathfinding.h"
 #include "Log.h"
 #include <SDL/include/SDL_scancode.h>
 
@@ -122,4 +124,29 @@ bool Player::SaveState(pugi::xml_node& data) const
 {
 	bool ret = true;
 	return ret;
+}
+
+PhysBody* Player::checkCloseEnemies()
+{
+	PhysBody* enemy = app->entities->GetNearestEnemy(physBody);
+	iPoint a;
+	iPoint b;
+	enemy->GetPosition(a.x, a.y);
+	a = app->map->WorldToMap(a.x, a.y);
+	b = app->map->WorldToMap(position.x, position.y);
+	int chosing = app->pathFinding->CreatePath(b, a);
+	
+	if (chosing < 8)
+	{
+		return enemy;
+	}
+	else if (chosing < 3)
+	{
+		return enemy;
+	}
+	else
+	{
+		return NULL;
+	}
+
 }

@@ -16,6 +16,13 @@ void Enemy::UpdatePath()
 {
 }
 
+int Enemy::CheckDistanceToPhysBody(PhysBody* PhysPos)
+{
+	b2Vec2 dist = PhysPos->body->GetPosition() - physBody->body->GetPosition();
+
+	return (abs(dist.x) + abs(dist.y));
+}
+
 bool Enemy::Start() { return true; }
 bool Enemy::PreUpdate() { return true; }
 bool Enemy::Update(float dt) { return true; }

@@ -9,6 +9,8 @@
 #include "Player.h"
 #include "Knight.h"
 
+#include "Enemy.h"
+
 #include "NpcDummy.h"
 #include "CheckPoint.h"
 
@@ -41,6 +43,9 @@ public:
 	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);
 
+	// return the closest hitbox
+	PhysBody* GetNearestEnemy(PhysBody* Character);
+
 	//Check all entity collisions here
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
@@ -50,7 +55,7 @@ public:
 
 	// All spawned enemies in the scene
 	p2List<Entity*> entities;
-
+	p2List<Enemy*> enemies;
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
 

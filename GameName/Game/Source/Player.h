@@ -11,7 +11,8 @@ enum PlayerState
 	IDLE,
 	COMBATMOVE,
 	FREEMOVE,
-	ATTACK,
+	CHOOSINGATTACK,
+	ATTACKING,
 	DEAD
 };
 
@@ -48,6 +49,7 @@ public:
 	virtual bool LoadState(pugi::xml_node& data);
 	virtual bool SaveState(pugi::xml_node& data) const;
 
+	PhysBody* checkCloseEnemies();
 public:
 	Animation* currentAnim = nullptr;
 

@@ -32,6 +32,9 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
+	// Returns distance to a point
+	int CheckDistanceToPhysBody(PhysBody* PhysPos);
+
 	//int hitPoints;
 	//int score;
 	//float detectionDistance = 10; // in pixels

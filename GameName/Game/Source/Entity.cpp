@@ -28,7 +28,7 @@ Entity::~Entity()
 
 }
 
-const PhysBody* Entity::GetCollider() const
+PhysBody* Entity::GetCollider() 
 {
 	return physBody;
 }

@@ -25,6 +25,7 @@ class ModuleEntities;
 class GuiManager;
 class LevelManagement;
 class QuestManager;
+class PathFinding;
 
 class Intro;
 class StartMenu;
@@ -119,7 +120,8 @@ public:
 	GuiManager* guiManager;
 	Fonts* fonts;
 	QuestManager* questManager;
-	
+	PathFinding* pathFinding;
+
 	//scenes
 	LevelManagement* levelManagement;
 	FadeToBlack* fade;

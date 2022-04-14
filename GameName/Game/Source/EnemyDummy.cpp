@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Player.h"
 
+#include "Log.h"
 
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
@@ -65,7 +66,7 @@ bool EnemyDummy::PostUpdate()
 {
 
 	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
-
+	LOG("%i", stats.hp);
 	return true;
 }
 
