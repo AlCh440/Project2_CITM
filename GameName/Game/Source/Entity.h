@@ -53,6 +53,7 @@ public:
 	void SetPositionTiles();
 	void SetPositionPixels();
 
+
 public:
 
 	

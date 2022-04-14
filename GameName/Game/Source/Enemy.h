@@ -40,7 +40,7 @@ protected:
 	SDL_RendererFlip spriteDir;
 
 	fPoint lastPosition;
-	fPoint playerPos;
+	fPoint pos;
 	b2Vec2 movementSpeed;
 
 	PathFinding* pathfinding;

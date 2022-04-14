@@ -30,8 +30,6 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 
-public:
-
 	bool BasicAttack(); // pass an Player
 	
 
@@ -48,14 +46,8 @@ public:
 
 protected:
 
-	int spriteRotation = 0;
-	SDL_RendererFlip spriteDir;
+	
 
-	fPoint lastPosition;
-	fPoint playerPos;
-	b2Vec2 movementSpeed;
-
-	PathFinding* pathfinding;
 	int scorePoints = 0;
 
 	Statistics stats;

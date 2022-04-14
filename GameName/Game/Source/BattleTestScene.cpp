@@ -57,6 +57,7 @@ bool BattleTestScene::PostUpdate()
 	{
 		app->physics->DrawColliders();
 	}
+
 	return true;
 }
 

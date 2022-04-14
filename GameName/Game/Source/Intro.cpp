@@ -34,7 +34,7 @@ bool Intro::Awake()
 // Called before the first frame
 bool Intro::Start()
 {
-	yes = new EnemyDummy(iPoint(0, 0));
+	//yes = new EnemyDummy(iPoint(30, 200));
 
 	return true;
 }
@@ -56,7 +56,7 @@ bool Intro::Update(float dt)
 // Called each loop iteration
 bool Intro::PostUpdate()
 {
-	yes->PostUpdate();
+	//yes->PostUpdate();
 	return true;
 }
 
