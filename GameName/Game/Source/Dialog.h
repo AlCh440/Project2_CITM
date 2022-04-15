@@ -10,7 +10,7 @@ public:
 	DialogPanel(bool active);
 	~DialogPanel();
 
-	enum DialogMoments { NPC, PLAYER, DONE };
+	enum DialogMoments { NPC1, NPC2, NPC3 };
 
 	bool Start() override;
 	bool Update(float dt, bool doLogic) override;
@@ -36,3 +36,4 @@ public:
 	SDL_Texture* answer1Tex;
 	SDL_Rect answer1;
 };
+

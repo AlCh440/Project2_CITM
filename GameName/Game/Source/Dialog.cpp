@@ -71,19 +71,19 @@ bool DialogPanel::Draw()
 	{
 		switch (currentDialog->data->progress)
 		{
-		case DialogPanel::NPC:
+		case DialogPanel::NPC1:
 
 			if (notAvailableTex != nullptr)
 				app->render->DrawTexture(notAvailableTex, 134, 450, &notavailable);
 
 			break;
-		case DialogPanel::PLAYER:
+		case DialogPanel::NPC2:
 
 			if (availableTex != nullptr)
 				app->render->DrawTexture(availableTex, 134, 450, &rAvailable);
 
 			break;
-		case DialogPanel::DONE:
+		case DialogPanel::NPC3:
 
 			if (currentDialog != nullptr && currentDialog->data->descriptionTex != NULL)
 				app->render->DrawTexture(currentDialog->data->descriptionTex, 134, 450, &currentDialog->data->rDescription);
@@ -142,4 +142,5 @@ bool DialogPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 
 	return true;
-}
+};
+
