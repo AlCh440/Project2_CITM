@@ -35,7 +35,7 @@ enum Collider_Type {
 	PORTAL,
 	PLAYER,
 	PLAYER_ATTACK,
-	GROUND,
+	WALL,
 	ENEMY,
 	POTION,
 	PLAYER_X_SENSOR,

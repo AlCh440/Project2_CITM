@@ -42,28 +42,7 @@ bool LevelManagement::PreUpdate()
 		app->entities->AddEntity(Collider_Type::PLAYERKNIGHT, iPoint(400, 400));
 		app->entities->startPlayerTurn();
 	}
-	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) && currentScene->active == true)
-	{
-		physDebug = !physDebug;
-	}
 
-	if (physDebug)
-	{
-		app->physics->DrawColliders();
-	}
-
-	//if ((app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	gameState = SCENE1;
-	//}
-	//if ((app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	RestartLevel();
-	//}
-	//if ((app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	app->physics->DrawColliders();
-	//}
 	switch (gameState)
 	{
 	case INTRO:

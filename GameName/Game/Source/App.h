@@ -171,6 +171,8 @@ private:
 	float averageFps = 0.0f;
 
 	uint32 maxFrameRate =0;
+
+	bool Debug = false;
 };
 
 extern App* app;

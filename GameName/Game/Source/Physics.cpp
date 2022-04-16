@@ -82,7 +82,6 @@ bool ModulePhysics::PreUpdate()
 		}
 	}
 
-	//app->physics->SetDebug(true);
 	return true;
 }
 
@@ -93,12 +92,6 @@ bool ModulePhysics::Update(float dt)
 
 bool ModulePhysics::PostUpdate()
 {
-
-	if (app->levelManagement->physDebug)
-	{
-		DrawColliders();
-	}
-
 	return true;
 }
 
