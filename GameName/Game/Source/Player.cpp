@@ -129,6 +129,12 @@ bool Player::SaveState(pugi::xml_node& data) const
 PhysBody* Player::checkCloseEnemies()
 {
 	PhysBody* enemy = app->entities->GetNearestEnemy(physBody);
+	
+	if (enemy == nullptr)
+	{
+		return nullptr;
+	}
+
 	iPoint a;
 	iPoint b;
 	enemy->GetPosition(a.x, a.y);

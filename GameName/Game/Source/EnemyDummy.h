@@ -5,13 +5,7 @@
 
 
 
-struct Statistics
-{
-	int hp;
-	int mana;
-	int baseDamage;
-	int momevent;
-};
+
 
 class EnemyDummy : public Enemy
 {
@@ -40,6 +34,7 @@ public:
 
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 
+	
 	// Load / Save
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
@@ -50,7 +45,7 @@ protected:
 
 	int scorePoints = 0;
 
-	Statistics stats;
+	
 
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
 };

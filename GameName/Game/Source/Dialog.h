@@ -10,6 +10,7 @@ public:
 	DialogPanel(bool active);
 	~DialogPanel();
 
+	enum DialogMoments { NPC1, NPC2, NPC3 };
 
 	bool Start() override;
 	bool Update(float dt, bool doLogic) override;
@@ -18,16 +19,21 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
-	GuiButton* nextButton;
-	GuiButton* completeButton;
+	
+	
 	GuiButton* dialogueButton;
 	GuiButton* finishButton;
 	GuiButton* cancelButton;
+	GuiButton* answer1b;
 
-	p2ListItem<Quest*>* currentQuest;
+	p2ListItem<Quest*>* currentDialog;
 	SDL_Texture* notAvailableTex;
 	SDL_Rect notavailable;
 
 	SDL_Texture* availableTex;
 	SDL_Rect rAvailable;
+
+	SDL_Texture* answer1Tex;
+	SDL_Rect answer1;
 };
+

@@ -56,6 +56,14 @@ public:
 	// All spawned enemies in the scene
 	p2List<Entity*> entities;
 	p2List<Enemy*> enemies;
+	p2List<Player*> players;
+
+	// Start players turn
+	void startPlayerTurn();
+
+	// Start enemies turn
+	void startEnemiesTurn();
+
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
 
@@ -70,5 +78,7 @@ public:
 	EnemyDummy* dummyInstance;
 
 	NpcDummy* dummyNpcInstance;
+
+	
 };
 

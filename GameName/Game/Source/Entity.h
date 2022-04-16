@@ -13,6 +13,14 @@
 struct SDL_Texture;
 struct PhysicBody;
 
+struct Statistics
+{
+	int hp;
+	int mana;
+	int baseDamage;
+	int momevent;
+};
+
 class Entity abstract
 {
 public:
@@ -53,7 +61,7 @@ public:
 	void SetPositionTiles();
 	void SetPositionPixels();
 
-
+	Statistics stats;
 public:
 
 	
@@ -93,10 +101,18 @@ public:
 	//Entity Name
 
 	SString name;
+
+	void takeDamage(int damage);
+
+	// Used to activate and regulate turns
+	bool entityTurn = false;
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 	Animation score;
+
+
 };
 
 #endif // __ENTITY_H__

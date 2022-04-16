@@ -19,7 +19,7 @@ using namespace std;
 
 Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
 {
-    name.Create("map");
+	name.Create("map");
 }
 
 // Destructor
@@ -60,12 +60,12 @@ bool Properties::SetProperty(const char* name, int set_value) {
 // Called before render is available
 bool Map::Awake(pugi::xml_node& config)
 {
-    LOG("Loading Map Parser");
-    bool ret = true;
+	LOG("Loading Map Parser");
+	bool ret = true;
 
-    folder.Create(config.child("folder").child_value());
+	folder.Create(config.child("folder").child_value());
 
-    return ret;
+	return ret;
 }
 
 // Draw the map (all requried layers)
@@ -93,7 +93,7 @@ void Map::Draw()
 						SDL_Rect r = tileset->GetTileRect(gid);
 						iPoint pos = MapToWorld(x, y);
 
-						app->render->DrawTexture(tileset->texture,pos.x, pos.y, &r);
+						app->render->DrawTexture(tileset->texture, pos.x, pos.y, &r);
 					}
 				}
 			}
@@ -101,14 +101,16 @@ void Map::Draw()
 		mapLayerItem = mapLayerItem->next;
 	}
 
+	if (DEBUG)
+		app->physics->DrawColliders();
 }
 
-// L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
+//A method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
 {
 	iPoint ret;
 
-	// L05: DONE 1: Add isometric map to world coordinates
+	//Isometric map to world coordinates
 	if (mapData.type == MAPTYPE_ORTHOGONAL)
 	{
 		ret.x = x * mapData.tileWidth;
@@ -128,12 +130,12 @@ iPoint Map::MapToWorld(int x, int y) const
 	return ret;
 }
 
-// L05: DON 2: Add orthographic world to map coordinates
+//Orthographic world to map coordinates
 iPoint Map::WorldToMap(int x, int y) const
 {
 	iPoint ret(0, 0);
 
-	// L05: DONE 3: Add the case for isometric maps to WorldToMap
+	//The case for isometric maps to WorldToMap
 	if (mapData.type == MAPTYPE_ORTHOGONAL)
 	{
 		ret.x = x / mapData.tileWidth;
@@ -156,7 +158,7 @@ iPoint Map::WorldToMap(int x, int y) const
 	return ret;
 }
 
-bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer,int layerValue) const
+bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer, int layerValue) const
 {
 	bool ret = false;
 	p2ListItem<MapLayer*>* item;
@@ -168,7 +170,7 @@ bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer,int layer
 
 		if (layer->properties.GetProperty("Navigation", 0) != layerValue)
 			continue;
-		
+
 		uchar* map = new uchar[layer->width * layer->height];
 		memset(map, 1, layer->width * layer->height);
 
@@ -220,7 +222,7 @@ Object* Map::GetObjectById(int _id)
 	return nullptr;
 }
 
-// L06: TODO 3: Pick the right Tileset based on a tile id
+//Pick the right Tileset based on a tile id
 TileSet* Map::GetTilesetFromTileId(int id) const
 {
 	p2ListItem<TileSet*>* item = mapData.tilesets.start;
@@ -245,23 +247,23 @@ SDL_Rect TileSet::GetTileRect(int id) const
 {
 	SDL_Rect rect = { 0 };
 
-	// L04: DONE 7: Get relative Tile rectangle
+	//Get relative Tile rectangle
 	int relativeId = id - firstgid;
 	rect.w = tileWidth;
 	rect.h = tileHeight;
 	rect.x = margin + ((rect.w + spacing) * (relativeId % columns));
 	rect.y = margin + ((rect.h + spacing) * (relativeId / columns));
-	
+
 	return rect;
 }
 
 // Called before quitting
 bool Map::CleanUp()
 {
-    LOG("Unloading map");
+	LOG("Unloading map");
 
-    // clean up any memory allocated from tilesets/map
-    // Remove all tilesets
+	// clean up any memory allocated from tilesets/map
+	// Remove all tilesets
 	p2ListItem<TileSet*>* item;
 	item = mapData.tilesets.start;
 
@@ -296,33 +298,33 @@ bool Map::CleanUp()
 
 	mapData.objectLayers.clear();
 
-    return true;
+	return true;
 }
 
 // Load new map
 bool Map::Load(const char* filename)
 {
-    bool ret = true;
-    SString tmp("%s%s", folder.GetString(), filename);
+	bool ret = true;
+	SString tmp("%s%s", folder.GetString(), filename);
 
-	pugi::xml_document mapFile; 
-    pugi::xml_parse_result result = mapFile.load_file(tmp.GetString());
+	pugi::xml_document mapFile;
+	pugi::xml_parse_result result = mapFile.load_file(tmp.GetString());
 
-    if(result == NULL)
-    {
-        LOG("Could not load map xml file %s. pugi error: %s", filename, result.description());
-        ret = false;
-    }
+	if (result == NULL)
+	{
+		LOG("Could not load map xml file %s. pugi error: %s", filename, result.description());
+		ret = false;
+	}
 
 	// Load general info
-    if(ret == true)
-    {
-        // Create and call a private function to load and fill all your map data
+	if (ret == true)
+	{
+		// Create and call a private function to load and fill all your map data
 		ret = LoadMap(mapFile);
 	}
 
-    // Create and call a private function to load a tileset
-    // remember to support more any number of tilesets!
+	// Create and call a private function to load a tileset
+	// remember to support more any number of tilesets!
 	if (ret == true)
 	{
 		ret = LoadTileSets(mapFile.child("map"));
@@ -343,7 +345,7 @@ bool Map::Load(const char* filename)
 		else
 			LOG("Layers Not Loaded...");
 	}
-    
+
 	if (ret == true)
 	{
 		ret = LoadAllObjectLayers(mapFile.child("map"));
@@ -354,12 +356,12 @@ bool Map::Load(const char* filename)
 	}
 
 
-    if(ret == true)
-    {
-        // TODO 5: LOG all the data loaded iterate all tilesets and LOG everything
+	if (ret == true)
+	{
+		//LOG all the data loaded iterate all tilesets and LOG everything
 
-		// TODO 4: LOG the info for each loaded layer
-    }
+		//LOG the info for each loaded layer
+	}
 
 	//once the maps and layers are loaded, we set the physics properties
 	if (ret == true)
@@ -368,12 +370,12 @@ bool Map::Load(const char* filename)
 		SetMapColliders();
 	}
 
-    mapLoaded = ret;
+	mapLoaded = ret;
 
-    return ret;
+	return ret;
 }
 
-// L03: TODO: Load map general properties
+//Load map general properties
 bool Map::LoadMap(pugi::xml_node mapFile)
 {
 	bool ret = true;
@@ -552,15 +554,24 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 	//Load object group attributes
 	layer->name = node.attribute("name").as_string();
 
-	//Check layer and load the texture
-
-	if (strcmp(layer->name.GetString(), "Buildings") == 0)
+	//Check what type of object is 
+	if (strcmp(layer->name.GetString(), "Gems") == 0)
 	{
-		layer->texture = app->tex->Load("../Output/Assets/Sprites/Maptest/overworld type 2.png");
+		layer->texture = app->tex->Load("../Output/Assets/Spritesx16/gems.png");
 		if (layer->texture == NULL)
-			LOG("Buildings texture not loaded...");
+			LOG("Gems texture not loaded...");
 
 	}
+	else if (strcmp(layer->name.GetString(), "checkpoints") == 0)
+	{
+		layer->texture = NULL;
+
+	}
+	else if (strcmp(layer->name.GetString(), "Potions") == 0)
+	{
+		layer->texture = layer->texture = app->tex->Load("../Output/Assets/Spritesx16/props.png");;
+	}
+
 
 	LOG("LOADING OBJECT LAYER....");
 	//Create and load each object property
@@ -580,24 +591,38 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		obj->height = object.attribute("height").as_int();
 
 		LOG("OBJECT ID: %i", obj->id);
-		//Check what type of object is and set it 
+		//Check what type of object is 
 
-		//if (strcmp(object.attribute("type").as_string(), "Player") == 0) {
+		if (strcmp(object.attribute("type").as_string(), "player") == 0) {
 
-		//	obj->type = Collider_Type::PLAYER;
+			obj->type = Collider_Type::PLAYER;
 
-		//}else if (strcmp(object.attribute("type").as_string(), "Gem") == 0){
+		}
+		else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0) {
 
-		//	obj->type = Collider_Type::GEM;
+			obj->type = Collider_Type::POTION;
 
-		//}
+		}
+		else if (strcmp(object.attribute("type").as_string(), "Portal") == 0) {
+
+			obj->type = Collider_Type::PORTAL;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
+
+			obj->type = Collider_Type::CHECK_POINT;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "wall") == 0)
+		{
+			obj->type = Collider_Type::WALL;
+		}
 
 		layer->objects.add(obj);
-
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
 	}
-	
+
 	return ret;
 }
 
@@ -627,70 +652,71 @@ bool Map::SetMapColliders()
 {
 	bool ret = true;
 
-	p2ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.layers.start;
-	LOG("--------!!!SETTING COLLIDERS!!!---------");
-	while (mapLayerItem != NULL) {
+	//ListItem<MapLayer*>* mapLayerItem;
+	//mapLayerItem = mapData.layers.start;
+	//LOG("--------!!!SETTING COLLIDERS!!!---------");
+	//while (mapLayerItem != NULL) {
 
-		if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
+	//	if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
 
-			for (int x = 0; x < mapLayerItem->data->width; x++)
-			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
-				{
-					int gid = mapLayerItem->data->Get(x, y);
+	//		for (int x = 0; x < mapLayerItem->data->width; x++)
+	//		{
+	//			for (int y = 0; y < mapLayerItem->data->height; y++)
+	//			{
+	//				int gid = mapLayerItem->data->Get(x, y);
 
-					if (gid > 0) {
+	//				if (gid > 0) {
 
-						TileSet* tileset = GetTilesetFromTileId(gid);
+	//					TileSet* tileset = GetTilesetFromTileId(gid);
 
-						SDL_Rect r = tileset->GetTileRect(gid);
-						iPoint pos;
-						pos = MapToWorld(x,y);
-						PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-						pb->color = { 0,0,0,255 };
-						pb->type = Collider_Type::GROUND;
-						app->physics->allPhysicBodies.add(pb);
-					}
-				}
-			}
+	//					SDL_Rect r = tileset->GetTileRect(gid);
+	//					iPoint pos;
+	//					pos = MapToWorld(x,y);
+	//					PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
+	//					pb->color = { 0,0,0,255 };
+	//					pb->type = Collider_Type::GROUND;
+	//					app->physics->allPhysicBodies.add(pb);
+	//				}
+	//			}
+	//		}
 
-		}else if (mapLayerItem->data->properties.GetProperty("Death") == 1) {
+	//	}else if (mapLayerItem->data->properties.GetProperty("Death") == 1) {
 
-			for (int x = 0; x < mapLayerItem->data->width; x++)
-			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
-				{
-					int gid = mapLayerItem->data->Get(x, y);
+	//		for (int x = 0; x < mapLayerItem->data->width; x++)
+	//		{
+	//			for (int y = 0; y < mapLayerItem->data->height; y++)
+	//			{
+	//				int gid = mapLayerItem->data->Get(x, y);
 
-					if (gid > 0) {
+	//				if (gid > 0) {
 
-						TileSet* tileset = GetTilesetFromTileId(gid);
+	//					TileSet* tileset = GetTilesetFromTileId(gid);
 
-						SDL_Rect r = tileset->GetTileRect(gid);
-						iPoint pos;
-						pos = MapToWorld(x, y);
+	//					SDL_Rect r = tileset->GetTileRect(gid);
+	//					iPoint pos;
+	//					pos = MapToWorld(x, y);
 
-						PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-						pb->color = { 255,50,50,255 };
-						pb->listener = app->levelManagement->currentScene;
-						pb->type = Collider_Type::DEATH;
-						app->physics->allPhysicBodies.add(pb);
-					}
+	//					PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
+	//					pb->color = { 255,50,50,255 };
+	//					pb->listener = app->levelManagement->currentScene;
+	//					pb->type = Collider_Type::DEATH;
+	//					app->physics->allPhysicBodies.add(pb);
+	//				}
 
-				}
-			}
-		}
-		mapLayerItem = mapLayerItem->next;
-	}
+	//			}
+	//		}
+	//	}
+	//	mapLayerItem = mapLayerItem->next;
+	//}
 	p2ListItem<ObjectLayer*>* objectLayer;
 	objectLayer = mapData.objectLayers.start;
 	LOG("--------!!!SETTING ENTITIES!!!---------");
+	PhysBody* pb;
 
 	while (objectLayer != NULL)
 	{
-	
-		LOG("SETTING %s LAYER COLLIDER...",objectLayer->data->name.GetString());
+
+		LOG("SETTING %s LAYER COLLIDER...", objectLayer->data->name.GetString());
 		p2ListItem<Object*>* object;
 		object = objectLayer->data->objects.start;
 		while (object != NULL)
@@ -699,49 +725,44 @@ bool Map::SetMapColliders()
 			iPoint spawnPos;
 			spawnPos.x = object->data->x + object->data->width * 0.5;
 			spawnPos.y = object->data->y + object->data->height * 0.5;
-			
 
 			switch (object->data->type)
 			{
-	
-				//case PLAYER:
-				//	app->entities->AddEntity(PLAYER, spawnPos);
-				//	LOG("SPAWN PLAYER...");
-				//	break;
-				//case BAT:
-				//	app->entities->AddEntity(BAT, spawnPos);
-				//	LOG("SPAWN BAT...");
-				//	break;
-				//case MUSHER:
-				//	app->entities->AddEntity(MUSHER, spawnPos);
-				//	LOG("SPAWN MUSHER...");
-				//	break;
-				//case BIG_MUSHER:
-				//	app->entities->AddEntity(BIG_MUSHER, spawnPos);
-				//	LOG("SPAWN BIG MUSHER...");
-				//	break;
-				//case GEM:
-				//	app->entities->AddEntity(Collider_Type::GEM, spawnPos);
-				//	LOG("SETTING GEM COLLIDER...");
-				//	break;
-				//case KEY:
-				//	app->entities->AddEntity(Collider_Type::KEY, spawnPos);
-				//	LOG("SETTING KEY COLLIDER...");
-				//	break;
-				//case POTION:
-				//	app->entities->AddEntity(Collider_Type::POTION, spawnPos);
-				//	LOG("SETTING POTION COLLIDER...");
-				//	break;
-				//case PORTAL:
-				//	app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
-				//	LOG("SETTING PORTAL COLLIDER...");
-				//	break;
-				//case CHECK_POINT:
-				//	app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
-				//	LOG("SETTING CHECKPOINT COLLIDER...");
-				//	break;
-				default:
-					break;
+
+			case PLAYER:
+				app->entities->AddEntity(PLAYER, spawnPos);
+				LOG("SPAWN PLAYER...");
+				break;
+			case GEM:
+				app->entities->AddEntity(Collider_Type::GEM, spawnPos);
+				LOG("SETTING GEM COLLIDER...");
+				break;
+			case KEY:
+				app->entities->AddEntity(Collider_Type::KEY, spawnPos);
+				LOG("SETTING KEY COLLIDER...");
+				break;
+			case POTION:
+				app->entities->AddEntity(Collider_Type::POTION, spawnPos);
+				LOG("SETTING POTION COLLIDER...");
+				break;
+			case PORTAL:
+				app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
+				LOG("SETTING PORTAL COLLIDER...");
+				break;
+			case CHECK_POINT:
+				app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
+				LOG("SETTING CHECKPOINT COLLIDER...");
+				break;
+			case WALL:
+				pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
+				pb->color = { 0,0,0,255 };
+				pb->type = Collider_Type::WALL;
+				app->physics->allPhysicBodies.add(pb);
+				break;
+			case DEATH:
+				break;
+			default:
+				break;
 			}
 
 			object = object->next;
@@ -762,7 +783,6 @@ void Map::ClearColliders()
 bool Map::LoadState(pugi::xml_node& data)
 {
 	bool ret = true;
-	
 	return ret;
 }
 
@@ -770,8 +790,5 @@ bool Map::SaveState(pugi::xml_node& data) const
 {
 
 	bool ret = true;
-
-	
-
 	return ret;
 }

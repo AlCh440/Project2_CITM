@@ -12,6 +12,7 @@ EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");	
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f*0.5f, b2_staticBody);
+	physBody->entityPtr = this;
 
 	stats.hp = 10;
 
@@ -21,7 +22,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_kinematicBody);
-	
+	physBody->entityPtr = this;
 	
 	stats.hp = 10;
 }
@@ -66,7 +67,6 @@ bool EnemyDummy::PostUpdate()
 {
 
 	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
-	LOG("%i", stats.hp);
 	return true;
 }
 

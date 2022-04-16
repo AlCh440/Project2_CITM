@@ -296,13 +296,18 @@ bool App::PreUpdate()
 	p2ListItem<Module*>* item;
 	Module* pModule = NULL;
 
+
+
+	if (input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+		Debug = !Debug;
+
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
 	{
 		pModule = item->data;
 
 
 		if (input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
-			item->data->DEBUG = !item->data->DEBUG;
+			item->data->DEBUG = Debug;
 
 		if(pModule->active == false) {
 			continue;

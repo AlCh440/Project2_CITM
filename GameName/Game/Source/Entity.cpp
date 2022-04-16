@@ -98,3 +98,8 @@ b2Vec2 Entity::GetPositionTileToMeters(iPoint pos)
 	newPos.y = pixelPos.y;
 	return newPos;
 }
+
+void Entity::takeDamage(int damage)
+{
+	stats.hp -= damage;
+}

@@ -35,7 +35,7 @@ enum Collider_Type {
 	PORTAL,
 	PLAYER,
 	PLAYER_ATTACK,
-	GROUND,
+	WALL,
 	ENEMY,
 	POTION,
 	PLAYER_X_SENSOR,
@@ -46,6 +46,9 @@ enum Collider_Type {
 struct Color {
 	float r, g, b, a;
 };
+
+class Entity;
+
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
 {
@@ -65,6 +68,7 @@ public:
 	int RayCast(int x1, int y1, int x2, int y2, float& normal_x, float& normal_y) const;
 	b2Color color;
 public:
+	Entity* entityPtr;
 	int width, height;
 	b2Body* body;
 	Collider_Type type;

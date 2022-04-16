@@ -63,7 +63,10 @@ bool ModuleEntities::Update(float dt)
 {
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        aux->data->Update(dt);
+        if (aux->data->entityTurn)
+        {
+            aux->data->Update(dt);
+        }
     }
    
     return true;
@@ -98,14 +101,17 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case PLAYER:
          playerInstance = new Player(type, spawnPos);
          entities.add(playerInstance);
+         players.add(playerInstance);
         break;
     case PLAYERKNIGHT:
         knightInstance = new Knight(type, spawnPos);
         entities.add(knightInstance);
+        players.add(knightInstance);
         break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
         entities.add(dummyInstance);
+        enemies.add(dummyInstance);
         break;
     case NPCDUMMY:
         dummyNpcInstance = new NpcDummy(type, spawnPos);
@@ -187,6 +193,22 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
         
     }
     return true;
+}
+
+void ModuleEntities::startPlayerTurn()
+{
+    for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        aux->data->entityTurn = true;
+    }
+}
+
+void ModuleEntities::startEnemiesTurn()
+{
+    for (p2ListItem<Enemy*>* aux = enemies.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        aux->data->entityTurn = true;
+    }
 }
 
 PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)

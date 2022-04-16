@@ -40,29 +40,9 @@ bool LevelManagement::PreUpdate()
 		gameState = COMBAT;
 		app->entities->AddEntity(Collider_Type::DUMMY, iPoint(0, 0));
 		app->entities->AddEntity(Collider_Type::PLAYERKNIGHT, iPoint(400, 400));
-	}
-	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) && currentScene->active == true)
-	{
-		physDebug = !physDebug;
+		app->entities->startPlayerTurn();
 	}
 
-	if (physDebug)
-	{
-		app->physics->DrawColliders();
-	}
-
-	//if ((app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	gameState = SCENE1;
-	//}
-	//if ((app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	RestartLevel();
-	//}
-	//if ((app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) && currentScene->active == true)
-	//{
-	//	app->physics->DrawColliders();
-	//}
 	switch (gameState)
 	{
 	case INTRO:

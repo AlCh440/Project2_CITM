@@ -37,11 +37,11 @@ bool GuiManager::Start()
 
 	Debug = false;
 
-	pn_quest = new QuestPanel(true);
-	pn_start = new MainMenuPanel(true);
-	pn_pause = new PausePanel(true);
-	pn_settings = new SettingsPanel(true);
-	pn_dialog = new DialogPanel(true);
+	pn_quest = new QuestPanel(false);
+	pn_start = new MainMenuPanel(false);
+	pn_pause = new PausePanel(false);
+	pn_settings = new SettingsPanel(false);
+	pn_dialog = new DialogPanel(false);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
