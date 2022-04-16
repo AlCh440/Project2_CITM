@@ -6,7 +6,16 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Player.h"
+#include "Physics.h"
 
+
+enum knightAttacks
+{
+	NONE, 
+	TAUNT,
+	BIND, 
+	CONCUSSION
+};
 class Knight : public Player
 {
 public:
@@ -18,7 +27,7 @@ public:
 	bool BasicAttack(); // pass an ennemy
 	bool TauntHability();
 	bool BindHability();
-	bool ConcusionHability();
+	bool ConcusionHability(PhysBody* tarjet);
 
 	bool Start() override;
 	bool PreUpdate() override;
@@ -36,7 +45,7 @@ public:
 private:
 
 	
-
+	knightAttacks attackChoosed = NONE;
 
 
 

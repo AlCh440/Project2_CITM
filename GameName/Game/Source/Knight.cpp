@@ -110,6 +110,46 @@ bool Knight::Update(float dt)
 			position.y += 2;
 		}
 	} break;
+	case CHOOSINGATTACK:
+	{
+		if (app->input->GetKey(SDL_SCANCODE_V) == KEY_DOWN)
+		{
+			attackChoosed = TAUNT;
+			state = CHOOSINGOBJECTIVE;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
+		{
+			attackChoosed = BIND;
+			state = CHOOSINGOBJECTIVE;
+		}
+		else if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
+		{
+			attackChoosed = CONCUSSION;
+			state = CHOOSINGOBJECTIVE;
+		}
+
+	} break;
+	case CHOOSINGOBJECTIVE:
+	{
+		switch (attackChoosed)
+		{
+		case CONCUSSION:
+		{
+			// THE PLAYER CHOOSES THE ENEMY HE WANTS, RIGHT NOW  IS JUST THE CLOSER!!!
+			ConcusionHability(checkCloseEnemies());
+			state = ATTACKING;
+		} break;
+		default:
+		{
+
+		} break;
+		}
+
+	} break;
+	case ATTACKING:
+	{
+		state = COMBATMOVE;
+	} break;
 	default:
 	{
 
@@ -155,9 +195,9 @@ bool Knight::BindHability()
 	return true;
 }
 
-bool Knight::ConcusionHability()
+bool Knight::ConcusionHability(PhysBody* tarjet)
 {
-
+	tarjet->entityPtr->takeDamage(20);
 
 	return true;
 }
