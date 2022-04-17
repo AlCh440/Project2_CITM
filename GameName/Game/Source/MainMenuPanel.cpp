@@ -70,7 +70,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
     if(control->id == bt_newGame->id)
     {
-        app->levelManagement->gameState = LevelManagement::GameState::THE_FALL;
+        app->levelManagement->gameState = GameState::THE_FALL;
     }
     else if (control->id == bt_loadGame->id)
     {

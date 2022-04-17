@@ -34,7 +34,6 @@ bool LevelManagement::PreUpdate()
 	if ((app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) && currentScene->active == true)
 	{
 		gameState = WORLD_TEST;
-		app->entities->AddEntity(Collider_Type::PLAYEROPENWORLD, iPoint(120, 120));
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{

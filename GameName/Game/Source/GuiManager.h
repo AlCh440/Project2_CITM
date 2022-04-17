@@ -12,7 +12,7 @@ enum GuiState {
 	PAUSE,
 	QUEST,
 	DIALOG,
-	GAME_OVER,
+	GAMEOVER,
 	GAME_HUD
 };
 

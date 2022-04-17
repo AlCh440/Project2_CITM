@@ -595,7 +595,7 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 
 		if (strcmp(object.attribute("type").as_string(), "player") == 0) {
 
-			obj->type = Collider_Type::PLAYER;
+			obj->type = Collider_Type::PLAYEROPENWORLD;
 
 		}
 		else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0) {
@@ -729,35 +729,37 @@ bool Map::SetMapColliders()
 			switch (object->data->type)
 			{
 
-			case PLAYER:
-				//app->entities->AddEntity(PLAYER, spawnPos);
-				//app->entities->AddEntity(PLAYERKNIGHT, spawnPos);
+			case PLAYEROPENWORLD:
+				if (app->entities->playerInstance == nullptr)
+					app->entities->AddEntity(object->data->type, spawnPos);
+				else
+					app->entities->playerInstance->SetPosition(spawnPos);
 				LOG("SPAWN PLAYER...");
 				break;
 			case GEM:
-				app->entities->AddEntity(Collider_Type::GEM, spawnPos);
+				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING GEM COLLIDER...");
 				break;
 			case KEY:
-				app->entities->AddEntity(Collider_Type::KEY, spawnPos);
+				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING KEY COLLIDER...");
 				break;
 			case POTION:
-				app->entities->AddEntity(Collider_Type::POTION, spawnPos);
+				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING POTION COLLIDER...");
 				break;
 			case PORTAL:
-				app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
+				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING PORTAL COLLIDER...");
 				break;
 			case CHECK_POINT:
-				app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
+				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING CHECKPOINT COLLIDER...");
 				break;
 			case WALL:
 				pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
 				pb->color = { 0,0,0,255 };
-				pb->type = Collider_Type::WALL;
+				pb->type = object->data->type;
 				app->physics->allPhysicBodies.add(pb);
 				break;
 			case DEATH:

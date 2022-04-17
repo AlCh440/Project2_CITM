@@ -85,11 +85,7 @@ bool ModuleEntities::Update(float dt)
             {
                 StartPlayerTurn();
             }
-
-
         }
-
-
     }
     return true;
 }
