@@ -76,7 +76,7 @@ public:
 
 	// The current position in the world
 	iPoint spawnPos;
-	fPoint position;
+	iPoint position;
 	fPoint centerPosition;//for rigidBody
 	fPoint texPosition; //for texture position
 	iPoint drawOffset = { 0, 0 };

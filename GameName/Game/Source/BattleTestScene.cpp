@@ -26,7 +26,7 @@ bool BattleTestScene::Start()
 
 	app->map->Load("BattleGroundTest.tmx");
 
-	testBody = app->physics->CreateCircle(100, 100, 30, b2_kinematicBody);
+	//testBody = app->physics->CreateCircle(100, 100, 30, b2_kinematicBody);
 
 	img=app->tex->Load("Assets/Sprites/dummySprite.png");
 
@@ -45,13 +45,13 @@ bool BattleTestScene::Update(float dt)
 
 bool BattleTestScene::PostUpdate()
 {
-	int x = 0;
-	int y = 0;
-	testBody->GetPosition(x, y);
-	rect = { 0,0,50,100 };
+	//int x = 0;
+	//int y = 0;
+	//testBody->GetPosition(x, y);
+	//rect = { 0,0,50,100 };
 	
 	app->map->Draw();
-	app->render->DrawTexture(img, x, y, &rect);
+	//app->render->DrawTexture(img, x, y, &rect);
 
 	return true;
 }
