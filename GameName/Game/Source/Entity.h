@@ -112,7 +112,8 @@ protected:
 	Animation* currentAnim = nullptr;
 	Animation score;
 
-
+	// To check diretion anim
+	bool goingLeft = true;
 };
 
 #endif // __ENTITY_H__

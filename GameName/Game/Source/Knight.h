@@ -7,7 +7,7 @@
 #include "Render.h"
 #include "Player.h"
 #include "Physics.h"
-
+#include "Animation.h"
 
 enum knightAttacks
 {
@@ -48,6 +48,8 @@ private:
 	
 	knightAttacks attackChoosed = NOATTACK;
 
-
+	Animation walkSide;
+	Animation walkUp;
+	Animation walkDown;
 
 };

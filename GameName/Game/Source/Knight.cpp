@@ -14,7 +14,7 @@
 // Update Code
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
-	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
+	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_staticBody);
 	stats.hp = 100;
 	stats.mana = 50;
@@ -22,6 +22,8 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
+
+	Start();
 }
 
 bool Knight::Start()
@@ -35,6 +37,32 @@ bool Knight::Start()
 	isAlive = true;
 	// movement t defined in th spawn
 	// physBody = app->physics->CreateCircle(30, 30, 15, b2_kinematicBody);
+
+	currentAnim = &walkSide;
+
+	walkSide.PushBack({0, 0, 32, 48});
+	walkSide.PushBack({32, 0, 32, 48});
+	walkSide.PushBack({64, 0, 32, 48});
+	walkSide.PushBack({96, 0, 32, 48});
+	walkSide.loop = false;
+	walkSide.speed = 0.2f;
+	
+
+	walkDown.PushBack({ 0, 48, 32, 48 });
+	walkDown.PushBack({ 32, 48, 32, 48 });
+	walkDown.PushBack({ 64, 48, 32, 48 });
+	walkDown.PushBack({ 96, 48, 32, 48 });
+	walkDown.loop = false;
+	walkDown.speed = 0.2f;
+
+
+	walkUp.PushBack({ 0, 96, 32, 48 });
+	walkUp.PushBack({ 32, 96, 32, 48 });
+	walkUp.PushBack({ 64, 96, 32, 48 });
+	walkUp.PushBack({ 96, 96, 32, 48 });
+	walkUp.loop = false;
+	walkUp.speed = 0.2f;
+
 	return true;
 }
 
@@ -87,21 +115,33 @@ bool Knight::Update(float dt)
 		{
 			position.x -= 48;
 			stats.momevent -= 1;
+			walkSide.Reset();
+			currentAnim = &walkSide;
+			goingLeft = true;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 		{
 			position.x += 48;
 			stats.momevent -= 1;
+			walkSide.Reset();
+			currentAnim = &walkSide;
+			goingLeft = false;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 		{
 			position.y -= 48;
 			stats.momevent -= 1;
+			walkSide.Reset();
+			currentAnim = &walkUp;
+			goingLeft = true;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		{
 			position.y += 48;
 			stats.momevent -= 1;
+			walkSide.Reset();
+			currentAnim = &walkDown;
+			goingLeft = true;
 		}
 	}break;
 	case FREEMOVE:
@@ -181,8 +221,16 @@ bool Knight::Update(float dt)
 
 bool Knight::PostUpdate()
 {
-	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
 
+	if (goingLeft)
+	{
+		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame());
+	}
+	else
+	{
+		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, SDL_FLIP_HORIZONTAL);
+	}
+	currentAnim->Update();
 	return true;
 }
 
