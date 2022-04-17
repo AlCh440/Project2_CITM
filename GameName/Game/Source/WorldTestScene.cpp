@@ -46,5 +46,6 @@ bool WorldTestScene::PostUpdate()
 
 bool WorldTestScene::CleanUp()
 {
+	app->physics->Disable();
 	return true;
 }

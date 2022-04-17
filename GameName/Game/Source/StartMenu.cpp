@@ -34,7 +34,7 @@ bool StartMenu::Awake()
 // Called before the first frame
 bool StartMenu::Start()
 {
-
+	app->guiManager->pn_start->Enable();
 	return true;
 }
 
@@ -63,7 +63,7 @@ bool StartMenu::CleanUp()
 {
 	LOG("Freeing scene main menu ");
 	img = nullptr;
-
+	app->guiManager->pn_start->Disable();
 	return true;
 }
 

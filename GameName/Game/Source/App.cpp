@@ -81,7 +81,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(fonts);
 	AddModule(pathFinding);
-	AddModule(fade);
 	AddModule(levelManagement);
 	AddModule(map);
 	AddModule(physics);
@@ -100,10 +99,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(battleTest);
 	AddModule(worldTest);
 
-	AddModule(guiManager);
-
 	AddModule(entities);
 
+	AddModule(guiManager);
+	AddModule(fade);
 	// Render last to swap buffer
 	AddModule(render);
 

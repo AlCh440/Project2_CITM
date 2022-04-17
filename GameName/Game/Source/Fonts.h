@@ -63,6 +63,8 @@ public:
 
 	int titles;
 
+	SDL_Color c_Menus = {38,31,56};
+
 private:
 
 	// An array to keep track and store all loaded fonts

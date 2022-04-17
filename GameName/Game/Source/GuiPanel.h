@@ -34,7 +34,8 @@ public:
 	// this funtion will handle events recived on the panel
 	virtual bool OnGuiMouseClickEvent(GuiControl* control);
 
-	void SetActive(bool active) { Active = active; };
+	void Enable() { Active = true; };
+	void Disable() { Active = false; };
 	bool GetActive() { return Active; };
 
 public:
@@ -43,6 +44,7 @@ public:
 	iPoint position;
 	SDL_Texture* texture;
 	bool Active;
+	int id;
 
 };
 

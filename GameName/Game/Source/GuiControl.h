@@ -128,6 +128,8 @@ public:
 	uint soundfx;
 
 	SString name;
+
+	iPoint position;
 };
 
 #endif // __GUICONTROL_H__

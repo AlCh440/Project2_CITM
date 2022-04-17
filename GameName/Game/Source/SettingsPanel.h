@@ -21,6 +21,8 @@ public:
 	GuiSlider* sl_music;
 	GuiButton* bt_return;
 
+	SDL_Texture* title;
+	SDL_Rect r_title;
 	
 };
 

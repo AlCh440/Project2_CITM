@@ -7,8 +7,12 @@
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(GuiControlType::SLIDER, id)
 {
 	this->bounds = bounds;
+	position.x = bounds.x;
+	position.y = bounds.y;
 	this->text = text;
 	this->thumbBounds = Thumb;
+	this->thumbBounds.x = position.x;
+	this->thumbBounds.y = position.y - Thumb.h / 5;
 	texture = app->guiManager->UItexture;
 	canClick = true;
 	drawBasic = false;
@@ -47,13 +51,14 @@ bool GuiSlider::Update(float dt)
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
 			{
 
-				thumbBounds.x = mouseX;
+				//10* is an offset to get the thumb in the right position
+				thumbBounds.x = mouseX - (10);
 
-				if (mouseX < bounds.x)
-					thumbBounds.x = bounds.x + thumbBounds.w;
+				if (mouseX < bounds.x || thumbBounds.x < bounds.x)
+					thumbBounds.x = bounds.x;
 
-				if (mouseX > (bounds.x + bounds.w))
-					thumbBounds.x = (bounds.x + bounds.w);
+				if (mouseX > (bounds.x + bounds.w) || thumbBounds.x + 10 > (bounds.x + bounds.w))
+					thumbBounds.x = (bounds.x + bounds.w) - 10;
 
 				
 

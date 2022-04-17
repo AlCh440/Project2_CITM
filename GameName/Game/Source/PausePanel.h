@@ -20,6 +20,8 @@ public:
 	GuiButton* bt_menu;
 	GuiButton* bt_quit;
 	
+	SDL_Texture* title;
+	SDL_Rect r_title;
 
 };
 

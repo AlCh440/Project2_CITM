@@ -590,7 +590,7 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		obj->width = object.attribute("width").as_int();
 		obj->height = object.attribute("height").as_int();
 
-		LOG("OBJECT ID: %i", obj->id);
+		//LOG("OBJECT ID: %i", obj->id);
 		//Check what type of object is 
 
 		if (strcmp(object.attribute("type").as_string(), "player") == 0) {
@@ -730,7 +730,8 @@ bool Map::SetMapColliders()
 			{
 
 			case PLAYER:
-				app->entities->AddEntity(PLAYER, spawnPos);
+				//app->entities->AddEntity(PLAYER, spawnPos);
+				//app->entities->AddEntity(PLAYERKNIGHT, spawnPos);
 				LOG("SPAWN PLAYER...");
 				break;
 			case GEM:

@@ -6,6 +6,16 @@
 #include "p2List.h"
 #include "GuiPanel.h"
 
+enum GuiState {
+	MAIN_MENU,
+	SETTINGS,
+	PAUSE,
+	QUEST,
+	DIALOG,
+	GAME_OVER,
+	GAME_HUD
+};
+
 class GuiManager : public Module
 {
 public:
@@ -22,9 +32,11 @@ public:
 	bool Update(float dt) override;
 	bool UpdateAll(float dt,bool logic);
 	bool PostUpdate();
-
 	// Called before quitting
 	bool CleanUp();
+
+	void OpenPanel(int panel_id);
+	//void OpenPanel(GuiState panel);
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
@@ -37,8 +49,12 @@ public:
 	float updateMsCycle = 0.0f;
 	bool doLogic = false;
 
+	//Gui textures Used
 	SDL_Texture* UItexture = nullptr;
 	SDL_Texture* UItexture2 = nullptr;
+	SDL_Texture* tex_smallPanel = nullptr;
+	SDL_Texture* tex_mediumPanel = nullptr;
+	SDL_Texture* tex_bigPanel = nullptr;
 
 	int mainFont;
 	int numberFont;
@@ -53,6 +69,7 @@ public:
 	GuiPanel* pn_settings;
 	GuiPanel* pn_gameOver;
 
+	GuiState lastPanel;
 
 };
 

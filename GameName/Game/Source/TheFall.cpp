@@ -1,4 +1,7 @@
 #include "TheFall.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
 
 TheFall::TheFall(bool isActive) : Module(isActive)
 {
@@ -16,6 +19,9 @@ bool TheFall::Awake(pugi::xml_node&)
 
 bool TheFall::Start()
 {
+
+	app->map->Load("level1.tmx");
+
 	return true;
 }
 
@@ -31,10 +37,12 @@ bool TheFall::Update(float dt)
 
 bool TheFall::PostUpdate()
 {
+	app->map->Draw();
 	return true;
 }
 
 bool TheFall::CleanUp()
 {
+	app->physics->Disable();
 	return true;
 }

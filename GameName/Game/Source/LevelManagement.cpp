@@ -23,8 +23,8 @@ bool LevelManagement::Awake(pugi::xml_node&)
 
 bool LevelManagement::Start()
 {
-	gameState = GameState::WORLD_TEST;
-	currentScene = (Module*)app->dragonCliff;
+	gameState = GameState::START;
+	currentScene = (Module*)app->intro;
 	return true;
 }
 
@@ -62,16 +62,6 @@ bool LevelManagement::PreUpdate()
 			//gameState = SCENE2;
 		}
 		break;
-	case SCENE1:
-		if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN && currentScene->active == true)
-		{
-			//gameState = SCENE2;
-		}
-		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentScene->active == true)
-		{
-			RestartLevel();
-		}
-		break;
 	case GAME_OVER:
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && currentScene->active == true)
 		{
@@ -92,8 +82,7 @@ bool LevelManagement::PreUpdate()
 
 bool LevelManagement::Update(float dt)
 {
-//	LOG("Scene: %s", currentScene->name.GetString());
-
+	LOG("%s",currentScene->name.GetString());
 	switch (gameState)
 	{
 	case INTRO:
@@ -115,17 +104,6 @@ bool LevelManagement::Update(float dt)
 			{
 				currentScene = (Module*)app->gameOver;
 				LOG("GAME OVER");
-			}
-		}
-		break;
-	case SCENE1:
-		if (currentScene != (Module*)app->scene1) {
-
-			if (app->fade->Fade(currentScene, (Module*)app->scene1, 30))
-			{
-				currentScene = (Module*)app->scene1;
-				currentLevel = (Module*)app->scene1;
-				LOG("Scene 1");
 			}
 		}
 		break;
