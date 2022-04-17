@@ -6,29 +6,17 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Player.h"
-#include "Physics.h"
 
-
-enum knightAttacks
-{
-	NOATTACK, 
-	TAUNT,
-	BIND, 
-	CONCUSSION
-};
-
-class Knight : public Player
+class OpenWorldPlayer : public Player
 {
 public:
 
-	Knight(iPoint pos);// remember to define the type of player
-	Knight(Collider_Type type, iPoint pos);
-	
+	OpenWorldPlayer(iPoint pos);// remember to define the type of player
+	OpenWorldPlayer(Collider_Type type, iPoint pos);
+	~OpenWorldPlayer();
 
-	bool BasicAttack(); // pass an ennemy
-	bool TauntHability();
-	bool BindHability();
-	bool ConcusionHability(PhysBody* tarjet);
+	//bool BasicAttack(); // pass an ennemy
+	
 
 	bool Start() override;
 	bool PreUpdate() override;
@@ -36,7 +24,7 @@ public:
 	bool PostUpdate() override;
 	bool CleanUp() override;
 
-	
+
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 
 	// Load / Save
@@ -45,8 +33,8 @@ public:
 
 private:
 
-	
-	knightAttacks attackChoosed = NOATTACK;
+
+
 
 
 

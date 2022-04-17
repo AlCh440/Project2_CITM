@@ -156,6 +156,9 @@
     <ClCompile Include="Source\DialogManager.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\OpenWorldPlayer.cpp">
+      <Filter>Entities\SpecificPlayers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -345,6 +348,9 @@
     </ClInclude>
     <ClInclude Include="Source\DialogManager.h">
       <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OpenWorldPlayer.h">
+      <Filter>Entities\SpecificPlayers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

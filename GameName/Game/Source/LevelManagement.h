@@ -13,6 +13,30 @@
 
 
 #define MAX_SIZE 28
+
+enum GameState {
+	NONE = 0,
+	INTRO = 1,
+	START = 2,
+	GAME_OVER = 3,
+	SCENE1 = 4,
+	THE_FALL = 5,
+	GREEN_PATH = 6,
+	RUINS = 7,
+	VILLAGE = 8,
+	FRACTURED_ROAD = 9,
+	DRAGRON_CLIFF = 10,
+	COMBAT = 11,
+	WORLD_TEST = 12
+};
+
+enum CombatState {
+	NOCOMBAT = 0,
+	PLAYERTURN = 1,
+	ENEMYTURN = 2,
+	ANIMATION = 3
+};
+
 class LevelManagement : public Module
 {
 public:
@@ -32,23 +56,10 @@ public:
 	bool SaveState(pugi::xml_node& data) const override;
 
 
-	enum GameState {
-		NONE = 0,
-		INTRO = 1,
-		START = 2,
-		GAME_OVER = 3,
-		SCENE1 = 4,
-		THE_FALL = 5,
-		GREEN_PATH = 6,
-		RUINS = 7,
-		VILLAGE = 8,
-		FRACTURED_ROAD = 9,
-		DRAGRON_CLIFF = 10,
-		COMBAT = 11,
-		WORLD_TEST = 12
-	};
 
+	
 	GameState gameState;
+	CombatState combatState = NOCOMBAT;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;
 

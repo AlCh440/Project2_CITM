@@ -58,11 +58,16 @@ public:
 	p2List<Enemy*> enemies;
 	p2List<Player*> players;
 
+	// Check player turn state
+	bool CheckPlayersTurn();
+
 	// Start players turn
-	void startPlayerTurn();
+	void StartPlayerTurn();
 
 	// Start enemies turn
-	void startEnemiesTurn();
+	void StartEnemiesTurn();
+
+	void NextEnemyTurn();
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
@@ -79,6 +84,6 @@ public:
 
 	NpcDummy* dummyNpcInstance;
 
-	
+	int enemiesAlive;
 };
 

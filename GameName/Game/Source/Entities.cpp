@@ -10,6 +10,7 @@
 
 #include "Player.h"
 #include "Knight.h"
+#include "OpenWorldPlayer.h"
 
 #include "CheckPoint.h"
 
@@ -69,6 +70,27 @@ bool ModuleEntities::Update(float dt)
         }
     }
    
+    if (app->levelManagement->gameState == 11)
+    {
+        if (app->levelManagement->combatState == PLAYERTURN)
+        {
+            if (!CheckPlayersTurn())
+            {
+                StartEnemiesTurn();
+            }
+        }
+        else if (app->levelManagement->combatState == ENEMYTURN)
+        {
+            if (enemiesAlive >= 0)
+            {
+                StartPlayerTurn();
+            }
+
+
+        }
+
+
+    }
     return true;
 }
 
@@ -108,6 +130,13 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         entities.add(knightInstance);
         players.add(knightInstance);
         break;
+    case PLAYEROPENWORLD:
+    {
+        playerInstance = new OpenWorldPlayer(type, spawnPos);
+        entities.add(playerInstance);
+        // DO NOT ADD TO PLAYERS, PLAYERS LIST IS USED IN COMBAT!!!
+
+    } break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
         entities.add(dummyInstance);
@@ -190,25 +219,49 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
         aux->data->SaveState(data);
-        
     }
     return true;
 }
 
-void ModuleEntities::startPlayerTurn()
+bool ModuleEntities::CheckPlayersTurn()
+{
+    for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        if (aux->data->entityTurn == true)
+                                return true;
+    }
+
+    return false;
+}
+
+void ModuleEntities::NextEnemyTurn()
+{
+    for (p2ListItem<Enemy*>* aux = enemies.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        if (aux->data->entityTurn == true)
+        {
+            aux->data->entityTurn = false;
+            aux->next->data->entityTurn = true;
+            enemiesAlive -= 1;
+        }
+    }
+}
+
+void ModuleEntities::StartPlayerTurn()
 {
     for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
     {
         aux->data->entityTurn = true;
     }
+
+    app->levelManagement->combatState = PLAYERTURN;
 }
 
-void ModuleEntities::startEnemiesTurn()
+void ModuleEntities::StartEnemiesTurn()
 {
-    for (p2ListItem<Enemy*>* aux = enemies.getFirst(); aux != nullptr; aux = aux->next)
-    {
-        aux->data->entityTurn = true;
-    }
+    enemies.getFirst()->data->entityTurn = true;
+    enemiesAlive = enemies.count();
+    app->levelManagement->combatState = ENEMYTURN;
 }
 
 PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)

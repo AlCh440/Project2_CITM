@@ -16,13 +16,20 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_staticBody);
+	stats.hp = 100;
+	stats.mana = 50;
+	stats.momevent = 10;
+	typeOfPlayer = 1;
+	actionPoints = 10; // To determine
+	isAlive = true;
 }
 
 bool Knight::Start()
 {
 
-	lifePoints = 100;
-	manaPoints = 50;
+	stats.hp = 100;
+	stats.mana = 50;
+	stats.momevent = 10;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
@@ -36,7 +43,7 @@ bool Knight::PreUpdate()
 
 	if(state == COMBATMOVE)
 	{
-		if (lifePoints > 0)
+		if (stats.hp > 0)
 		{
 			isAlive = true;
 		}
@@ -58,6 +65,8 @@ bool Knight::PreUpdate()
 
 bool Knight::Update(float dt)
 {
+	LOG("%i", stats.momevent);
+
 	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
 		state = FREEMOVE;
@@ -77,18 +86,22 @@ bool Knight::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
 			position.x -= 48;
+			stats.momevent -= 1;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 		{
 			position.x += 48;
+			stats.momevent -= 1;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 		{
 			position.y -= 48;
+			stats.momevent -= 1;
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		{
 			position.y += 48;
+			stats.momevent -= 1;
 		}
 	}break;
 	case FREEMOVE:
@@ -138,6 +151,7 @@ bool Knight::Update(float dt)
 			// THE PLAYER CHOOSES THE ENEMY HE WANTS, RIGHT NOW  IS JUST THE CLOSER!!!
 			ConcusionHability(checkCloseEnemies());
 			state = ATTACKING;
+
 		} break;
 		default:
 		{
@@ -156,6 +170,11 @@ bool Knight::Update(float dt)
 	}break;
 	}
 
+	if (stats.momevent <= 0)
+	{
+		stats.momevent = 10;
+		entityTurn = false;
+	}
 
 	return true;
 }
