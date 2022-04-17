@@ -12,6 +12,14 @@ struct Stats
 	int momevent;
 };
 
+enum ENEMY_STATE
+{
+	WALK,
+	ATTACK,
+	DIE
+};
+
+
 class Enemy :  public Entity
 {
 public:
@@ -49,6 +57,10 @@ protected:
 	PathFinding* pathfinding;
 	//int scorePoints = 0;
 
+
+	ENEMY_STATE actualStates;
+
+	iPoint directionPoint;
 
 
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;

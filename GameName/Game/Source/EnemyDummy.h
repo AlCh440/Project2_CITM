@@ -41,7 +41,7 @@ public:
 
 protected:
 
-	
+
 
 	int scorePoints = 0;
 

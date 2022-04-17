@@ -10,7 +10,7 @@
 #include "Knight.h"
 
 #include "Enemy.h"
-
+#include "EnemyDummy.h"
 #include "NpcDummy.h"
 #include "CheckPoint.h"
 
@@ -19,9 +19,9 @@
 
 
 
-class Entity;
+//class Entity;
 // this will be deleted
-class EnemyDummy;
+//class EnemyDummy;
 struct SDL_Texture;
 struct PhysicBody;
 

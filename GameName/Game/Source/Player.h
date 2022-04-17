@@ -37,7 +37,7 @@ public:
 	virtual bool PostUpdate();
 	virtual bool CleanUp();
 	void SetPosition(iPoint pos);
-	fPoint GetPosition() { return position; };
+	iPoint GetPosition() { return position; };
 	virtual void Spawn(iPoint pos);
 
 	void Movement();
