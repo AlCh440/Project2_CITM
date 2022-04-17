@@ -26,7 +26,7 @@ bool StartMenu::Awake()
 {
 	LOG("Loading Start Scene");
 	bool ret = true;
-
+	
 
 	return ret;
 }
@@ -34,6 +34,8 @@ bool StartMenu::Awake()
 // Called before the first frame
 bool StartMenu::Start()
 {
+	img = app->tex->Load("Assets/Sprites/UI/StartTitleBackground.jpg");
+	rect = { 0, 0,1503,716 };
 	app->guiManager->pn_start->Enable();
 	return true;
 }
@@ -55,6 +57,8 @@ bool StartMenu::Update(float dt)
 bool StartMenu::PostUpdate()
 {
 	bool ret = true;
+
+	app->render->DrawTexture(img, 0, 0,&rect);
 	return ret;
 }
 
