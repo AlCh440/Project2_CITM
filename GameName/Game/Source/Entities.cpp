@@ -119,7 +119,6 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case PLAYER:
          playerInstance = new Player(type, spawnPos);
          entities.add(playerInstance);
-         players.add(playerInstance);
         break;
     case PLAYERKNIGHT:
         knightInstance = new Knight(type, spawnPos);
