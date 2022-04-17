@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="82">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="83">
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -9554,7 +9554,6 @@
   <object id="7" name="wall" type="wall" x="448" y="416" width="32" height="160"/>
   <object id="8" name="wall" type="wall" x="416" y="448" width="32" height="32"/>
   <object id="9" name="wall" type="wall" x="416" y="512" width="32" height="96"/>
-  <object id="10" name="wall" x="320" y="544" width="96" height="96"/>
   <object id="14" name="wall" type="wall" x="192" y="608" width="64" height="32"/>
   <object id="15" name="wall" type="wall" x="160" y="640" width="96" height="64"/>
   <object id="16" name="wall" type="wall" x="96" y="704" width="128" height="32"/>
@@ -9608,6 +9607,7 @@
   <object id="75" name="wall" type="wall" x="672" y="544" width="32" height="32"/>
   <object id="76" name="wall" type="wall" x="576" y="416" width="32" height="128"/>
   <object id="77" name="wall" type="wall" x="608" y="352" width="32" height="160"/>
+  <object id="82" name="wall" type="wall" x="320" y="544" width="96" height="96"/>
  </objectgroup>
  <objectgroup id="10" name="entities">
   <object id="78" name="player" type="player" x="512" y="320" width="32" height="32"/>

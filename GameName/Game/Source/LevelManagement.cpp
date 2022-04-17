@@ -54,7 +54,7 @@ bool LevelManagement::PreUpdate()
 	case START:
 		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
 		{
-			gameState = SCENE1;
+			//gameState = SCENE1;
 		}
 
 		if ((app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) && currentScene->active == true)

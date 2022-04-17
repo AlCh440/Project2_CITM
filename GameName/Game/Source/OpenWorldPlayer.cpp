@@ -15,7 +15,8 @@
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_staticBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_dynamicBody);
+	physBody->body->SetGravityScale(0);
 	entityTurn = true;
 }
 
@@ -52,21 +53,25 @@ bool OpenWorldPlayer::Update(float dt)
 	
 	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
 	{
-		position.x -= 2;
+		physBody->body->SetLinearVelocity(b2Vec2{ -velocity,0 });
 	}
 	else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN))
 	{
-		position.x += 2;
+		physBody->body->SetLinearVelocity(b2Vec2{ velocity,0 });
 	}
 	else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN))
 	{
-		position.y -= 2;
+		physBody->body->SetLinearVelocity(b2Vec2{ 0,-velocity });
 	}
 	else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN))
 	{
-		position.y += 2;
+		physBody->body->SetLinearVelocity(b2Vec2{ 0,velocity });
+	}
+	else {
+		physBody->body->SetLinearVelocity(b2Vec2{ 0,0 });
 	}
 	
+	physBody->GetPosition(position.x, position.y);
 
 	return true;
 }

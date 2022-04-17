@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "App.h"
 #include "Map.h"
+#include "Physics.h"
 
 TheFall::TheFall(bool isActive) : Module(isActive)
 {
