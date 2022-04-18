@@ -255,6 +255,11 @@ void ModulePhysics::Disable()
 	active = false;
 }
 
+void ModulePhysics::Enable()
+{
+	active = true;
+}
+
 // Called before quitting
 bool ModulePhysics::CleanUp()
 {

@@ -28,6 +28,8 @@ bool WorldTestScene::Start()
 
 	app->map->Load("WorldMapTest.tmx");
 	app->entities->Start();
+
+	app->physics->Enable();
 	return true;
 }
 

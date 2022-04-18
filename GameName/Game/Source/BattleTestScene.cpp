@@ -40,7 +40,8 @@ bool BattleTestScene::Start()
 	app->entities->Start();
 	//start combat
 	app->entities->StartPlayerTurn();
-
+	//activate physiscs
+	app->physics->Enable();
 
 
 	return true;

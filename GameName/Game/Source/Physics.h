@@ -91,6 +91,7 @@ public:
 	bool Update(float dt);
 	bool PostUpdate();
 	void Disable();
+	void Enable();
 	bool CleanUp();
 	void RemoveBodyFromWorld(b2Body *body);
 	void DrawColliders();
