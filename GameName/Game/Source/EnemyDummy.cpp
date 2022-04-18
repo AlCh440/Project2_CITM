@@ -147,6 +147,7 @@ bool EnemyDummy::Update(float dt)
 		playerPos.y = app->entities->playerInstance->position.y;
 	
 		physBody->GetPosition(position.x, position.y);
+		
 		directionPoint = app->map->WorldToMap(position.x, position.y);
 	
 		playerPos = app->map->WorldToMap(playerPos.x + 15, playerPos.y + 15);

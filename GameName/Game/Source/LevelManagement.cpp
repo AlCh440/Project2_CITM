@@ -38,7 +38,7 @@ bool LevelManagement::PreUpdate()
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{
 		gameState = COMBAT;
-		app->entities->AddEntity(Collider_Type::DUMMY, iPoint(0, 0));
+		app->entities->AddEntity(Collider_Type::DUMMY, iPoint(350, 400));
 		app->entities->AddEntity(Collider_Type::PLAYERKNIGHT, iPoint(400, 400));
 		app->entities->StartPlayerTurn();
 	}
