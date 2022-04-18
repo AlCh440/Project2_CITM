@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="left-up" width="45" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="3">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="left-up" width="45" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="4">
  <tileset firstgid="1" name="Gorund" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="TX Tileset Grass.png" trans="ff00ff" width="256" height="256"/>
  </tileset>

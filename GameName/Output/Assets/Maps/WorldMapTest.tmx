@@ -6106,7 +6106,6 @@
  </objectgroup>
  <objectgroup id="5" name="enitites">
   <object id="6" name="player" type="player" x="176" y="256" width="16" height="16"/>
-  <object id="7" name="enemy" type="dummy" x="304" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="wall">
   <object id="9" name="wall" type="wall" x="0" y="0" width="720" height="16"/>

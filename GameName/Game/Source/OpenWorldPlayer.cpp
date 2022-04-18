@@ -33,8 +33,7 @@ bool OpenWorldPlayer::Start()
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-	// movement t defined in th spawn
-	// physBody = app->physics->CreateCircle(30, 30, 15, b2_kinematicBody);
+
 	return true;
 
 }
