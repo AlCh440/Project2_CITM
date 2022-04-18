@@ -28,6 +28,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	physBody->entityPtr = this;
 	
 	stats.hp = 10;
+	stats.momevent = 10;
 }
 
 void EnemyDummy::Move(float dt)
@@ -65,128 +66,65 @@ bool EnemyDummy::Update(float dt)
 
 	
 
-
 	if (stats.hp > 0)
 	{
-		//app->entities->playerInstance->position.x
-		//if (METERS_TO_PIXELS(app->entitymanager->player->GetColHitbox()->body->GetPosition().x) > 0)
-		if (METERS_TO_PIXELS(app->entities->playerInstance->position.x) > 0)
-		{
-			actualStates = ATTACK;
-			
-			if (app->entities->knightInstance->stats.hp <= 0) // and other players
-			{
-				actualStates = WALK;
-			}
-		}
-		else
-		{
-			actualStates = WALK;
-		}
-	
-	}
-	
-	//if (app->entities->playerInsttance.win == true) // revise
-	//{
-	//	actualStates = WALK;
-	//}
-	
-	
-	switch (actualStates)
-	{
-	case WALK:
-	{
-		physBody->GetPosition(position.x, position.y);
+		PhysBody* aux = app->entities->GetNearestPlayer(physBody);
 		
-		directionPoint = app->map->WorldToMap(position.x, position.y);
-	
-	
-		//iPoint playerPos;
-	
-		//EntityCollider->GetPosition(position.x, position.y);
-		//directionPoint = app->map->WorldToMap(position.x, position.y);
-	
-		//playerPos = app->map->WorldToMap(playerPos.x + 15, playerPos.y + 15);
-	
-		app->pathFinding->CreatePath(directionPoint, { 29,6 });
-	
-		iPoint NextPos;
-	
-		const DynArray<iPoint>* lastPath = app->pathFinding->GetLastPath();
-	
-		if (lastPath->Count() > 1)
-		{
-			iPoint path(lastPath->At(1)->x, lastPath->At(1)->y);
-			NextPos = path;
-		}
-	
-		directionPoint = NextPos;
-	
-		if (app->physics->debug == true)
-		{
-			const DynArray<iPoint>* path = app->pathFinding->GetLastPath();
-	
-			for (uint i = 0; i < path->Count(); ++i)
-			{
-				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-				//app->render->DrawTexture(, pos.x, pos.y);
-				app->pathFinding->DrawPath();
-			}
-		}
-	
-	}break;
-	case ATTACK:
-	{
-		physBody->GetPosition(position.x, position.y);
-		directionPoint = app->map->WorldToMap(position.x, position.y);
-	
-	
-		iPoint playerPos;
-		//app->entitymanager->player->GetColHitbox()->GetPosition(playerPos.x, playerPos.y);
-		playerPos.x = app->entities->playerInstance->position.x;
-		playerPos.y = app->entities->playerInstance->position.y;
-	
-		physBody->GetPosition(position.x, position.y);
-		
-		directionPoint = app->map->WorldToMap(position.x, position.y);
-	
-		playerPos = app->map->WorldToMap(playerPos.x + 15, playerPos.y + 15);
-	
-		app->pathFinding->CreatePath(directionPoint, playerPos);
-	
-		iPoint NextPos;
-	
-		const DynArray<iPoint>* lastPath = app->pathFinding->GetLastPath();
-	
-		if (lastPath->Count() > 1)
-		{
-			iPoint path(lastPath->At(1)->x, lastPath->At(1)->y);
-			NextPos = path;
-		}
-	
-		directionPoint = NextPos;
-	
-		if (app->physics->debug == true)
-		{
-			const DynArray<iPoint>* path = app->pathFinding->GetLastPath();
-	
-			for (uint i = 0; i < path->Count(); ++i)
-			{
-				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-				//app->render->DrawTexture(app->lvlmanager->pathTex, pos.x, pos.y);
-				app->pathFinding->DrawPath();
-			}
-		}
-	
-	}break;
-	case DIE:
-	{
-		physBody->GetPosition(position.x, position.y);
-		directionPoint = app->map->WorldToMap(position.x, position.y);
-	
-	}break;
-	}
 
+		physBody->GetPosition(position.x, position.y);
+		positionToMap = app->map->WorldToMap(position.x, position.y);
+		
+		iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
+		goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
+
+			int distanceInTiles = app->pathFinding->CreatePath(positionToMap, goingPoint);
+
+		if (distanceInTiles > 2)
+		{
+			const iPoint* going(app->pathFinding->GetLastPath()->At(1));
+			if (going != nullptr)
+			{
+				if (stats.momevent < 0)
+				{
+					if (going->x < position.x) // LEFT
+					{
+						position.x -= 16;
+						stats.momevent -= 1;
+					}
+					else if (going->x > position.x) // RIGHT
+					{
+						position.x += 16;
+						stats.momevent -= 1;
+					}
+					else if (going->y < position.y) // UP
+					{
+						position.y -= 16;
+						stats.momevent -= 1;
+					}
+					else if (going->y > position.y) // DOWN
+					{
+						position.y += 16;
+						stats.momevent -= 1;
+					}
+				}
+				else
+				{
+					//CAN ATTACK???
+				}
+			}
+			
+		}
+
+
+	
+	}
+	
+	if (stats.momevent <= 0)
+	{
+		stats.momevent = 10;
+		entityTurn = false;
+		app->entities->NextEnemyTurn();
+	}
 
 
 	return true;

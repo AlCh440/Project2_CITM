@@ -74,14 +74,14 @@ bool ModuleEntities::Update(float dt)
     {
         if (app->levelManagement->combatState == PLAYERTURN)
         {
-            if (!CheckPlayersTurn())
+            if (!CheckPlayerTurn())
             {
                 StartEnemiesTurn();
             }
         }
         else if (app->levelManagement->combatState == ENEMYTURN)
         {
-            if (enemiesAlive >= 0)
+            if (enemiesAlive <= 0)
             {
                 StartPlayerTurn();
             }
@@ -224,7 +224,7 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
     return true;
 }
 
-bool ModuleEntities::CheckPlayersTurn()
+bool ModuleEntities::CheckPlayerTurn()
 {
     for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
     {
@@ -272,7 +272,7 @@ PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)
     {
         int temp = enemy->data->CheckDistanceToPhysBody(Character);
 
-        PhysBody* NearEnemy = enemy->data->GetCollider();
+        PhysBody* nearEnemy = enemy->data->GetCollider();
         for (int i = 0; enemy; enemy = enemy->next)
         {
 
@@ -281,10 +281,35 @@ PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)
             if (j < temp)
             {
                 temp = j;
-                NearEnemy = enemy->data->GetCollider();
+                nearEnemy = enemy->data->GetCollider();
             }
         }
-        return NearEnemy;
+        return nearEnemy;
+    }
+    else return NULL;
+
+}
+
+PhysBody* ModuleEntities::GetNearestPlayer(PhysBody* Character)
+{
+    p2ListItem<Player*>* player = players.getFirst();
+    if (player != NULL)
+    {
+        int temp = player->data->CheckDistanceToPhysBody(Character);
+
+        PhysBody* nearEnemy = player->data->GetCollider();
+        for (int i = 0; player; player = player->next)
+        {
+
+
+            int j = player->data->CheckDistanceToPhysBody(Character);
+            if (j < temp)
+            {
+                temp = j;
+                nearEnemy = player->data->GetCollider();
+            }
+        }
+        return nearEnemy;
     }
     else return NULL;
 

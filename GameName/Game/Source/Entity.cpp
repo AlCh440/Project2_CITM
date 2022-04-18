@@ -103,3 +103,10 @@ void Entity::takeDamage(int damage)
 {
 	stats.hp -= damage;
 }
+
+int Entity::CheckDistanceToPhysBody(PhysBody* PhysPos)
+{
+	b2Vec2 dist = PhysPos->body->GetPosition() - physBody->body->GetPosition();
+
+	return (abs(dist.x) + abs(dist.y));
+}

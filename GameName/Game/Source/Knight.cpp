@@ -16,6 +16,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_kinematicBody);
+	physBody->entityPtr = this;
 	stats.hp = 100;
 	stats.mana = 50;
 	stats.momevent = 10;

@@ -15,6 +15,7 @@ struct Stats
 enum ENEMY_STATE
 {
 	WALK,
+	CHASE,
 	ATTACK,
 	DIE
 };
@@ -40,8 +41,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	// Returns distance to a point
-	int CheckDistanceToPhysBody(PhysBody* PhysPos);
+
 
 	//int hitPoints;
 	//int score;
@@ -60,7 +60,7 @@ protected:
 
 	ENEMY_STATE actualStates;
 
-	iPoint directionPoint;
+	iPoint positionToMap;
 
 
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
