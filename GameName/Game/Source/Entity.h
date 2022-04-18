@@ -107,6 +107,9 @@ public:
 	// Used to activate and regulate turns
 	bool entityTurn = false;
 
+	// Returns distance to a point
+	int CheckDistanceToPhysBody(PhysBody* PhysPos);
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;

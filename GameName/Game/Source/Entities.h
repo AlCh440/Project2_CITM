@@ -45,6 +45,8 @@ public:
 
 	// return the closest hitbox
 	PhysBody* GetNearestEnemy(PhysBody* Character);
+	PhysBody* GetNearestPlayer(PhysBody* Character);
+
 
 	//Check all entity collisions here
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
@@ -59,7 +61,7 @@ public:
 	p2List<Player*> players;
 
 	// Check player turn state
-	bool CheckPlayersTurn();
+	bool CheckPlayerTurn();
 
 	// Start players turn
 	void StartPlayerTurn();
@@ -81,7 +83,6 @@ public:
 	//Instances 
 	Knight* knightInstance;
 	EnemyDummy* dummyInstance;
-
 	NpcDummy* dummyNpcInstance;
 
 	int enemiesAlive;
