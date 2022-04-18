@@ -1,10 +1,10 @@
 #include "App.h"
 #include "Window.h"
 #include "Render.h"
-
+#include "Entities.h"
 #include "Defs.h"
 #include "Log.h"
-
+#include "Input.h"
 #define VSYNC true
 
 Render::Render(bool isActive) : Module(isActive)
@@ -70,6 +70,14 @@ bool Render::PreUpdate()
 
 bool Render::Update(float dt)
 {
+	if((app->input->GetKey(SDL_SCANCODE_M)) ==  KEY_DOWN)
+		isFreeCam = !isFreeCam;
+
+	if (isFreeCam)
+	{
+		CameraMovement();
+	}
+	
 	return true;
 }
 
@@ -88,7 +96,7 @@ bool Render::CleanUp()
 	return true;
 }
 
-// L02: DONE 6: Implement a method to load the state, for now load camera's x and y
+// method to load the state, for now load camera's x and y
 // Load Game State
 bool Render::LoadState(pugi::xml_node& data)
 {
@@ -98,7 +106,7 @@ bool Render::LoadState(pugi::xml_node& data)
 	return true;
 }
 
-// L02: DONE 8: Create a method to save the state of the renderer
+// method to save the state of the renderer
 // Save Game State
 bool Render::SaveState(pugi::xml_node& data) const
 {
@@ -130,6 +138,35 @@ bool Render::GetVSYNC()
 void Render::SetBackgroundColor(SDL_Color color)
 {
 	background = color;
+}
+
+void Render::CameraFocus(fPoint position)
+{
+	if (!isFreeCam)
+	{
+		//camera.x = (position.x + camera.w * 0.5f);
+		//camera.y = (position.y + camera.h * 0.5f);
+	}
+}
+
+void Render::CameraMovement()
+{
+	if ((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
+	{
+		camera.x += 10;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
+	{
+		camera.x -= 10;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT))
+	{
+		camera.y += 10;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT))
+	{
+		camera.y -= 10;
+	}
 }
 
 void Render::SetViewPort(const SDL_Rect& rect)

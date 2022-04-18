@@ -366,7 +366,8 @@ bool Map::Load(const char* filename)
 	//once the maps and layers are loaded, we set the physics properties
 	if (ret == true)
 	{
-		//here we will set ground and death colliders (water, spkies?)
+		//here we will set ground and death colliders and spawn entities
+
 		SetMapColliders();
 	}
 
@@ -573,13 +574,13 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 	}
 
 
-	LOG("LOADING OBJECT LAYER....");
+	LOG("LOADING OBJECT LAYER: %s",layer->name.GetString());
 	//Create and load each object property
 	pugi::xml_node object;
-	LOG("node: %s", node.name());
+	//LOG("node: %s", node.name());
 	for (object = node.child("object"); object && ret; object = object.next_sibling("object"))
 	{
-		LOG("node: %s", object.name());
+		//LOG("node: %s", object.name());
 
 		Object* obj = new Object();
 		//store object attributes 
@@ -596,16 +597,15 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		if (strcmp(object.attribute("type").as_string(), "player") == 0) {
 
 			obj->type = Collider_Type::PLAYEROPENWORLD;
+		}
+		else if (strcmp(object.attribute("type").as_string(), "knight") == 0) {
+
+			obj->type = Collider_Type::PLAYERKNIGHT;
 
 		}
-		else if (strcmp(object.attribute("type").as_string(), "HPotion") == 0) {
+		else if (strcmp(object.attribute("type").as_string(), "dummy") == 0) {
 
-			obj->type = Collider_Type::POTION;
-
-		}
-		else if (strcmp(object.attribute("type").as_string(), "Portal") == 0) {
-
-			obj->type = Collider_Type::PORTAL;
+			obj->type = Collider_Type::DUMMY;
 
 		}
 		else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
@@ -732,17 +732,16 @@ bool Map::SetMapColliders()
 			case PLAYEROPENWORLD:
 				if (app->entities->playerInstance == nullptr)
 					app->entities->AddEntity(object->data->type, spawnPos);
-				else
-					app->entities->playerInstance->SetPosition(spawnPos);
-				LOG("SPAWN PLAYER...");
+
+				LOG("spawn world player...");
 				break;
-			case GEM:
+			case PLAYERKNIGHT:
 				app->entities->AddEntity(object->data->type, spawnPos);
-				LOG("SETTING GEM COLLIDER...");
+				LOG("spawn knight...");
 				break;
-			case KEY:
+			case DUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);
-				LOG("SETTING KEY COLLIDER...");
+				LOG("spawn dummy...");
 				break;
 			case POTION:
 				app->entities->AddEntity(object->data->type, spawnPos);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="left-up" width="45" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="15">
  <tileset firstgid="1" name="Base" tilewidth="16" tileheight="16" tilecount="152" columns="19">
-  <image source="../Sprites/Maptest/overworld type 2.png" width="304" height="128"/>
+  <image source="overworld type 2.png" width="304" height="128"/>
  </tileset>
  <layer id="1" name="background" width="45" height="45">
   <properties>

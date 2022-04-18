@@ -49,6 +49,10 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	//Make camera focus a coordinate on the screen
+	void CameraFocus(fPoint position);
+	void CameraMovement();
+
 public:
 
 	SDL_Renderer* renderer;
@@ -57,6 +61,7 @@ public:
 	SDL_Color background;
 private:
 	bool isVSYNC;
+	bool isFreeCam = false;
 };
 
 #endif // __RENDER_H__

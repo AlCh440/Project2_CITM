@@ -38,9 +38,6 @@ bool LevelManagement::PreUpdate()
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{
 		gameState = COMBAT;
-		app->entities->AddEntity(Collider_Type::DUMMY, iPoint(0, 0));
-		app->entities->AddEntity(Collider_Type::PLAYERKNIGHT, iPoint(400, 400));
-		app->entities->StartPlayerTurn();
 	}
 
 	switch (gameState)
@@ -82,7 +79,7 @@ bool LevelManagement::PreUpdate()
 
 bool LevelManagement::Update(float dt)
 {
-	LOG("%s",currentScene->name.GetString());
+//	LOG("%s",currentScene->name.GetString());
 	switch (gameState)
 	{
 	case INTRO:

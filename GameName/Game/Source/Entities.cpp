@@ -108,7 +108,12 @@ bool ModuleEntities::CleanUp()
         delete aux->data;
         aux->data = nullptr;
     }
-   
+    playerInstance = nullptr;
+    knightInstance = nullptr;
+    dummyInstance = nullptr;
+    dummyNpcInstance = nullptr;
+    players.clear();
+    entities.clear();
     return true;
 }
 

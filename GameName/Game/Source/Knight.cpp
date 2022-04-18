@@ -15,7 +15,7 @@
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_staticBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_kinematicBody);
 	stats.hp = 100;
 	stats.mana = 50;
 	stats.momevent = 10;
@@ -23,7 +23,6 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	actionPoints = 10; // To determine
 	isAlive = true;
 
-	Start();
 }
 
 bool Knight::Start()

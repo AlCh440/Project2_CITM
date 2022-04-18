@@ -51,6 +51,8 @@ bool OpenWorldPlayer::Update(float dt)
 {
 
 	
+	app->render->CameraFocus(fPoint{ physBody->body->GetPosition().x,physBody->body->GetPosition().y });
+
 	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
 	{
 		physBody->body->SetLinearVelocity(b2Vec2{ -velocity,0 });
@@ -78,7 +80,7 @@ bool OpenWorldPlayer::Update(float dt)
 
 bool OpenWorldPlayer::PostUpdate()
 {
-	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
+	app->render->DrawTexture(texture, position.x , position.y );
 
 	return true;
 }

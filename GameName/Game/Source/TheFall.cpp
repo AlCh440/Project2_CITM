@@ -2,6 +2,8 @@
 #include "Log.h"
 #include "App.h"
 #include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
 #include "Physics.h"
 
 TheFall::TheFall(bool isActive) : Module(isActive)
@@ -22,6 +24,7 @@ bool TheFall::Start()
 {
 
 	app->map->Load("level1.tmx");
+	app->entities->Start();
 
 	return true;
 }
@@ -44,6 +47,9 @@ bool TheFall::PostUpdate()
 
 bool TheFall::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
 	app->physics->Disable();
+	app->audio->StopMusic();
 	return true;
 }

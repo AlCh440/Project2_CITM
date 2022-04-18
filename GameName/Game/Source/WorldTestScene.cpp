@@ -2,6 +2,9 @@
 #include "Log.h"
 #include "App.h"
 #include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
+#include "Physics.h"
 
 WorldTestScene::WorldTestScene(bool isActive) : Module(isActive)
 {
@@ -24,7 +27,7 @@ bool WorldTestScene::Start()
 	LOG("Loading World Test");
 
 	app->map->Load("WorldMapTest.tmx");
-
+	app->entities->Start();
 	return true;
 }
 
@@ -46,6 +49,9 @@ bool WorldTestScene::PostUpdate()
 
 bool WorldTestScene::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
 	app->physics->Disable();
+	app->audio->StopMusic();
 	return true;
 }

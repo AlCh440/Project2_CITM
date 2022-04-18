@@ -2,7 +2,6 @@
 #include "Module.h"
 #include "p2List.h"
 #include "Defs.h"
-#include "Physics.h"
 #include "Animation.h"
 
 struct SDL_Texture;

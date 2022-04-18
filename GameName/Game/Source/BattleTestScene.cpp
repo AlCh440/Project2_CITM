@@ -4,6 +4,9 @@
 #include "Map.h"
 #include "Physics.h"
 #include "LevelManagement.h"
+#include "Pathfinding.h"
+#include "Entities.h"
+#include "Audio.h"
 
 BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
@@ -24,11 +27,21 @@ bool BattleTestScene::Start()
 {
 	LOG("Loading Battle Test");
 
+	//load map tiles, entities, colliders
 	app->map->Load("BattleGroundTest.tmx");
 
-	//testBody = app->physics->CreateCircle(100, 100, 30, b2_kinematicBody);
+	//create navigation map
+	int w, h;
+	uchar* data = NULL;
+	if (app->map->CreateWalkabilityMap(w, h, &data, 2)) app->pathFinding->SetMap(w, h, data);
+	RELEASE_ARRAY(data);
 
-	img=app->tex->Load("Assets/Sprites/dummySprite.png");
+	//start etities
+	app->entities->Start();
+	//start combat
+	app->entities->StartPlayerTurn();
+
+
 
 	return true;
 }
@@ -45,18 +58,17 @@ bool BattleTestScene::Update(float dt)
 
 bool BattleTestScene::PostUpdate()
 {
-	//int x = 0;
-	//int y = 0;
-	//testBody->GetPosition(x, y);
-	//rect = { 0,0,50,100 };
 	
 	app->map->Draw();
-	//app->render->DrawTexture(img, x, y, &rect);
 
 	return true;
 }
 
 bool BattleTestScene::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	app->physics->Disable();
+	app->audio->StopMusic();
 	return true;
 }
