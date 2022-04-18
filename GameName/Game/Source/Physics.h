@@ -113,8 +113,6 @@ public:
 	bool SaveState(pugi::xml_node& data) const;
 
 
-	PhysBody* test;
-
 	bool debug;
 	b2MouseJoint* mouse_joint;
 	p2List<PhysBody*> allPhysicBodies;

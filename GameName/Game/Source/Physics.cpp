@@ -25,6 +25,9 @@ ModulePhysics::ModulePhysics(bool isActive) : Module(isActive)
 	world = NULL;
 	mouse_joint = NULL;
 	debug = false;
+	ground = nullptr;
+	mouseBody = nullptr;
+	
 	name.Create("physics");
 }
 
