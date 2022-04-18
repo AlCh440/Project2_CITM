@@ -7,6 +7,7 @@
 QuestPanel::QuestPanel(bool active) : GuiPanel(active)
 {
 	Active = active;
+	id = PanelID::P_QUEST;
 }
 
 QuestPanel::~QuestPanel()

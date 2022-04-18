@@ -6,7 +6,7 @@
 #include "p2List.h"
 #include "GuiPanel.h"
 
-enum GuiState {
+enum GuiType {
 	MAIN_MENU,
 	SETTINGS,
 	PAUSE,
@@ -35,7 +35,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void OpenPanel(int panel_id);
+	void OpenPanel(PanelID panel_id);
 	//void OpenPanel(GuiState panel);
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
@@ -69,8 +69,9 @@ public:
 	GuiPanel* pn_settings;
 	GuiPanel* pn_gameOver;
 
-	GuiState lastPanel;
-
+	p2List<PanelID>* panelTrace;
+	PanelID lastPanel;
+	int currentPanel;
 };
 
 #endif // __GUIMANAGER_H__

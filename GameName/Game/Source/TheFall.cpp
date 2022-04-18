@@ -26,6 +26,7 @@ bool TheFall::Start()
 	app->map->Load("level1.tmx");
 	app->entities->Start();
 	app->physics->Enable();
+
 	return true;
 }
 

@@ -10,6 +10,16 @@
 #include "GuiToggle.h"
 #include "GuiSlider.h"
 #include "p2List.h"
+#include "App.h"
+
+enum PanelID {
+	P_START_MENU,
+	P_GAME_OVER,
+	P_SETTINGS,
+	P_PAUSE,
+	P_DIALOG,
+	P_QUEST
+};
 
 class GuiPanel
 {
@@ -35,8 +45,11 @@ public:
 	virtual bool OnGuiMouseClickEvent(GuiControl* control);
 
 	void Enable() { Active = true; };
+	//when closing the panel saves as the last, dosen work for branching
 	void Disable() { Active = false; };
 	bool GetActive() { return Active; };
+
+
 
 public:
 	p2List<GuiControl*> controls;
@@ -44,8 +57,7 @@ public:
 	iPoint position;
 	SDL_Texture* texture;
 	bool Active;
-	int id;
-
+	PanelID id;
 };
 
 #endif // __GUIPANEL_H__

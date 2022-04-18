@@ -6,6 +6,7 @@
 SettingsPanel::SettingsPanel(bool active) : GuiPanel(active)
 {
 	Active = active;
+	id = PanelID::P_SETTINGS;
 }
 
 SettingsPanel::~SettingsPanel()
@@ -82,5 +83,10 @@ bool SettingsPanel::CleanUp()
 
 bool SettingsPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
+
+	if (control->id == bt_return->id)
+	{
+		app->guiManager->OpenPanel(app->guiManager->lastPanel);
+	}
 	return true;
 }

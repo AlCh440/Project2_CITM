@@ -36,7 +36,8 @@ bool StartMenu::Start()
 {
 	img = app->tex->Load("Assets/Sprites/UI/StartTitleBackground.jpg");
 	rect = { 0, 0,1503,716 };
-	app->guiManager->pn_start->Enable();
+
+	app->guiManager->OpenPanel(PanelID::P_START_MENU);
 	return true;
 }
 

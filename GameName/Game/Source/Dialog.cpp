@@ -7,6 +7,7 @@
 DialogPanel::DialogPanel(bool active) : GuiPanel(active)
 {
 	Active = active;
+	id = PanelID::P_DIALOG;
 }
 
 DialogPanel::~DialogPanel()

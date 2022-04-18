@@ -65,25 +65,7 @@ bool ModulePhysics::PreUpdate()
 
 	static bool temp = false;
 
-	p2ListItem<PhysBody*>* current = allPhysicBodies.getFirst();
-	while (current != NULL)
-	{
-		bool removeItem = false;
-		p2ListItem<PhysBody*>* itemToRemove = current;
-		if (itemToRemove->data->pendingToDelete) {
-			removeItem = true;
-		}
-		current = current->next;
-		if (removeItem && itemToRemove->data->body != NULL)
-		{
-			LOG("Removing item ");
-			
-			RemoveBodyFromWorld(itemToRemove->data->body);
-			itemToRemove->data = NULL;
-			allPhysicBodies.del(itemToRemove);
-
-		}
-	}
+	CheckPendingToDelete();
 
 	return true;
 }
@@ -368,6 +350,28 @@ void ModulePhysics::ClearAllCollidersLists()
 	}
 	allPhysicBodies.clear();
 	LOG("All colliders have been cleared...");
+}
+
+void ModulePhysics::CheckPendingToDelete()
+{
+	p2ListItem<PhysBody*>* current = allPhysicBodies.getFirst();
+	while (current != NULL)
+	{
+		bool removeItem = false;
+		p2ListItem<PhysBody*>* itemToRemove = current;
+		if (itemToRemove->data->pendingToDelete) {
+			removeItem = true;
+		}
+		current = current->next;
+		if (removeItem && itemToRemove->data->body != NULL)
+		{
+			LOG("Removing item ");
+
+			RemoveBodyFromWorld(itemToRemove->data->body);
+			itemToRemove->data = NULL;
+			allPhysicBodies.del(itemToRemove);
+		}
+	}
 }
 
 void PhysBody::GetPosition(int& x, int& y) const

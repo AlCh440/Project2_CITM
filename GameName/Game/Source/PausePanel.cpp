@@ -4,6 +4,7 @@
 PausePanel::PausePanel(bool active) : GuiPanel(active)
 {
 	Active = active;
+	id = PanelID::P_PAUSE;
 }
 
 PausePanel::~PausePanel()

@@ -631,15 +631,17 @@ bool Map::LoadObject(pugi::xml_node& node, Object* object)
 	bool ret = true;
 
 	//Iterate over all the object properties and set values, store the object to the list
-	LOG("LOADING OBJECTS....");
+	LOG("Loading object: %s", object->name.GetString());
 	pugi::xml_node objProperty;
 	int i = 0;
 	for (objProperty = node.child("properties").child("property"); objProperty && ret; objProperty = objProperty.next_sibling("property"))
 	{
 		Properties::Property* p = new Properties::Property();
 
-		p->name = objProperty.attribute("name").as_string();
-		p->value = objProperty.attribute("value").as_int();
+		//if any other attribute
+
+		//p->name = objProperty.attribute("name").as_string();
+		//p->value = objProperty.attribute("value").as_int();
 
 		object->properties.list.add(p);
 	}
@@ -652,62 +654,6 @@ bool Map::SetMapColliders()
 {
 	bool ret = true;
 
-	//ListItem<MapLayer*>* mapLayerItem;
-	//mapLayerItem = mapData.layers.start;
-	//LOG("--------!!!SETTING COLLIDERS!!!---------");
-	//while (mapLayerItem != NULL) {
-
-	//	if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
-
-	//		for (int x = 0; x < mapLayerItem->data->width; x++)
-	//		{
-	//			for (int y = 0; y < mapLayerItem->data->height; y++)
-	//			{
-	//				int gid = mapLayerItem->data->Get(x, y);
-
-	//				if (gid > 0) {
-
-	//					TileSet* tileset = GetTilesetFromTileId(gid);
-
-	//					SDL_Rect r = tileset->GetTileRect(gid);
-	//					iPoint pos;
-	//					pos = MapToWorld(x,y);
-	//					PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-	//					pb->color = { 0,0,0,255 };
-	//					pb->type = Collider_Type::GROUND;
-	//					app->physics->allPhysicBodies.add(pb);
-	//				}
-	//			}
-	//		}
-
-	//	}else if (mapLayerItem->data->properties.GetProperty("Death") == 1) {
-
-	//		for (int x = 0; x < mapLayerItem->data->width; x++)
-	//		{
-	//			for (int y = 0; y < mapLayerItem->data->height; y++)
-	//			{
-	//				int gid = mapLayerItem->data->Get(x, y);
-
-	//				if (gid > 0) {
-
-	//					TileSet* tileset = GetTilesetFromTileId(gid);
-
-	//					SDL_Rect r = tileset->GetTileRect(gid);
-	//					iPoint pos;
-	//					pos = MapToWorld(x, y);
-
-	//					PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-	//					pb->color = { 255,50,50,255 };
-	//					pb->listener = app->levelManagement->currentScene;
-	//					pb->type = Collider_Type::DEATH;
-	//					app->physics->allPhysicBodies.add(pb);
-	//				}
-
-	//			}
-	//		}
-	//	}
-	//	mapLayerItem = mapLayerItem->next;
-	//}
 	p2ListItem<ObjectLayer*>* objectLayer;
 	objectLayer = mapData.objectLayers.start;
 	LOG("--------!!!SETTING ENTITIES!!!---------");

@@ -150,84 +150,27 @@ bool GuiManager::CleanUp()
 	return true;
 }
 
-void GuiManager::OpenPanel(int panel_id)
+void GuiManager::OpenPanel(PanelID panel_id)
 {
 	p2ListItem<GuiPanel*>* panel = panels.start;
 	
 	while (panel != nullptr)
 	{
+
+		if (panel->data->Active == true)
+		{
+			panel->data->Disable();
+			lastPanel = panel->data->id;
+		}
+
 		if (panel->data->id == panel_id)
 		{
 			panel->data->Enable();
-			break;
+			currentPanel = panel->data->id;
 		}
 		panel = panel->next;
 	}
 }
-
-//void GuiManager::OpenPanel(GuiState panel)
-//{
-//	switch (panel)
-//	{
-//	case MAIN_MENU:
-//		pn_start->Enable();
-//
-//		pn_gameOver->Disable();
-//		pn_pause->Disable();
-//		pn_quest->Disable();
-//		pn_settings->Disable();
-//		pn_dialog->Disable();
-//		break;
-//	case GAME_OVER:
-//		pn_gameOver->Enable();
-//
-//		pn_start->Disable();
-//		pn_pause->Disable();
-//		pn_quest->Disable();
-//		pn_settings->Disable();
-//		pn_dialog->Disable();
-//		break;
-//	case SETTINGS:
-//		pn_settings->Enable();
-//
-//		pn_gameOver->Disable();
-//		pn_pause->Disable();
-//		pn_quest->Disable();
-//		pn_start->Disable();
-//		pn_dialog->Disable();
-//		break;
-//	case PAUSE:
-//		pn_pause->Enable();
-//
-//		pn_start->Disable();
-//		pn_gameOver->Disable();		
-//		pn_quest->Disable();
-//		pn_settings->Disable();
-//		pn_dialog->Disable();
-//		break;
-//	case QUEST:
-//		pn_quest->Enable();
-//
-//		pn_pause->Disable();
-//		pn_start->Disable();
-//		pn_gameOver->Disable();
-//		pn_settings->Disable();
-//		pn_dialog->Disable();
-//		break;
-//	case DIALOG:
-//		pn_dialog->Enable();
-//
-//		pn_pause->Disable();
-//		pn_start->Disable();
-//		pn_gameOver->Disable();
-//		pn_quest->Disable();
-//		pn_settings->Disable();
-//		break;
-//	default:
-//		break;
-//	}
-//
-//}
 
 bool GuiManager::OnGuiMouseClickEvent(GuiControl* control)
 {

@@ -7,6 +7,7 @@
 MainMenuPanel::MainMenuPanel(bool active) : GuiPanel(active) 
 {
     Active = active;
+    id = PanelID::P_START_MENU;
 }
 
 MainMenuPanel::~MainMenuPanel()
@@ -78,8 +79,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
     }
     else if (control->id == bt_settings->id)
     {
-        app->guiManager->pn_settings->Enable();
-        app->guiManager->pn_start->Disable();
+        app->guiManager->OpenPanel(PanelID::P_SETTINGS);
     }
     else if (control->id == bt_quit->id)
     {
