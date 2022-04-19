@@ -14,8 +14,9 @@
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");	
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f*0.5f, b2_staticBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f*0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
+	physBody->body->SetGravityScale(0);
 
 	stats.hp = 10;
 
@@ -24,8 +25,9 @@ EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_kinematicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
+	physBody->body->SetGravityScale(0);
 	
 	stats.hp = 10;
 	stats.momevent = 10;

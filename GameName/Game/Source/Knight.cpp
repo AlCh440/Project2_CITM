@@ -15,7 +15,8 @@
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_kinematicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
+	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
 	stats.hp = 100;
 	stats.mana = 50;
@@ -113,7 +114,7 @@ bool Knight::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
-			position.x -= 48;
+			position.x -= 32;
 			stats.momevent -= 1;
 			walkSide.Reset();
 			currentAnim = &walkSide;
@@ -121,28 +122,35 @@ bool Knight::Update(float dt)
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 		{
-			position.x += 48;
+			position.x += 32;
 			stats.momevent -= 1;
 			walkSide.Reset();
 			currentAnim = &walkSide;
 			goingLeft = false;
+
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 		{
-			position.y -= 48;
+			position.y -= 32;
 			stats.momevent -= 1;
 			walkSide.Reset();
 			currentAnim = &walkUp;
 			goingLeft = true;
+
+
 		}
 		else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		{
-			position.y += 48;
+			position.y += 32;
 			stats.momevent -= 1;
 			walkSide.Reset();
 			currentAnim = &walkDown;
 			goingLeft = true;
 		}
+
+		b2Vec2 teleport = { PIXEL_TO_METERS((float)position.x),  PIXEL_TO_METERS((float)position.y) };
+		physBody->body->SetTransform(teleport, 0.f);
+
 	}break;
 	case FREEMOVE:
 	{

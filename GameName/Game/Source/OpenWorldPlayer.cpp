@@ -15,7 +15,7 @@
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 36.f * 0.5f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
 	entityTurn = true;
 }
