@@ -267,9 +267,6 @@ void App::FinishUpdate()
 	sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",
 		averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
 
-	if (input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
-		FPSCapTo30 = !FPSCapTo30;
-
 	if (FPSCapTo30)
 		maxFrameRate = 30;
 	else
@@ -435,6 +432,7 @@ void App::SaveGameRequest() const
 	{
 		//if no game saved we create a new one 
 		gameStateFile.append_child("save_state");
+
 	}else{
 		//do we want to override the saved game?
 	}

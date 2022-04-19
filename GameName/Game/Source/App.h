@@ -143,9 +143,9 @@ public:
 	bool exit = false;
 
 
-	void Set30FPSCap(bool input)
+	void FPScap60(bool state)
 	{
-		FPSCapTo30 = input;
+		FPSCapTo30 = state;
 	}
 
 private:

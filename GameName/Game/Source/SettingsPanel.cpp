@@ -2,6 +2,8 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "Fonts.h"
+#include "Audio.h"
+#include "Window.h"
 
 SettingsPanel::SettingsPanel(bool active) : GuiPanel(active)
 {
@@ -43,7 +45,7 @@ bool SettingsPanel::Start()
 	sl_fx->backgroundRect = { 8,56,154,7 };
 	sl_fx->thumbRect = { 22,240,22,22};
 
-	sl_music = (GuiSlider*)CreateGuiSlider(2, app->guiManager, this, { this->position.x + 650, this->position.y + 300, 150 ,50 }, { this->position.x + 650, this->position.y + 290, 50 ,50 });
+	sl_music = (GuiSlider*)CreateGuiSlider(3, app->guiManager, this, { this->position.x + 650, this->position.y + 300, 150 ,50 }, { this->position.x + 650, this->position.y + 290, 50 ,50 });
 	sl_music->texture = app->guiManager->UItexture2;
 	sl_music->textTex = app->fonts->LoadRenderedText(sl_music->textRect, 0, "Music Volume", { 0,0,0 });
 	sl_music->textPosition.x = sl_music->position.x;
@@ -52,7 +54,7 @@ bool SettingsPanel::Start()
 	sl_music->thumbRect = { 22,240,22,22 };
 
 
-	bt_return = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { this->position.x + 555,this->position.y + 525,170,60 }, "Return", app->fonts->menuButtonFont, app->fonts->c_Menus);
+	bt_return = (GuiButton*)CreateGuiButton(4, app->guiManager, this, { this->position.x + 555,this->position.y + 525,170,60 }, "Return", app->fonts->menuButtonFont, app->fonts->c_Menus);
 	bt_return->texture = app->guiManager->UItexture2;
 	bt_return->normalRec = { 0,0,170,60 };
 	bt_return->focusedRec = { 0,120,170,60 };
@@ -90,18 +92,20 @@ bool SettingsPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (control->id == tg_fixedFps->id)
 	{
-		if (tg_fixedFps->state == GuiControlState::SELECTED)
-		{
-			app->Set30FPSCap(true);
-		}
-		else
-		{
-			app->Set30FPSCap(false);
-		}
+		app->FPScap60(tg_fixedFps->State);
 	}
 	else if (control->id == tg_fullScreen->id)
 	{
-		
+		app->win->SetFullScreen(tg_fullScreen->State);
+	}
+	else if (control->id == sl_fx->id)
+	{
+		app->audio->SetFxVolume(sl_fx->value);
+
+	}
+	else if (control->id == sl_music->id) 
+	{
+		app->audio->SetMusicVolume(sl_music->value);
 	}
 
 	return true;
