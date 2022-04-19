@@ -142,6 +142,12 @@ public:
 	float dt;
 	bool exit = false;
 
+
+	void Set30FPSCap(bool input)
+	{
+		FPSCapTo30 = input;
+	}
+
 private:
 
 	int argc;

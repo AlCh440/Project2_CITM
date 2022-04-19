@@ -50,28 +50,40 @@ bool OpenWorldPlayer::Update(float dt)
 {
 
 	
-	app->render->CameraFocus(fPoint{ physBody->body->GetPosition().x,physBody->body->GetPosition().y });
+	app->render->CameraFocus(fPoint{ (float)position.x, (float)position.y });
 
-	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
-	{
-		physBody->body->SetLinearVelocity(b2Vec2{ -velocity,0 });
-	}
-	else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN))
-	{
-		physBody->body->SetLinearVelocity(b2Vec2{ velocity,0 });
-	}
-	else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN))
-	{
-		physBody->body->SetLinearVelocity(b2Vec2{ 0,-velocity });
-	}
-	else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN))
-	{
-		physBody->body->SetLinearVelocity(b2Vec2{ 0,velocity });
-	}
-	else {
-		physBody->body->SetLinearVelocity(b2Vec2{ 0,0 });
-	}
-	
+
+
+
+	bool goLeft = (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT);
+	bool goRight = (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT);
+	bool goUp = (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT);
+	bool goDown = (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT);
+
+	b2Vec2 movement = { (goRight - goLeft) * velocity, (goDown - goUp) * velocity };
+
+	physBody->body->SetLinearVelocity(movement);
+
+	//if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
+	//{
+	//	physBody->body->SetLinearVelocity(b2Vec2{ -velocity,0 });
+	//}
+	//else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN))
+	//{
+	//	physBody->body->SetLinearVelocity(b2Vec2{ velocity,0 });
+	//}
+	//else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN))
+	//{
+	//	physBody->body->SetLinearVelocity(b2Vec2{ 0,-velocity });
+	//}
+	//else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN))
+	//{
+	//	physBody->body->SetLinearVelocity(b2Vec2{ 0,velocity });
+	//}
+	//else {
+	//	physBody->body->SetLinearVelocity(b2Vec2{ 0,0 });
+	//}
+	//
 	physBody->GetPosition(position.x, position.y);
 
 	return true;

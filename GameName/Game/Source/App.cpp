@@ -24,6 +24,7 @@
 #include "TheRuins.h"
 #include "FracturedRoad.h"
 #include "DragonCliff.h"
+#include "SettingsPanel.h"
 
 #include "BattleTestScene.h"
 #include "WorldTestScene.h"
@@ -305,7 +306,7 @@ bool App::PreUpdate()
 		pModule = item->data;
 
 
-		if (input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+		if (Debug)
 			item->data->DEBUG = Debug;
 
 		if(pModule->active == false) {

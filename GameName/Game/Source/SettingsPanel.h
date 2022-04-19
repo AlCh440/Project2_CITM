@@ -14,7 +14,7 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
-
+	bool capTheFrames = false;
 	GuiToggle* tg_fullScreen;
 	GuiToggle* tg_fixedFps;
 	GuiSlider* sl_fx;
