@@ -30,11 +30,11 @@ bool BattleTestScene::Start()
 	//load map tiles, entities, colliders
 	app->map->Load("BattleGroundTest.tmx");
 
-	//create navigation map
-	int w, h;
-	uchar* data = NULL;
-	if (app->map->CreateWalkabilityMap(w, h, &data, 2)) app->pathFinding->SetMap(w, h, data);
-	RELEASE_ARRAY(data);
+	////create navigation map
+	//int w, h;
+	//uchar* data = NULL;
+	//if (app->map->CreateWalkabilityMap(w, h, &data, 1)) app->pathFinding->SetMap(w, h, data);
+	//RELEASE_ARRAY(data);
 
 	//start etities
 	app->entities->Start();

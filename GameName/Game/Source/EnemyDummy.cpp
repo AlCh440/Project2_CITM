@@ -43,6 +43,15 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::Start()
 {
+
+
+	pathfinding = new PathFinding(true);
+	//create navigation map
+	int w, h;
+	uchar* data = NULL;
+	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
+	RELEASE_ARRAY(data);
+
 	
 	return true;
 }
@@ -68,8 +77,8 @@ bool EnemyDummy::Update(float dt)
 
 	
 
-	if (stats.hp > 0)
-	{
+//	if (stats.hp > 0)
+//	{
 		PhysBody* aux = app->entities->GetNearestPlayer(physBody);
 		
 
@@ -79,7 +88,7 @@ bool EnemyDummy::Update(float dt)
 		iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
 		goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
 
-			int distanceInTiles = app->pathFinding->CreatePath(positionToMap, goingPoint);
+		int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
 
 		if (distanceInTiles > 2)
 		{
@@ -119,7 +128,7 @@ bool EnemyDummy::Update(float dt)
 
 
 	
-	}
+//s	}
 	
 	if (stats.momevent <= 0)
 	{
@@ -134,6 +143,22 @@ bool EnemyDummy::Update(float dt)
 
 bool EnemyDummy::PostUpdate()
 {
+
+
+	//Draw path
+	const DynArray<iPoint>* path = pathfinding->GetLastPath();
+
+	SDL_Rect rect;
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		rect.x = (pos.x);
+		rect.y = (pos.y);
+		rect.w = (app->map->mapData.tileWidth);
+		rect.h = (app->map->mapData.tileHeight);
+		app->render->DrawRectangle(rect, 255, 125, 0, 150);
+	}
+
 
 	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
 	return true;
