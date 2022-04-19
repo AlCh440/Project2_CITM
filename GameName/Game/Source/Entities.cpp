@@ -224,7 +224,9 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
     return true;
 }
 
-bool ModuleEntities::CheckPlayerTurn()
+// Turns
+
+bool ModuleEntities::CheckPlayerTurn() 
 {
     for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
     {

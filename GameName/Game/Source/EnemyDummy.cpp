@@ -116,6 +116,7 @@ bool EnemyDummy::Update(float dt)
 			}
 			
 		}
+		app->entities->NextEnemyTurn();
 
 
 	

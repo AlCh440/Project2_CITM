@@ -24,7 +24,7 @@ bool SettingsPanel::Start()
 	tg_fixedFps = (GuiToggle*)CreateGuiCheckBox(0, app->guiManager, this, { this->position.x + 450,this->position.y + 350,22,22 });
 
 	tg_fixedFps->texture = app->guiManager->UItexture2;
-	tg_fixedFps->textTex = app->fonts->LoadRenderedText(tg_fixedFps->textRect, 0,"FPS", {0,0,0});
+	tg_fixedFps->textTex = app->fonts->LoadRenderedText(tg_fixedFps->textRect, 0,"60 FPS", {0,0,0});
 	tg_fixedFps->textPosition.x = tg_fixedFps->position.x;
 	tg_fixedFps->textPosition.y = tg_fixedFps->position.y + 25;
 
@@ -88,5 +88,21 @@ bool SettingsPanel::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		app->guiManager->OpenPanel(app->guiManager->lastPanel);
 	}
+	else if (control->id == tg_fixedFps->id)
+	{
+		if (tg_fixedFps->state == GuiControlState::SELECTED)
+		{
+			app->Set30FPSCap(true);
+		}
+		else
+		{
+			app->Set30FPSCap(false);
+		}
+	}
+	else if (control->id == tg_fullScreen->id)
+	{
+		
+	}
+
 	return true;
 }

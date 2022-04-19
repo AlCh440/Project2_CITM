@@ -24,6 +24,7 @@
 #include "TheRuins.h"
 #include "FracturedRoad.h"
 #include "DragonCliff.h"
+#include "SettingsPanel.h"
 
 #include "BattleTestScene.h"
 #include "WorldTestScene.h"
