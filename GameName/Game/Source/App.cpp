@@ -305,7 +305,7 @@ bool App::PreUpdate()
 		pModule = item->data;
 
 
-		if (input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+		if (Debug)
 			item->data->DEBUG = Debug;
 
 		if(pModule->active == false) {

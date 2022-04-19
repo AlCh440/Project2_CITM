@@ -33,6 +33,7 @@ public:
 
 	float32 velocity = 10;
 
+
 private:
 
 };
