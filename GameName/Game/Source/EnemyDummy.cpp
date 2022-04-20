@@ -101,16 +101,7 @@ bool EnemyDummy::Update(float dt)
 
 		if (distanceInTiles > 2)
 		{
-<<<<<<< Updated upstream
-			iPoint go = { 100, 100 };
-			iPoint* going = &go;
-			//iPoint* going = app->pathFinding->GetLastPath()->At(1);
-			
-			
-=======
-			const iPoint* going = pathfinding->GetLastPath()->At(1);
-
->>>>>>> Stashed changes
+			iPoint* going = pathfinding->GetLastPath()->At(1);
 			if (going != nullptr)
 			{
 				if (stats.momevent > 0)
@@ -140,9 +131,7 @@ bool EnemyDummy::Update(float dt)
 			}
 
 		}
-<<<<<<< Updated upstream
-		//app->entities->NextEnemyTurn();
-=======
+
 	}break;
 	case INTERPOLATING:
 	{
@@ -155,11 +144,7 @@ bool EnemyDummy::Update(float dt)
 	}
 		
 
->>>>>>> Stashed changes
 
-
-	
-//s	}
 	
 	if (stats.momevent <= 0)
 	{
