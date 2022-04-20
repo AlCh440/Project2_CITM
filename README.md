@@ -22,7 +22,7 @@ After such encounter, the party awakes in a cave, without remembering who they a
 
 # Controls
 <p>&nbsp;</p>
-Player movement:   W->move up, A->move left, D->move right, S->Move down
+Player movement:   W->Move up, A->Move left, D->move right, S->Move down
 
 
 
