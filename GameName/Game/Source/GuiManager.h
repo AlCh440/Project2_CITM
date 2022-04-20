@@ -29,6 +29,7 @@ public:
 	// Called before the first frame
 	bool Awake(pugi::xml_node&) override;
 	bool Start() override;
+	bool PreUpdate() override;
 	bool Update(float dt) override;
 	bool UpdateAll(float dt,bool logic);
 	bool PostUpdate();

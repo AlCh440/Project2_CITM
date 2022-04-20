@@ -212,9 +212,6 @@ bool App::Update()
 	
 	FinishUpdate();
 
-	if (input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
-
 	if (exit)
 		ret = false;
 

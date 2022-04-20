@@ -43,17 +43,40 @@ bool GuiPanel::Draw()
 	if (!Active)
 		return false;
 
-
+	//draw background
 	app->render->DrawTexture(texture,position.x, position.y,&bounds);
-
+	
+	//draw items
 	p2ListItem<GuiControl*>* control = controls.start;
-
+	
 	while (control != nullptr)
 	{
 		control->data->Draw(app->render);
 		control = control->next;
 	}
 	return true;
+}
+
+void GuiPanel::Enable()
+{
+	Active = true;
+	position.x = -app->render->camera.x;
+	position.y = -app->render->camera.y;
+
+	//p2ListItem<GuiControl*>* control = controls.start;
+
+	//while (control != nullptr)
+	//{
+	//	//TODO fix position when enable
+	//	control->data->position.x = -(app->render->camera.x + position.x);
+	//	control->data->position.x = -(app->render->camera.x + position.y);
+	//	control = control->next;
+	//}
+}
+
+void GuiPanel::Disable()
+{
+	Active = false;
 }
 
 bool GuiPanel::CleanUp()

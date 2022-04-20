@@ -31,7 +31,8 @@ public:
 	virtual bool Start();
 	virtual bool Update(float dt, bool doLogic);
 	virtual bool Draw();
-
+	virtual void Enable();
+	virtual void Disable();
 	// Called before quitting
 	bool CleanUp();
 	
@@ -44,9 +45,6 @@ public:
 	// this funtion will handle events recived on the panel
 	virtual bool OnGuiMouseClickEvent(GuiControl* control);
 
-	void Enable() { Active = true; };
-	//when closing the panel saves as the last, dosen work for branching
-	void Disable() { Active = false; };
 	bool GetActive() { return Active; };
 
 

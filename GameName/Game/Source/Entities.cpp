@@ -267,7 +267,7 @@ void ModuleEntities::NextEnemyTurn()
         if (aux->data->entityTurn == true)
         {
             aux->data->entityTurn = false;
-            aux->next->data->entityTurn = true;
+          //  aux->next->data->entityTurn = true;
             enemiesAlive -= 1;
         }
     }

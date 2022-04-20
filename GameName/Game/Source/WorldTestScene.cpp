@@ -26,10 +26,12 @@ bool WorldTestScene::Start()
 {
 	LOG("Loading World Test");
 
+
+	app->physics->Start();
 	app->map->Load("WorldMapTest.tmx");
 	app->entities->Start();
 
-	app->physics->Enable();
+	
 	return true;
 }
 
@@ -53,7 +55,7 @@ bool WorldTestScene::CleanUp()
 {
 	app->map->CleanUp();
 	app->entities->CleanUp();
-	app->physics->Disable();
+	app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

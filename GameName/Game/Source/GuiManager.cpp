@@ -67,16 +67,8 @@ bool GuiManager::Start()
 	return true;
 }
 
-
-bool GuiManager::Update(float dt)
-{	
-
-	if (app->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN)
-		pn_start->Active = !pn_start->GetActive();
-	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
-		pn_settings->Active = !pn_settings->GetActive();
-	if (app->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
-		pn_pause->Active = !pn_pause->GetActive();
+bool GuiManager::PreUpdate()
+{
 	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 		pn_quest->Active = !pn_quest->GetActive();
 	if (app->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
@@ -85,8 +77,28 @@ bool GuiManager::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		Debug = !Debug;
 
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		if (!pn_pause->GetActive())
+			pn_pause->Enable();
+		else
+			pn_pause->Disable();
+	}
+
+
+
+	return true;
+}
+
+
+bool GuiManager::Update(float dt)
+{	
+
+
+
 	accumulatedTime += dt;
 	if (accumulatedTime >= updateMsCycle) doLogic = true;
+
 
 
 	UpdateAll(dt,doLogic);
