@@ -23,7 +23,7 @@ bool LevelManagement::Awake(pugi::xml_node&)
 
 bool LevelManagement::Start()
 {
-	gameState = GameState::START;
+	gameScene = GameScene::START;
 	currentScene = (Module*)app->intro;
 	return true;
 }
@@ -33,36 +33,27 @@ bool LevelManagement::PreUpdate()
 
 	if ((app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) && currentScene->active == true)
 	{
-		gameState = WORLD_TEST;
+		gameScene = WORLD_TEST;
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{
-		gameState = COMBAT;
+		gameScene = COMBAT;
 	}
 
-	switch (gameState)
+	switch (gameScene)
 	{
 	case INTRO:
 		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
 		{
-			gameState = START;
+			gameScene = START;
 		}
 		break;
 	case START:
-		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
-		{
-			//gameState = SCENE1;
-		}
-
-		if ((app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) && currentScene->active == true)
-		{
-			//gameState = SCENE2;
-		}
 		break;
 	case GAME_OVER:
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && currentScene->active == true)
 		{
-			gameState = START;
+			gameScene = START;
 			app->physics->ClearAllCollidersLists();
 		
 		}
@@ -80,7 +71,7 @@ bool LevelManagement::PreUpdate()
 bool LevelManagement::Update(float dt)
 {
 //	LOG("%s",currentScene->name.GetString());
-	switch (gameState)
+	switch (gameScene)
 	{
 	case INTRO:
 		
@@ -202,8 +193,8 @@ bool LevelManagement::Update(float dt)
 
 void LevelManagement::NextLevel()
 {
-	switch (gameState) {
-	case GameState::SCENE1:
+	switch (gameScene) {
+	case GameScene::SCENE1:
 		if (levelsPassed < 1) {
 			levelsPassed++;
 		}
@@ -215,9 +206,9 @@ void LevelManagement::NextLevel()
 
 void LevelManagement::ReturnToMainMenu()
 {
-	if (gameState != START)
+	if (gameScene != START)
 	{
-		gameState = START;
+		gameScene = START;
 	}
 }
 
@@ -225,12 +216,20 @@ void LevelManagement::RestartLevel()
 {
 	if (app->entities->playerInstance->lifePoints < 0)
 	{
-		gameState = GAME_OVER;
+		gameScene = GAME_OVER;
 	
 		app->fade->Fade(currentScene, (Module*)app->gameOver, 60.0f);
 	}
 	else {
 		app->fade->Fade(currentScene, currentLevel, 60.0f);
+	}
+}
+
+void LevelManagement::LoadScene(GameScene scene)
+{
+	if (gameScene != scene) {
+
+		gameScene = scene;
 	}
 }
 
@@ -243,7 +242,7 @@ bool LevelManagement::LoadState(pugi::xml_node& data)
 
 	pugi::xml_node lm = gameStateFile.child("save_state").child("levelManager");
 
-	gameState =  static_cast<GameState>(lm.attribute("currentLevel").as_int());
+	gameScene =  static_cast<GameScene>(lm.attribute("currentLevel").as_int());
 
 	loadLevel = true;
 	return true;
@@ -253,7 +252,7 @@ bool LevelManagement::SaveState(pugi::xml_node& data) const
 {
 	pugi::xml_node manager = data.append_child("levelManager");
 
-	manager.append_attribute("currentLevel") = gameState;
+	manager.append_attribute("currentLevel") = gameScene;
 
 
 	return true;

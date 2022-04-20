@@ -5,6 +5,7 @@ class CheckPoint :   public Entity
 public:
 	CheckPoint(iPoint pos);
 	CheckPoint(Collider_Type type, iPoint pos);
+	~CheckPoint();
 
 	void Open();
 	void Transition();

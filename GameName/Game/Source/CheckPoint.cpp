@@ -10,6 +10,10 @@ CheckPoint::CheckPoint(Collider_Type type, iPoint pos) : Entity(pos)
 {
 }
 
+CheckPoint::~CheckPoint()
+{
+}
+
 void CheckPoint::Open()
 {
 }

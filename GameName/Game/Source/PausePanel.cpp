@@ -1,6 +1,7 @@
 #include "PausePanel.h"
 #include "App.h"
 #include "GuiManager.h"
+#include "LevelManagement.h"
 PausePanel::PausePanel(bool active) : GuiPanel(active)
 {
 	Active = active;
@@ -84,11 +85,11 @@ bool PausePanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (control->id == bt_menu->id)
 	{
-		//go to main menu
+		app->levelManagement->gameScene = START;
 	}
 	else if (control->id == bt_quit->id)
 	{
-		//quit game
+		app->exit = true;
 
 	}else if(control->id == bt_saveGame->id)
 	{

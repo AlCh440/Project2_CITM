@@ -22,10 +22,11 @@ bool TheFall::Awake(pugi::xml_node&)
 
 bool TheFall::Start()
 {
-
+	app->physics->Start();
 	app->map->Load("level1.tmx");
 	app->entities->Start();
-	app->physics->Enable();
+	
+	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
 
 	return true;
 }
@@ -50,7 +51,7 @@ bool TheFall::CleanUp()
 {
 	app->map->CleanUp();
 	app->entities->CleanUp();
-	app->physics->Disable();
+	app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

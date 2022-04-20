@@ -70,7 +70,7 @@ bool ModuleEntities::Update(float dt)
         }
     }
    
-    if (app->levelManagement->gameState == 11)
+    if (app->levelManagement->gameScene == 11)
     {
         if (app->levelManagement->combatState == PLAYERTURN)
         {
@@ -147,6 +147,10 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         dummyNpcInstance = new NpcDummy(type, spawnPos);
         entities.add(dummyNpcInstance);
         break;
+    case EXIT:
+        exitIntance = new Trigger(type, spawnPos);
+        break;
+
     default :
         break;
     }
@@ -171,6 +175,25 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
     //solve collsions here
+
+    if (bodyA->type == PLAYEROPENWORLD || bodyB->type == PLAYEROPENWORLD)
+    {
+        switch (bodyB->type) 
+        {
+        case EXIT:
+            app->levelManagement->gameScene = exitIntance->scene;
+            break;
+        case ENTRANCE:
+            app->levelManagement->gameScene = entranceIntance->scene;
+            break;
+        default:
+            break;
+        }
+
+    }
+
+
+
 }
 
 
@@ -231,7 +254,7 @@ bool ModuleEntities::CheckPlayerTurn()
     for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)
     {
         if (aux->data->entityTurn == true)
-                                return true;
+           return true;
     }
 
     return false;

@@ -1,4 +1,10 @@
 #include "FracturedRoad.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
+#include "Physics.h"
 
 FracturedRoad::FracturedRoad(bool isActive) : Module(isActive)
 {

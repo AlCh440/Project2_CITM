@@ -5,6 +5,10 @@
 #include "Render.h"
 #include "Player.h"
 
+Entity::Entity()
+{
+}
+
 Entity::Entity(iPoint pos)
 {
 	position.x = pos.x;
@@ -13,7 +17,6 @@ Entity::Entity(iPoint pos)
 
 Entity::Entity(Collider_Type _type, iPoint pos)
 {
-	
 	position.x = pos.x;
 	position.y = pos.y;
 	type = _type;

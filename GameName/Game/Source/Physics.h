@@ -24,6 +24,7 @@
 
 enum Collider_Type {
 
+	NO_TYPE,
 	GEM,
 	KEY, 
 	DUMMY,
@@ -39,9 +40,9 @@ enum Collider_Type {
 	WALL,
 	ENEMY,
 	POTION,
-	PLAYER_X_SENSOR,
-	PLAYER_Y_SENSOR,
-	NO_TYPE
+	ENTRANCE,
+	EXIT,
+
 };
 
 struct Color {

@@ -159,6 +159,9 @@ PhysBody* ModulePhysics::CreateRectangleSensor(int x, int y, int width, int heig
 	pbody->width = width;
 	pbody->height = height;
 	pbody->color = color;
+
+	allPhysicBodies.add(pbody);
+
 	return pbody;
 }
 
@@ -194,7 +197,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2Body
 	pbody->width = pbody->height = 0;
 	b->SetUserData(pbody);
 	pbody->color = color;
-	
+	allPhysicBodies.add(pbody);
 	return pbody;
 }
 
@@ -278,7 +281,7 @@ void ModulePhysics::DrawColliders()
 
 				b2CircleShape* shape = (b2CircleShape*)f->GetShape();
 				b2Vec2 pos = f->GetBody()->GetPosition();
-				app->render->DrawCircle(METERS_TO_PIXELS(pos.x), METERS_TO_PIXELS(pos.y), METERS_TO_PIXELS(shape->m_radius), 0, 255, 0, 255);
+				app->render->DrawCircle(METERS_TO_PIXELS(pos.x), METERS_TO_PIXELS(pos.y), METERS_TO_PIXELS(shape->m_radius), pb->data->color.r, pb->data->color.g, pb->data->color.b, pb->data->color.a);
 
 			}
 			break;
@@ -294,12 +297,12 @@ void ModulePhysics::DrawColliders()
 				{
 					v = pb->data->body->GetWorldPoint(polygonShape->GetVertex(i));
 					if (i > 0)
-						app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 0, 0, 255);
+						app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), pb->data->color.r, pb->data->color.g, pb->data->color.b, pb->data->color.a);
 
 					prev = v;
 				}
 				v = pb->data->body->GetWorldPoint(polygonShape->GetVertex(0));
-				app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), pb->data->color.r, pb->data->color.g, pb->data->color.b);
+				app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), pb->data->color.r, pb->data->color.g, pb->data->color.b,pb->data->color.a);
 			}
 			break;
 

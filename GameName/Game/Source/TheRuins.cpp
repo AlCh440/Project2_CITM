@@ -1,4 +1,10 @@
 #include "TheRuins.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
+#include "Physics.h"
 
 TheRuins::TheRuins(bool isActive) : Module(isActive)
 {

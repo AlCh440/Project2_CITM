@@ -215,6 +215,9 @@ bool App::Update()
 	if (input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
+	if (exit)
+		ret = false;
+
 	return ret;
 }
 
@@ -312,8 +315,6 @@ bool App::PreUpdate()
 
 		ret = item->data->PreUpdate();
 	}
-	if (exit)
-		ret = false;
 
 	return ret;
 }
@@ -337,7 +338,7 @@ bool App::DoUpdate()
 
 		ret = item->data->Update(dt);
 	}
-	//PERF_PEEK(ptimer);
+
 	return ret;
 }
 

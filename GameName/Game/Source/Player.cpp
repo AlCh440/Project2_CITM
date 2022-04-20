@@ -22,6 +22,8 @@ Player::Player(iPoint pos) : Entity(pos)
 
 Player::Player(Collider_Type type, iPoint pos) : Entity(type, pos)
 {
+
+	
 }
 
 Player::~Player()

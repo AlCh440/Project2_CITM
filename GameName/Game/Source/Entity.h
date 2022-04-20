@@ -27,6 +27,7 @@ public:
 
 	// Constructor
 	// Saves the spawn position for later movement calculations
+	Entity();
 	Entity(iPoint pos);
 	Entity(Collider_Type _type, iPoint pos);
 

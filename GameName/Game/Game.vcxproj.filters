@@ -159,6 +159,9 @@
     <ClCompile Include="Source\OpenWorldPlayer.cpp">
       <Filter>Entities\SpecificPlayers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Trigger.cpp">
+      <Filter>Entities\CheckPoints</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -351,6 +354,9 @@
     </ClInclude>
     <ClInclude Include="Source\OpenWorldPlayer.h">
       <Filter>Entities\SpecificPlayers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Trigger.h">
+      <Filter>Entities\CheckPoints</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

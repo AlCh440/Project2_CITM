@@ -1,4 +1,10 @@
 #include "DragonCliff.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
+#include "Physics.h"
 
 DragonCliff::DragonCliff(bool isActive) : Module(isActive)
 {

@@ -13,6 +13,8 @@
 #include "EnemyDummy.h"
 #include "NpcDummy.h"
 #include "CheckPoint.h"
+#include "Trigger.h"
+
 
 #define MAX_ENTITIES 150
 #define SPAWN_MARGIN 20
@@ -84,6 +86,13 @@ public:
 	Knight* knightInstance;
 	EnemyDummy* dummyInstance;
 	NpcDummy* dummyNpcInstance;
+
+	// triggers to move room to room
+	Trigger* entranceIntance;
+	Trigger* exitIntance;
+
+	//triggers to enter locations
+
 
 	int enemiesAlive;
 };

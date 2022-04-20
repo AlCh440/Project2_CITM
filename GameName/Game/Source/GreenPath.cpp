@@ -1,4 +1,10 @@
 #include "GreenPath.h"
+#include "Log.h"
+#include "App.h"
+#include "Map.h"
+#include "Entities.h"
+#include "Audio.h"
+#include "Physics.h"
 
 GreenPath::GreenPath(bool isActive) : Module(isActive)
 {
@@ -16,6 +22,11 @@ bool GreenPath::Awake(pugi::xml_node&)
 
 bool GreenPath::Start()
 {
+	app->physics->Start();
+	app->map->Load("level2.tmx");
+	app->entities->Start();
+	app->entities->exitIntance->scene = GameScene::VILLAGE;
+	app->entities->entranceIntance->scene = GameScene::THE_FALL;
 	return true;
 }
 
@@ -31,10 +42,15 @@ bool GreenPath::Update(float dt)
 
 bool GreenPath::PostUpdate()
 {
+	app->map->Draw();
 	return true;
 }
 
 bool GreenPath::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	app->physics->CleanUp();
+	app->audio->StopMusic();
 	return true;
 }

@@ -617,6 +617,14 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			obj->type = Collider_Type::WALL;
 		}
+		else if (strcmp(object.attribute("type").as_string(), "entrance") == 0)
+		{
+			obj->type = Collider_Type::ENTRANCE;
+		}
+		else if (strcmp(object.attribute("type").as_string(), "exit") == 0)
+		{
+			obj->type = Collider_Type::EXIT;
+		}
 
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
@@ -657,7 +665,7 @@ bool Map::SetMapColliders()
 	p2ListItem<ObjectLayer*>* objectLayer;
 	objectLayer = mapData.objectLayers.start;
 	LOG("--------!!!SETTING ENTITIES!!!---------");
-	PhysBody* pb;
+
 
 	while (objectLayer != NULL)
 	{
@@ -702,12 +710,34 @@ bool Map::SetMapColliders()
 				LOG("SETTING CHECKPOINT COLLIDER...");
 				break;
 			case WALL:
-				pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
-				pb->color = { 0,0,0,255 };
-				pb->type = object->data->type;
-				app->physics->allPhysicBodies.add(pb);
+				{
+					PhysBody* pb;
+					pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
+					pb->color = { 200,0,0,255 };
+					pb->type = object->data->type;
+				}
 				break;
-			case DEATH:
+			case EXIT:
+				{
+					Trigger* t = new Trigger();
+					t->physBody = app->physics->CreateRectangleSensor(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2BodyType::b2_staticBody, { 154,38,154,155 });
+					t->type = object->data->type;
+					t->physBody->listener = app->entities;
+					t->physBody->type = object->data->type;
+					app->entities->exitIntance = t;
+					app->entities->entities.add(t); 
+				}
+				break;
+			case ENTRANCE:
+				{
+					Trigger* t = new Trigger();
+					t->physBody = app->physics->CreateRectangleSensor(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2BodyType::b2_staticBody, { 154,38,154,155 });
+					t->type = object->data->type;
+					t->physBody->listener = app->entities;
+					t->physBody->type = object->data->type;
+					app->entities->entranceIntance = t;
+					app->entities->entities.add(t); 
+				}
 				break;
 			default:
 				break;

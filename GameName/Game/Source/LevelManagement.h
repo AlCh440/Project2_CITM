@@ -14,7 +14,7 @@
 
 #define MAX_SIZE 28
 
-enum GameState {
+enum GameScene {
 	NONE = 0,
 	INTRO = 1,
 	START = 2,
@@ -27,7 +27,9 @@ enum GameState {
 	FRACTURED_ROAD = 9,
 	DRAGRON_CLIFF = 10,
 	COMBAT = 11,
-	WORLD_TEST = 12
+	WORLD_TEST = 12,
+	TABERN = 13,
+	MARKET = 14
 };
 
 enum CombatState {
@@ -50,15 +52,13 @@ public:
 	void NextLevel();
 	void ReturnToMainMenu();
 	void RestartLevel();
+	void LoadScene(GameScene scene);
 
 	// Load / Save
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
-
-
-
 	
-	GameState gameState;
+	GameScene gameScene;
 	CombatState combatState = NOCOMBAT;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;

@@ -71,7 +71,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
     if(control->id == bt_newGame->id)
     {
-        app->levelManagement->gameState = GameState::THE_FALL;
+        app->levelManagement->gameScene = GameScene::THE_FALL;
     }
     else if (control->id == bt_loadGame->id)
     {
@@ -84,7 +84,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
     else if (control->id == bt_quit->id)
     {
         //close game
-
+        app->exit = true;
     }
 
     return true;
