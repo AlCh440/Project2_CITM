@@ -36,7 +36,7 @@ bool StartMenu::Start()
 {
 	
 	img = app->tex->Load("Assets/Sprites/UI/screen_title.jpg");
-	rect = { 0, 0,1280,720 };
+	rect = { 0, 0,1280,720};
 
 	music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
 	img = app->tex->Load("Assets/Sprites/UI/StartTitleBackground.jpg");
@@ -44,6 +44,7 @@ bool StartMenu::Start()
 
 
 	app->guiManager->OpenPanel(PanelID::P_START_MENU);
+
 	return true;
 }
 
