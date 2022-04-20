@@ -1,147 +1,198 @@
 #include "Dialog.h"
-#include "Log.h"
 #include "App.h"
-#include "GuiManager.h"
-#include "QuestManager.h"
+#include "Render.h"
+#include "DialogFonts.h"
+#include "Input.h"
 
-DialogPanel::DialogPanel(bool active) : GuiPanel(active)
+void Dialog::SplitText(std::string text)
 {
-	Active = active;
-	id = PanelID::P_DIALOG;
-}
+	std::string line;
+	std::string word;
 
-DialogPanel::~DialogPanel()
-{
-}
+	size_t textLen = text.length();
 
-bool DialogPanel::Start()
-{
-	//TODO add title
+	for (size_t i = 0; i < textLen; i++) {
+		if (text[i] == ' ') {
+			if (line.length() + word.length() > max_chars_line) {
+				texts.push_back(line);
+				line = word;
+				line += " ";
 
-	texture = app->guiManager->UItexture2;
-	bounds = { 81,414,558,266 };
-	position = { 100,400 };
+				word = "";
+			}
+			else {
+				line += word;
+				line += " ";
 
-	notAvailableTex = app->fonts->LoadRenderedText(notavailable, 0, "Arnold The Guard", { 255,255,255 });
-	availableTex = app->fonts->LoadRenderedText(rAvailable, 0, "There is something new!", { 255,255,255 });
+				word = "";
+			}
+		}
+		else {
+			word += text[i];
+		}
+	}
 
-	currentDialog = app->questManager->questList->start;
-
-
-
-	cancelButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 270, 610,52,56 });
-
-	cancelButton->texture = app->guiManager->UItexture2;
-	cancelButton->normalRec = { 0,399,56,52 };
-	cancelButton->focusedRec = { 0,451,56,52 };
-	cancelButton->pressedRec = { 0,451,56,52 };
-
-
-	dialogueButton = (GuiButton*)CreateGuiButton(3, app->guiManager, this, { 396, 610,52,56 });
-
-	dialogueButton->texture = app->guiManager->UItexture2;
-	dialogueButton->normalRec = { 57,349,56,52 };
-	dialogueButton->focusedRec = { 57,297,56,52 };
-	dialogueButton->pressedRec = { 57,297,56,52 };
-
-	//DIALOGS
-	answer1b = (GuiButton*)CreateGuiButton(3, app->guiManager, this, { 396, 610,52,56 });
-
-	dialogueButton->texture = app->guiManager->UItexture2;
-	dialogueButton->normalRec = { 57,349,56,52 };
-	dialogueButton->focusedRec = { 57,297,56,52 };
-	dialogueButton->pressedRec = { 57,297,56,52 };
-	answer1Tex = app->fonts->LoadRenderedText(answer1, 0, "Who are you?", { 255,255,255 });
-
-	return true;
-}
-
-bool DialogPanel::Update(float dt, bool doLogic)
-{
-	GuiPanel::Update(dt, doLogic);
-	return true;
-}
-
-bool DialogPanel::Draw()
-{
-
-	GuiPanel::Draw();
-
-
-	if (currentDialog != nullptr)
-	{
-		switch (currentDialog->data->progress)
-		{
-		case DialogPanel::NPC1:
-
-			if (notAvailableTex != nullptr)
-				app->render->DrawTexture(notAvailableTex, 134, 450, &notavailable);
-
-			break;
-		case DialogPanel::NPC2:
-
-			if (availableTex != nullptr)
-				app->render->DrawTexture(availableTex, 134, 450, &rAvailable);
-
-			break;
-		case DialogPanel::NPC3:
-
-			if (currentDialog != nullptr && currentDialog->data->descriptionTex != NULL)
-				app->render->DrawTexture(currentDialog->data->descriptionTex, 134, 450, &currentDialog->data->rDescription);
-
-			break;
-
-		default:
-			break;
+	if (word.length() > 0) {
+		if (line.length() + word.length() > max_chars_line) {
+			texts.push_back(line);
+			line = word;
+		}
+		else {
+			line += word;
 		}
 
+		texts.push_back(line);
+	}
+}
+
+Dialog::Dialog() : finished(false), activeNode(NULL)
+{
+	posX = 0;
+	posY = 0;
+}
+
+Dialog::~Dialog()
+{
+}
+
+size_t Dialog::AddNode(DialogNode& node)
+{
+	size_t id = nodes.size();
+
+	nodes.push_back(node);
+
+	node.nodes.clear();
+	node.options.clear();
+
+	return id;
+}
+
+void Dialog::SetActiveNode(size_t id)
+{
+	if (id >= 0 && id < nodes.size()) {
+		activeNode = &nodes[id];
+
+		size_t opts = activeNode->options.size();
+		SDL_Rect bounds = {
+			posX,
+			posY + dialogHeight,
+			0,
+			dialogHeight / 4
+		};
+
+		DialogFont& fontobj = app->dialogFonts->GetFont(dialogFont);
+
+		buttons.clear();
+		for (size_t i = 0; i < opts; i++) {
+			bounds.w = fontobj.char_w * (activeNode->options[i].length() + 4);
+			buttons.emplace_back(bounds, dialogImg, activeNode->options[i].c_str(), dialogFont);
+			bounds.x += bounds.w;
+		}
+
+		texts.clear();
+		SplitText(activeNode->text);
+
+		int lines = texts.size();
+
+		/*textXOffset = dialogWidth / 2 - (max_chars_line * char_width) / 2;
+		textYOffset = dialogHeight / 2 - (lines * char_height) / 2;*/
+
+		/*if (lines > 1) {
+			textYOffset -= ((lines - 1) * char_height / 2);
+		}*/
+	}
+}
+
+void Dialog::Update()
+{
+	if (activeNode) {
+		app->render->DrawTextureScaled(dialogImg, posX, posY, dialogWidth, dialogHeight);
+
+		size_t lines = texts.size();
+		for (size_t i = 0; i < lines; i++) {
+			app->dialogFonts->BlitText(posX + textXOffset, posY + textYOffset + char_height * i * 2, dialogFont, texts[i].c_str());
+		}
+
+		size_t optionSize = activeNode->options.size();
+
+		for (size_t i = 0; i < optionSize; i++) {
+			buttons[i].Update();
+			buttons[i].Draw();
+		}
+
+		if (optionSize > 0) {
+			for (size_t i = 0; i < optionSize; i++) {
+				if (buttons[i].clicked) {
+					SetActiveNode(activeNode->nodes[i]);
+					break;
+				}
+			}
+		}
+		else {
+			if (activeNode->nodes.size() > 0) {
+				continueButton.Update();
+				continueButton.Draw();
+
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || continueButton.clicked) {
+					continueButton.clicked = false;
+					SetActiveNode(activeNode->nodes[0]);
+				}
+			}
+			else {
+				finishButton.Update();
+				finishButton.Draw();
+
+				if (finishButton.clicked) {
+					finished = true;
+				}
+			}
+		}
 	}
 	else {
-		LOG("Quest is NULL");
+		finished = true;
 	}
-
-
-
-
-	return true;
 }
 
-bool DialogPanel::CleanUp()
+void Dialog::SetPosition(int x, int y)
 {
-	p2ListItem<GuiControl*>* control = controls.start;
+	posX = x;
+	posY = y;
 
-	while (control != nullptr)
-	{
-		control->data->CleanUp();
-		control = control->next;
-	}
-	return true;
+	continueButton.SetPosition(x, dialogHeight + y);
+	finishButton.SetPosition(x, dialogHeight + y);
 }
 
-bool DialogPanel::OnGuiMouseClickEvent(GuiControl* control)
+void Dialog::SetFont(int font)
 {
-	/*if (control->id == nextButton->id)
-	{
-		currentQuest = currentQuest->next;
+	dialogFont = font;
 
-		if (currentQuest == nullptr)
-		{
-			currentQuest = app->questManager->questList->start;
-		}
-	}*/
-	if (control->id == cancelButton->id)
-	{
-		app->questManager->CanelQuest(currentDialog->data->id);
-	}
-	else if (control->id == dialogueButton->id)
-	{
-		app->render->DrawTexture(answer1Tex, 134, 450, &answer1);
-		/*if (currentQuest != nullptr && currentQuest->data->titleTex != NULL)
-			app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);*/
-		
-		//app->questManager->ActivateQuest(currentQuest->data->id);
-	}
+	DialogFont& fontobj = app->dialogFonts->GetFont(dialogFont);
 
-	return true;
-};
+	SDL_Rect bounds = {
+			posX,
+			posY + dialogHeight,
+			fontobj.char_w * (sizeof("continue") + 4),
+			dialogHeight / 4
+	};
 
+	continueButton = Button(bounds, dialogImg, "continue", dialogFont);
+
+	bounds.w = fontobj.char_w * (sizeof("finish") + 4);
+	finishButton = Button(bounds, dialogImg, "finish", dialogFont);
+
+	char_width = fontobj.char_w;
+	char_height = fontobj.char_h;
+
+	max_chars_line = dialogWidth / char_width - 2;
+}
+
+void Dialog::SetDialogBg(SDL_Texture* dialog_bg, int width, int height, int offsetLeft, int offsetUp)
+{
+	dialogImg = dialog_bg;
+	dialogWidth = width;
+	dialogHeight = height;
+	textXOffset = offsetLeft;
+	textYOffset = offsetUp;
+	
+	SetFont(dialogFont);
+}

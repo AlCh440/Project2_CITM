@@ -1,59 +1,45 @@
-/*#include "Module.h"
-#include "p2List.h"
-#include "Quest.h"
 #include "Dialog.h"
-#include "PugiXml/src/pugixml.hpp"
-#include "App.h"
-#include "Fonts.h"
+#include "Module.h"
+#include "Log.h"
+#include "SString.h"
+
+struct DialogGroup
+{
+	std::string name;
+	std::vector<std::string> dialogNames;
+	std::vector<Dialog*> dialogs;
+};
 
 
-
-class DialogManager : public Module {
-
+class DialogManager
+{
 public:
-	DialogManager(bool isActive);
+
+	DialogManager();
 	~DialogManager();
 
-	bool Awake(pugi::xml_node& config);
-	bool Start();
-	bool CleanUp();
+	bool LoadDialogs(const char* filename);
 
-public:
 
-	p2List<DialogPanel*>* dialogList = new p2List<DialogPanel*>();
-	p2List<DialogPanel*>* currentDialogList = new p2List<DialogPanel*>();
-
-	//Activate Dialog
-	void ActivateDialog(int questID);
-
-	//Cancel Dialog
-	void CancelDialog(int questID);
-
-	//Complete Dialog
-	void CompleteDialog(int questID);
-
+private:
+	SString folder;
+	std::vector<DialogGroup> dialogGroups;
 	
 
-	//Add item
-	void AddItem();
+	/*int a()
+	{
+		DialogGroup group;
+		group.name = "name";
+		group.dialogNames.push_back("name");
+		group.dialogs.push_back()
+		
+	}*/
 
-	//Get available Dialog 
-	bool GetAvailableDialog(int questID);
+	bool LoadDialogGroups(pugi::xml_node);
+	pugi::xml_node LookForChildrenDialogues(pugi::xml_node children);
 
-	//Get active Dialog
-	bool GetActiveQuest(int questID);
+	bool AddDialog(Dialog dialog);
 
-	//Get complete Dialog
-	bool GetCompletedDialog(int questID);
-
-	//Load quest files 
-	bool DialogManager::Load(const char* path);
-
-	// Load / Save
-	bool LoadState(pugi::xml_node&);
-	bool SaveState(pugi::xml_node&) const;
+};
 
 
-	SString folder;
-	SString questFile;
-};*/

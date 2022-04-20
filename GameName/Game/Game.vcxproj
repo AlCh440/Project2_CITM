@@ -98,9 +98,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\BattleTestScene.cpp" />
+    <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Collectable.cpp" />
     <ClCompile Include="Source\Dialog.cpp" />
+    <ClCompile Include="Source\DialogFonts.cpp" />
     <ClCompile Include="Source\DialogManager.cpp" />
     <ClCompile Include="Source\DragonCliff.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
@@ -153,9 +155,11 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
+    <ClInclude Include="Source\Button.h" />
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Collectable.h" />
     <ClInclude Include="Source\Dialog.h" />
+    <ClInclude Include="Source\DialogFonts.h" />
     <ClInclude Include="Source\DialogManager.h" />
     <ClInclude Include="Source\DragonCliff.h" />
     <ClInclude Include="Source\Enemy.h" />

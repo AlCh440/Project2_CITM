@@ -47,13 +47,11 @@ bool GuiManager::Start()
 	pn_start = new MainMenuPanel(false);
 	pn_pause = new PausePanel(false);
 	pn_settings = new SettingsPanel(false);
-	pn_dialog = new DialogPanel(false);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
 	panels.add(pn_pause);
 	panels.add(pn_settings);
-	panels.add(pn_dialog);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -72,8 +70,6 @@ bool GuiManager::PreUpdate()
 {
 	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 		pn_quest->Active = !pn_quest->GetActive();
-	if (app->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
-		pn_dialog->Active = !pn_dialog->GetActive();
 
 
 	Debug = DEBUG;

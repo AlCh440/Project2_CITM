@@ -1,39 +1,70 @@
 #pragma once
-#include "GuiPanel.h"
-#include "p2List.h"
-#include "Quest.h"
+#include <iostream>
+#include <vector>
+#include "DialogNode.h"
+#include "DialogButton.h"
 
-class DialogPanel : public GuiPanel
+class SDL_Texture;
+
+class Dialog
 {
+private:
+	// All nodes
+	std::vector<DialogNode> nodes;
+	
+	// Active node
+	DialogNode* activeNode;
 
+	// Active buttons
+	std::vector<std::string> texts;
+	std::vector<Button> buttons;
+
+	Button continueButton;
+	Button finishButton;
+
+	// Dialog position
+	int posX, posY;
+	int max_chars_line;
+
+	// Text offsetting
+	int char_width;
+	int char_height;
+	int textXOffset, textYOffset;
+
+	// Dialog font
+	int dialogFont;
+
+	// Dialog bg image
+	SDL_Texture* dialogImg;
+	int dialogWidth, dialogHeight;
+
+	// Whether the dialog has finished or not
+	bool finished;
+
+	// Split the given text with max_chars_line and add them to texts list
+	void SplitText(std::string text);
 public:
-	DialogPanel(bool active);
-	~DialogPanel();
+	Dialog();
+	~Dialog();
 
-	enum DialogMoments { NPC1, NPC2, NPC3 };
+	// Add a node and return its ID
+	size_t AddNode(DialogNode& node);
 
-	bool Start() override;
-	bool Update(float dt, bool doLogic) override;
-	bool Draw() override;
-	bool CleanUp();
+	// Set a node ID as active
+	void SetActiveNode(size_t id);
 
-	bool OnGuiMouseClickEvent(GuiControl* control) override;
+	// Update dialog
+	void Update();
 
-	
-	
-	GuiButton* dialogueButton;
-	GuiButton* finishButton;
-	GuiButton* cancelButton;
-	GuiButton* answer1b;
+	// Return if the dialog has finished
+	bool Finished() { return finished; }
 
-	p2ListItem<Quest*>* currentDialog;
-	SDL_Texture* notAvailableTex;
-	SDL_Rect notavailable;
+	// Set position of dialog
+	void SetPosition(int x, int y);
 
-	SDL_Texture* availableTex;
-	SDL_Rect rAvailable;
+	// Set the dialog font
+	void SetFont(int font);
 
-	SDL_Texture* answer1Tex;
-	SDL_Rect answer1;
+	// Set the dialog background image
+	void SetDialogBg(SDL_Texture* dialog_bg, int width, int height, int offsetLeft = 0, int offsetUp = 0);
 };
-

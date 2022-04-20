@@ -5,6 +5,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Physics.h"
+#include "DialogFonts.h"
 #include "Fonts.h"
 #include "Map.h"
 #include "Entities.h"
@@ -47,6 +48,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new Textures(true);
 	audio = new Audio(true);
 	fonts = new Fonts(true);
+	dialogFonts = new DialogFonts(true);
 	fade = new FadeToBlack(true);
 	questManager = new QuestManager(true);
 	pathFinding = new PathFinding(true);
@@ -80,6 +82,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(dialogFonts);
 	AddModule(fonts);
 	AddModule(pathFinding);
 	AddModule(levelManagement);

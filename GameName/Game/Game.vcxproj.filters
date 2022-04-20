@@ -162,6 +162,12 @@
     <ClCompile Include="Source\Trigger.cpp">
       <Filter>Entities\CheckPoints</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Button.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DialogFonts.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -357,6 +363,12 @@
     </ClInclude>
     <ClInclude Include="Source\Trigger.h">
       <Filter>Entities\CheckPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Button.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DialogFonts.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

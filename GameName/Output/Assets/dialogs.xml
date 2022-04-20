@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dialog file for the game -->
+<dialogs_list>
+
+  <dialog_group name ="test">
+    <dialog root ="true">
+      <name value ="start"/>
+      <text value ="start text"/>
+      <option value ="option 1" child ="test_1"/>
+      <option value ="option 2" child ="test_2"/>
+    </dialog>
+
+    <dialog root ="false">
+      <name value ="test_1"/>
+      <text value ="mid text"/>
+      <option value ="option 1" child="noone"/>
+      <option value ="option 2" child="noone"/>
+    </dialog>
+
+    <dialog root ="false">
+      <name value ="test_2"/>
+      <text value ="finish text"/>
+      <option value ="option 1" child="noone"/>
+      <option value ="option 2" child="noone"/>
+    </dialog>
+
+  </dialog_group>
+
+  <dialog_group name ="Level 1">
+
+  </dialog_group>
+</dialogs_list>
+
+

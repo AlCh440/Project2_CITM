@@ -18,6 +18,7 @@ class Textures;
 class Audio;
 class FadeToBlack;
 class Fonts;
+class DialogFonts;
 
 class Map;
 class ModulePhysics;
@@ -119,6 +120,7 @@ public:
 	ModuleEntities* entities;
 	GuiManager* guiManager;
 	Fonts* fonts;
+	DialogFonts* dialogFonts;
 	QuestManager* questManager;
 	PathFinding* pathFinding;
 
