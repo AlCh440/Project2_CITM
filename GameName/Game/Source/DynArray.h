@@ -136,7 +136,9 @@ public:
 		return result;
 	}
 
-	const VALUE* At(unsigned int index) const
+	// const VALUE* At(unsigned int index) const
+
+	VALUE* At(unsigned int index) const
 	{
 		VALUE* result = NULL;
 

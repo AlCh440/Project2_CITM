@@ -100,6 +100,8 @@ public:
 
 	bool Pause = false;
 
+	void Interpolate(int x, int y, float speed);
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
@@ -107,6 +109,18 @@ protected:
 
 	// To check diretion anim
 	bool goingLeft = true;
+
+	float iSpeed;
+	bool interpolating = false;
+	float oldX;
+	float oldY;
+	float newX;
+	float newY;
+	float pos_dif_x;
+	float pos_dif_y;
+	float h = 0;
+	float inter_speed;
+	
 };
 
 #endif // __ENTITY_H__

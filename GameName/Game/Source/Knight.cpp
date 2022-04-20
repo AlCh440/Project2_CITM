@@ -24,7 +24,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-
+	state = COMBATMOVE;
 }
 
 bool Knight::Start()
@@ -96,10 +96,7 @@ bool Knight::Update(float dt)
 {
 	LOG("%i", stats.momevent);
 
-	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-	{
-		state = FREEMOVE;
-	}
+
 	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 	{
 		state = COMBATMOVE;
@@ -152,25 +149,6 @@ bool Knight::Update(float dt)
 		physBody->body->SetTransform(teleport, 0.f);
 
 	}break;
-	case FREEMOVE:
-	{
-		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN))
-		{
-			position.x -= 2;
-		}
-		else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN))
-		{
-			position.x += 2;
-		}
-		else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN))
-		{
-			position.y -= 2;
-		}
-		else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN))
-		{
-			position.y += 2;
-		}
-	} break;
 	case CHOOSINGATTACK:
 	{
 		if (app->input->GetKey(SDL_SCANCODE_V) == KEY_DOWN)

@@ -14,7 +14,7 @@
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");	
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f*0.5f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 
@@ -44,7 +44,7 @@ void EnemyDummy::UpdatePath()
 bool EnemyDummy::Start()
 {
 
-
+	actualStates = WALK;
 	pathfinding = new PathFinding(true);
 	//create navigation map
 	int w, h;
@@ -52,6 +52,7 @@ bool EnemyDummy::Start()
 	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
 	RELEASE_ARRAY(data);
 
+	inter_speed = 0.02f;
 	
 	return true;
 }
@@ -63,6 +64,8 @@ bool EnemyDummy::PreUpdate()
 
 bool EnemyDummy::Update(float dt)
 {	
+	PhysBody* aux = app->entities->GetNearestPlayer(physBody);
+
 	if (stats.hp <= 0)
 	{
 		
@@ -71,20 +74,26 @@ bool EnemyDummy::Update(float dt)
 	}
 	else
 	{
-		// test movement
+		if (aux != nullptr && interpolating == false)
+		{
+			actualStates = WALK;
+		}
 		
+		if (interpolating)
+		{
+			actualStates = INTERPOLATING;
+		}
 	}
 
 	
-
-//	if (stats.hp > 0)
-//	{
-		PhysBody* aux = app->entities->GetNearestPlayer(physBody);
-		
+	switch (actualStates)
+	{
+	case WALK:
+	{
 
 		physBody->GetPosition(position.x, position.y);
 		positionToMap = app->map->WorldToMap(position.x, position.y);
-		
+
 		iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
 		goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
 
@@ -92,30 +101,27 @@ bool EnemyDummy::Update(float dt)
 
 		if (distanceInTiles > 2)
 		{
-			const iPoint* going(app->pathFinding->GetLastPath()->At(1));
+			iPoint* going = pathfinding->GetLastPath()->At(1);
 			if (going != nullptr)
 			{
-				if (stats.momevent < 0)
+				if (stats.momevent > 0)
 				{
-					if (going->x < position.x) // LEFT
+
+					if (going->x < positionToMap.x) // LEFT
 					{
-						position.x -= 16;
-						stats.momevent -= 1;
+						Interpolate(position.x - 32, position.y, inter_speed);
 					}
-					else if (going->x > position.x) // RIGHT
+					else if (going->x > positionToMap.x) // RIGHT
 					{
-						position.x += 16;
-						stats.momevent -= 1;
+						Interpolate(position.x + 32, position.y, inter_speed);
 					}
-					else if (going->y < position.y) // UP
+					else if (going->y < positionToMap.y) // UP
 					{
-						position.y -= 16;
-						stats.momevent -= 1;
+						Interpolate(position.x, position.y - 32, inter_speed);
 					}
-					else if (going->y > position.y) // DOWN
+					else if (going->y > positionToMap.y) // DOWN
 					{
-						position.y += 16;
-						stats.momevent -= 1;
+						Interpolate(position.x, position.y + 32, inter_speed);
 					}
 				}
 				else
@@ -123,19 +129,29 @@ bool EnemyDummy::Update(float dt)
 					//CAN ATTACK???
 				}
 			}
-			
+
 		}
-		app->entities->NextEnemyTurn();
+
+	}break;
+	case INTERPOLATING:
+	{
+		Interpolate(position.x, position.y, 0.02f);
+	} break;
+	default:
+	{
+
+	}break;
+	}
+		
 
 
-	
-//s	}
 	
 	if (stats.momevent <= 0)
 	{
 		stats.momevent = 10;
-		entityTurn = false;
+		
 		app->entities->NextEnemyTurn();
+		entityTurn = false;
 	}
 
 
@@ -161,7 +177,7 @@ bool EnemyDummy::PostUpdate()
 	}
 
 
-	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
+	app->render->DrawTexture(texture, position.x, position.y);
 	return true;
 }
 

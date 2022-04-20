@@ -261,9 +261,20 @@ void ModuleEntities::NextEnemyTurn()
     {
         if (aux->data->entityTurn == true)
         {
-            aux->data->entityTurn = false;
-          //  aux->next->data->entityTurn = true;
-            enemiesAlive -= 1;
+
+           
+            if (aux->next != nullptr)
+            {
+                aux->data->entityTurn = false;
+                aux->next->data->entityTurn = true;
+                enemiesAlive -= 1;
+            }
+            else
+            {
+                //StartPlayerTurn();
+            }
+           
+
         }
     }
 }

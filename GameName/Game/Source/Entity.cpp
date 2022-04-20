@@ -113,3 +113,48 @@ int Entity::CheckDistanceToPhysBody(PhysBody* PhysPos)
 
 	return (abs(dist.x) + abs(dist.y));
 }
+
+void Entity::Interpolate(int x, int y, float speed)
+{
+	newX = (float)x;
+	newY = (float)y + 16;
+	if (!interpolating)
+	{
+		h = 0;
+		iSpeed = speed;
+		if (speed > 1) iSpeed = 1;
+		if (speed < 0) iSpeed = 0;
+		oldX = position.x + 16;
+		oldY = position.y + 16;
+		interpolating = true;
+
+		pos_dif_x = newX - oldX;
+		pos_dif_y = newY - oldY;
+	
+	}
+	else {
+		h += iSpeed;
+
+		if (1 - h < 0)
+			h = 1;
+
+
+		float x_ = oldX + pos_dif_x * h;
+		float y_ = oldY + pos_dif_y * h;
+
+		b2Vec2 pos = { PIXEL_TO_METERS(x_),PIXEL_TO_METERS(y_) };
+		physBody->body->SetTransform(pos, 0);
+
+		physBody->GetPosition(position.x, position.y);
+		if (h == 1)
+		{
+			interpolating = false;
+			h = 0;
+			stats.momevent -= 1;
+		}
+
+	}
+
+
+
+}
