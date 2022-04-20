@@ -99,6 +99,8 @@ public:
 	SString name;
 	bool active;
 	bool DEBUG = false;
+	//stops updating the module
+	bool Pause;
 };
 
 #endif // __MODULE_H__

@@ -34,6 +34,7 @@ bool BattleTestScene::Start()
 	app->entities->Start();
 	//start combat
 	app->entities->StartPlayerTurn();
+
 	return true;
 }
 

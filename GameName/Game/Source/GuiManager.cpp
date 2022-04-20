@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Render.h"
 #include "Audio.h"
+#include "Entities.h"
 
 //add all panels here
 #include "QuestPanel.h"
@@ -80,9 +81,15 @@ bool GuiManager::PreUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		if (!pn_pause->GetActive())
+		{
 			pn_pause->Enable();
+			app->entities->Pause = true;
+		}
 		else
+		{
 			pn_pause->Disable();
+			app->entities->Pause = false;
+		}
 	}
 
 

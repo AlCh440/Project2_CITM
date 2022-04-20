@@ -2,7 +2,6 @@
 #define __LEVELMANAGEMENT_H__
 #include "Module.h"
 
-
 #include "App.h"
 #include "Intro.h"
 #include "StartMenu.h"
@@ -10,7 +9,6 @@
 #include "FadeToBlack.h"
 #include "Render.h"
 #include "Input.h"
-
 
 #define MAX_SIZE 28
 

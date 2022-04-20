@@ -306,7 +306,7 @@ bool App::PreUpdate()
 		if (Debug)
 			item->data->DEBUG = Debug;
 
-		if(pModule->active == false) {
+		if(pModule->active == false || pModule->Pause) {
 			continue;
 		}
 
@@ -329,7 +329,7 @@ bool App::DoUpdate()
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if(pModule->active == false || pModule->Pause) {
 			continue;
 		}
 

@@ -17,13 +17,6 @@ enum PlayerState
 	DEAD
 };
 
-//enum TypeOfMovement
-//{
-//	OPENWORLD,
-//	COMBATMOVE,
-//	DEFAULT
-//};
-
 class Player :  public Entity
 {
 public:
@@ -51,6 +44,7 @@ public:
 	virtual bool SaveState(pugi::xml_node& data) const;
 
 	PhysBody* checkCloseEnemies();
+
 public:
 	Animation* currentAnim = nullptr;
 
@@ -65,7 +59,6 @@ public:
 	int lifePoints = 1;
 	int manaPoints = 1;
 	int actionPoints = 1;
-	//TypeOfMovement movType = DEFAULT;
 	PlayerState state = IDLE;
 	bool isAlive = true;
 	

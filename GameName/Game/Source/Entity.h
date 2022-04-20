@@ -9,6 +9,7 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Map.h"
+#include "Pathfinding.h"
 
 struct SDL_Texture;
 struct PhysicBody;
@@ -63,17 +64,11 @@ public:
 	void SetPositionPixels();
 
 	Statistics stats;
-public:
 
-	
-	//enum State
-	//{
-	//	IDLE,
-	//	MOVE,
-	//	ATACK,
-	//	DEATH,
-	//	SCORE
-	//};
+public:
+	void takeDamage(int damage);
+	// Returns distance to a point
+	int CheckDistanceToPhysBody(PhysBody* PhysPos);
 
 	// The current position in the world
 	iPoint spawnPos;
@@ -82,9 +77,6 @@ public:
 	fPoint texPosition; //for texture position
 	iPoint drawOffset = { 0, 0 };
 	Collider_Type type;
-
-	//HP
-	
 
 	// The Entity's texture
 	SDL_Texture* texture = nullptr;
@@ -96,20 +88,17 @@ public:
 	bool DEBUG;
 
 	//If Enemy
-	//State state;
 	PhysBody* physBody = nullptr;
 
 	//Entity Name
-
 	SString name;
 
-	void takeDamage(int damage);
+	PathFinding* pathfinding;
 
 	// Used to activate and regulate turns
 	bool entityTurn = false;
 
-	// Returns distance to a point
-	int CheckDistanceToPhysBody(PhysBody* PhysPos);
+	bool Pause = false;
 
 protected:
 	// A ptr to the current animation

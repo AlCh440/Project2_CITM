@@ -9,7 +9,6 @@
 #include "LevelManagement.h"
 #include "Render.h"
 #include "Map.h"
-#include "Pathfinding.h"
 #include "Log.h"
 #include <SDL/include/SDL_scancode.h>
 
