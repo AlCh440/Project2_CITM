@@ -14,7 +14,7 @@
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/dummySprite.png");	
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f*0.5f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 
@@ -177,7 +177,7 @@ bool EnemyDummy::PostUpdate()
 	}
 
 
-	app->render->DrawTexture(texture, position.x - 20, position.y - 20);
+	app->render->DrawTexture(texture, position.x, position.y);
 	return true;
 }
 

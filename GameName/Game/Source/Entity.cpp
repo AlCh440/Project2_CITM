@@ -116,16 +116,16 @@ int Entity::CheckDistanceToPhysBody(PhysBody* PhysPos)
 
 void Entity::Interpolate(int x, int y, float speed)
 {
-	newX = (float)x + 20;
-	newY = (float)y + 20;
+	newX = (float)x;
+	newY = (float)y + 16;
 	if (!interpolating)
 	{
 		h = 0;
 		iSpeed = speed;
 		if (speed > 1) iSpeed = 1;
 		if (speed < 0) iSpeed = 0;
-		oldX = position.x + 20;
-		oldY = position.y + 20;
+		oldX = position.x + 16;
+		oldY = position.y + 16;
 		interpolating = true;
 
 		pos_dif_x = newX - oldX;
