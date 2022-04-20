@@ -47,10 +47,12 @@
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
     <IncludePath>Source\External\SDL\include;Source\External\SDL_image\include;Source\External\SDL_mixer\include;Source\External\SDL_ttf\include;Source\External\Tweeny;$(IncludePath)</IncludePath>
     <LibraryPath>Source\External\SDL\libx86;Source\External\SDL_image\libx86;Source\External\SDL_mixer\libx86;Source\External\SDL_ttf\libx86;$(LibraryPath)</LibraryPath>
+    <TargetName>../Output</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\$(Configuration)\Obj\</IntDir>
+    <TargetName>../Output</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
