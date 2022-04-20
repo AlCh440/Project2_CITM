@@ -151,8 +151,6 @@ public:
 
 	bool GetPause() const
 	{
-
-
 		return gamePaused;
 	}
 

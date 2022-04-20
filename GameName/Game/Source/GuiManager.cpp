@@ -78,21 +78,6 @@ bool GuiManager::PreUpdate()
 
 	Debug = DEBUG;
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	{
-		if (!pn_pause->GetActive())
-		{
-			pn_pause->Enable();
-			app->entities->Pause = true;
-		}
-		else
-		{
-			pn_pause->Disable();
-			app->entities->Pause = false;
-		}
-	}
-
-
 
 	return true;
 }
@@ -167,6 +152,22 @@ bool GuiManager::CleanUp()
 	UItexture2 = nullptr;
 
 	return true;
+}
+
+void GuiManager::OnPause(bool paused)
+{
+	if (app->gamePaused)
+	{
+		pn_pause->Enable();
+		app->entities->Pause = true;
+		app->physics->Pause = true;
+	}
+	else
+	{
+		pn_pause->Disable();
+		app->entities->Pause = false;
+		app->physics->Pause = false;
+	}
 }
 
 void GuiManager::OpenPanel(PanelID panel_id)

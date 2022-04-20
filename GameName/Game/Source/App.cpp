@@ -300,6 +300,11 @@ bool App::PreUpdate()
 
 	if (input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		Debug = !Debug;
+	if (input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		gamePaused = !gamePaused;
+		app->guiManager->OnPause(gamePaused);
+	}
 
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
 	{
