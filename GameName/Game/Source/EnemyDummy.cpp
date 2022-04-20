@@ -92,10 +92,14 @@ bool EnemyDummy::Update(float dt)
 
 		if (distanceInTiles > 2)
 		{
-			const iPoint* going(app->pathFinding->GetLastPath()->At(1));
+			iPoint go = { 100, 100 };
+			iPoint* going = &go;
+			//iPoint* going = app->pathFinding->GetLastPath()->At(1);
+			
+			
 			if (going != nullptr)
 			{
-				if (stats.momevent < 0)
+				if (stats.momevent > 0)
 				{
 					if (going->x < position.x) // LEFT
 					{
@@ -125,7 +129,7 @@ bool EnemyDummy::Update(float dt)
 			}
 			
 		}
-		app->entities->NextEnemyTurn();
+		//app->entities->NextEnemyTurn();
 
 
 	
