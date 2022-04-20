@@ -20,7 +20,7 @@ public:
 	virtual ~Intro();
 
 	// Called before render is available
-	bool Awake(pugi::xml_node&);
+	bool Awake();
 
 	// Called before the first frame
 	bool Start();
@@ -41,13 +41,8 @@ public:
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;
-<<<<<<< Updated upstream
 	uint music2;
 	bool playMusic2 = true;
-=======
-	//millisecs
-	float waitTime = 500 ;
->>>>>>> Stashed changes
 };
 
 #endif // __INTRO_H__

@@ -27,16 +27,12 @@ bool LevelManagement::Start()
 {
 
 	gameScene = GameScene::INTRO;
-<<<<<<< Updated upstream
 
 	//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 	
 	gameScene = GameScene::START;
 
 	currentScene = (Module*)app->intro;
-=======
-	currentScene = nullptr;
->>>>>>> Stashed changes
 	return true;
 }
 
@@ -65,6 +61,7 @@ bool LevelManagement::PreUpdate()
 		{
 			gameScene = START;
 		}
+		gameScene = START;
 		break;
 	case START:
 		//music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav");
@@ -92,20 +89,11 @@ bool LevelManagement::PreUpdate()
 
 bool LevelManagement::Update(float dt)
 {
-
+//	LOG("%s",currentScene->name.GetString());
 	switch (gameScene)
 	{
 	case INTRO:
-<<<<<<< Updated upstream
 		//music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
-=======
-		if (currentScene == nullptr) {
-			currentScene = (Module*)app->intro;
-			app->intro->Enable();
-			LOG("INTRO");
-
-		}
->>>>>>> Stashed changes
 		break;
 	case START:
 		//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
@@ -224,8 +212,6 @@ bool LevelManagement::Update(float dt)
 
 	}
 	frameCounter++;
-
-	LOG("%s", currentScene->name.GetString());
 	return true;
 }
 

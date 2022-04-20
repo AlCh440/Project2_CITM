@@ -264,11 +264,11 @@ void App::FinishUpdate()
 
 
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",
-		averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
-	//int x,y;
-	//input->GetMousePosition(x,y);
-	//sprintf_s(title, 256, "Mouse position x %d y %d, Camera x %d y %d", x, y,render->camera.x,render->camera.y);
+	//sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",
+	//	averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
+	int x,y;
+	input->GetMousePosition(x,y);
+	sprintf_s(title, 256, "Mouse position x %d y %d, Camera x %d y %d", x, y,render->camera.x,render->camera.y);
 
 	if (FPSCapTo30)
 		maxFrameRate = 30;
