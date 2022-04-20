@@ -22,29 +22,15 @@ After such encounter, the party awakes in a cave, without remembering who they a
 
 # Controls
 <p>&nbsp;</p>
-Player movement:   W->Move up, A->Move left, D->move right, S->Move down
+Player movement:   
+W->Move up 
+A->Move left 
+D->move right 
+S->Move down
 
+Enter combat mode -> 2
 
+Main menu -> 3
 
-# Player
-<p>&nbsp;</p>
+Debug-> F9
 
-
-# Game 
-F1-> Start level 1
-
-F3-> Restart current level
-
-F5-> Save Game
-
-F6-> Load Game
-
-F7-> Load CheckPoint
-
-F8-> GUI bounds and states
-
-F9-> View Colliders 
-
-F10-> God Mode
-
-F11-> Cap Fps
