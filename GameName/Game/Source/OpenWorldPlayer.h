@@ -36,4 +36,8 @@ public:
 
 private:
 
+	Animation walkUp;
+	Animation walkDown;
+	Animation walkSide;
+	Animation idle;
 };

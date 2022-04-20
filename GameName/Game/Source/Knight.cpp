@@ -227,7 +227,7 @@ bool Knight::PostUpdate()
 	}
 	else
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, SDL_FLIP_HORIZONTAL);
+		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
 	currentAnim->Update();
 	return true;
