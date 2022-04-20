@@ -110,18 +110,22 @@ bool EnemyDummy::Update(float dt)
 					if (going->x < positionToMap.x) // LEFT
 					{
 						Interpolate(position.x - 32, position.y, inter_speed);
+						--stats.momevent;
 					}
 					else if (going->x > positionToMap.x) // RIGHT
 					{
 						Interpolate(position.x + 32, position.y, inter_speed);
+						--stats.momevent;
 					}
 					else if (going->y < positionToMap.y) // UP
 					{
 						Interpolate(position.x, position.y - 32, inter_speed);
+						--stats.momevent;
 					}
 					else if (going->y > positionToMap.y) // DOWN
 					{
 						Interpolate(position.x, position.y + 32, inter_speed);
+						--stats.momevent;
 					}
 				}
 				else

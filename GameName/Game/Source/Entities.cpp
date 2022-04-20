@@ -271,7 +271,7 @@ void ModuleEntities::NextEnemyTurn()
             }
             else
             {
-                //StartPlayerTurn();
+                StartPlayerTurn();
             }
            
 
