@@ -142,6 +142,20 @@ public:
 	float dt;
 	bool exit = false;
 
+	bool gamePaused = false;
+
+	void SetPause(bool state)
+	{
+		gamePaused = state;
+	}
+
+	bool GetPause() const
+	{
+
+
+		return gamePaused;
+	}
+
 
 	void FPScap60(bool state)
 	{
