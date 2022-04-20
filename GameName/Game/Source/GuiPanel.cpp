@@ -63,15 +63,16 @@ void GuiPanel::Enable()
 	position.x = -app->render->camera.x;
 	position.y = -app->render->camera.y;
 
-	//p2ListItem<GuiControl*>* control = controls.start;
+	p2ListItem<GuiControl*>* control = controls.start;
 
-	//while (control != nullptr)
-	//{
-	//	//TODO fix position when enable
-	//	control->data->position.x = -(app->render->camera.x + position.x);
-	//	control->data->position.x = -(app->render->camera.x + position.y);
-	//	control = control->next;
-	//}
+	while (control != nullptr)
+	{
+		//TODO fix position when enable
+		control->data->bounds.x =  position.x + control->data->position.x;
+		control->data->bounds.y =  position.y + control->data->position.y;
+		control->data->CenterText(control->data->bounds);
+		control = control->next;
+	}
 }
 
 void GuiPanel::Disable()

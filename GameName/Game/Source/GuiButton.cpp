@@ -8,6 +8,8 @@
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor) : GuiControl(GuiControlType::BUTTON, id)
 {
 	this->bounds = bounds;
+	position.x = bounds.x;
+	position.y = bounds.y;
 	this->text = text;
 	font = fontid;
 	fontPosX = bounds.x;
@@ -35,7 +37,7 @@ bool GuiButton::Update(float dt)
 	if (state != GuiControlState::DISABLED)
 	{
 		int mouseX, mouseY;
-		app->input->GetMousePosition(mouseX, mouseY);
+		app->input->GetMouseWorldPosition(mouseX, mouseY);
 
 		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w )) &&
 			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h )))

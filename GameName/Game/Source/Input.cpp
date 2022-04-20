@@ -126,7 +126,9 @@ bool Input::PreUpdate()
 				mouseMotionY = event.motion.yrel / scale;
 				mouseX = event.motion.x / scale;
 				mouseY = event.motion.y / scale;
-				//LOG("Mouse motion x %d y %d", mouse_motion_x, mouse_motion_y);
+				//LOG("Mouse motion x %d y %d", mouseMotionX, mouseMotionY);
+				//LOG("Mouse position x %d y %d", mouseX, mouseY);
+		
 			break;
 		}
 	}
@@ -152,6 +154,12 @@ void Input::GetMousePosition(int& x, int& y)
 {
 	x = mouseX;
 	y = mouseY;
+}
+
+void Input::GetMouseWorldPosition(int& x, int& y)
+{
+	x = mouseX + (app->render->camera.x * -1);
+	y = mouseY + (app->render->camera.y * -1);
 }
 
 void Input::GetMouseMotion(int& x, int& y)

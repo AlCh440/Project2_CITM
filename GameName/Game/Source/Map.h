@@ -175,6 +175,9 @@ public:
 	bool LoadState(pugi::xml_node& data);
 	bool SaveState(pugi::xml_node& data) const;
 
+	//Pick the right Tileset based on a tile id
+	TileSet* GetTilesetFromTileId(int id) const;
+
 private:
 
 	// L03: Methods to load all required map data
@@ -193,18 +196,17 @@ private:
 	bool LoadAllObjectLayers(pugi::xml_node mapNode);
 	bool LoadObject(pugi::xml_node& node, Object* object);
 
-	// L06: TODO 3: Pick the right Tileset based on a tile id
-	TileSet* GetTilesetFromTileId(int id) const;
-
 public:
 
     // L03: DONE 1: Add your struct for map info
 	MapData mapData;
-
+	SDL_Texture* tx_tileInfo;
 private:
 
     SString folder;
     bool mapLoaded;
+
+	
 };
 
 #endif // __MAP_H__

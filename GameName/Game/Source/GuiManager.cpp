@@ -75,8 +75,8 @@ bool GuiManager::PreUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 		pn_dialog->Active = !pn_dialog->GetActive();
 
-	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-		Debug = !Debug;
+
+	Debug = DEBUG;
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{

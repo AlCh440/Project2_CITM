@@ -64,7 +64,7 @@ bool Map::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	folder.Create(config.child("folder").child_value());
-
+	tx_tileInfo = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	return ret;
 }
 

@@ -5,6 +5,7 @@
 #include "Point.h"
 #include "DynArray.h"
 #include "p2List.h"
+#include "Queue.h"
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
@@ -33,6 +34,15 @@ public:
 	// Main function to request a path from A to B
 	int CreatePath(const iPoint& origin, const iPoint& destination);
 
+	//Generate BFS expansion of walkeable tiles
+	void PropagateBFS();
+
+	void ResetBFSPath();
+
+	void InitBFS(iPoint pos);
+
+	void DrawBFSPath();
+
 	// To request all tiles involved in the last generated path
 	const DynArray<iPoint>* GetLastPath() const;
 
@@ -59,7 +69,11 @@ private:
 	// all map walkability values [0..255]
 	uchar* map;
 
-	// we store the created path here
+	//BFS Pathfinding variables
+	Queue<iPoint> frontier;
+	p2List<iPoint> visited;
+
+//	SDL_Texture* tileX = nullptr;
 	
 };
 

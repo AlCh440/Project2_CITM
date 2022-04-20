@@ -29,7 +29,7 @@ bool GuiToggle::Update(float dt)
 	{
 		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
-		app->input->GetMousePosition(mouseX, mouseY);
+		app->input->GetMouseWorldPosition(mouseX, mouseY);
 
 		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
 			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))

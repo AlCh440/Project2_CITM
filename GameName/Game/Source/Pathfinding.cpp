@@ -262,3 +262,78 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	return ret;
 }
 
+// ----------------------------------------------------------------------------------
+// Actual BFS algorithm: return number of steps in the creation of the path or -1 ----
+// ----------------------------------------------------------------------------------
+
+void PathFinding::PropagateBFS()
+{
+	iPoint current;
+	if (frontier.Pop(current)) {
+
+		p2List<iPoint> neightbours;
+
+		neightbours.add(iPoint(current.x + 1, current.y));
+		neightbours.add(iPoint(current.x, current.y + 1));
+		neightbours.add(iPoint(current.x, current.y - 1));
+		neightbours.add(iPoint(current.x - 1, current.y));
+
+		p2ListItem<iPoint>* neightbour = neightbours.start;
+		while (neightbour != NULL)
+		{
+			if (visited.find(neightbour->data) == -1 &&	IsWalkable(neightbour->data))
+			{
+				frontier.Push(neightbour->data);
+				visited.add(neightbour->data);
+			}
+			neightbour = neightbour->next;
+		}
+	}
+}
+
+//Reset bfs expanison
+void PathFinding::ResetBFSPath()
+{
+	frontier.Clear();
+	visited.clear();
+}
+
+void PathFinding::InitBFS(iPoint pos)
+{
+	frontier.Push(pos);
+	visited.add(pos);
+}
+
+void PathFinding::DrawBFSPath()
+{
+	iPoint point;
+
+	// Draw visited
+	p2ListItem<iPoint>* item = visited.start;
+	SDL_Rect rect;
+	while (item)
+	{
+		point = item->data;
+
+		iPoint pos = app->map->MapToWorld(point.x, point.y);
+		rect.x = point.x+16;
+		rect.y = point.y+16;
+		rect.w = (app->map->mapData.tileWidth);
+		rect.h = (app->map->mapData.tileHeight);
+		app->render->DrawRectangle(rect, 100, 0, 170, 150);
+
+		item = item->next;
+	}
+
+	// Draw frontier
+	for (uint i = 0; i < frontier.Count(); ++i)
+	{
+		point = *(frontier.Peek(i));
+		rect.x = point.x;
+		rect.y = point.y;
+		rect.w = (app->map->mapData.tileWidth);
+		rect.h = (app->map->mapData.tileHeight);
+		app->render->DrawRectangle(rect, 100, 0, 155, 100);
+	}
+
+}

@@ -130,6 +130,7 @@ public:
 	SString name;
 
 	iPoint position;
+	int fontPosX, fontPosY; // font texture position
 };
 
 #endif // __GUICONTROL_H__

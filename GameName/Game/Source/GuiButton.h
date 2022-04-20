@@ -26,8 +26,6 @@ public:
 	bool canClick = true;
 	bool clicked = false;
 
-	int fontPosX,fontPosY;
-
 	SDL_Rect normalRec,disabledRec,focusedRec,pressedRec,selectedRec;
 
 	uint focusedfx, selectedfx;

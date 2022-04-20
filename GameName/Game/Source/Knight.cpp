@@ -36,8 +36,7 @@ bool Knight::Start()
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-	// movement t defined in th spawn
-	// physBody = app->physics->CreateCircle(30, 30, 15, b2_kinematicBody);
+
 
 	currentAnim = &walkSide;
 
@@ -63,6 +62,13 @@ bool Knight::Start()
 	walkUp.PushBack({ 96, 96, 32, 48 });
 	walkUp.loop = false;
 	walkUp.speed = 0.2f;
+
+	pathfinding = new PathFinding(true);
+	//create navigation map
+	int w, h;
+	uchar* data = NULL;
+	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
+	RELEASE_ARRAY(data);
 
 	return true;
 }
@@ -94,7 +100,7 @@ bool Knight::PreUpdate()
 
 bool Knight::Update(float dt)
 {
-	LOG("%i", stats.momevent);
+//	LOG("%i", stats.momevent);
 
 
 	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
@@ -109,6 +115,11 @@ bool Knight::Update(float dt)
 	{
 	case COMBATMOVE:
 	{
+		pathfinding->InitBFS(position);
+
+		for(int i = 0; i < stats.momevent; i++)
+		 pathfinding->PropagateBFS();
+
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
 			position.x -= 32;
@@ -207,6 +218,8 @@ bool Knight::Update(float dt)
 
 bool Knight::PostUpdate()
 {
+
+	pathfinding->DrawBFSPath();
 
 	if (goingLeft)
 	{
