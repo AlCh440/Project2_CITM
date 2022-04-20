@@ -5,6 +5,8 @@
 #include "Map.h"
 #include <string>
 #include <iostream>
+#include "App.h"
+#include "Audio.h"
 using namespace std;
 
 LevelManagement::LevelManagement(bool isActive) : Module(isActive)
@@ -23,7 +25,13 @@ bool LevelManagement::Awake(pugi::xml_node&)
 
 bool LevelManagement::Start()
 {
+
 	gameScene = GameScene::INTRO;
+
+	//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
+	
+	gameScene = GameScene::START;
+
 	currentScene = (Module*)app->intro;
 	return true;
 }
@@ -43,13 +51,23 @@ bool LevelManagement::PreUpdate()
 	switch (gameScene)
 	{
 	case INTRO:
+
 		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) && currentScene->active == true)
+
+		app->audio->PlayMusic("assets/audio/music/song_menu.wav");
+		playMusic = false;
+		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
+
 		{
 			gameScene = START;
 		}
 		gameScene = START;
 		break;
 	case START:
+		//music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav");
+		
+		 
+		
 		break;
 	case GAME_OVER:
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && currentScene->active == true)
@@ -75,12 +93,17 @@ bool LevelManagement::Update(float dt)
 	switch (gameScene)
 	{
 	case INTRO:
-		
+		//music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
 		break;
 	case START:
+		//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
+
 		if (currentScene != (Module*)app->start) {
+			
+			//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 			if (app->fade->Fade(currentScene, (Module*)app->start, 60))
 			{
+				//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 				currentScene = (Module*)app->start;
 				LOG("START");
 			}

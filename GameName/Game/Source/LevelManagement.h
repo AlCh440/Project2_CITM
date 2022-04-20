@@ -66,5 +66,8 @@ public:
 	int delayTime = 100;
 	int levelsPassed = 0;
 	bool loadLevel = false;
+
+	uint music;
+	bool playMusic = true;
 };
 #endif // __LEVELMANAGEMENT_H__
