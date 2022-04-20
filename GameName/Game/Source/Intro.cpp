@@ -36,6 +36,9 @@ bool Intro::Start()
 {
 	//yes = new EnemyDummy(iPoint(30, 200));
 
+	
+	//music2 = app->audio->PlayMusic("assets/audio/music/song_1_2.wav");
+
 	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	rect = { 0, 0, 1280, 720 };
 

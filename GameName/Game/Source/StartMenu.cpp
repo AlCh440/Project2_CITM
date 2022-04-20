@@ -34,8 +34,14 @@ bool StartMenu::Awake()
 // Called before the first frame
 bool StartMenu::Start()
 {
+	
 	img = app->tex->Load("Assets/Sprites/UI/screen_title.jpg");
 	rect = { 0, 0,1280,720 };
+
+	music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
+	img = app->tex->Load("Assets/Sprites/UI/StartTitleBackground.jpg");
+	rect = { 0, 0,1503,716 };
+
 
 	app->guiManager->OpenPanel(PanelID::P_START_MENU);
 	return true;
@@ -59,6 +65,7 @@ bool StartMenu::PostUpdate()
 {
 	bool ret = true;
 
+	
 	app->render->DrawTexture(img, 0, 0,&rect);
 	return ret;
 }
@@ -70,6 +77,7 @@ bool StartMenu::CleanUp()
 	img = nullptr;
 	app->guiManager->pn_start->Disable();
 	return true;
+	
 }
 
 bool StartMenu::OnGuiMouseClickEvent(GuiControl* control)

@@ -3,6 +3,7 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "LevelManagement.h"
+#include "Audio.h"
 
 MainMenuPanel::MainMenuPanel(bool active) : GuiPanel(active) 
 {
@@ -71,6 +72,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
     if(control->id == bt_newGame->id)
     {
+        app->audio->StopMusic();
         app->levelManagement->gameScene = GameScene::THE_FALL;
     }
     else if (control->id == bt_loadGame->id)

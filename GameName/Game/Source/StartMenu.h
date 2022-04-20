@@ -6,6 +6,7 @@
 #include "Defs.h"
 #include "Physics.h"
 #include "Animation.h"
+#include "Audio.h"
 
 #include "GuiButton.h"
 #include "GuiSlider.h"
@@ -61,6 +62,9 @@ private:
 	GuiToggle* vsyncCheckbox;
 	GuiToggle* fullScreenCheckbox;
 	GuiButton* closePanelBttn;
+
+	uint music;
+	bool playMusic = true;
 
 };
 #endif // __STARTMENU_H__

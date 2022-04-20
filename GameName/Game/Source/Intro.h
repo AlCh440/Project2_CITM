@@ -41,6 +41,8 @@ public:
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;
+	uint music2;
+	bool playMusic2 = true;
 };
 
 #endif // __INTRO_H__
