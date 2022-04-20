@@ -35,6 +35,7 @@ public:
 	bool PostUpdate();
 	// Called before quitting
 	bool CleanUp();
+	void OnPause(bool paused);
 
 	void OpenPanel(PanelID panel_id);
 	//void OpenPanel(GuiState panel);

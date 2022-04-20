@@ -34,8 +34,8 @@ bool StartMenu::Awake()
 // Called before the first frame
 bool StartMenu::Start()
 {
-	img = app->tex->Load("Assets/Sprites/UI/StartTitleBackground.jpg");
-	rect = { 0, 0,1503,716 };
+	img = app->tex->Load("Assets/Sprites/UI/screen_title.jpg");
+	rect = { 0, 0,1280,720 };
 
 	app->guiManager->OpenPanel(PanelID::P_START_MENU);
 	return true;

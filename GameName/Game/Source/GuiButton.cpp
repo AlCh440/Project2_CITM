@@ -85,10 +85,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 125, 200, 0, 0);
 
 		if(texture != nullptr)
-			render->DrawTexture(texture, bounds.x, bounds.y, &disabledRec, 0);
+			render->DrawTexture(texture, bounds.x, bounds.y, &disabledRec);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect, 0);
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	} break;
 
@@ -98,10 +98,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 125, 125, 0,125);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &normalRec, 0);
+			render->DrawTexture(texture, bounds.x, bounds.y, &normalRec);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect, 0);
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	} break;
 	case GuiControlState::FOCUSED:
@@ -110,10 +110,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 255, 255, 255, 160);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &focusedRec, 0);
+			render->DrawTexture(texture, bounds.x, bounds.y, &focusedRec);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect, 0);
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	} break;
 	case GuiControlState::PRESSED:
@@ -125,10 +125,10 @@ bool GuiButton::Draw(Render* render)
 		app->audio->PlayFx(2);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &pressedRec, 0);
+			render->DrawTexture(texture, bounds.x, bounds.y, &pressedRec);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect, 0);
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 
 	} break;
 
@@ -138,10 +138,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 0, 255, 0, 255);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec, 0);
+			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect, 0);
+			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
 	}break;
 
 	default:

@@ -82,7 +82,8 @@ bool PausePanel::OnGuiMouseClickEvent(GuiControl* control)
 	if (control->id == bt_resume->id)
 	{
 		//resume game
-		this->Active = false;
+		app->gamePaused = false;
+		app->guiManager->OnPause(false);
 	}
 	else if (control->id == bt_menu->id)
 	{

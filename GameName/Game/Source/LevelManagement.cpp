@@ -23,7 +23,7 @@ bool LevelManagement::Awake(pugi::xml_node&)
 
 bool LevelManagement::Start()
 {
-	gameScene = GameScene::START;
+	gameScene = GameScene::INTRO;
 	currentScene = (Module*)app->intro;
 	return true;
 }
@@ -43,10 +43,11 @@ bool LevelManagement::PreUpdate()
 	switch (gameScene)
 	{
 	case INTRO:
-		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
+		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) && currentScene->active == true)
 		{
 			gameScene = START;
 		}
+		gameScene = START;
 		break;
 	case START:
 		break;

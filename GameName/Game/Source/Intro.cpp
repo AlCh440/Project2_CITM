@@ -37,7 +37,7 @@ bool Intro::Start()
 	//yes = new EnemyDummy(iPoint(30, 200));
 
 	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
-	rect = { 0, 0, 1503, 716 };
+	rect = { 0, 0, 1280, 720 };
 
 	return true;
 }
