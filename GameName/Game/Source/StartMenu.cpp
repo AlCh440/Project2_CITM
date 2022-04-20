@@ -26,7 +26,6 @@ bool StartMenu::Awake()
 {
 	LOG("Loading Start Scene");
 	bool ret = true;
-	
 
 	return ret;
 }
@@ -34,14 +33,12 @@ bool StartMenu::Awake()
 // Called before the first frame
 bool StartMenu::Start()
 {
-	
+
 	img = app->tex->Load("Assets/Sprites/UI/screen_title.jpg");
-	rect = { 0, 0,1280,720 };
-
 	music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
-
+	rect = { 0, 0,1280,720 };
+	app->render->ResetCameraPosition();
 	app->guiManager->OpenPanel(PanelID::P_START_MENU);
-
 	return true;
 }
 

@@ -169,6 +169,12 @@ void Render::CameraMovement()
 	}
 }
 
+void Render::ResetCameraPosition()
+{
+	camera.x = 0;
+	camera.y = 0;
+}
+
 void Render::DeactivateCamerMovement()
 {
 	cameraFollowCombat = false;

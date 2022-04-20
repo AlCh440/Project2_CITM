@@ -42,7 +42,10 @@ bool LevelManagement::PreUpdate()
 	{
 		gameScene = COMBAT;
 	}
-
+	if ((app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) && currentScene->active == true)
+	{
+		gameScene = START;
+	}
 	switch (gameScene)
 	{
 	case INTRO:

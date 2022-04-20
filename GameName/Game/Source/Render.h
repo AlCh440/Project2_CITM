@@ -55,6 +55,7 @@ public:
 	//Make camera focus a coordinate on the screen
 	void CameraFocus(fPoint position);
 	void CameraMovement();
+	void ResetCameraPosition();
 	void DeactivateCamerMovement();
 
 	void ActivateCameraCombat();
