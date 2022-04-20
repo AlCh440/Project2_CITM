@@ -13,7 +13,7 @@
 
 EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/dummySprite.png");	
+	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");	
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -24,7 +24,7 @@ EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 
 EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
-	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
+	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -53,6 +53,21 @@ bool EnemyDummy::Start()
 	RELEASE_ARRAY(data);
 
 	inter_speed = 0.02f;
+
+	
+	idle.PushBack({ 0, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 1, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 2, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 3, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 4, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 5, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 6, 48 * 3, 48, 48 });
+	idle.PushBack({ 48 * 7, 48 * 3, 48, 48 });
+	idle.speed = 0.1f;
+
+	inter_speed = 0.02f;
+
+	currentAnim = &idle;
 	
 	return true;
 }
@@ -181,7 +196,10 @@ bool EnemyDummy::PostUpdate()
 	}
 
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	app->render->DrawTexture(texture, position.x, position.y, &currentAnim->GetCurrentFrame());
+
+	currentAnim->Update();
+
 	return true;
 }
 
