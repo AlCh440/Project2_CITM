@@ -43,10 +43,15 @@ protected:
 
 
 
-	int scorePoints = 0;
+	int scorePoints = 0;	
 
-	
 
-	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
+private:
+
+
+	Animation idle;
+	Animation walkUp;
+	Animation walkDown;
+
 };
 
