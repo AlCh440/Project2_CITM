@@ -169,6 +169,17 @@ void Render::CameraMovement()
 	}
 }
 
+void Render::DeactivateCamerMovement()
+{
+	cameraFollowCombat = false;
+}
+
+void Render::ActivateCameraCombat()
+{
+	cameraFollowCombat = true;
+	playerFollowing = app->entities->players.getFirst()->data;
+}
+
 void Render::SetViewPort(const SDL_Rect& rect)
 {
 	SDL_RenderSetViewport(renderer, &rect);

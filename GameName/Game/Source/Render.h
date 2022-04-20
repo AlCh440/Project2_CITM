@@ -7,6 +7,8 @@
 
 #include "SDL/include/SDL.h"
 
+class Player;
+
 class Render : public Module
 {
 public:
@@ -52,7 +54,9 @@ public:
 	//Make camera focus a coordinate on the screen
 	void CameraFocus(fPoint position);
 	void CameraMovement();
+	void DeactivateCamerMovement();
 
+	void ActivateCameraCombat();
 public:
 
 	SDL_Renderer* renderer;
@@ -62,6 +66,8 @@ public:
 private:
 	bool isVSYNC;
 	bool isFreeCam = false;
+	bool cameraFollowCombat = false;
+	Player* playerFollowing;
 };
 
 #endif // __RENDER_H__
