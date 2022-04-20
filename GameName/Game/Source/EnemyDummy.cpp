@@ -80,7 +80,7 @@ bool EnemyDummy::PreUpdate()
 bool EnemyDummy::Update(float dt)
 {	
 	PhysBody* aux = app->entities->GetNearestPlayer(physBody);
-
+	
 	if (stats.hp <= 0)
 	{
 		
@@ -89,9 +89,18 @@ bool EnemyDummy::Update(float dt)
 	}
 	else
 	{
-		if (aux != nullptr && interpolating == false)
+
+		if (checkClosePlayers())
+		{
+			actualStates = ATTACK;
+		}
+		else if (aux != nullptr && interpolating == false)
 		{
 			actualStates = WALK;
+		}
+		else
+		{
+			actualStates = NOTHING;
 		}
 		
 		if (interpolating)
@@ -156,6 +165,11 @@ bool EnemyDummy::Update(float dt)
 	{
 		Interpolate(position.x, position.y, 0.02f);
 	} break;
+	case ATTACK:
+	{
+		BasicAttack(aux);
+
+	}
 	default:
 	{
 
@@ -171,6 +185,7 @@ bool EnemyDummy::Update(float dt)
 		
 		app->entities->NextEnemyTurn();
 		entityTurn = false;
+		hasAttacked = false;
 	}
 
 
@@ -210,8 +225,10 @@ bool EnemyDummy::CleanUp()
 	return true;
 }
 
-bool EnemyDummy::BasicAttack() // pass an Player
+bool EnemyDummy::BasicAttack(PhysBody* player) // pass an Player
 {
+	player->entityPtr->takeDamage(20);
+	hasAttacked = true;
 	return true;
 }
 

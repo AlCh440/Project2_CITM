@@ -14,6 +14,7 @@ struct Stats
 
 enum ENEMY_STATE
 {
+	NOTHING,
 	INTERPOLATING,
 	WALK,
 	CHASE,
@@ -42,7 +43,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-
+	PhysBody* checkClosePlayers();
 
 	//int hitPoints;
 	//int score;
@@ -63,7 +64,7 @@ protected:
 
 	iPoint positionToMap;
 
-
+	bool hasAttacked = false;
 	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
 };
 
