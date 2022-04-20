@@ -43,6 +43,8 @@ private:
 	SDL_Rect rect;
 	uint music2;
 	bool playMusic2 = true;
+
+	int waitTime;
 };
 
 #endif // __INTRO_H__

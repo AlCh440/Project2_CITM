@@ -27,12 +27,7 @@ bool LevelManagement::Start()
 {
 
 	gameScene = GameScene::INTRO;
-
-	//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
-	
-	gameScene = GameScene::START;
-
-	currentScene = (Module*)app->intro;
+	currentScene = nullptr;
 	return true;
 }
 
@@ -61,12 +56,8 @@ bool LevelManagement::PreUpdate()
 		{
 			gameScene = START;
 		}
-		gameScene = START;
 		break;
 	case START:
-		//music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav");
-		
-		 
 		
 		break;
 	case GAME_OVER:
@@ -93,17 +84,17 @@ bool LevelManagement::Update(float dt)
 	switch (gameScene)
 	{
 	case INTRO:
-		//music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
+		if (currentScene == nullptr){
+			currentScene = (Module *)app->intro;
+			currentScene->Enable();
+		}
 		break;
 	case START:
-		//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 
 		if (currentScene != (Module*)app->start) {
 			
-			//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 			if (app->fade->Fade(currentScene, (Module*)app->start, 60))
 			{
-				//music = app->audio->LoadFx("assets/audio/music/song_menu.wav");
 				currentScene = (Module*)app->start;
 				LOG("START");
 			}

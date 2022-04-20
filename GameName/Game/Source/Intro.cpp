@@ -5,10 +5,9 @@
 #include "Render.h"
 #include "Window.h"
 #include "Intro.h"
-#include "Map.h"
-#include "Physics.h"
-#include "player.h"
-#include "EnemyDummy.h"
+#include "LevelManagement.h"
+
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -38,7 +37,7 @@ bool Intro::Start()
 
 	
 	//music2 = app->audio->PlayMusic("assets/audio/music/song_1_2.wav");
-
+	waitTime = 100;
 	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	rect = { 0, 0, 1280, 720 };
 
@@ -54,7 +53,10 @@ bool Intro::PreUpdate()
 // Called each loop iteration
 bool Intro::Update(float dt)
 {
-	
+	waitTime -= 1;
+
+	if (waitTime < 0)
+		app->levelManagement->LoadScene(GameScene::START);
 	
 	return true;
 }
