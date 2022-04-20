@@ -14,6 +14,7 @@ struct Stats
 
 enum ENEMY_STATE
 {
+	INTERPOLATING,
 	WALK,
 	CHASE,
 	ATTACK,

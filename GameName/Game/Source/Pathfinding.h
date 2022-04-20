@@ -48,6 +48,8 @@ public:
 	// draw
 	void DrawPath();
 
+	DynArray<iPoint> lastPath;
+
 private:
 
 	// size of the map
@@ -58,7 +60,7 @@ private:
 	uchar* map;
 
 	// we store the created path here
-	DynArray<iPoint> lastPath;
+	
 };
 
 // forward declaration
