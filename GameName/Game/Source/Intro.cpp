@@ -36,6 +36,9 @@ bool Intro::Start()
 {
 	//yes = new EnemyDummy(iPoint(30, 200));
 
+	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
+	rect = { 0, 0, 1503, 716 };
+
 	return true;
 }
 
@@ -57,6 +60,9 @@ bool Intro::Update(float dt)
 bool Intro::PostUpdate()
 {
 	//yes->PostUpdate();
+
+	app->render->DrawTexture(img, 0, 0, &rect);
+
 	return true;
 }
 
