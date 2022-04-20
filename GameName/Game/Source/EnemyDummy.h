@@ -24,7 +24,7 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 
-	bool BasicAttack(PhysBody *player); // pass an Player
+	bool BasicAttack(); // pass an Player
 	
 
 	bool Start() override;
@@ -44,7 +44,7 @@ protected:
 
 
 	int scorePoints = 0;	
-	
+
 
 private:
 
