@@ -70,6 +70,12 @@ bool Knight::Start()
 	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
 	RELEASE_ARRAY(data);
 
+	iPoint mapPos;
+	mapPos=app->map->WorldToMap(position.x, position.y);
+
+	pathfinding->InitBFS(mapPos);
+	for (int i = 0; i < stats.momevent; i++)
+		pathfinding->PropagateBFS();
 	return true;
 }
 
@@ -115,10 +121,9 @@ bool Knight::Update(float dt)
 	{
 	case COMBATMOVE:
 	{
-		pathfinding->InitBFS(position);
+		
 
-		for(int i = 0; i < stats.momevent; i++)
-		 pathfinding->PropagateBFS();
+
 
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
@@ -209,6 +214,14 @@ bool Knight::Update(float dt)
 
 	if (stats.momevent <= 0)
 	{
+		pathfinding->ResetBFSPath();
+		iPoint mapPos;
+		mapPos = app->map->WorldToMap(position.x, position.y);
+
+		pathfinding->InitBFS(mapPos);
+
+		for (int i = 0; i < stats.momevent; i++)
+			pathfinding->PropagateBFS();
 		stats.momevent = 10;
 		entityTurn = false;
 	}

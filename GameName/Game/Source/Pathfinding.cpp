@@ -281,7 +281,7 @@ void PathFinding::PropagateBFS()
 		p2ListItem<iPoint>* neightbour = neightbours.start;
 		while (neightbour != NULL)
 		{
-			if (visited.find(neightbour->data) == -1 &&	IsWalkable(neightbour->data))
+			if (visited.find(neightbour->data) == false &&	IsWalkable(neightbour->data))
 			{
 				frontier.Push(neightbour->data);
 				visited.add(neightbour->data);
@@ -316,8 +316,8 @@ void PathFinding::DrawBFSPath()
 		point = item->data;
 
 		iPoint pos = app->map->MapToWorld(point.x, point.y);
-		rect.x = point.x+16;
-		rect.y = point.y+16;
+		rect.x = pos.x;
+		rect.y = pos.y;
 		rect.w = (app->map->mapData.tileWidth);
 		rect.h = (app->map->mapData.tileHeight);
 		app->render->DrawRectangle(rect, 100, 0, 170, 150);
