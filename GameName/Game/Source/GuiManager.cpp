@@ -13,6 +13,7 @@
 #include "PausePanel.h"
 #include "SettingsPanel.h"
 #include "Dialog.h"
+#include "TheFall.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)

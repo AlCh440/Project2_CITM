@@ -39,7 +39,7 @@ bool Button::Update()
 	{
 		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
-		app->input->GetMouseWorldPosition(mouseX, mouseY);
+		app->input->GetMousePosition(mouseX, mouseY);
 
 		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w )) &&
 			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h )))
@@ -65,7 +65,7 @@ bool Button::Update()
 
 bool Button::Draw()
 {
-	app->render->DrawTextureScaled(texture, bounds.x, bounds.y, bounds.w, bounds.h);
+	app->render->DrawTextureScaled(texture, bounds.x, bounds.y, bounds.w, bounds.h,NULL,0);
 
 	DialogFont& fontobj = app->dialogFonts->GetFont(font);
 	int textXOffset = bounds.w / 2 - fontobj.char_w * text.length() / 2;

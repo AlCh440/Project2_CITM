@@ -1,3 +1,6 @@
+#ifndef __TWEENING_H__
+#define __TWEENING_H__
+
 #include "External/Tweeny/tweeny.h"
 
 enum Easings
@@ -174,10 +177,10 @@ public:
     //Set the initial conditions of the next tween (length, time(ms) and type of easing)
     void AddTween(int duration, int time, Easings easingMode)
     {
-
+        
         float currentPoint = tween.progress() * tween.duration();
 
-        tween.to((duration)*smoothness).during(time);
+            tween.to((duration) * smoothness).during(time);
 
 
         tween.seek((int32_t)currentPoint, false);
@@ -294,21 +297,22 @@ public:
         tween.to(nextPos).during(time);
     }
     //Updates the tween in whole positions. Returns the current point of the tween
-    int Step(int amount, bool suppressCallbacks)
-    {
-        return tween.step(amount, suppressCallbacks);
+	int Step(int amount, bool suppressCallbacks)
+	{
+		return tween.step(amount, suppressCallbacks);
         this->suppressCallbacks = suppressCallbacks;
-    }
+	}
     //Updates the tween in percentages. Returns the current point of the tween
     int Step(float amount, bool suppressCallbacks)
     {
         return tween.step(amount, suppressCallbacks);
     }
     // Returns the current point of the tween without updating it.
-    float GetPoint()
-    {
-        return (float)tween.peek() * multiplier / smoothness;
-    }
+	float GetPoint()
+	{
+
+		return (float)tween.peek() * multiplier / smoothness;
+	}
     void SetEasing(Easings easingMode)
     {
         switch (easingMode)
@@ -419,10 +423,10 @@ public:
     }
 
     //Go to a certain point of the tween while interpolating
-    int GoTo(int point, bool suppressCallbacks)
+    int GoTo(int point,bool suppressCallbacks)
     {
         return tween.seek(point, suppressCallbacks);
-
+        
     }
 
     //Go to a certain percentage of the tween with interpolation
@@ -454,15 +458,15 @@ public:
 
     uint32_t TotalDuration()
     {
-
+        
         return tween.duration();
     }
-
+    
     int Direction()
     {
         return tween.direction();
     }
-
+    
 
     tweeny::tween<int> Main() const
     {
@@ -474,7 +478,7 @@ public:
     float smoothness;
     bool suppressCallbacks;
 private:
-    tweeny::tween<int> tween;
+	tweeny::tween<int> tween;
     int nextPos;
     int totalLength;
     int accumDuration;
@@ -482,3 +486,4 @@ private:
     int currentTweening;
 };
 
+#endif //__TWEENING_H__

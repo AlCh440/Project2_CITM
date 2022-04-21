@@ -115,7 +115,7 @@ void DialogFonts::BlitText(int x, int y, int font_id, const char* text) const
 		spriteRect.x = spriteRect.w * (charIndex % font->columns);
 		spriteRect.y = spriteRect.h * (charIndex / font->columns);
 
-		app->render->DrawTexture(font->texture, x, y, &spriteRect);
+		app->render->DrawTexture(font->texture, x, y, &spriteRect, 0);
 
 		x += spriteRect.w;
 	}

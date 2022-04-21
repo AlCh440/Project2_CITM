@@ -106,7 +106,7 @@ void Dialog::SetActiveNode(size_t id)
 void Dialog::Update()
 {
 	if (activeNode) {
-		app->render->DrawTextureScaled(dialogImg, posX, posY, dialogWidth, dialogHeight);
+		app->render->DrawTextureScaled(dialogImg, posX, posY, dialogWidth, dialogHeight, NULL, 0);
 
 		size_t lines = texts.size();
 		for (size_t i = 0; i < lines; i++) {

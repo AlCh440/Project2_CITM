@@ -129,9 +129,6 @@
     <ClCompile Include="Source\SettingsPanel.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tweening.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Knight.cpp">
       <Filter>Entities\SpecificPlayers</Filter>
     </ClCompile>
@@ -167,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="Source\DialogFonts.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tweening.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,9 +331,6 @@
       <Filter>GUI\Panels</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Source\Tweening.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Knight.h">
       <Filter>Entities\SpecificPlayers</Filter>
     </ClInclude>
@@ -369,6 +366,9 @@
     </ClInclude>
     <ClInclude Include="Source\DialogFonts.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tweening.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
