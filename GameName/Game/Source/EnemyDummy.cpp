@@ -173,7 +173,7 @@ bool EnemyDummy::Update(float dt)
 		entityTurn = false;
 	}
 
-
+	currentAnim->Update();
 	return true;
 }
 
@@ -198,7 +198,15 @@ bool EnemyDummy::PostUpdate()
 
 	app->render->DrawTexture(texture, position.x, position.y, &currentAnim->GetCurrentFrame());
 
-	currentAnim->Update();
+	SDL_Rect r;
+	r.x = position.x - app->map->mapData.tileWidth * .5f;
+	r.y = position.y - app->map->mapData.tileHeight * .5f;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
+
+	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+
+
 
 	return true;
 }

@@ -74,7 +74,7 @@ bool Knight::Start()
 	mapPos=app->map->WorldToMap(position.x, position.y);
 
 	pathfinding->InitBFS(mapPos);
-	for (int i = 0; i < stats.momevent; i++)
+	for (int i = 0; i < stats.momevent*4 +1; i++)
 		pathfinding->PropagateBFS();
 	return true;
 }
@@ -214,17 +214,22 @@ bool Knight::Update(float dt)
 
 	if (stats.momevent <= 0)
 	{
+		stats.momevent = 10;
+		entityTurn = false;
+
 		pathfinding->ResetBFSPath();
 		iPoint mapPos;
 		mapPos = app->map->WorldToMap(position.x, position.y);
 
 		pathfinding->InitBFS(mapPos);
 
-		for (int i = 0; i < stats.momevent; i++)
+		for (int i = 0; i < stats.momevent * 4 + 1; i++)
 			pathfinding->PropagateBFS();
-		stats.momevent = 10;
-		entityTurn = false;
+
+
 	}
+	currentAnim->Update();
+
 
 	return true;
 }
@@ -236,13 +241,21 @@ bool Knight::PostUpdate()
 
 	if (goingLeft)
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame());
+		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame());
 	}
 	else
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
+		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
-	currentAnim->Update();
+	SDL_Rect r;
+	r.x = position.x - app->map->mapData.tileWidth * .5f;
+	r.y = position.y - app->map->mapData.tileHeight * .5f ;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
+
+	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
+
+
 	return true;
 }
 
