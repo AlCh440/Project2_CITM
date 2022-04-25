@@ -249,14 +249,20 @@ bool Knight::PostUpdate()
 	}
 
 	int x, y;
+
 	app->input->GetMouseWorldPosition(x, y);
-	app->map->WorldToMap(x,y);
-	r.x = x;
-	r.y = y;
+	iPoint p;
+	p.x = x;
+	p.y = y;
+	p = app->map->WorldToMap(p.x, p.y);
+	p = app->map->MapToWorld(p.x, p.y);
+
+	r.x = p.x;
+	r.y = p.y;
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
+	app->render->DrawRectangle(r, 125, 255, 255, 150, true);
 
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f ;

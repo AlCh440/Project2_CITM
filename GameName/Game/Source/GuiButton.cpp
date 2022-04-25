@@ -50,9 +50,10 @@ bool GuiButton::Update(float dt)
 				playfx = false;
 			}
 
-			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
+			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
 			{
 				state = GuiControlState::PRESSED;
+				playfx = true;
 			}
 
 			// Generate event
@@ -121,9 +122,11 @@ bool GuiButton::Draw(Render* render)
 	
 		if (app->guiManager->Debug)
 			render->DrawRectangle(bounds, 255, 255, 255, 255);
-
-		app->audio->PlayFx(2);
-
+		if (playfx)
+		{
+			app->audio->PlayFx(2);
+			playfx = false;
+		}
 		if (texture != NULL)
 			render->DrawTexture(texture, bounds.x, bounds.y, &pressedRec);
 

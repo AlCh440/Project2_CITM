@@ -269,9 +269,17 @@ void App::FinishUpdate()
 	static char title[256];
 	//sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",
 	//	averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
-	int x,y;
-	input->GetMousePosition(x,y);
-	sprintf_s(title, 256, "Mouse position x %d y %d, Camera x %d y %d", x, y,render->camera.x,render->camera.y);
+	/*int x,y;
+	input->GetMouseWorldPosition(x,y);
+	sprintf_s(title, 256, "Mouse position x %d y %d, Camera x %d y %d", x, y,render->camera.x,render->camera.y);*/
+
+	int mouseX, mouseY;
+	app->input->GetMousePosition(mouseX, mouseY);
+	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
+
+	sprintf_s(title,256,"Tile:[%d,%d]", mouseTile.x, mouseTile.y);
+
+
 
 	if (FPSCapTo30)
 		maxFrameRate = 30;
