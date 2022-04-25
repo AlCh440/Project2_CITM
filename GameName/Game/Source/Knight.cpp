@@ -226,7 +226,6 @@ bool Knight::Update(float dt)
 		for (int i = 0; i < stats.momevent * 4 + 1; i++)
 			pathfinding->PropagateBFS();
 
-
 	}
 	currentAnim->Update();
 
@@ -236,6 +235,7 @@ bool Knight::Update(float dt)
 
 bool Knight::PostUpdate()
 {
+	SDL_Rect r;
 
 	pathfinding->DrawBFSPath();
 
@@ -247,14 +247,23 @@ bool Knight::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
-	SDL_Rect r;
+
+	int x, y;
+	app->input->GetMouseWorldPosition(x, y);
+	app->map->WorldToMap(x,y);
+	r.x = x;
+	r.y = y;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
+
+	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
+
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f ;
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
 	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
-
 
 	return true;
 }

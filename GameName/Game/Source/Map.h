@@ -180,7 +180,7 @@ public:
 
 private:
 
-	// L03: Methods to load all required map data
+	//Methods to load all required map data
 	bool LoadMap(pugi::xml_node mapFile);
 	bool LoadTileSets(pugi::xml_node mapFile);
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
