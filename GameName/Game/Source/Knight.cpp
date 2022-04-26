@@ -122,10 +122,76 @@ bool Knight::Update(float dt)
 	case COMBATMOVE:
 	{
 		
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN) {
+			int x, y;
+			app->input->GetMouseWorldPosition(x, y);
+			iPoint p;
+			p.x = x;
+			p.y = y;
+			p = app->map->WorldToMap(p.x, p.y);
+
+			iPoint pos;
+			pos.x = position.x;
+			pos.y = position.y;
+			pos = app->map->WorldToMap(pos.x, pos.y);
+
+			if (pathfinding->CreateVisitedPath(pos, p) != -1) 
+			{
+				Move = true;
+			}
+
+
+		}
+
+		while (Move)
+		{
+			for (uint i = 0; i < pathfinding->GetLastPath()->Count(); i++)
+			{
+				iPoint* currentP = pathfinding->GetLastPath()->At(i);
+				iPoint* nextP = pathfinding->GetLastPath()->At(i+1);
+				
+				if (nextP == nullptr)
+				{
+					Move = false;
+					break;
+				}
+				
+				iPoint* direction = new iPoint;
+				direction->x = nextP->x - currentP->x;
+				direction->y = nextP->y - currentP->y;
+
+				if (direction->x >= 1)
+					direction->x = 1;
+				else if (direction->x <= -1)
+					direction->x = -1;
+				else direction->x = 0;
+
+				if (direction->y >= 1)
+					direction->y = 1;
+				else if (direction->y <= -1)
+					direction->y = -1;
+				else direction->y = 0;
+				
+
+				bool check = false;
+				int counterx = 0, countery = 0;
+
+				while (!check)
+				{
+
+					position.x += 32 * direction->x;
+					position.y += 32 * direction->y;
+					check = true;
+				}
+				
+
+			}
+		}
 
 
 
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+
+		/*if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
 			position.x -= 32;
 			stats.momevent -= 1;
@@ -159,7 +225,7 @@ bool Knight::Update(float dt)
 			walkSide.Reset();
 			currentAnim = &walkDown;
 			goingLeft = true;
-		}
+		}*/
 
 		b2Vec2 teleport = { PIXEL_TO_METERS((float)position.x),  PIXEL_TO_METERS((float)position.y) };
 		physBody->body->SetTransform(teleport, 0.f);
@@ -247,6 +313,23 @@ bool Knight::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
+
+
+
+	//Draw path
+	const DynArray<iPoint>* path = pathfinding->GetLastPath();
+
+	SDL_Rect rect;
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		rect.x = (pos.x);
+		rect.y = (pos.y);
+		rect.w = (app->map->mapData.tileWidth);
+		rect.h = (app->map->mapData.tileHeight);
+		app->render->DrawRectangle(rect, 255, 125, 0, 150);
+	}
+
 
 	int x, y;
 

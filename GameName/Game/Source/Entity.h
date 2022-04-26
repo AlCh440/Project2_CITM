@@ -107,6 +107,7 @@ protected:
 	Animation* currentAnim = nullptr;
 	Animation score;
 
+	bool Move;
 	// To check diretion anim
 	bool goingLeft = true;
 

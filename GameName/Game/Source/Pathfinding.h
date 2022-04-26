@@ -33,7 +33,8 @@ public:
 
 	// Main function to request a path from A to B
 	int CreatePath(const iPoint& origin, const iPoint& destination);
-
+	// Function to request path from A to B but visited tiles only
+	int CreateVisitedPath(const iPoint& origin, const iPoint& destination);
 	//Generate BFS expansion of walkeable tiles
 	void PropagateBFS();
 
@@ -42,6 +43,8 @@ public:
 	void InitBFS(iPoint pos);
 
 	void DrawBFSPath();
+
+	bool IsVisited(const iPoint& pos) const;
 
 	// To request all tiles involved in the last generated path
 	const DynArray<iPoint>* GetLastPath() const;
@@ -98,6 +101,7 @@ struct PathNode
 
 	// Fills a list (PathList) of all valid adjacent pathnodes
 	uint FindWalkableAdjacents(PathList& list_to_fill,PathFinding* path) const;
+	uint FindVisitedAdjacents(PathList& list_to_fill,PathFinding* path) const;
 	// Calculates this tile score
 	int Score() const;
 	// Calculate the F for a specific destination tile

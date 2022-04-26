@@ -165,6 +165,34 @@ uint PathNode::FindWalkableAdjacents(PathList& listToFill, PathFinding* path) co
 	return listToFill.list.count();
 }
 
+uint PathNode::FindVisitedAdjacents(PathList& listToFill, PathFinding* path) const
+{
+	iPoint cell;
+	uint before = listToFill.list.count();
+
+	// north
+	cell.Create(pos.x, pos.y + 1);
+	if (path->IsVisited(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// south
+	cell.Create(pos.x, pos.y - 1);
+	if (path->IsVisited(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// east
+	cell.Create(pos.x + 1, pos.y);
+	if (path->IsVisited(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// west
+	cell.Create(pos.x - 1, pos.y);
+	if (path->IsVisited(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	return listToFill.list.count();
+}
+
 // PathNode -------------------------------------------------------------------------
 // Calculates this tile score
 // ----------------------------------------------------------------------------------
@@ -205,6 +233,80 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	lastPath.Clear();
 
 	if (IsWalkable(origin) && IsWalkable(destination))
+	{
+		while (open.list.count() > 0)
+		{
+
+			lowest = open.GetNodeLowestScore();
+			current = close.list.add(lowest->data);
+			open.list.del(lowest);
+
+			if (current->data.pos == destination)
+			{
+				lastPath.Clear();
+				// backtrack the path
+				const PathNode* lastItem = &current->data;
+				while (lastItem)
+				{
+					lastPath.PushBack(lastItem->pos);
+
+					lastItem = lastItem->parent;
+				}
+				lastPath.Flip();
+				ret = lastPath.Count();
+				break;
+			}
+
+			current->data.FindWalkableAdjacents(adjacents, this);
+
+			p2ListItem<PathNode>* adj = adjacents.list.start;
+			while (adj != NULL)
+			{
+				if (close.Find(adj->data.pos) != NULL)
+				{
+					adj = adj->next;
+					continue;
+				}
+
+				p2ListItem<PathNode>* adjacentInOpen = open.Find(adj->data.pos);
+
+				if (adjacentInOpen == NULL)
+				{
+					adj->data.CalculateF(destination);
+					open.list.add(adj->data);
+				}
+				else {
+
+					if (adjacentInOpen->data.g > (adj->data.g + 1))
+					{
+						adjacentInOpen->data.parent = adj->data.parent;
+						adjacentInOpen->data.CalculateF(destination);
+					}
+				}
+				adj = adj->next;
+			}
+		}
+	}
+	return ret;
+}
+
+int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destination)
+{
+	int ret = -1;
+
+	PathList open;
+	PathList close;
+	PathList adjacents;
+
+	PathNode nodeStart(0, 0, origin, nullptr);
+
+	open.list.add(nodeStart);
+
+	p2ListItem<PathNode>* current = open.list.start;
+	p2ListItem<PathNode>* lowest;
+	lastPath.Clear();
+
+	if (IsVisited(origin) && IsVisited(destination))
 	{
 		while (open.list.count() > 0)
 		{
@@ -336,4 +438,19 @@ void PathFinding::DrawBFSPath()
 		app->render->DrawRectangle(rect, 100, 0, 155, 100);
 	}
 
+}
+
+bool PathFinding::IsVisited(const iPoint& pos) const
+{
+	p2ListItem<iPoint>* p = visited.start;
+
+	while (p != NULL)
+	{
+		if (p->data == pos)
+			return true;
+
+		p = p->next;
+	}
+
+	return false;
 }
