@@ -331,7 +331,7 @@ int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destinati
 				break;
 			}
 
-			current->data.FindWalkableAdjacents(adjacents, this);
+			current->data.FindVisitedAdjacents(adjacents, this);
 
 			p2ListItem<PathNode>* adj = adjacents.list.start;
 			while (adj != NULL)

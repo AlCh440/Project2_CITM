@@ -674,7 +674,7 @@ bool Map::SetMapColliders()
 		object = objectLayer->data->objects.start;
 		while (object != NULL)
 		{
-
+			//Box 2d has the pivot on the center so add the half of the tile
 			iPoint spawnPos;
 			spawnPos.x = object->data->x + object->data->width * 0.5;
 			spawnPos.y = object->data->y + object->data->height * 0.5;

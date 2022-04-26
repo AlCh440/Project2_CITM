@@ -35,7 +35,7 @@ bool StartMenu::Start()
 {
 
 	img = app->tex->Load("Assets/Sprites/UI/screen_title.jpg");
-	music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
+	//music = app->audio->PlayMusic("assets/audio/music/song_menu.wav");
 	rect = { 0, 0,1280,720 };
 	app->render->ResetCameraPosition();
 	app->guiManager->OpenPanel(PanelID::P_START_MENU);

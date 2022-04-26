@@ -107,6 +107,16 @@ protected:
 	Animation* currentAnim = nullptr;
 	Animation score;
 
+	iPoint* currentP;
+	iPoint* nextP;
+	iPoint* direction;
+	iPoint tilePos;
+
+	//counts the tiles advanced in combat mode
+	int stepCounter = 0; 
+
+	float moveTime;
+	float counter;
 	bool Move;
 	// To check diretion anim
 	bool goingLeft = true;

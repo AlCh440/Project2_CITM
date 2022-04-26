@@ -51,5 +51,5 @@ private:
 	Animation walkSide;
 	Animation walkUp;
 	Animation walkDown;
-
+	bool nextStep = true;
 };

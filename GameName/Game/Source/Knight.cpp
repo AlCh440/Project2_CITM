@@ -25,6 +25,8 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	actionPoints = 10; // To determine
 	isAlive = true;
 	state = COMBATMOVE;
+	moveTime = 32; //milisec = 1s
+	counter = moveTime;
 }
 
 bool Knight::Start()
@@ -36,7 +38,7 @@ bool Knight::Start()
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-
+	stepCounter = 0;
 
 	currentAnim = &walkSide;
 
@@ -122,7 +124,17 @@ bool Knight::Update(float dt)
 	case COMBATMOVE:
 	{
 		
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN) {
+		//store the entity position in tiles
+		iPoint pos;
+		pos.x = position.x;
+		pos.y = position.y;
+		pos = app->map->WorldToMap(pos.x, pos.y);
+
+		tilePos = pos;
+
+
+
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move) {
 			int x, y;
 			app->input->GetMouseWorldPosition(x, y);
 			iPoint p;
@@ -130,12 +142,7 @@ bool Knight::Update(float dt)
 			p.y = y;
 			p = app->map->WorldToMap(p.x, p.y);
 
-			iPoint pos;
-			pos.x = position.x;
-			pos.y = position.y;
-			pos = app->map->WorldToMap(pos.x, pos.y);
-
-			if (pathfinding->CreateVisitedPath(pos, p) != -1) 
+			if (pathfinding->CreateVisitedPath(tilePos, p) != -1)
 			{
 				Move = true;
 			}
@@ -143,20 +150,26 @@ bool Knight::Update(float dt)
 
 		}
 
-		while (Move)
+		if(Move)
 		{
-			for (uint i = 0; i < pathfinding->GetLastPath()->Count(); i++)
+			//get direction
+			for (stepCounter; stepCounter < pathfinding->GetLastPath()->Count() && nextStep; )
 			{
-				iPoint* currentP = pathfinding->GetLastPath()->At(i);
-				iPoint* nextP = pathfinding->GetLastPath()->At(i+1);
-				
+
+				nextStep = false;
+
+				currentP = pathfinding->GetLastPath()->At(stepCounter);
+				nextP = pathfinding->GetLastPath()->At(stepCounter + 1);
+
 				if (nextP == nullptr)
 				{
 					Move = false;
+					stepCounter = 0;
+					nextStep = true;
 					break;
 				}
-				
-				iPoint* direction = new iPoint;
+
+				direction = new iPoint;
 				direction->x = nextP->x - currentP->x;
 				direction->y = nextP->y - currentP->y;
 
@@ -171,20 +184,33 @@ bool Knight::Update(float dt)
 				else if (direction->y <= -1)
 					direction->y = -1;
 				else direction->y = 0;
+
+				stepCounter++;
+
+			}
 				
+			counter -= 1;
+			if (counter >= 0 && !nextStep)
+			{
+				//move
+				position.x += direction->x;
+				position.y += direction->y;
 
-				bool check = false;
-				int counterx = 0, countery = 0;
+				iPoint p;
+				p = app->map->MapToWorld(nextP->x, nextP->y);
 
-				while (!check)
+
+				iPoint pUpleft;
+				pUpleft.x = position.x - app->map->mapData.tileWidth * 0.5f;
+				pUpleft.y = position.y - app->map->mapData.tileHeight * 0.5f;
+
+				// check if is in position
+				if (pUpleft.x == p.x && pUpleft.y == p.y)
 				{
-
-					position.x += 32 * direction->x;
-					position.y += 32 * direction->y;
-					check = true;
+					nextStep = true;
 				}
-				
 
+				counter = moveTime;
 			}
 		}
 
