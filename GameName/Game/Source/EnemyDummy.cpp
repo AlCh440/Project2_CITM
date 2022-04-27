@@ -30,7 +30,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	physBody->body->SetGravityScale(0);
 	
 	stats.hp = 10;
-	stats.momevent = 10;
+	stats.movement = 10;
 }
 
 void EnemyDummy::Move(float dt)
@@ -119,28 +119,28 @@ bool EnemyDummy::Update(float dt)
 			iPoint* going = pathfinding->GetLastPath()->At(1);
 			if (going != nullptr)
 			{
-				if (stats.momevent > 0)
+				if (stats.movement > 0)
 				{
 
 					if (going->x < positionToMap.x) // LEFT
 					{
 						Interpolate(position.x - 32, position.y, inter_speed);
-						--stats.momevent;
+						--stats.movement;
 					}
 					else if (going->x > positionToMap.x) // RIGHT
 					{
 						Interpolate(position.x + 32, position.y, inter_speed);
-						--stats.momevent;
+						--stats.movement;
 					}
 					else if (going->y < positionToMap.y) // UP
 					{
 						Interpolate(position.x, position.y - 32, inter_speed);
-						--stats.momevent;
+						--stats.movement;
 					}
 					else if (going->y > positionToMap.y) // DOWN
 					{
 						Interpolate(position.x, position.y + 32, inter_speed);
-						--stats.momevent;
+						--stats.movement;
 					}
 				}
 				else
@@ -165,9 +165,9 @@ bool EnemyDummy::Update(float dt)
 
 
 	
-	if (stats.momevent <= 0)
+	if (stats.movement <= 0)
 	{
-		stats.momevent = 10;
+		stats.movement = 10;
 		
 		app->entities->NextEnemyTurn();
 		entityTurn = false;

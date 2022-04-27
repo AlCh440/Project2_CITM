@@ -19,7 +19,7 @@ struct Statistics
 	int hp;
 	int mana;
 	int baseDamage;
-	int momevent;
+	int movement;
 };
 
 class Entity abstract

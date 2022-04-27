@@ -32,7 +32,7 @@ bool OpenWorldPlayer::Start()
 {
 	stats.hp = 100;
 	stats.mana = 50;
-	stats.momevent = 10;
+	stats.movement = 10;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;

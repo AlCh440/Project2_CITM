@@ -150,7 +150,7 @@ void Entity::Interpolate(int x, int y, float speed)
 		{
 			interpolating = false;
 			h = 0;
-			stats.momevent -= 1;
+			stats.movement -= 1;
 		}
 
 	}

@@ -20,7 +20,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	physBody->entityPtr = this;
 	stats.hp = 100;
 	stats.mana = 50;
-	stats.momevent = 10;
+	stats.movement = 10;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
@@ -34,7 +34,7 @@ bool Knight::Start()
 
 	stats.hp = 100;
 	stats.mana = 50;
-	stats.momevent = 10;
+	stats.movement = 10;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
@@ -76,7 +76,7 @@ bool Knight::Start()
 	mapPos=app->map->WorldToMap(position.x, position.y);
 
 	pathfinding->InitBFS(mapPos);
-	for (int i = 0; i < stats.momevent*4 +1; i++)
+	for (int i = 0; i < stats.movement *4 +1; i++)
 		pathfinding->PropagateBFS();
 	return true;
 }
@@ -93,6 +93,9 @@ bool Knight::PreUpdate()
 		else
 		{
 			isAlive = false;
+
+			//deadth anim
+
 			CleanUp();
 		}
 	}
@@ -146,8 +149,6 @@ bool Knight::Update(float dt)
 			{
 				Move = true;
 			}
-
-
 		}
 
 		if(Move)
@@ -173,6 +174,8 @@ bool Knight::Update(float dt)
 				direction->x = nextP->x - currentP->x;
 				direction->y = nextP->y - currentP->y;
 
+
+				//error control
 				if (direction->x >= 1)
 					direction->x = 1;
 				else if (direction->x <= -1)
@@ -186,7 +189,6 @@ bool Knight::Update(float dt)
 				else direction->y = 0;
 
 				stepCounter++;
-
 			}
 				
 			counter -= 1;
@@ -196,10 +198,12 @@ bool Knight::Update(float dt)
 				position.x += direction->x;
 				position.y += direction->y;
 
+
+				//get next tile world position
 				iPoint p;
 				p = app->map->MapToWorld(nextP->x, nextP->y);
 
-
+				//get the "correct" position
 				iPoint pUpleft;
 				pUpleft.x = position.x - app->map->mapData.tileWidth * 0.5f;
 				pUpleft.y = position.y - app->map->mapData.tileHeight * 0.5f;
@@ -208,6 +212,7 @@ bool Knight::Update(float dt)
 				if (pUpleft.x == p.x && pUpleft.y == p.y)
 				{
 					nextStep = true;
+					stats.movement -= 1;
 				}
 
 				counter = moveTime;
@@ -304,9 +309,9 @@ bool Knight::Update(float dt)
 	}break;
 	}
 
-	if (stats.momevent <= 0)
+	if (stats.movement <= 0)
 	{
-		stats.momevent = 10;
+		stats.movement = 10;
 		entityTurn = false;
 
 		pathfinding->ResetBFSPath();
@@ -315,7 +320,7 @@ bool Knight::Update(float dt)
 
 		pathfinding->InitBFS(mapPos);
 
-		for (int i = 0; i < stats.momevent * 4 + 1; i++)
+		for (int i = 0; i < stats.movement * 4 + 1; i++)
 			pathfinding->PropagateBFS();
 
 	}
