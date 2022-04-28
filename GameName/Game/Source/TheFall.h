@@ -37,11 +37,12 @@ public:
 	bool CleanUp();
 
 	void FillDialog(Dialog& dialog);
-	
+
 
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;
+
 	Dialog dialog;
 
 };
