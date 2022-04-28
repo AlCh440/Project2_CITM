@@ -25,7 +25,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	actionPoints = 10; // To determine
 	isAlive = true;
 	state = COMBATMOVE;
-	moveTime = 32; //milisec = 1s
+	moveTime = 32; //milisec
 	counter = moveTime;
 }
 
@@ -39,6 +39,8 @@ bool Knight::Start()
 	actionPoints = 10; // To determine
 	isAlive = true;
 	stepCounter = 0;
+
+	direction = new iPoint{ 0, 0 };
 
 	currentAnim = &walkSide;
 
@@ -78,6 +80,9 @@ bool Knight::Start()
 	pathfinding->InitBFS(mapPos);
 	for (int i = 0; i < stats.movement *4 +1; i++)
 		pathfinding->PropagateBFS();
+
+	
+
 	return true;
 }
 
@@ -153,15 +158,15 @@ bool Knight::Update(float dt)
 
 		if(Move)
 		{
-			//get direction
 			for (stepCounter; stepCounter < pathfinding->GetLastPath()->Count() && nextStep; )
 			{
-
 				nextStep = false;
 
 				currentP = pathfinding->GetLastPath()->At(stepCounter);
 				nextP = pathfinding->GetLastPath()->At(stepCounter + 1);
 
+
+				//end movement
 				if (nextP == nullptr)
 				{
 					Move = false;
@@ -170,22 +175,37 @@ bool Knight::Update(float dt)
 					break;
 				}
 
+				//calculate movement direction
 				direction = new iPoint;
 				direction->x = nextP->x - currentP->x;
 				direction->y = nextP->y - currentP->y;
 
-
-				//error control
+				walkSide.Reset();
+				walkDown.Reset();
+				walkUp.Reset();
+				//error control and set anim
 				if (direction->x >= 1)
+				{
 					direction->x = 1;
+					currentAnim = &walkSide;
+				}
 				else if (direction->x <= -1)
+				{
 					direction->x = -1;
-				else direction->x = 0;
+					currentAnim = &walkSide;
+				}
+				else  direction->x = 0; 
 
 				if (direction->y >= 1)
-					direction->y = 1;
+				{
+					direction->y = 1; 
+					currentAnim = &walkDown;
+				}
 				else if (direction->y <= -1)
+				{
 					direction->y = -1;
+					currentAnim = &walkUp;
+				}
 				else direction->y = 0;
 
 				stepCounter++;
@@ -208,7 +228,7 @@ bool Knight::Update(float dt)
 				pUpleft.x = position.x - app->map->mapData.tileWidth * 0.5f;
 				pUpleft.y = position.y - app->map->mapData.tileHeight * 0.5f;
 
-				// check if is in position
+				// check if is in destination position
 				if (pUpleft.x == p.x && pUpleft.y == p.y)
 				{
 					nextStep = true;
@@ -218,45 +238,6 @@ bool Knight::Update(float dt)
 				counter = moveTime;
 			}
 		}
-
-
-
-
-		/*if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
-		{
-			position.x -= 32;
-			stats.momevent -= 1;
-			walkSide.Reset();
-			currentAnim = &walkSide;
-			goingLeft = true;
-		}
-		else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
-		{
-			position.x += 32;
-			stats.momevent -= 1;
-			walkSide.Reset();
-			currentAnim = &walkSide;
-			goingLeft = false;
-
-		}
-		else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
-		{
-			position.y -= 32;
-			stats.momevent -= 1;
-			walkSide.Reset();
-			currentAnim = &walkUp;
-			goingLeft = true;
-
-
-		}
-		else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		{
-			position.y += 32;
-			stats.momevent -= 1;
-			walkSide.Reset();
-			currentAnim = &walkDown;
-			goingLeft = true;
-		}*/
 
 		b2Vec2 teleport = { PIXEL_TO_METERS((float)position.x),  PIXEL_TO_METERS((float)position.y) };
 		physBody->body->SetTransform(teleport, 0.f);
@@ -336,7 +317,7 @@ bool Knight::PostUpdate()
 
 	pathfinding->DrawBFSPath();
 
-	if (goingLeft)
+	if (direction->x <= 0)
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame());
 	}
