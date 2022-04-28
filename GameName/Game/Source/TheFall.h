@@ -43,7 +43,6 @@ private:
 	SDL_Texture* img;
 	SDL_Rect rect;
 
-	Dialog dialog;
 
 };
 

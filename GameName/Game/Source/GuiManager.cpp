@@ -63,6 +63,7 @@ bool GuiManager::Start()
 		panel = panel->next;
 	}
 
+	app->theFall->FillDialog(dialog);
 
 	return true;
 }
@@ -127,6 +128,12 @@ bool GuiManager::PostUpdate() {
 			panel->data->Draw();
 		
 		panel = panel->next;
+	}
+
+
+	if ((!dialog.Finished()))
+	{
+		dialog.Update();
 	}
 
 	return true;

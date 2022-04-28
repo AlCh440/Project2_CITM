@@ -29,7 +29,6 @@ bool TheFall::Start()
 	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
 
-	FillDialog(dialog);
 
 	return true;
 }
@@ -50,10 +49,7 @@ bool TheFall::Update(float dt)
 bool TheFall::PostUpdate()
 {
 	app->map->Draw();
-	if (!dialog.Finished())
-	{
-		dialog.Update();
-	}
+	
 	return true;
 }
 
@@ -73,9 +69,11 @@ void TheFall::FillDialog(Dialog& dialog)
 
 	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
 	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
+	char lookupTable2[] = { " !çç%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}çç"};
 
 
 	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
+	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/gnsh-blue-2.png", lookupTable2, 5);
 
 	// Set dialog box, and font
 	dialog.SetPosition(414, 220);
@@ -149,7 +147,7 @@ void TheFall::FillDialog(Dialog& dialog)
 
 	id = dialog.AddNode(node);
 
-	node.text = "Hello, fellow human!";
+	node.text = "FGHI";
 	node.nodes.push_back(id);
 	node.options.push_back("Hello?");
 
