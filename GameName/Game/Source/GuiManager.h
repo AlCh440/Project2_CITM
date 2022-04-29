@@ -77,7 +77,11 @@ public:
 	int currentPanel;
 
 	//Dialog test
-	Dialog dialog;
+	Dialog dialog_Test;
+	void FillDialog_Text(Dialog& dialog);
+
+
+
 
 };
 

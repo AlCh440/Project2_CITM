@@ -3,8 +3,7 @@
 #include "p2List.h"
 #include "Defs.h"
 #include "Animation.h"
-#include "Dialog.h"
-#include "DialogFonts.h"
+
 
 
 struct SDL_Texture;
@@ -35,9 +34,6 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
-
-	void FillDialog(Dialog& dialog);
-
 
 private:
 	SDL_Texture* img;
