@@ -40,4 +40,7 @@ private:
 	Animation walkDown;
 	Animation walkSide;
 	Animation idle;
+
+	bool goingLeft;
+
 };

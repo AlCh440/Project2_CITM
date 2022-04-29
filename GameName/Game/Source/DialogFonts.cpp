@@ -106,7 +106,7 @@ void DialogFonts::BlitText(int x, int y, int font_id, const char* text) const
 		for (uint j = 0; j < font->totalLength; ++j)
 		{
 
-			LOG("%c", text[i]);
+			//LOG("%c", text[i]);
 			if (font->table[j] == text[i])
 			{
 				charIndex = j;
@@ -114,10 +114,6 @@ void DialogFonts::BlitText(int x, int y, int font_id, const char* text) const
 			}
 		}
 		// Position of the current character in the sprite
-		LOG("w %i", spriteRect.w);
-		LOG("w mod %i", (charIndex % font->columns));
-		LOG("h %i", spriteRect.h);
-		LOG("h mod %i", (charIndex / font->columns));
 		spriteRect.x = spriteRect.w * (charIndex % font->columns);
 		spriteRect.y = spriteRect.h * (charIndex / font->columns);
 

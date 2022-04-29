@@ -69,11 +69,11 @@ void TheFall::FillDialog(Dialog& dialog)
 
 	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
 	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
-	char lookupTable2[] = { " !çç%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}çç"};
+	char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~"};
 
 
-	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
-	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/gnsh-blue-2.png", lookupTable2, 5);
+	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
+	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans-2.png", lookupTable2, 1);
 
 	// Set dialog box, and font
 	dialog.SetPosition(414, 220);

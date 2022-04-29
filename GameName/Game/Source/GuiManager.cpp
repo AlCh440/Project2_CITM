@@ -131,7 +131,7 @@ bool GuiManager::PostUpdate() {
 	}
 
 
-	if ((!dialog.Finished()))
+	if ((app->theFall->active) && (!dialog.Finished()))
 	{
 		dialog.Update();
 	}

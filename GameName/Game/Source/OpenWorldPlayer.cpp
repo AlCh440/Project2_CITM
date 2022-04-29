@@ -94,6 +94,7 @@ bool OpenWorldPlayer::Update(float dt)
 	physBody->body->SetLinearVelocity(movement);
 	physBody->GetPosition(position.x, position.y);
 
+
 	if (movement.x > 0)
 	{
 		currentAnim = &walkSide;
