@@ -42,11 +42,6 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-
-
-	//int hitPoints;
-	//int score;
-	//float detectionDistance = 10; // in pixels
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
@@ -54,11 +49,6 @@ protected:
 	fPoint lastPosition;
 	fPoint pos;
 	b2Vec2 movementSpeed;
-
-
-	//int scorePoints = 0;
-
-
 	ENEMY_STATE actualStates;
 
 	iPoint positionToMap;

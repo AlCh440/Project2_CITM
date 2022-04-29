@@ -65,11 +65,15 @@ public:
 
 	Statistics stats;
 
+
+
+//----------------------------------------------------------------------------
+// Common scene elements
+//----------------------------------------------------------------------------
 public:
 	void takeDamage(int damage);
 	// Returns distance to a point
 	int CheckDistanceToPhysBody(PhysBody* PhysPos);
-
 	// The current position in the world
 	iPoint spawnPos;
 	iPoint position;
@@ -107,6 +111,13 @@ protected:
 	Animation* currentAnim = nullptr;
 	Animation score;
 
+
+
+//----------------------------------------------------------------------------
+// Battle scene elements
+//----------------------------------------------------------------------------
+
+protected:
 	iPoint* currentP;
 	iPoint* nextP;
 	iPoint* direction;
@@ -114,12 +125,12 @@ protected:
 
 	//counts the tiles advanced in combat mode
 	int stepCounter = 0; 
-
 	float moveTime;
 	float counter;
 	bool Move;
-	// To check diretion anim
-	bool goingLeft = true;
+	int moveRange;
+	int attackRange;
+
 
 	float iSpeed;
 	bool interpolating = false;
@@ -131,7 +142,14 @@ protected:
 	float pos_dif_y;
 	float h = 0;
 	float inter_speed;
-	
+
+//----------------------------------------------------------------------------
+// World scene elements
+//----------------------------------------------------------------------------
+public:
+protected:
+private:
+
 };
 
 #endif // __ENTITY_H__

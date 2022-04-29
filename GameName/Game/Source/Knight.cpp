@@ -154,6 +154,9 @@ bool Knight::Update(float dt)
 			{
 				Move = true;
 			}
+			else {
+				LOG("Error creating path...");
+			}
 		}
 
 		if(Move)
