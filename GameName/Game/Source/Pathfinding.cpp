@@ -2,6 +2,7 @@
 #include "PathFinding.h"
 #include "Render.h"
 #include "Map.h"
+#include "Entities.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -50,6 +51,21 @@ bool PathFinding::IsWalkable(const iPoint& pos) const
 {
 	uchar t = GetTileAt(pos);
 	return t != INVALID_WALK_CODE && t > 0;
+}
+
+bool PathFinding::IsTileEmpty(const iPoint& pos) const
+{
+	for (int i = 0; i < app->entities->entities.count(); i++)
+	{
+		Entity* p;
+		app->entities->entities.at(i, p);
+		if (pos == p->tilePos)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 // Utility: return the walkability value of a tile
@@ -320,6 +336,11 @@ int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destinati
 				lastPath.Clear();
 				// backtrack the path
 				const PathNode* lastItem = &current->data;
+				//check that the last node is empty,
+				//if not last item is parent item
+				if (!IsTileEmpty(lastItem->pos))
+					lastItem = lastItem->parent;
+
 				while (lastItem)
 				{
 					lastPath.PushBack(lastItem->pos);

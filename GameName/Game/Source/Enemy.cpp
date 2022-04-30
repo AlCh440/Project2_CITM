@@ -8,9 +8,9 @@ Enemy::Enemy(Collider_Type type, iPoint pos) : Entity(type,pos)
 {
 }
 
-void Enemy::Move(float dt)
-{
-}
+//void Enemy::Move(float dt)
+//{
+//}
 
 void Enemy::UpdatePath()
 {

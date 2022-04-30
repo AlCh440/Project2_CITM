@@ -28,7 +28,7 @@ public:
 
 	Enemy(iPoint pos);
 	Enemy(Collider_Type type, iPoint pos);
-	virtual void Move(float dt);
+	//virtual void Move(float dt);
 	virtual void UpdatePath();
 
 	virtual bool Start();
@@ -50,10 +50,5 @@ protected:
 	fPoint pos;
 	b2Vec2 movementSpeed;
 	ENEMY_STATE actualStates;
-
-	iPoint positionToMap;
-
-
-	Animation idleAnim, walkingAnim, jumpingAnim, deathAnim;
 };
 

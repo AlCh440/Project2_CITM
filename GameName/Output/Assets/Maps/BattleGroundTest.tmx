@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="left-up" width="45" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="left-up" width="45" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4">
  <tileset firstgid="1" name="Gorund" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="TX Tileset Grass.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -6104,6 +6104,6 @@
  </layer>
  <objectgroup id="3" name="entities">
   <object id="1" name="player" type="knight" x="256" y="352" width="32" height="32"/>
-  <object id="2" name="enemy" type="dummy" x="540.646" y="382.606" width="32" height="32"/>
+  <object id="2" name="enemy" type="dummy" x="544" y="384" width="32" height="32"/>
  </objectgroup>
 </map>

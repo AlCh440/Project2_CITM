@@ -48,8 +48,4 @@ private:
 	
 	knightAttacks attackChoosed = NOATTACK;
 
-	Animation walkSide;
-	Animation walkUp;
-	Animation walkDown;
-	bool nextStep = true;
 };

@@ -39,33 +39,34 @@ bool Knight::Start()
 	actionPoints = 10; // To determine
 	isAlive = true;
 	stepCounter = 0;
+	moveRange = 5;
 
 	direction = new iPoint{ 0, 0 };
-
-	currentAnim = &walkSide;
 
 	walkSide.PushBack({0, 0, 32, 48});
 	walkSide.PushBack({32, 0, 32, 48});
 	walkSide.PushBack({64, 0, 32, 48});
 	walkSide.PushBack({96, 0, 32, 48});
-	walkSide.loop = false;
-	walkSide.speed = 0.2f;
+	walkSide.loop = true;
+	walkSide.speed = 0.1f;
 	
 
 	walkDown.PushBack({ 0, 48, 32, 48 });
 	walkDown.PushBack({ 32, 48, 32, 48 });
 	walkDown.PushBack({ 64, 48, 32, 48 });
 	walkDown.PushBack({ 96, 48, 32, 48 });
-	walkDown.loop = false;
-	walkDown.speed = 0.2f;
+	walkDown.loop = true;
+	walkDown.speed = 0.1f;
 
 
 	walkUp.PushBack({ 0, 96, 32, 48 });
 	walkUp.PushBack({ 32, 96, 32, 48 });
 	walkUp.PushBack({ 64, 96, 32, 48 });
 	walkUp.PushBack({ 96, 96, 32, 48 });
-	walkUp.loop = false;
-	walkUp.speed = 0.2f;
+	walkUp.loop = true;
+	walkUp.speed = 0.1f;
+
+	currentAnim = &walkDown;
 
 	pathfinding = new PathFinding(true);
 	//create navigation map
@@ -74,11 +75,16 @@ bool Knight::Start()
 	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
 	RELEASE_ARRAY(data);
 
-	iPoint mapPos;
-	mapPos=app->map->WorldToMap(position.x, position.y);
+	//store the entity position in tiles
+	iPoint pos;
+	pos.x = position.x;
+	pos.y = position.y;
+	pos = app->map->WorldToMap(pos.x, pos.y);
 
-	pathfinding->InitBFS(mapPos);
-	for (int i = 0; i < stats.movement *4 +1; i++)
+	tilePos = pos;
+
+	pathfinding->InitBFS(tilePos);
+	for (int i = 0; i < stats.movement * moveRange; i++)
 		pathfinding->PropagateBFS();
 
 	
@@ -116,9 +122,6 @@ bool Knight::PreUpdate()
 
 bool Knight::Update(float dt)
 {
-//	LOG("%i", stats.momevent);
-
-
 	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 	{
 		state = COMBATMOVE;
@@ -132,17 +135,7 @@ bool Knight::Update(float dt)
 	case COMBATMOVE:
 	{
 		
-		//store the entity position in tiles
-		iPoint pos;
-		pos.x = position.x;
-		pos.y = position.y;
-		pos = app->map->WorldToMap(pos.x, pos.y);
-
-		tilePos = pos;
-
-
-
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move) {
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move && ExpandedBFS) {
 			int x, y;
 			app->input->GetMouseWorldPosition(x, y);
 			iPoint p;
@@ -150,100 +143,25 @@ bool Knight::Update(float dt)
 			p.y = y;
 			p = app->map->WorldToMap(p.x, p.y);
 
-			if (pathfinding->CreateVisitedPath(tilePos, p) != -1)
-			{
-				Move = true;
-			}
-			else {
-				LOG("Error creating path...");
-			}
+			InitPath(p);
+		}
+		else if(!ExpandedBFS){
+			pathfinding->ResetBFSPath();
+			iPoint mapPos;
+			mapPos = app->map->WorldToMap(position.x, position.y);
+
+			pathfinding->InitBFS(mapPos);
+
+			for (int i = 0; i < stats.movement * 4 + 1; i++)
+				pathfinding->PropagateBFS();
+
+			ExpandedBFS = true;
 		}
 
-		if(Move)
-		{
-			for (stepCounter; stepCounter < pathfinding->GetLastPath()->Count() && nextStep; )
-			{
-				nextStep = false;
+		MovePath();
 
-				currentP = pathfinding->GetLastPath()->At(stepCounter);
-				nextP = pathfinding->GetLastPath()->At(stepCounter + 1);
-
-
-				//end movement
-				if (nextP == nullptr)
-				{
-					Move = false;
-					stepCounter = 0;
-					nextStep = true;
-					break;
-				}
-
-				//calculate movement direction
-				direction = new iPoint;
-				direction->x = nextP->x - currentP->x;
-				direction->y = nextP->y - currentP->y;
-
-				walkSide.Reset();
-				walkDown.Reset();
-				walkUp.Reset();
-				//error control and set anim
-				if (direction->x >= 1)
-				{
-					direction->x = 1;
-					currentAnim = &walkSide;
-				}
-				else if (direction->x <= -1)
-				{
-					direction->x = -1;
-					currentAnim = &walkSide;
-				}
-				else  direction->x = 0; 
-
-				if (direction->y >= 1)
-				{
-					direction->y = 1; 
-					currentAnim = &walkDown;
-				}
-				else if (direction->y <= -1)
-				{
-					direction->y = -1;
-					currentAnim = &walkUp;
-				}
-				else direction->y = 0;
-
-				stepCounter++;
-			}
-				
-			counter -= 1;
-			if (counter >= 0 && !nextStep)
-			{
-				//move
-				position.x += direction->x;
-				position.y += direction->y;
-
-
-				//get next tile world position
-				iPoint p;
-				p = app->map->MapToWorld(nextP->x, nextP->y);
-
-				//get the "correct" position
-				iPoint pUpleft;
-				pUpleft.x = position.x - app->map->mapData.tileWidth * 0.5f;
-				pUpleft.y = position.y - app->map->mapData.tileHeight * 0.5f;
-
-				// check if is in destination position
-				if (pUpleft.x == p.x && pUpleft.y == p.y)
-				{
-					nextStep = true;
-					stats.movement -= 1;
-				}
-
-				counter = moveTime;
-			}
-		}
-
-		b2Vec2 teleport = { PIXEL_TO_METERS((float)position.x),  PIXEL_TO_METERS((float)position.y) };
-		physBody->body->SetTransform(teleport, 0.f);
+		if(currentAnim != NULL)
+			currentAnim->Update();
 
 	}break;
 	case CHOOSINGATTACK:
@@ -297,18 +215,8 @@ bool Knight::Update(float dt)
 	{
 		stats.movement = 10;
 		entityTurn = false;
-
-		pathfinding->ResetBFSPath();
-		iPoint mapPos;
-		mapPos = app->map->WorldToMap(position.x, position.y);
-
-		pathfinding->InitBFS(mapPos);
-
-		for (int i = 0; i < stats.movement * 4 + 1; i++)
-			pathfinding->PropagateBFS();
-
 	}
-	currentAnim->Update();
+
 
 
 	return true;
@@ -328,8 +236,6 @@ bool Knight::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
-
-
 
 	//Draw path
 	const DynArray<iPoint>* path = pathfinding->GetLastPath();

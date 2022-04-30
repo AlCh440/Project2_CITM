@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "App.h"
+#include "Log.h"
 #include "Physics.h"
 #include "Audio.h"
 #include "Render.h"
@@ -102,6 +103,11 @@ b2Vec2 Entity::GetPositionTileToMeters(iPoint pos)
 	return newPos;
 }
 
+iPoint Entity::GetPositionTiles()
+{
+	return iPoint();
+}
+
 void Entity::takeDamage(int damage)
 {
 	stats.hp -= damage;
@@ -157,4 +163,120 @@ void Entity::Interpolate(int x, int y, float speed)
 
 
 
+}
+
+//Destination must be in map coordinates
+bool Entity::InitPath(iPoint destiantion)
+{
+	bool ret = true;
+	if (pathfinding->CreateVisitedPath(tilePos, destiantion) != -1)
+	{
+		Move = true;
+	}
+	else {
+		LOG("Error creating path...");
+		ret = false;
+	}
+	return ret;
+}
+
+//function to update the entity movement
+bool Entity::MovePath()
+{
+	if (Move)
+	{
+		for (stepCounter; stepCounter < pathfinding->GetLastPath()->Count() && nextStep; )
+		{
+			nextStep = false;
+
+			currentP = pathfinding->GetLastPath()->At(stepCounter);
+			nextP = pathfinding->GetLastPath()->At(stepCounter + 1);
+
+
+			//end movement
+			if (nextP == nullptr)
+			{
+				Move = false;
+				ExpandedBFS = false;
+				stepCounter = 0;
+				nextStep = true;
+				break;
+			}
+
+			//calculate movement direction
+			direction = new iPoint;
+			direction->x = nextP->x - currentP->x;
+			direction->y = nextP->y - currentP->y;
+
+			//error control and set anim
+			if (direction->x >= 1)
+			{
+				direction->x = 1;
+				currentAnim = &walkSide;
+			}
+			else if (direction->x <= -1)
+			{
+				direction->x = -1;
+				currentAnim = &walkSide;
+			}
+			else {
+				direction->x = 0;
+				walkSide.Reset();
+			}
+
+			if (direction->y >= 1)
+			{
+				direction->y = 1;
+				currentAnim = &walkDown;
+			}
+			else if (direction->y <= -1)
+			{
+				direction->y = -1;
+				currentAnim = &walkUp;
+			}
+			else {
+				direction->y = 0;
+				walkUp.Reset();
+				walkDown.Reset();
+			}
+			stepCounter++;
+		}
+
+		counter -= 1;
+		if (counter >= 0 && !nextStep)
+		{
+			//move
+			position.x += direction->x;
+			position.y += direction->y;
+
+
+			//get next tile world position
+			iPoint p;
+			p = app->map->MapToWorld(nextP->x, nextP->y);
+
+			//get the "correct" position
+			iPoint pUpleft;
+			pUpleft.x = position.x - app->map->mapData.tileWidth * 0.5f;
+			pUpleft.y = position.y - app->map->mapData.tileHeight * 0.5f;
+
+			// check if is in destination position
+			if (pUpleft.x == p.x && pUpleft.y == p.y)
+			{
+				nextStep = true;
+				stats.movement -= 1;
+
+				//store the entity position in tiles
+				iPoint pos;
+				pos.x = position.x;
+				pos.y = position.y;
+				pos = app->map->WorldToMap(pos.x, pos.y);
+
+				tilePos = pos;
+			}
+
+			counter = moveTime;
+		}
+	}
+
+	return false;
 }

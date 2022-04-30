@@ -60,7 +60,7 @@ public:
 
 	iPoint GetPosition();
 	b2Vec2 GetPositionTileToMeters(iPoint pos);
-	void SetPositionTiles();
+	iPoint GetPositionTiles();
 	void SetPositionPixels();
 
 	Statistics stats;
@@ -109,28 +109,34 @@ public:
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
-	Animation score;
 
-
-
+	Animation walkSide;
+	Animation walkUp;
+	Animation walkDown;
+	Animation idle;
 //----------------------------------------------------------------------------
 // Battle scene elements
 //----------------------------------------------------------------------------
+public:
+	iPoint tilePos;
+	bool ExpandedBFS;
 
+
+	bool InitPath(iPoint destiantion);
+	bool MovePath();
+	void DrawPath();
 protected:
 	iPoint* currentP;
 	iPoint* nextP;
 	iPoint* direction;
-	iPoint tilePos;
-
 	//counts the tiles advanced in combat mode
 	int stepCounter = 0; 
-	float moveTime;
-	float counter;
-	bool Move;
 	int moveRange;
 	int attackRange;
-
+	bool Move;
+	bool nextStep = true;
+	float moveTime ;
+	float counter = 0;
 
 	float iSpeed;
 	bool interpolating = false;
@@ -142,12 +148,15 @@ protected:
 	float pos_dif_y;
 	float h = 0;
 	float inter_speed;
+private:
 
 //----------------------------------------------------------------------------
 // World scene elements
 //----------------------------------------------------------------------------
 public:
+	int interactionRange;
 protected:
+	void WorldMove();
 private:
 
 };

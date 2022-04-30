@@ -45,8 +45,6 @@ public:
 	PhysBody* checkCloseEnemies();
 
 public:
-	Animation* currentAnim = nullptr;
-
 	int typeOfPlayer = 0;
 
 	// The type of Player is the variable that decides whitch player we are creating: Knight, Ranger or Mage

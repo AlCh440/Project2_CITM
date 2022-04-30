@@ -13,7 +13,7 @@ public:
 
 	EnemyDummy(iPoint pos);
 	EnemyDummy(Collider_Type type, iPoint pos);
-	virtual void Move(float dt);
+	//virtual void Move(float dt);
 	virtual void UpdatePath();
 
 	//int hitPoints;
@@ -40,18 +40,7 @@ public:
 	bool SaveState(pugi::xml_node& data) const override;
 
 protected:
-
-
-
 	int scorePoints = 0;	
-
-
 private:
-
-
-	Animation idle;
-	Animation walkUp;
-	Animation walkDown;
-
 };
 

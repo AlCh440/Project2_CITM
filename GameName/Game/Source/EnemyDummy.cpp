@@ -31,11 +31,14 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	
 	stats.hp = 10;
 	stats.movement = 10;
+	moveTime = 32; //milisec
+	counter = moveTime;
+	moveRange = 5;
 }
 
-void EnemyDummy::Move(float dt)
-{
-}
+//void EnemyDummy::Move(float dt)
+//{
+//}
 
 void EnemyDummy::UpdatePath()
 {
@@ -44,13 +47,28 @@ void EnemyDummy::UpdatePath()
 bool EnemyDummy::Start()
 {
 
+
+
 	actualStates = WALK;
+	
+
+	stepCounter = 0;
+	
 	pathfinding = new PathFinding(true);
 	//create navigation map
 	int w, h;
 	uchar* data = NULL;
 	if (app->map->CreateWalkabilityMap(w, h, &data, 1)) pathfinding->SetMap(w, h, data);
 	RELEASE_ARRAY(data);
+
+	//store the entity position in tiles
+	iPoint pos;
+	pos.x = position.x;
+	pos.y = position.y;
+	pos = app->map->WorldToMap(pos.x, pos.y);
+
+	tilePos = pos;
+
 
 	inter_speed = 0.02f;
 
@@ -79,7 +97,7 @@ bool EnemyDummy::PreUpdate()
 
 bool EnemyDummy::Update(float dt)
 {	
-	PhysBody* aux = app->entities->GetNearestPlayer(physBody);
+
 
 	if (stats.hp <= 0)
 	{
@@ -89,10 +107,10 @@ bool EnemyDummy::Update(float dt)
 	}
 	else
 	{
-		if (aux != nullptr && interpolating == false)
-		{
-			actualStates = WALK;
-		}
+		//if (aux != nullptr && interpolating == false)
+		//{
+		//	actualStates = WALK;
+		//}
 		
 		if (interpolating)
 		{
@@ -105,56 +123,71 @@ bool EnemyDummy::Update(float dt)
 	{
 	case WALK:
 	{
+		if (!Move) {
 
-		physBody->GetPosition(position.x, position.y);
-		positionToMap = app->map->WorldToMap(position.x, position.y);
+			//Set available movement tiles
+			pathfinding->InitBFS(tilePos);
+			for (int i = 0; i < stats.movement * moveRange; i++)
+				pathfinding->PropagateBFS();
 
-		iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
-		goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
 
-		int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
-
-		if (distanceInTiles > 2)
-		{
-			iPoint* going = pathfinding->GetLastPath()->At(1);
-			if (going != nullptr)
-			{
-				if (stats.movement > 0)
-				{
-
-					if (going->x < positionToMap.x) // LEFT
-					{
-						Interpolate(position.x - 32, position.y, inter_speed);
-						--stats.movement;
-					}
-					else if (going->x > positionToMap.x) // RIGHT
-					{
-						Interpolate(position.x + 32, position.y, inter_speed);
-						--stats.movement;
-					}
-					else if (going->y < positionToMap.y) // UP
-					{
-						Interpolate(position.x, position.y - 32, inter_speed);
-						--stats.movement;
-					}
-					else if (going->y > positionToMap.y) // DOWN
-					{
-						Interpolate(position.x, position.y + 32, inter_speed);
-						--stats.movement;
-					}
-				}
-				else
-				{
-					//CAN ATTACK???
-				}
-			}
-
+			PhysBody* aux = app->entities->GetNearestPlayer(physBody);
+			InitPath(aux->entityPtr->tilePos);
 		}
+
+		MovePath();
+		currentAnim = &idle;
+		currentAnim->Update();
+
+		//physBody->GetPosition(position.x, position.y);
+		//positionToMap = app->map->WorldToMap(position.x, position.y);
+
+		//iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
+		//goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
+
+		//int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
+
+		//if (distanceInTiles > 2)
+		//{
+		//	iPoint* going = pathfinding->GetLastPath()->At(1);
+		//	if (going != nullptr)
+		//	{
+		//		if (stats.movement > 0)
+		//		{
+
+		//			if (going->x < positionToMap.x) // LEFT
+		//			{
+		//				Interpolate(position.x - 32, position.y, inter_speed);
+		//				--stats.movement;
+		//			}
+		//			else if (going->x > positionToMap.x) // RIGHT
+		//			{
+		//				Interpolate(position.x + 32, position.y, inter_speed);
+		//				--stats.movement;
+		//			}
+		//			else if (going->y < positionToMap.y) // UP
+		//			{
+		//				Interpolate(position.x, position.y - 32, inter_speed);
+		//				--stats.movement;
+		//			}
+		//			else if (going->y > positionToMap.y) // DOWN
+		//			{
+		//				Interpolate(position.x, position.y + 32, inter_speed);
+		//				--stats.movement;
+		//			}
+		//		}
+		//		else
+		//		{
+		//			//CAN ATTACK???
+		//		}
+		//	}
+
+		//}
 
 	}break;
 	case INTERPOLATING:
 	{
-		Interpolate(position.x, position.y, 0.02f);
+		//Interpolate(position.x, position.y, 0.02f);
 	} break;
 	default:
 	{
@@ -192,12 +225,14 @@ bool EnemyDummy::PostUpdate()
 		rect.y = (pos.y);
 		rect.w = (app->map->mapData.tileWidth);
 		rect.h = (app->map->mapData.tileHeight);
-		app->render->DrawRectangle(rect, 255, 125, 0, 150);
+		app->render->DrawRectangle(rect, 255, 125, 125, 150);
 	}
 
-
+	//render entity
 	app->render->DrawTexture(texture, position.x, position.y, &currentAnim->GetCurrentFrame());
 
+
+	//render current tile pos
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f;
