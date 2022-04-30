@@ -224,7 +224,7 @@ void GuiManager::FillDialog_Text(Dialog& dialog)
 
 
 	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
-	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans-2.png", lookupTable2, 1);
+	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
 
 	// Set dialog box, and font
 	dialog.SetPosition(414, 220);
@@ -300,7 +300,7 @@ void GuiManager::FillDialog_Text(Dialog& dialog)
 
 	node.text = "FGHI";
 	node.nodes.push_back(id);
-	node.options.push_back("Hello?");
+	node.options.push_back("Who are you?");
 
 	node.nodes.push_back(id);
 	node.options.push_back("Who are you?");

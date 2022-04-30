@@ -3,6 +3,8 @@
 #include "Point.h"
 #include <string>
 #include "SDL/include/SDL.h"
+#include "App.h"
+#include "Window.h"
 
 class Button
 {
@@ -28,7 +30,14 @@ public:
 	void SetPosition(int x, int y);
 
 	void SetFont(int bfont) { font = bfont; }
-	void SetBounds(SDL_Rect bbounds) { bounds = bbounds; }
+	void SetBounds(SDL_Rect bbounds) { 
+		bounds = bbounds;
+		bounds.x /= app->win->GetScale();
+		bounds.y /= app->win->GetScale();
+		bounds.w /= app->win->GetScale();
+		bounds.h /= app->win->GetScale();
+
+	}
 	void SetText(const char* btext) { text = btext; }
 
 	bool Update();

@@ -100,7 +100,7 @@
     <ClCompile Include="BattleSpace.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
-    <ClCompile Include="Source\Button.cpp" />
+    <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Collectable.cpp" />
     <ClCompile Include="Source\Dialog.cpp" />

@@ -3,6 +3,7 @@
 #include "Render.h"
 #include "DialogFonts.h"
 #include "Input.h"
+#include "Window.h"
 
 void Dialog::SplitText(std::string text)
 {
@@ -13,7 +14,7 @@ void Dialog::SplitText(std::string text)
 
 	for (size_t i = 0; i < textLen; i++) {
 		if (text[i] == ' ') {
-			if (line.length() + word.length() > max_chars_line) {
+			if (((line.length() + word.length() + 4) * app->win->GetScale() > max_chars_line)) {
 				texts.push_back(line);
 				line = word;
 				line += " ";
@@ -77,7 +78,7 @@ void Dialog::SetActiveNode(size_t id)
 			posX,
 			posY + dialogHeight,
 			0,
-			dialogHeight / 4
+			dialogHeight / 10
 		};
 
 		DialogFont& fontobj = app->dialogFonts->GetFont(dialogFont);
@@ -85,8 +86,9 @@ void Dialog::SetActiveNode(size_t id)
 		buttons.clear();
 		for (size_t i = 0; i < opts; i++) {
 			bounds.w = fontobj.char_w * (activeNode->options[i].length() + 4);
+			LOG("%i", fontobj.char_w);
 			buttons.emplace_back(bounds, dialogImg, activeNode->options[i].c_str(), dialogFont);
-			bounds.x += bounds.w;
+			bounds.x += bounds.w * app->win->GetScale();
 		}
 
 		texts.clear();
@@ -107,12 +109,21 @@ void Dialog::Update()
 {
 	if (activeNode) {
 
-		app->render->DrawTextureScaled(dialogImg, posX, posY, dialogWidth, dialogHeight, NULL, 0);
-
+		app->render->DrawTextureScaled(
+			dialogImg, posX / app->win->GetScale(),
+			posY / app->win->GetScale(),
+			dialogWidth / app->win->GetScale(),
+			dialogHeight / app->win->GetScale(),
+			NULL, 0);
 
 		size_t lines = texts.size();
+
 		for (size_t i = 0; i < lines; i++) {
-			app->dialogFonts->BlitText(posX + textXOffset, posY + textYOffset + char_height * i * 2, dialogFont, texts[i].c_str());
+			app->dialogFonts->BlitText(
+				(posX + textXOffset) / app->win->GetScale(),
+				(posY + textYOffset + char_height * i * 2) / app->win->GetScale(),
+				dialogFont, texts[i].c_str()
+			);
 		}
 
 		size_t optionSize = activeNode->options.size();
@@ -174,7 +185,7 @@ void Dialog::SetFont(int font)
 			posX,
 			posY + dialogHeight,
 			fontobj.char_w * (sizeof("continue") + 4),
-			dialogHeight / 4
+			dialogHeight / 10
 	};
 
 	continueButton = Button(bounds, dialogImg, "continue", dialogFont);

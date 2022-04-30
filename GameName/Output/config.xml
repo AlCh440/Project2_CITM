@@ -11,7 +11,7 @@
 
   <window>
 
-    <resolution width="1280" height="720" scale="1"/> <!-- here you can change the resolution, I don't know what are numbers so feel free to change it!!! -->
+    <resolution width="1280" height="720" scale="2"/> <!-- here you can change the resolution, I don't know what are numbers so feel free to change it!!! -->
     <fullscreen value="false"/>  <!-- true to fullscreen-->
 
     <borderless value="false"/>

@@ -159,7 +159,7 @@
     <ClCompile Include="Source\Trigger.cpp">
       <Filter>Entities\CheckPoints</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Button.cpp">
+    <ClCompile Include="Source\DialogButton.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
     <ClCompile Include="Source\DialogFonts.cpp">

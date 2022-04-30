@@ -5,6 +5,7 @@
 #include "Render.h"
 
 #include<string.h>
+#include "Window.h"
 
 DialogFonts::DialogFonts(bool isActive) : Module(isActive)
 {
@@ -105,8 +106,6 @@ void DialogFonts::BlitText(int x, int y, int font_id, const char* text) const
 		// Location of the current character in the lookup table
 		for (uint j = 0; j < font->totalLength; ++j)
 		{
-
-			//LOG("%c", text[i]);
 			if (font->table[j] == text[i])
 			{
 				charIndex = j;
@@ -118,6 +117,7 @@ void DialogFonts::BlitText(int x, int y, int font_id, const char* text) const
 		spriteRect.y = spriteRect.h * (charIndex / font->columns);
 
 		app->render->DrawTexture(font->texture, x, y, &spriteRect, 0);
+
 
 
 		x += spriteRect.w;

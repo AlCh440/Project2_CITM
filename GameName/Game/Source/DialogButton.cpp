@@ -39,11 +39,19 @@ bool Button::Update()
 	{
 		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
+
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w )) &&
-			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h )))
+		mouseX *= app->win->GetScale();
+		mouseY *= app->win->GetScale();
+
+		LOG("bounds pos x: %i", mouseX);
+		LOG("bounds pos y: %i", mouseY);
+
+		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w * app->win->GetScale())) &&
+			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h * app->win->GetScale())))
 		{
+			LOG("true");
 			state = State::FOCUSED;
 
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
@@ -65,13 +73,12 @@ bool Button::Update()
 
 bool Button::Draw()
 {
-	app->render->DrawTextureScaled(texture, bounds.x, bounds.y, bounds.w, bounds.h);
+	app->render->DrawTextureScaled(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), bounds.w, bounds.h,NULL,0);
 
-	Font& fontobj = app->fonts->GetFont(font);
+	DialogFont& fontobj = app->dialogFonts->GetFont(font);
 	int textXOffset = bounds.w / 2 - fontobj.char_w * text.length() / 2;
 	int textYOffset = bounds.h / 2 - fontobj.char_h / 2;
 	
-	app->fonts->BlitText(bounds.x + textXOffset, bounds.y + textYOffset, font, text.c_str());
-
-	return false;
+	app->dialogFonts->BlitText((bounds.x + textXOffset) / app->win->GetScale(), (bounds.y + textYOffset) / app->win->GetScale(), font, text.c_str());
+	return true;
 }
