@@ -11,6 +11,7 @@
 
 #include "Enemy.h"
 #include "EnemyDummy.h"
+#include "Npc.h"
 #include "NpcDummy.h"
 #include "CheckPoint.h"
 #include "Trigger.h"

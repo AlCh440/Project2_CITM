@@ -607,6 +607,11 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::DUMMY;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "dummyNPC") == 0) {
+
+			obj->type = Collider_Type::NPCDUMMY;
+
+		}
 		else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
 
 			obj->type = Collider_Type::CHECK_POINT;
@@ -695,6 +700,10 @@ bool Map::SetMapColliders()
 			case DUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn dummy...");
+				break;
+			case NPCDUMMY:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn dummy NPC...");
 				break;
 			case POTION:
 				app->entities->AddEntity(object->data->type, spawnPos);

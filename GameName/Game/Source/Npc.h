@@ -4,6 +4,11 @@
 
 #include "Entity.h"
 
+enum NPC_STATE
+{
+	NORMAL,
+	TALK
+};
 
 class Npc : public Entity
 {
@@ -24,17 +29,11 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	//int hitPoints;
-	//int score;
-	//float detectionDistance = 10; // in pixels
+	
+	float detectionDistance = 10; // in pixels
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
-
-	
-
-	
-	//int scorePoints = 0;
 
 
 

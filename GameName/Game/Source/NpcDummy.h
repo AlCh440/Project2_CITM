@@ -2,6 +2,8 @@
 #pragma once
 
 #include "Npc.h"
+#include "Dialog.h"
+#include "DialogManager.h"
 
 
 class NpcDummy : public Npc
@@ -18,11 +20,6 @@ public:
 	bool PreUpdate() override;
 	bool Update(float dt) override;
 	bool PostUpdate() override;
-
-public:
-
-	
-
 
 	bool Start() override;
 
@@ -42,7 +39,7 @@ protected:
 
 	fPoint lastPosition;
 	
-
+private:
 
 	Animation idleAnim;
 };
