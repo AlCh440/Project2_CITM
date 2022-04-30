@@ -5,19 +5,25 @@
 #include "Render.h"
 #include "Npc.h"
 #include "Player.h"
+#include "Entities.h"
+#include "Physics.h"
 
 
 NpcDummy::NpcDummy(iPoint pos) : Npc(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/shrek_PNG3.png");
-	physBody = app->physics->CreateCircle(position.x, position.y, 48, b2_staticBody);
+	texture = app->tex->Load("Assets/Sprites/characters/NPC.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_staticBody);
+	physBody->entityPtr = this;
+	physBody->body->SetGravityScale(0);
 
 }
 
 NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
 {
-	texture = app->tex->Load("Assets/Sprites/shrek_PNG3.png");
-	physBody = app->physics->CreateCircle(position.x, position.y, 48, b2_staticBody);
+	texture = app->tex->Load("Assets/Sprites/characters/NPC.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
+	physBody->entityPtr = this;
+	physBody->body->SetGravityScale(0);
 }
 
 
