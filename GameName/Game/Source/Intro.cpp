@@ -66,7 +66,7 @@ bool Intro::PostUpdate()
 {
 	//yes->PostUpdate();
 
-	app->render->DrawTexture(img, 0, 0, &rect);
+	app->render->DrawTexture(img, 0, 0, &rect, 0, 0, 0, 0, 0.5f);
 
 	return true;
 }

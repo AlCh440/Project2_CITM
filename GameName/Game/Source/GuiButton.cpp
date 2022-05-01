@@ -4,6 +4,7 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "Audio.h"
+#include "Window.h"
 
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor) : GuiControl(GuiControlType::BUTTON, id)
 {
@@ -39,8 +40,11 @@ bool GuiButton::Update(float dt)
 		int mouseX, mouseY;
 		app->input->GetMouseWorldPosition(mouseX, mouseY);
 
-		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w )) &&
-			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h )))
+		mouseX *= app->win->GetScale();
+		mouseY *= app->win->GetScale();
+
+		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
+			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
 		{
 			state = GuiControlState::FOCUSED;
 			
@@ -83,13 +87,13 @@ bool GuiButton::Draw(Render* render)
 	case GuiControlState::DISABLED: 
 	{
 		if (app->guiManager->Debug)
-			render->DrawRectangle(bounds, 125, 200, 0, 0);
+			render->DrawRectangle(bounds, 125 / app->win->GetScale(), 200/ app->win->GetScale(), 0, 0);
 
-		if(texture != nullptr)
-			render->DrawTexture(texture, bounds.x, bounds.y, &disabledRec);
+		if (texture != nullptr)
+			render->DrawTexture(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), &disabledRec, 0, 0, 0, 0, 0.5f);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+			render->DrawTexture(textTex, textPosition.x / app->win->GetScale(), textPosition.y / app->win->GetScale(), &textRect, 0, 0, 0, 0, 0.5f);
 
 	} break;
 
@@ -99,10 +103,11 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 125, 125, 0,125);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &normalRec);
+			render->DrawTexture(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), &normalRec, 0, 0, 0, 0, 0.5f);
+
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+			render->DrawTexture(textTex, textPosition.x / app->win->GetScale(), textPosition.y / app->win->GetScale(), &textRect, 0, 0, 0, 0, 0.5f);
 
 	} break;
 	case GuiControlState::FOCUSED:
@@ -111,10 +116,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 255, 255, 255, 160);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &focusedRec);
+			render->DrawTexture(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), &focusedRec, 0, 0, 0, 0, 0.5f);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+			render->DrawTexture(textTex, textPosition.x / app->win->GetScale(), textPosition.y / app->win->GetScale(), &textRect, 0, 0, 0, 0, 0.5f);
 
 	} break;
 	case GuiControlState::PRESSED:
@@ -128,10 +133,10 @@ bool GuiButton::Draw(Render* render)
 			playfx = false;
 		}
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &pressedRec);
+			render->DrawTexture(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), &pressedRec, 0, 0, 0, 0, 0.5f);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+			render->DrawTexture(textTex, textPosition.x / app->win->GetScale(), textPosition.y / app->win->GetScale(), &textRect, 0, 0, 0, 0, 0.5f);
 
 	} break;
 
@@ -141,10 +146,10 @@ bool GuiButton::Draw(Render* render)
 			render->DrawRectangle(bounds, 0, 255, 0, 255);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec);
+			render->DrawTexture(texture, bounds.x / app->win->GetScale(), bounds.y / app->win->GetScale(), &selectedRec, 0, 0, 0, 0, 0.5f);
 
 		if (textTex != nullptr)
-			render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+			render->DrawTexture(textTex, textPosition.x / app->win->GetScale(), textPosition.y / app->win->GetScale(), &textRect, 0, 0, 0, 0, 0.5f);
 	}break;
 
 	default:

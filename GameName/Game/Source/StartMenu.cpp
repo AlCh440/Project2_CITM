@@ -59,7 +59,7 @@ bool StartMenu::Update(float dt)
 bool StartMenu::PostUpdate()
 {
 	bool ret = true;
-	app->render->DrawTexture(img, 0, 0,&rect);
+	app->render->DrawTexture(img, 0, 0, &rect, 0, 0, 0, 0, 0.5f);
 	return ret;
 }
 

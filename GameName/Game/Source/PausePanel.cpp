@@ -2,6 +2,7 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "LevelManagement.h"
+#include "Window.h"
 PausePanel::PausePanel(bool active) : GuiPanel(active)
 {
 	Active = active;

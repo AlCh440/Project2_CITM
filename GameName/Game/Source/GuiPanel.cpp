@@ -1,7 +1,7 @@
 #include "GuiPanel.h"
 #include "App.h"
 #include "Render.h"
-
+#include "Window.h"
 
 
 GuiPanel::GuiPanel(bool isActive)
@@ -44,7 +44,7 @@ bool GuiPanel::Draw()
 		return false;
 
 	//draw background
-	app->render->DrawTexture(texture,position.x, position.y,&bounds);
+	app->render->DrawTexture(texture, position.x / app->win->GetScale(), position.y / app->win->GetScale(), &bounds, 0, 0, 0, 0, 0.5f);
 	
 	//draw items
 	p2ListItem<GuiControl*>* control = controls.start;
