@@ -144,8 +144,8 @@ void Render::CameraFocus(fPoint position)
 {
 	if (!isFreeCam)
 	{
-		camera.x = -(position.x - camera.w * 0.5f);
-		camera.y = -(position.y - camera.h * 0.5f);
+		camera.x = -(position.x * app->win->GetScale() - camera.w * 0.5f);
+		camera.y = -(position.y * app->win->GetScale() - camera.h * 0.5f);
 	}
 }
 

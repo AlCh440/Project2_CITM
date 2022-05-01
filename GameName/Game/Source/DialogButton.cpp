@@ -45,13 +45,9 @@ bool Button::Update()
 		mouseX *= app->win->GetScale();
 		mouseY *= app->win->GetScale();
 
-		LOG("bounds pos x: %i", mouseX);
-		LOG("bounds pos y: %i", mouseY);
-
 		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w * app->win->GetScale())) &&
 			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h * app->win->GetScale())))
 		{
-			LOG("true");
 			state = State::FOCUSED;
 
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)

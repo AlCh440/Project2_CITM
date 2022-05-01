@@ -227,7 +227,7 @@ void GuiManager::FillDialog_Text(Dialog& dialog)
 	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
 
 	// Set dialog box, and font
-	dialog.SetPosition(414, 220);
+	dialog.SetPosition(340, 460);
 	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
 	dialog.SetFont(font);
 
