@@ -60,8 +60,6 @@ bool GuiPanel::Draw()
 void GuiPanel::Enable()
 {
 	Active = true;
-	position.x = -app->render->camera.x;
-	position.y = -app->render->camera.y;
 
 	p2ListItem<GuiControl*>* control = controls.start;
 

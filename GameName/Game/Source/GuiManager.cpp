@@ -120,6 +120,12 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 bool GuiManager::PostUpdate() {
 
+	if ((app->theFall->active) && (!dialog_Test.Finished()))
+	{
+		dialog_Test.Update();
+	}
+
+
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
 	while (panel != nullptr)
@@ -131,10 +137,7 @@ bool GuiManager::PostUpdate() {
 	}
 
 
-	if ((app->theFall->active) && (!dialog_Test.Finished()))
-	{
-		dialog_Test.Update();
-	}
+	
 
 	return true;
 

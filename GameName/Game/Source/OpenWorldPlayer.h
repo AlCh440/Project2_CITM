@@ -31,7 +31,7 @@ public:
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
 
-	float32 velocity = 10;
+	float32 velocity = 7;
 
 
 private:

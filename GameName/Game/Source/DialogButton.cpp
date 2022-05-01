@@ -42,9 +42,6 @@ bool Button::Update()
 
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		mouseX *= app->win->GetScale();
-		mouseY *= app->win->GetScale();
-
 		if ((mouseX > bounds.x ) && (mouseX < (bounds.x + bounds.w * app->win->GetScale())) &&
 			(mouseY > bounds.y ) && (mouseY < (bounds.y + bounds.h * app->win->GetScale())))
 		{

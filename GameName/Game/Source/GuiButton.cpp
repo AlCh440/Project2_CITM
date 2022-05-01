@@ -38,10 +38,8 @@ bool GuiButton::Update(float dt)
 	if (state != GuiControlState::DISABLED)
 	{
 		int mouseX, mouseY;
-		app->input->GetMouseWorldPosition(mouseX, mouseY);
+		app->input->GetMousePosition(mouseX, mouseY);
 
-		mouseX *= app->win->GetScale();
-		mouseY *= app->win->GetScale();
 
 		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
 			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
