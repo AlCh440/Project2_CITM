@@ -36,6 +36,6 @@ protected:
 	SDL_RendererFlip spriteDir;
 
 
-
+	NPC_STATE actualStates;
 	Animation idleAnim;
 };

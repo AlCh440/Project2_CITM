@@ -7,6 +7,9 @@
 #include "Player.h"
 #include "Entities.h"
 #include "Physics.h"
+#include "Pathfinding.h"
+
+#include "Log.h"
 
 
 NpcDummy::NpcDummy(iPoint pos) : Npc(pos)
@@ -29,7 +32,14 @@ NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
 
 bool NpcDummy::Start()
 {
+	actualStates = NORMAL;
 
+	iPoint pos;
+	pos.x = position.x;
+	pos.y = position.y;
+	pos = app->map->WorldToMap(pos.x, pos.y);
+
+	tilePos = pos;
 
 	return true;
 }
@@ -41,23 +51,37 @@ bool NpcDummy::PreUpdate()
 
 bool NpcDummy::Update(float dt)
 {
-	/*
-	switch (state)
-	{
-	case DEATH:
-	{
-		// DELETE DUMMY
-	} break;
+	
 
+	switch (actualStates)
+	{
+	case NORMAL:
+	{
+		return true;
 	}
-	return true;
-	*/
+	case TALK:
+	{
+		if (detectionDistance = 3)
+		{
+			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN);
+				
+		}
+	}
+	}
 	return true;
 }
 
 bool NpcDummy::PostUpdate()
 {
+	
+	SDL_Rect r;
+	r.x = position.x - app->map->mapData.tileWidth * .5f;
+	r.y = position.y - app->map->mapData.tileHeight * .5f;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
 
+	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	
 	app->render->DrawTexture(texture, position.x, position.y);
 
 	return true;
