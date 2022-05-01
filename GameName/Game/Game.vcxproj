@@ -133,6 +133,8 @@
     <ClCompile Include="Source\Fonts.cpp" />
     <ClCompile Include="Source\Npc.cpp" />
     <ClCompile Include="Source\NpcDummy.cpp" />
+    <ClCompile Include="Source\NpcGuard.cpp" />
+    <ClCompile Include="Source\NpcWoVillager.cpp" />
     <ClCompile Include="Source\OpenWorldPlayer.cpp" />
     <ClCompile Include="Source\PausePanel.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Source\Fonts.h" />
     <ClInclude Include="Source\Npc.h" />
     <ClInclude Include="Source\NpcDummy.h" />
+    <ClInclude Include="Source\NpcGuard.h" />
+    <ClInclude Include="Source\NpcWoVillager.h" />
     <ClInclude Include="Source\OpenWorldPlayer.h" />
     <ClInclude Include="Source\PausePanel.h" />
     <ClInclude Include="Source\Physics.h" />

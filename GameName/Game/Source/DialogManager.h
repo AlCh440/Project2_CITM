@@ -1,4 +1,4 @@
-#include "Dialog.h"
+/*#include "Dialog.h"
 #include "Module.h"
 #include "Log.h"
 #include "SString.h"
@@ -35,11 +35,11 @@ private:
 		
 	}*/
 
-	bool LoadDialogGroups(pugi::xml_node);
+	/*bool LoadDialogGroups(pugi::xml_node);
 	pugi::xml_node LookForChildrenDialogues(pugi::xml_node children);
 
 	bool AddDialog(Dialog dialog);
 
-};
+};*/
 
 

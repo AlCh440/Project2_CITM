@@ -19,6 +19,8 @@
 
 #include "Npc.h"
 #include "NpcDummy.h"
+#include "NpcGuard.h"
+#include "NpcWoVillager.h"
 
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
@@ -142,6 +144,14 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case NPCDUMMY:
         dummyNpcInstance = new NpcDummy(type, spawnPos);
         entities.add(dummyNpcInstance);
+        break;
+    case NPCGUARD:
+        dummyNpcGuardInstance = new NpcGuard(type, spawnPos);
+        entities.add(dummyNpcGuardInstance);
+        break;
+    case NPCWOVILLAGER:
+        dummyNpcWoVillagerInstance = new NpcWoVillager(type, spawnPos);
+        entities.add(dummyNpcWoVillagerInstance);
         break;
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);

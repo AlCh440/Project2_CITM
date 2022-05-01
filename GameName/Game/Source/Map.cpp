@@ -612,6 +612,16 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::NPCDUMMY;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "guardNPC") == 0) {
+
+			obj->type = Collider_Type::NPCGUARD;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "villagerWoNPC") == 0) {
+
+			obj->type = Collider_Type::NPCWOVILLAGER;
+
+		}
 		else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
 
 			obj->type = Collider_Type::CHECK_POINT;
@@ -704,6 +714,14 @@ bool Map::SetMapColliders()
 			case NPCDUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn dummy NPC...");
+				break;
+			case NPCGUARD:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn Guard NPC...");
+				break;
+			case NPCWOVILLAGER:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn Women villager NPC...");
 				break;
 			case POTION:
 				app->entities->AddEntity(object->data->type, spawnPos);

@@ -1,4 +1,4 @@
-#include "DialogManager.h"
+/*#include "DialogManager.h"
 
 
 DialogManager::DialogManager()
@@ -114,4 +114,4 @@ pugi::xml_node DialogManager::LookForChildrenDialogues(pugi::xml_node group)
 bool DialogManager::AddDialog(Dialog dialog)
 {
 	return 1;
-}
+}*/

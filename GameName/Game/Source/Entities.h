@@ -13,6 +13,8 @@
 #include "EnemyDummy.h"
 #include "Npc.h"
 #include "NpcDummy.h"
+#include "NpcGuard.h"
+#include "NpcWoVillager.h"
 #include "CheckPoint.h"
 #include "Trigger.h"
 
@@ -87,6 +89,8 @@ public:
 	Knight* knightInstance;
 	EnemyDummy* dummyInstance;
 	NpcDummy* dummyNpcInstance;
+	NpcGuard* dummyNpcGuardInstance;
+	NpcWoVillager* dummyNpcWoVillagerInstance;
 
 	// triggers to move room to room
 	Trigger* entranceIntance;

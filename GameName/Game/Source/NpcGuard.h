@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "Npc.h"
@@ -6,15 +5,15 @@
 #include "DialogManager.h"
 
 
-class NpcDummy : public Npc
+class NpcGuard : public Npc
 {
 public:
 
-	NpcDummy(iPoint pos);
-	NpcDummy(Collider_Type type, iPoint pos);
-	
+	NpcGuard(iPoint pos);
+	NpcGuard(Collider_Type type, iPoint pos);
 
-	
+
+
 	float detectionDistance = 7; // in pixels
 
 	bool PreUpdate() override;
@@ -38,7 +37,7 @@ protected:
 	SDL_RendererFlip spriteDir;
 
 	fPoint lastPosition;
-	
+
 private:
 	SDL_Rect rect;
 	Animation idleAnim;

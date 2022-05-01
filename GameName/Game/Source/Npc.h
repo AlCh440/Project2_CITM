@@ -30,7 +30,7 @@ public:
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	
-	float detectionDistance = 10; // in pixels
+	float detectionDistance = 7; // in pixels
 protected:
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;

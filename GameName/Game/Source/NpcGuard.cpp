@@ -1,5 +1,5 @@
+#include "NpcGuard.h"
 #include "NpcDummy.h"
-
 #include "App.h"
 #include "Textures.h"
 #include "Render.h"
@@ -12,7 +12,7 @@
 #include "Log.h"
 
 
-NpcDummy::NpcDummy(iPoint pos) : Npc(pos)
+NpcGuard::NpcGuard(iPoint pos) : Npc(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/NPC.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_staticBody);
@@ -21,7 +21,7 @@ NpcDummy::NpcDummy(iPoint pos) : Npc(pos)
 
 }
 
-NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
+NpcGuard::NpcGuard(Collider_Type type, iPoint pos) : Npc(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/NPC.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
@@ -30,11 +30,11 @@ NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
 }
 
 
-bool NpcDummy::Start()
+bool NpcGuard::Start()
 {
 	actualStates = NORMAL;
 
-	rect = { 258, 49, 27, 43 };
+	rect = { 2, 55, 26, 38 };
 
 	iPoint pos;
 	pos.x = position.x;
@@ -46,14 +46,14 @@ bool NpcDummy::Start()
 	return true;
 }
 
-bool NpcDummy::PreUpdate()
+bool NpcGuard::PreUpdate()
 {
 	return true;
 }
 
-bool NpcDummy::Update(float dt)
+bool NpcGuard::Update(float dt)
 {
-	/*int DistanceX 
+	/*int DistanceX
 	int DistanceY
 
 	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
@@ -76,9 +76,9 @@ bool NpcDummy::Update(float dt)
 	return true;
 }
 
-bool NpcDummy::PostUpdate()
+bool NpcGuard::PostUpdate()
 {
-	
+
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f;
@@ -86,42 +86,42 @@ bool NpcDummy::PostUpdate()
 	r.h = app->map->mapData.tileHeight;
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
-	
-	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
+
+	app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
 
 	return true;
 
-	
+
 
 
 
 }
 
-bool NpcDummy::CleanUp()
+bool NpcGuard::CleanUp()
 {
 
 	app->render->DrawTexture(texture, position.x, position.y);
 
 	return true;
 
-	
+
 
 }
 
 
 // 
-void NpcDummy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+void NpcGuard::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
 }
 
 // Load / Save
-bool NpcDummy::LoadState(pugi::xml_node& data)
+bool NpcGuard::LoadState(pugi::xml_node& data)
 {
 	return true;
 }
 
-bool NpcDummy::SaveState(pugi::xml_node& data) const
+bool NpcGuard::SaveState(pugi::xml_node& data) const
 {
 	return true;
 }
