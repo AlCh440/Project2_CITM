@@ -101,6 +101,7 @@ public:
 	bool DEBUG = false;
 	//stops updating the module
 	bool Pause;
+	bool toSave = false;
 };
 
 #endif // __MODULE_H__

@@ -15,6 +15,7 @@
 StartMenu::StartMenu(bool isActive) : Module(isActive)
 {
 	name.Create("start_menu");
+	toSave = false;
 }
 
 // Destructor

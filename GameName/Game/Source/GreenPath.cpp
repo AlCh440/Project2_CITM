@@ -8,7 +8,8 @@
 
 GreenPath::GreenPath(bool isActive) : Module(isActive)
 {
-	name.Create("Green Path");
+	name.Create("Green_path");
+	toSave = false;
 }
 
 GreenPath::~GreenPath()

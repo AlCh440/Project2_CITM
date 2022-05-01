@@ -11,7 +11,8 @@ using namespace std;
 
 LevelManagement::LevelManagement(bool isActive) : Module(isActive)
 {
-	name.Create("Level Manager");
+	name.Create("Level_manager");
+	toSave = true;
 }
 
 LevelManagement::~LevelManagement()
@@ -253,15 +254,11 @@ void LevelManagement::LoadScene(GameScene scene)
 
 bool LevelManagement::LoadState(pugi::xml_node& data)
 {
-	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result  result = gameStateFile.load_file("savegame.xml");
-	if (gameStateFile.child("save_state") == NULL)
-		return false;
 
-	pugi::xml_node lm = gameStateFile.child("save_state").child("levelManager");
+	pugi::xml_node lm = data.child("levelManager");
 
 	gameScene =  static_cast<GameScene>(lm.attribute("currentLevel").as_int());
-
+	
 	loadLevel = true;
 	return true;
 }

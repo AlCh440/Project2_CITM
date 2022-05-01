@@ -207,6 +207,12 @@ bool App::Update()
 	if(ret == true)
 		ret = PreUpdate();
 
+	if (input->GetKey(SDL_SCANCODE_6))
+		saveGameRequested = true;
+
+	if (input->GetKey(SDL_SCANCODE_7))
+		loadGameRequested = true;
+
 	if(ret == true)
 		ret = DoUpdate();
 
@@ -229,7 +235,10 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 
 	pugi::xml_parse_result result = configFile.load_file(CONFIG_FILENAME);
 
-	if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
+	if (result == NULL)
+	{
+		LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
+	}
 	else ret = configFile.child("config");
 
 
@@ -428,42 +437,46 @@ void App::LoadGameRequest()
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result  result = gameStateFile.load_file("savegame.xml");
+	pugi::xml_parse_result  result = gameStateFile.load_file("saveGame.xml");
 
-	if (gameStateFile.child("save_state") == NULL)
+	if (gameStateFile.child("saveState") == NULL)
 		ret = false;
 
 	loadGameRequested = ret;
 }
 
 // ---------------------------------------
-void App::SaveGameRequest() const
+bool App::SaveGameRequest() const
 {
-	bool ret = true;
+	bool ret = false;
 
-	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result  result = gameStateFile.load_file("savegame.xml");
+	pugi::xml_document* saveDoc = new pugi::xml_document();
+	pugi::xml_node saveStateNode = saveDoc->append_child("saveState");
 
-	if (gameStateFile.child("save_state") == NULL)
+	p2ListItem<Module*>* item;
+	item = modules.start;
+
+	while (item != NULL)
 	{
-		//if no game saved we create a new one 
-		gameStateFile.append_child("save_state");
-
-	}else{
-		//do we want to override the saved game?
+		ret = item->data->SaveState(saveStateNode.append_child(item->data->name.GetString()));
+		item = item->next;
 	}
-	
-	
-	saveGameRequested = ret;
+
+	ret = saveDoc->save_file("save_game.xml");
+
+	saveGameRequested = false;
+
+
+	return ret;
 }
 
 bool App::IsASavedGame()
 {
 	bool ret = true;
 	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result  result = gameStateFile.load_file("savegame.xml");
+	pugi::xml_parse_result  result = gameStateFile.load_file("saveGame.xml");
 
-	if (gameStateFile.child("save_state") == NULL)
+	if (gameStateFile.child("saveState") == NULL)
 		ret = false;
 
 	return ret;
@@ -475,27 +488,26 @@ bool App::LoadGame()
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result  result = gameStateFile.load_file("savegame.xml");
-	
+	pugi::xml_parse_result result = gameStateFile.load_file("saveGame.xml");
+	//pugi::xml_parse_result result = gameStateFile.load_file("config.xml");
 	if (result == NULL)
 	{
 		LOG("Could not load xml file savegame.xml. pugi error: %s", result.description());
 		ret = false;
 	}
-	else {
+	else
+	{
 		p2ListItem<Module*>* item;
-		item = modules.start;
+			item = modules.start;
 
-		while (item != NULL)
+		while (item != NULL && ret == true)
 		{
-			ret = item->data->LoadState(gameStateFile.child("save_state").child(item->data->name.GetString()));
+			ret = item->data->LoadState(gameStateFile.child("saveState").child(item->data->name.GetString()));
 			item = item->next;
 		}
 	}
 
 	loadGameRequested = false;
-
-	LOG("Game Loaded...");
 
 	return ret;
 }
@@ -506,19 +518,23 @@ bool App::SaveGame() const
 	bool ret = true;
 
 	pugi::xml_document* saveDoc = new pugi::xml_document();
-	pugi::xml_node  saveStateNode = saveDoc->append_child("save_state");
+	pugi::xml_node  saveStateNode = saveDoc->append_child("saveState");
 
 	p2ListItem<Module*>* item;
 	item = modules.start;
 
 	while (item != NULL)
 	{
-		if (ret != item->data->SaveState(saveStateNode.append_child(item->data->name.GetString())))
-			LOG("could not save status of %s", item->data->name.GetString());
+		if (item->data->toSave == true)
+		{
+			if (ret != item->data->SaveState(saveStateNode.append_child(item->data->name.GetString())))
+				LOG("could not save status of %s", item->data->name.GetString());
+		}
+		
 		item = item->next;
 	}
 
-	if (ret != saveDoc->save_file("savegame.xml"))
+	if (ret != saveDoc->save_file("saveGame.xml"))
 		LOG("Could not save savegame file....");
 
 	saveGameRequested = false;

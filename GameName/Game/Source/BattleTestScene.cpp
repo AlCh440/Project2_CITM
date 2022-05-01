@@ -10,7 +10,8 @@
 
 BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
-	name.Create("Battle Test Scene");
+	name.Create("Battle_test_scene");
+	toSave = false;
 }
 
 BattleTestScene::~BattleTestScene()

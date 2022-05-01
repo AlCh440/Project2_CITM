@@ -17,6 +17,7 @@ GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TO
 	normalRec = { 0,240,22,22 };
 	selectedRec = { 66,240,22,22 };
 	name.Create("Toggle");
+
 }
 
 GuiToggle::~GuiToggle()

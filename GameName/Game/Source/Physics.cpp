@@ -29,6 +29,8 @@ ModulePhysics::ModulePhysics(bool isActive) : Module(isActive)
 	mouseBody = nullptr;
 	
 	name.Create("physics");
+	toSave = false;
+
 }
 
 // Destructor
@@ -476,7 +478,6 @@ bool ModulePhysics::SaveState(pugi::xml_node& data) const
 
 	bool ret = true;
 
-	pugi::xml_node physics = data.append_child("physics");
 
 
 	return ret;

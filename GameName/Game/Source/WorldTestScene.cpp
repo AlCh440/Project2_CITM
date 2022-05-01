@@ -9,7 +9,8 @@
 
 WorldTestScene::WorldTestScene(bool isActive) : Module(isActive)
 {
-	name.Create("World Test Scene");
+	name.Create("World_Test_Scene");
+	toSave = false;
 }
 
 WorldTestScene::~WorldTestScene()

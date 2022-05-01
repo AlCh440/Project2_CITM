@@ -26,6 +26,7 @@
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
     name.Create("entities");
+    toSave = true;
     
 }
 
@@ -205,50 +206,36 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 bool ModuleEntities::LoadState(pugi::xml_node& data)
 {
 
-    //clear all entities to load new ones
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    if (app->levelManagement->gameScene == COMBAT || app->levelManagement->gameScene == GAME_OVER ||
+        app->levelManagement->gameScene == INTRO || app->levelManagement->gameScene == START)
     {
-        aux->data->Cleanup();
-        delete aux->data;
-        aux->data = nullptr;
-    }
-
-    for (uint i = 0; i < MAX_ENTITIES; ++i)
-    {
-       
-    }
-    playerInstance = nullptr;
-    pugi::xml_node currentEntitie = data.first_child();
-
-    iPoint pos;
-
-    while (currentEntitie != NULL )
-    {
-       Collider_Type type = static_cast<Collider_Type>(currentEntitie.attribute("type").as_int());
-       float x = currentEntitie.attribute("x").as_int();
-       float y = currentEntitie.attribute("y").as_int();
-       pos = app->map->MapToWorld(x, y);
-       AddEntity(type, pos);
-
-       currentEntitie = currentEntitie.next_sibling();
-    }
-
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
-    {
-        aux->data->Start();
-        aux->data->LoadState(data);
 
     }
-
+    else
+    {
+        for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+        {
+            aux->data->LoadState(data);
+        }
+    }
     return true;
 }
 
 bool ModuleEntities::SaveState(pugi::xml_node& data) const
 {
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    if (app->levelManagement->gameScene == COMBAT || app->levelManagement->gameScene == GAME_OVER ||
+        app->levelManagement->gameScene == INTRO || app->levelManagement->gameScene == START)
     {
-        aux->data->SaveState(data);
+
     }
+    else
+    {
+        for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+        {
+            aux->data->SaveState(data);
+        }
+    }
+   
     return true;
 }
 

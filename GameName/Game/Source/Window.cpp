@@ -12,6 +12,7 @@ Window::Window(bool isActive) : Module(isActive)
 	window = NULL;
 	screenSurface = NULL;
 	name.Create("window");
+	toSave = true;
 }
 
 // Destructor

@@ -14,6 +14,7 @@ Render::Render(bool isActive) : Module(isActive)
 	background.g = 0;
 	background.b = 0;
 	background.a = 0;
+	toSave = true;
 }
 
 // Destructor

@@ -8,7 +8,8 @@
 
 TheVillage::TheVillage(bool isActive) : Module(isActive)
 {
-	name.Create("The Village");
+	name.Create("The_Village");
+	toSave = false;
 }
 
 TheVillage::~TheVillage()

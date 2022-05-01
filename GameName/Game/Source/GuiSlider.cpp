@@ -25,6 +25,7 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(Gu
 	thumbRect = {172,240,6,10};
 
 	name.Create("Slider");
+	
 }
 
 GuiSlider::~GuiSlider()

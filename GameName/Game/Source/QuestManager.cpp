@@ -3,7 +3,8 @@
 
 QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
-	name.Create("quest manager");
+	name.Create("quest_manager");
+	toSave = false;
 }
 
 QuestManager::~QuestManager()
@@ -203,10 +204,10 @@ bool QuestManager::Load(const char* path)
 
 bool QuestManager::LoadState(pugi::xml_node&)
 {
-	return false;
+	return true;
 }
 
 bool QuestManager::SaveState(pugi::xml_node&) const
 {
-	return false;
+	return true;
 }

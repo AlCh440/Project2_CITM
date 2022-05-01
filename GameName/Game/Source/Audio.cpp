@@ -18,6 +18,7 @@ Audio::Audio(bool isActive) : Module(isActive)
 	name.Create("audio");
 	fxVolume = 100;
 	musicVolume = 100;
+	toSave = true;
 }
 
 // Destructor

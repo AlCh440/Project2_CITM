@@ -19,7 +19,8 @@
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
 {
-	name.Create("gui manager");
+	name.Create("gui_manager");
+	toSave = false;
 }
 
 GuiManager::~GuiManager() {}

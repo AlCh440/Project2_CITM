@@ -9,7 +9,8 @@
 
 TheFall::TheFall(bool isActive) : Module(isActive)
 {
-	name.Create("The fall");
+	name.Create("The_fall");
+	toSave = false;
 }
 
 TheFall::~TheFall()

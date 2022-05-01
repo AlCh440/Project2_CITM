@@ -9,6 +9,7 @@
 Fonts::Fonts(bool isEnabled) : Module(isEnabled)
 {
 	name.Create("fonts");
+	toSave = false;
 }
 
 Fonts::~Fonts()

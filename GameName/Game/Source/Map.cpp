@@ -20,6 +20,8 @@ using namespace std;
 Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
 {
 	name.Create("map");
+	toSave = false;
+
 }
 
 // Destructor

@@ -9,7 +9,8 @@
 
 DialogFonts::DialogFonts(bool isActive) : Module(isActive)
 {
-
+	name.Create("dialog");
+	toSave = false;
 }
 
 DialogFonts::~DialogFonts()

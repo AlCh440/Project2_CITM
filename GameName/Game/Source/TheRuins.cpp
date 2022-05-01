@@ -8,7 +8,8 @@
 
 TheRuins::TheRuins(bool isActive) : Module(isActive)
 {
-	name.Create("The Ruins");
+	name.Create("The_Ruins");
+	toSave = false;
 }
 
 TheRuins::~TheRuins()

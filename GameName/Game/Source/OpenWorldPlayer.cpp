@@ -157,12 +157,27 @@ bool OpenWorldPlayer::LoadState(pugi::xml_node& data)
 {
 
 
+
+
+	float x_ = data.child("player").attribute("x").as_int();
+	float y_ = data.child("player").attribute("y").as_int();
+
+	b2Vec2 pos = { PIXEL_TO_METERS(x_),PIXEL_TO_METERS(y_) };
+	
+	LOG("%i, %i", x_, y_);
+	physBody->body->SetTransform(pos, 0);
+
 	return true;
 }
 
 bool OpenWorldPlayer::SaveState(pugi::xml_node& data) const
 {
+	pugi::xml_node enemy_ = data.append_child("player");
+	
+	iPoint pos(position.x, position.y);
 
+	enemy_.append_attribute("x") = position.x;
+	enemy_.append_attribute("y") = position.y;
 
 	return true;
 }
