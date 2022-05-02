@@ -12,9 +12,7 @@
 #include "MainMenuPanel.h"
 #include "PausePanel.h"
 #include "SettingsPanel.h"
-#include "Dialog.h"
-#include "DialogFonts.h"
-#include "TheFall.h"
+
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -64,7 +62,7 @@ bool GuiManager::Start()
 		panel->data->Start();
 		panel = panel->next;
 	}
-	FillDialog_Text(dialog_Test);
+
 
 	return true;
 }
@@ -121,10 +119,8 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 bool GuiManager::PostUpdate() {
 
-	if ((app->theFall->active) && (!dialog_Test.Finished()))
-	{
-		dialog_Test.Update();
-	}
+
+
 
 
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -217,102 +213,6 @@ bool GuiManager::OnGuiMouseClickEvent(GuiControl* control)
 	return true;
 }
 
-void GuiManager::FillDialog_Text(Dialog& dialog)
-{
-	// Take dialog box, and font
-	SDL_Texture* dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
-
-	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
-	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
-	char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~" };
-
-
-	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
-	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
-
-	// Set dialog box, and font
-	dialog.SetPosition(340, 460);
-	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
-	dialog.SetFont(font);
-
-	// Fill the dialog
-	DialogNode node;
-
-	// Last branch
-	size_t id;
-	node.text = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla...";
-
-	id = dialog.AddNode(node);
-
-	node.text = "alright... let me tell you who i am.";
-	node.nodes.push_back(id);
-
-	id = dialog.AddNode(node);
-
-	// Branch 1
-	size_t id_1;
-
-	node.text = "are you sure you never heard of ralph the mage master?";
-	node.nodes.push_back(id);
-
-	id_1 = dialog.AddNode(node);
-
-	node.text = "...";
-	node.nodes.push_back(id_1);
-
-	id_1 = dialog.AddNode(node);
-
-	// Branch 2
-	size_t id_2;
-
-	node.text = "of course, i am famous!";
-	node.nodes.push_back(id);
-	node.options.push_back("just kidding, never heard of you.");
-
-	id_2 = dialog.AddNode(node);
-
-	// Branch 3
-	size_t id_3;
-
-	node.text = "i would never trick you, i am good, i help people!";
-	node.nodes.push_back(id);
-
-	id_3 = dialog.AddNode(node);
-
-	node.text = "what? why would i do that?!";
-	node.nodes.push_back(id_3);
-
-	id_3 = dialog.AddNode(node);
-
-	// Connect to main branch
-	node.text = "i am sure you heard speak of me!";
-	node.nodes.push_back(id_1);
-	node.options.push_back("uh... no?");
-
-	node.nodes.push_back(id_2);
-	node.options.push_back("oh yes I remember");
-
-	node.nodes.push_back(id_3);
-	node.options.push_back("are you trying to trick me?");
-
-	id = dialog.AddNode(node);
-
-	node.text = "i am ralph, the mage master!";
-	node.nodes.push_back(id);
-
-	id = dialog.AddNode(node);
-
-	node.text = "FGHI";
-	node.nodes.push_back(id);
-	node.options.push_back("Who are you?");
-
-	node.nodes.push_back(id);
-	node.options.push_back("Who are you?");
-
-	id = dialog.AddNode(node);
-
-	dialog.SetActiveNode(id);
-}
 
 
 

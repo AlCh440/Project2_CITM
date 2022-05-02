@@ -9,6 +9,7 @@
 #include "Fonts.h"
 #include "Map.h"
 #include "Entities.h"
+#include "DialogManager.h"
 #include "GuiManager.h"
 #include "Brofiler/include/optick.h"
 #include "LevelManagement.h"
@@ -59,6 +60,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	entities = new ModuleEntities(true);
 	levelManagement = new LevelManagement(true);
 	guiManager = new GuiManager(true);
+	dialogManager = new DialogManager(true);
 
 	//Scenes
 	intro = new Intro(false);
@@ -104,7 +106,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(worldTest);
 
 	AddModule(entities);
-
+	
+	AddModule(dialogManager);
 	AddModule(guiManager);
 	AddModule(fade);
 	// Render last to swap buffer

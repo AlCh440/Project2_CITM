@@ -5,8 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2List.h"
 #include "GuiPanel.h"
-#include "Dialog.h"
-#include "DialogNode.h"
+
 
 enum GuiType {
 	MAIN_MENU,
@@ -76,9 +75,7 @@ public:
 	PanelID lastPanel;
 	int currentPanel;
 
-	//Dialog test
-	Dialog dialog_Test;
-	void FillDialog_Text(Dialog& dialog);
+	
 
 
 

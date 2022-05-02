@@ -76,6 +76,8 @@ bool Input::PreUpdate()
 
 	for(int i = 0; i < NUM_MOUSE_BUTTONS; ++i)
 	{
+
+
 		if(mouseButtons[i] == KEY_DOWN)
 			mouseButtons[i] = KEY_REPEAT;
 

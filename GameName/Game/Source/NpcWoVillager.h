@@ -4,6 +4,7 @@
 #include "Dialog.h"
 #include "DialogManager.h"
 
+class DialogManager;
 
 class NpcWoVillager : public Npc
 {

@@ -24,6 +24,7 @@ class Map;
 class ModulePhysics;
 class ModuleEntities;
 class GuiManager;
+class DialogManager;
 class LevelManagement;
 class QuestManager;
 class PathFinding;
@@ -119,6 +120,7 @@ public:
 	ModulePhysics* physics;
 	ModuleEntities* entities;
 	GuiManager* guiManager;
+	DialogManager* dialogManager;
 	Fonts* fonts;
 	DialogFonts* dialogFonts;
 	QuestManager* questManager;

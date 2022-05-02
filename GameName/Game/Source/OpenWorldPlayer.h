@@ -30,6 +30,15 @@ public:
 	// Load / Save
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
+	void SetMotion(bool active)
+	{
+		canMove = active;
+	}
+
+	bool CanMove() const
+	{
+		return canMove;
+	}
 
 	float32 velocity = 7;
 
@@ -40,7 +49,10 @@ private:
 	Animation walkDown;
 	Animation walkSide;
 	Animation idle;
+	float walkSpeed;
 
 	bool goingLeft;
+	bool AdminMode;
+	bool canMove;
 
 };

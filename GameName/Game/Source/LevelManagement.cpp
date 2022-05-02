@@ -56,7 +56,6 @@ bool LevelManagement::PreUpdate()
 		app->audio->PlayMusic("assets/audio/music/song_menu.wav");
 		playMusic = false;
 		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
-
 		{
 			gameScene = START;
 		}

@@ -9,6 +9,13 @@
 
 class Player;
 
+enum CameraMovementType
+{
+	CAMERA_FOLLOWS_ENTITY = 0,
+	CAMERA_DRAG = 1,
+	CAMERA_BORDER = 2
+};
+
 class Render : public Module
 {
 public:
@@ -59,13 +66,27 @@ public:
 	void DeactivateCamerMovement();
 
 	void ActivateCameraCombat();
+
 public:
 
 	SDL_Renderer* renderer;
 	SDL_Rect camera;
 	SDL_Rect viewport;
 	SDL_Color background;
+
+	bool borderMovement;
+	bool cameraDrag;
+
 private:
+
+	int borderMargin = 150;
+	int borderCamSpeed = 5;
+
+	int dragPointX;
+	int dragPointY;
+	bool dragging;
+	float cameraMultiplier = 50;
+
 	bool isVSYNC;
 	bool isFreeCam = false;
 	bool cameraFollowCombat = false;

@@ -36,8 +36,9 @@ bool BattleTestScene::Start()
 	//start combat
 	app->entities->StartPlayerTurn();
 
-	app->render->ActivateCameraCombat();
-	
+	//app->render->ActivateCameraCombat();
+	app->render->cameraDrag = false;
+	app->render->borderMovement = true;
 	return true;
 }
 

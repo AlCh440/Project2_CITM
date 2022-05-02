@@ -2,7 +2,7 @@
 #include "Log.h"
 #include "App.h"
 #include "GuiManager.h"
-
+#include "Window.h"
 
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(GuiControlType::SLIDER, id)
 {
@@ -39,10 +39,12 @@ bool GuiSlider::Update(float dt)
 	{
 		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
-		app->input->GetMouseWorldPosition(mouseX, mouseY);
+		float screenScale = 1 / (float)app->win->GetScale();
 
-		if (((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
-			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h))) || 
+		app->input->GetMousePosition(mouseX, mouseY);
+
+		if (((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w * screenScale)) &&
+			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h * screenScale))) ||
 
 			(mouseX > thumbBounds.x) && (mouseX < (thumbBounds.x + thumbBounds.w)) &&
 			(mouseY > thumbBounds.y) && (mouseY < (thumbBounds.y + thumbBounds.h)))
@@ -85,7 +87,8 @@ bool GuiSlider::Draw(Render* render)
 
 
 	//this text render could go to the state machine if necesary
-	render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+	float screenScale = 1 / (float)app->win->GetScale();
+	render->DrawTexture(textTex, textPosition.x * screenScale, textPosition.y * screenScale, &textRect, 0, 0, 0, 0, screenScale);
 
 	switch (state)
 	{
@@ -100,8 +103,8 @@ bool GuiSlider::Draw(Render* render)
 
 		if (texture != NULL)
 		{
-			render->DrawTexture(texture, bounds.x, bounds.y, &backgroundRect);
-			render->DrawTexture(texture, thumbBounds.x, thumbBounds.y, &thumbRect);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &backgroundRect, 0, 0, 0, 0, screenScale);
+			render->DrawTexture(texture, thumbBounds.x * screenScale, thumbBounds.y * screenScale, &thumbRect, 0, 0, 0, 0, screenScale);
 		}
 
 	} break;
@@ -115,8 +118,8 @@ bool GuiSlider::Draw(Render* render)
 		}
 		if (texture != NULL)
 		{
-			render->DrawTexture(texture, bounds.x, bounds.y, &backgroundRect);
-			render->DrawTexture(texture, thumbBounds.x, thumbBounds.y, &thumbRect);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &backgroundRect, 0, 0, 0, 0, screenScale);
+			render->DrawTexture(texture, thumbBounds.x * screenScale, thumbBounds.y * screenScale, &thumbRect, 0, 0, 0, 0, screenScale);
 		}
 	} break;
 	case GuiControlState::FOCUSED:
@@ -128,8 +131,8 @@ bool GuiSlider::Draw(Render* render)
 		}
 		if (texture != NULL)
 		{
-			render->DrawTexture(texture, bounds.x, bounds.y, &backgroundRect);
-			render->DrawTexture(texture, thumbBounds.x, thumbBounds.y, &thumbRect);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &backgroundRect, 0, 0, 0, 0, screenScale);
+			render->DrawTexture(texture, thumbBounds.x * screenScale, thumbBounds.y * screenScale, &thumbRect, 0, 0, 0, 0, screenScale);
 		}
 	} break;
 	case GuiControlState::PRESSED:
@@ -142,8 +145,8 @@ bool GuiSlider::Draw(Render* render)
 		}
 		if (texture != NULL)
 		{
-			render->DrawTexture(texture, bounds.x, bounds.y, &backgroundRect);
-			render->DrawTexture(texture, thumbBounds.x, thumbBounds.y, &thumbRect);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &backgroundRect, 0, 0, 0, 0, screenScale);
+			render->DrawTexture(texture, thumbBounds.x * screenScale, thumbBounds.y * screenScale, &thumbRect, 0, 0, 0, 0, screenScale);
 		}
 
 	} break;
@@ -157,8 +160,8 @@ bool GuiSlider::Draw(Render* render)
 		}
 		if (texture != NULL)
 		{
-			render->DrawTexture(texture, bounds.x, bounds.y, &backgroundRect);
-			render->DrawTexture(texture, thumbBounds.x, thumbBounds.y, &thumbRect);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &backgroundRect, 0, 0, 0, 0, screenScale);
+			render->DrawTexture(texture, thumbBounds.x * screenScale, thumbBounds.y * screenScale, &thumbRect, 0, 0, 0, 0, screenScale);
 		}
 	}break;
 

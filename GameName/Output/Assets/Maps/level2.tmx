@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="111" height="56" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="89">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="111" height="56" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="90">
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -3845,7 +3845,7 @@
    <tile gid="236"/>
    <tile gid="157"/>
    <tile gid="157"/>
-   <tile gid="157"/>
+   <tile gid="234"/>
    <tile gid="187"/>
    <tile gid="236"/>
    <tile gid="170"/>
@@ -37335,7 +37335,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="8" name="walls" visible="0">
+ <objectgroup id="8" name="walls">
   <object id="1" name="wall" type="wall" x="256" y="256" width="224" height="32"/>
   <object id="2" name="wall" type="wall" x="224" y="256" width="32" height="448"/>
   <object id="3" name="wall" type="wall" x="480" y="256" width="32" height="320"/>
@@ -37408,6 +37408,7 @@
   <object id="74" name="wall" type="wall" x="2816" y="544" width="256" height="32"/>
   <object id="75" name="wall" type="wall" x="3072" y="544" width="32" height="96"/>
   <object id="77" name="wall" type="wall" x="3104" y="608" width="160" height="32"/>
+  <object id="89" name="wall" type="wall" x="3264" y="608" width="32" height="128"/>
  </objectgroup>
  <objectgroup id="9" name="entities">
   <object id="78" name="player" type="player" x="352" y="416" width="32" height="32"/>

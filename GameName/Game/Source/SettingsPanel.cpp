@@ -74,7 +74,9 @@ bool SettingsPanel::Draw()
 {
 	GuiPanel::Draw();
 
-	app->render->DrawTexture(title, 535, 115, &r_title);
+	float screenScale = 1 / (float)app->win->GetScale();
+
+	app->render->DrawTexture(title, 535 * screenScale, 115 * screenScale, &r_title,0,0,0,0, screenScale);
 	return true;
 }
 

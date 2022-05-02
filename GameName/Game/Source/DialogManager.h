@@ -1,7 +1,17 @@
-/*#include "Dialog.h"
+#ifndef __DIALOG_MANAGER_H__
+#define __DIALOG_MANAGER_H__
+
+#include "App.h"
+#include "Dialog.h"
 #include "Module.h"
 #include "Log.h"
 #include "SString.h"
+#include "Dialog.h"
+#include "DialogNode.h"
+#include "DialogFonts.h"
+#include "OpenWorldPlayer.h"
+#include "TheFall.h"
+#include "Entities.h"
 
 struct DialogGroup
 {
@@ -11,20 +21,33 @@ struct DialogGroup
 };
 
 
-class DialogManager
+class DialogManager : public Module
 {
 public:
 
-	DialogManager();
+	DialogManager(bool isActive);
 	~DialogManager();
 
-	bool LoadDialogs(const char* filename);
+	bool Awake(pugi::xml_node&) override;
+	bool Start() override;
+	bool PreUpdate() override;
+	bool Update(float dt) override;
+	bool PostUpdate();
+	// Called before quitting
+	bool CleanUp();
+
+
+	//bool LoadDialogs(const char* filename);
 
 
 private:
 	SString folder;
 	std::vector<DialogGroup> dialogGroups;
 	
+public:
+	//Dialog test
+	Dialog dialog_Test;
+	void FillDialog_Text(Dialog& dialog);
 
 	/*int a()
 	{
@@ -38,8 +61,9 @@ private:
 	/*bool LoadDialogGroups(pugi::xml_node);
 	pugi::xml_node LookForChildrenDialogues(pugi::xml_node children);
 
-	bool AddDialog(Dialog dialog);
+	bool AddDialog(Dialog dialog);*/
 
-};*/
+};
 
 
+#endif

@@ -22,7 +22,11 @@
 #define MAX_ENTITIES 150
 #define SPAWN_MARGIN 20
 
+class DialogManager;
 
+class NpcDummy;
+class NpcGuard;
+class NpcWoVillager;
 
 //class Entity;
 // this will be deleted

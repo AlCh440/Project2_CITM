@@ -4,6 +4,7 @@
 #include "App.h"
 #include "GuiManager.h"
 #include "Audio.h"
+#include "Window.h"
 
 GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TOGGLE, id)
 {
@@ -30,10 +31,11 @@ bool GuiToggle::Update(float dt)
 	{
 		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
-		app->input->GetMouseWorldPosition(mouseX, mouseY);
+		float screenScale = 1 / (float)app->win->GetScale();
+		app->input->GetMousePosition(mouseX, mouseY);
 
-		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
-			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
+		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w * screenScale)) &&
+			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h * screenScale)))
 		{
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
 			{
@@ -57,9 +59,10 @@ bool GuiToggle::Update(float dt)
 
 bool GuiToggle::Draw(Render* render)
 {
+	float screenScale = 1 / (float)app->win->GetScale();
 
 	//this text render could go to the state machine if necesary
-	render->DrawTexture(textTex, textPosition.x, textPosition.y, &textRect);
+	render->DrawTexture(textTex, textPosition.x * screenScale, textPosition.y * screenScale, &textRect, 0, 0, 0, 0, screenScale);
 
 	switch (state)
 	{
@@ -69,7 +72,7 @@ bool GuiToggle::Draw(Render* render)
 		render->DrawRectangle(bounds, 125, 125, 0, 125);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &normalRec);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &normalRec, 0, 0, 0, 0, screenScale);
 	} break;
 	case GuiControlState::PRESSED:
 	{
@@ -77,12 +80,12 @@ bool GuiToggle::Draw(Render* render)
 		render->DrawRectangle(bounds, 255, 255, 255, 255);
 
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec);
+		render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &selectedRec, 0, 0, 0, 0, screenScale);
 
 	} break;
 	case GuiControlState::SELECTED:
 		if (texture != NULL)
-			render->DrawTexture(texture, bounds.x, bounds.y, &selectedRec);
+			render->DrawTexture(texture, bounds.x * screenScale, bounds.y * screenScale, &selectedRec, 0, 0, 0, 0, screenScale);
 		break;
 	default:
 		break;

@@ -38,13 +38,14 @@ bool OpenWorldPlayer::Start()
 	isAlive = true;
 
 	currentAnim = &walkSide;
+	walkSpeed = 0.1f;
 
 	walkSide.PushBack({ 0, 0, 32, 48 });
 	walkSide.PushBack({ 32, 0, 32, 48 });
 	walkSide.PushBack({ 64, 0, 32, 48 });
 	walkSide.PushBack({ 96, 0, 32, 48 });
 	walkSide.loop = true;
-	walkSide.speed = 0.1f;
+	walkSide.speed = walkSpeed;
 
 
 	walkDown.PushBack({ 0, 48, 32, 48 });
@@ -52,7 +53,7 @@ bool OpenWorldPlayer::Start()
 	walkDown.PushBack({ 64, 48, 32, 48 });
 	walkDown.PushBack({ 96, 48, 32, 48 });
 	walkDown.loop = true;
-	walkDown.speed = 0.1f;
+	walkDown.speed = walkSpeed;
 
 
 	walkUp.PushBack({ 0, 96, 32, 48 });
@@ -60,17 +61,30 @@ bool OpenWorldPlayer::Start()
 	walkUp.PushBack({ 64, 96, 32, 48 });
 	walkUp.PushBack({ 96, 96, 32, 48 });
 	walkUp.loop = true;
-	walkUp.speed = 0.1f;
+	walkUp.speed = walkSpeed;
 
 	idle.PushBack({ 0, 48, 32, 48 });
 	idle.loop = false;
-	idle.speed = 0.2f;
+	idle.speed = walkSpeed;
+
+	currentAnim = &idle;
 	return true;
 }
 
 bool OpenWorldPlayer::PreUpdate()
 {
-
+	if (AdminMode)
+	{
+		if (!physBody->body->GetFixtureList()->IsSensor())
+		{
+			physBody->body->GetFixtureList()->SetSensor(true);
+		}
+		
+	}
+	else if (physBody->body->GetFixtureList()->IsSensor())
+	{
+		physBody->body->GetFixtureList()->SetSensor(false);
+	}
 
 
 	return true;
@@ -91,34 +105,72 @@ bool OpenWorldPlayer::Update(float dt)
 
 	b2Vec2 movement = { (goRight - goLeft) * velocity, (goDown - goUp) * velocity };
 
-	physBody->body->SetLinearVelocity(movement);
-	physBody->GetPosition(position.x, position.y);
+	if (AdminMode)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		{
+			movement.x *= 2;
+			movement.y *= 2;
+		}
 
-
-	if (movement.x > 0)
-	{
-		currentAnim = &walkSide;
-		goingLeft = false;
-	}
-	else if (movement.x < 0)
-	{
-		currentAnim = &walkSide;
-		goingLeft = true;
-	}
-	else if (movement.y < 0)
-	{
-		currentAnim = &walkUp;
-		goingLeft = false;
-	}
-	else if (movement.y > 0)
-	{
-		currentAnim = &walkDown;
-		goingLeft = false;
+		physBody->body->SetLinearVelocity(movement);
 	}
 	else
 	{
-		currentAnim = &idle;
+		if (CanMove())
+		{
+			physBody->body->SetLinearVelocity(movement);
+		}
 	}
+
+	physBody->GetPosition(position.x, position.y);
+
+	Animation* lastDirection = currentAnim;
+
+	if (CanMove())
+	{
+		if (movement.x > 0)
+		{
+			currentAnim = &walkSide;
+			lastDirection = &walkSide;
+			lastDirection->speed = walkSpeed;
+			goingLeft = false;
+		}
+		else if (movement.x < 0)
+		{
+			currentAnim = &walkSide;
+			lastDirection = &walkSide;
+			lastDirection->speed = walkSpeed;
+			goingLeft = true;
+		}
+		else if (movement.y < 0)
+		{
+			currentAnim = &walkUp;
+			lastDirection = &walkUp;
+			lastDirection->speed = walkSpeed;
+			goingLeft = false;
+		}
+		else if (movement.y > 0)
+		{
+			currentAnim = &walkDown;
+			lastDirection = &walkDown;
+			lastDirection->speed = walkSpeed;
+			goingLeft = false;
+		}
+		else
+		{
+			currentAnim = lastDirection;
+			lastDirection->Reset();
+			lastDirection->speed = 0;
+		}
+	}
+	else
+	{
+		currentAnim = lastDirection;
+		lastDirection->Reset();
+		lastDirection->speed = 0;
+	}
+
 	return true;
 }
 
@@ -128,12 +180,16 @@ bool OpenWorldPlayer::PostUpdate()
 
 	if (goingLeft)
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame());
+		app->render->DrawTexture(texture, position.x - 0, position.y - 16, &currentAnim->GetCurrentFrame());
 	}
 	else
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y - 20, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
+		app->render->DrawTexture(texture, position.x - 0, position.y - 16, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
+
+
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		AdminMode = !AdminMode;
 
 	return true;
 }

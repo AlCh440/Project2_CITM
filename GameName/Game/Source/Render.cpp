@@ -59,6 +59,9 @@ bool Render::Start()
 	LOG("render start");
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
+	cameraDrag = false;
+	dragging = false;
+	borderMovement = false;
 	return true;
 }
 
@@ -74,10 +77,8 @@ bool Render::Update(float dt)
 	if((app->input->GetKey(SDL_SCANCODE_M)) ==  KEY_DOWN)
 		isFreeCam = !isFreeCam;
 
-	if (isFreeCam)
-	{
-		CameraMovement();
-	}
+	CameraMovement();
+
 	
 	return true;
 }
@@ -152,22 +153,110 @@ void Render::CameraFocus(fPoint position)
 
 void Render::CameraMovement()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
+	if (isFreeCam)
 	{
-		camera.x += 10;
+		if ((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
+		{
+			camera.x += 10;
+		}
+		else if ((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
+		{
+			camera.x -= 10;
+		}
+		else if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT))
+		{
+			camera.y += 10;
+		}
+		else if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT))
+		{
+			camera.y -= 10;
+		}
 	}
-	else if ((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
+	else if (cameraDrag)
 	{
-		camera.x -= 10;
+		int distanceX = 0;
+		int distanceY = 0;
+
+		KeyState mouseRightButton = app->input->GetMouseButtonDown(SDL_BUTTON_RIGHT);
+
+		if (mouseRightButton == KEY_DOWN && !dragging)
+		{
+			app->input->GetMousePosition(dragPointX, dragPointY);
+			dragging = true;
+
+			
+		}
+		int pos_x = 0;
+		int pos_y = 0;
+		
+		if (mouseRightButton == KEY_REPEAT)
+		{
+			
+			app->input->GetMousePosition(pos_x, pos_y);
+
+			distanceX = pos_x - dragPointX;
+			distanceY = pos_y - dragPointY;
+		}
+
+		/*LOG("dragging %i", dragging);
+		LOG("dragPoint x: %i", dragPointX);
+		LOG("dragPoint y: %i", dragPointY);
+		LOG("pos_x: %i", pos_x);
+		LOG("pos_y: %i", pos_y);
+		LOG("distance x: %i", (int)((float)distanceX / cameraMultiplier));
+		LOG("distance y: %i", (int)((float)distanceY / cameraMultiplier));
+		*/
+
+		if (mouseRightButton == KEY_UP)
+		{
+			dragging = false;
+		}
+
+
+		camera.x -= (int) (distanceX / 100);
+		camera.y -= (int) (distanceY / 100);
+
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			camera.x = 0;
+			camera.y = 0;
+		}
+
+
 	}
-	else if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT))
+	else if (borderMovement)
 	{
-		camera.y += 10;
+		int pos_x, pos_y;
+		app->input->GetMousePosition(pos_x, pos_y);
+
+		if (pos_x < borderMargin && -camera.x - borderCamSpeed > 0)
+		{
+			camera.x -= borderCamSpeed * -1;
+		}
+
+		if (pos_x > app->win->GetWidth() - borderMargin && -(camera.x + app->win->GetWidth()) + borderCamSpeed < 32 * 44)
+		{
+			camera.x += borderCamSpeed * -1;
+		}
+
+		if (pos_y < borderMargin && -camera.y - borderCamSpeed > 0)
+		{
+			camera.y -= borderCamSpeed * -1;
+		}
+
+		if (pos_y > app->win->GetHeight() - borderMargin && -(camera.y + app->win->GetHeight()) + borderCamSpeed < 32 * 44)
+		{
+			camera.y += borderCamSpeed * -1;
+		}
+
 	}
-	else if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT))
+
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		camera.y -= 10;
+		camera.x = 0;
+		camera.y = 0;
 	}
+
 }
 
 void Render::ResetCameraPosition()

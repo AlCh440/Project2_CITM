@@ -5,6 +5,7 @@
 #include "Dialog.h"
 #include "DialogManager.h"
 
+class DialogManager;
 
 class NpcDummy : public Npc
 {
