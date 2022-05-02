@@ -18,10 +18,19 @@ bool DialogManager::Awake(pugi::xml_node&)
 
 bool DialogManager::Start()
 {
+	 dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
+
+	 char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
+	 char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~" };
+
+	 font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
+
 	//fill dialogs
 
 	//test dialog
 	FillDialog_Intro(dialog_intro);
+	FillDialog_Test(dialog_Test);
+	FillDialog_NoName(dialog_NoName);
 
 
 	float screenScale = 1 / (float)app->win->GetScale();
@@ -69,6 +78,21 @@ bool DialogManager::PostUpdate()
 				blackSquareAlpha = 0;
 			}
 		}
+
+
+		if (dialogActive_NoName)
+		{
+			if ((!dialog_NoName.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_NoName.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_NoName = false;
+			}
+		}
 	}
 	
 
@@ -84,15 +108,6 @@ bool DialogManager::CleanUp()
 void DialogManager::FillDialog_Intro(Dialog& dialog)
 {
 	// Take dialog box, and font
-	SDL_Texture* dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
-
-	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
-	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
-	char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~" };
-
-
-	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
-	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
 
 	// Set dialog box, and font
 	dialog.SetPosition(340, 260);
@@ -144,18 +159,218 @@ void DialogManager::FillDialog_Intro(Dialog& dialog)
 	dialog.SetActiveNode(id);
 }
 
+void DialogManager::FillDialog_NoName(Dialog& dialog)
+{
+
+	// Set dialog box, and font
+	dialog.SetPosition(340, 260);
+	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
+	dialog.SetFont(font);
+
+	// Fill the dialog
+	DialogNode node;
+
+	size_t id;
+
+	//// Last branch
+	//size_t id;
+	//node.text = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla...";
+
+	//id = dialog.AddNode(node);
+
+	//node.text = "alright... let me tell you who i am.";
+	//node.nodes.push_back(id);
+
+	//id = dialog.AddNode(node);
+
+	//// Branch 1
+	//size_t id_1;
+
+	//node.text = "are you sure you never heard of ralph the mage master?";
+	//node.nodes.push_back(id);
+
+	//id_1 = dialog.AddNode(node);
+
+	//node.text = "...";
+	//node.nodes.push_back(id_1);
+
+	//id_1 = dialog.AddNode(node);
+
+	//// Branch 2
+	//size_t id_2;
+
+	//node.text = "of course, i am famous!";
+	//node.nodes.push_back(id);
+	//node.options.push_back("just kidding, never heard of you.");
+
+	//id_2 = dialog.AddNode(node);
+
+	//// Branch 3
+	//size_t id_3;
+
+	//node.text = "i would never trick you, i am good, i help people!";
+	//node.nodes.push_back(id);
+
+	//id_3 = dialog.AddNode(node);
+
+	//node.text = "what? why would i do that?!";
+	//node.nodes.push_back(id_3);
+
+	//id_3 = dialog.AddNode(node);
+
+	//// Connect to main branch
+	//node.text = "i am sure you heard speak of me!";
+	//node.nodes.push_back(id_1);
+	//node.options.push_back("uh... no?");
+
+	//node.nodes.push_back(id_2);
+	//node.options.push_back("oh yes I remember");
+
+	//node.nodes.push_back(id_3);
+	//node.options.push_back("are you trying to trick me?");
+
+	//id = dialog.AddNode(node);
+
+	//node.text = "i am ralph, the mage master!";
+	//node.nodes.push_back(id);
+
+	//id = dialog.AddNode(node);
+
+	//node.text = "text branch 1";
+	//node.nodes.push_back(id);
+	//node.options.push_back("Option 1");
+
+	//node.nodes.push_back(id);
+	//node.options.push_back("Option 2");
+
+	//id = dialog.AddNode(node);
+
+	//dialog.SetActiveNode(id);
+
+	////////////////////////////////////////////////////////////////////////////
+
+	/*
+	
+	
+	
+	*/
+	size_t id_2_;
+
+
+	node.text = "You leave the conversation in the air.";
+	id = dialog.AddNode(node);
+
+	node.text = "(quietely)  The things I do for the team...";
+
+	id_2_ = dialog.AddNode(node);
+
+	node.text = "Great, on you go!";
+	node.nodes.push_back(id_2_);
+	id_2_ = dialog.AddNode(node);
+
+	node.text = "Kill them, if you want to accept the quest, of course";
+
+	node.nodes.push_back(id_2_);
+	node.options.push_back("I accept it.");
+
+	node.nodes.push_back(id);
+	node.options.push_back("I don't accept the quest.");
+
+	id_2_ = dialog.AddNode(node);
+
+
+
+
+	node.text = "You see those snakes with swords there?";
+	node.nodes.push_back(id_2_);
+	id_2_ = dialog.AddNode(node);
+
+	node.text = "A questy quest?";
+	node.nodes.push_back(id_2_);
+	id_2_ = dialog.AddNode(node);
+
+	node.text = "A really worthy quest!";
+	node.nodes.push_back(id_2_);
+	id_2_ = dialog.AddNode(node);
+
+	size_t id_3_;
+
+
+	
+
+	node.text = "You leave the conversation in the air.";
+	id = dialog.AddNode(node);
+
+	node.text = "Great! Anyways, a quest for you, blue boy.";
+	node.nodes.push_back(id_2_);
+	id_3_ = dialog.AddNode(node);
+
+	node.text = "Great! Anyways, a quest for you, red boy.";
+	node.nodes.push_back(id_2_);
+	id_2_ = dialog.AddNode(node);
+
+	size_t id_1_;
+
+	node.text = "Do you like Red or Blue?";
+
+	node.nodes.push_back(id_2_);
+	node.options.push_back("Red.");
+
+	node.nodes.push_back(id_3_);
+	node.options.push_back("Blue.");
+
+	node.nodes.push_back(id);
+	node.options.push_back("Leave.");
+
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "Questions!";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "...Uhm...";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "Anyways, here i am, i talk, and you respond, i am a completely vehicle NPC, with natural dialogs and...";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "Can you believe it?";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "We could add a sign that lets you know that we have a dialogue system, but it wouldn't count as a NPC just because it has a different tile!";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "Of course i do, i must, else the Matucana Team won’t get the NPC point!";
+	node.nodes.push_back(id_1_);
+	id_1_ = dialog.AddNode(node);
+
+	node.text = "Not even a chance to start a conversation.";
+	id = dialog.AddNode(node);
+
+	id = dialog.AddNode(node);
+
+	node.text = "...";
+	node.nodes.push_back(id_1_);
+	node.options.push_back("Do you talk?");
+
+	node.nodes.push_back(id);
+	node.options.push_back("Leave.");
+
+	id = dialog.AddNode(node);
+
+	dialog.SetActiveNode(id);
+
+
+
+
+}
+
 void DialogManager::FillDialog_Test(Dialog& dialog)
 {
-	// Take dialog box, and font
-	SDL_Texture* dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
-
-	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
-	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
-	char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~" };
-
-
-	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
-	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
 
 	// Set dialog box, and font
 	dialog.SetPosition(340, 260);
@@ -229,9 +444,9 @@ void DialogManager::FillDialog_Test(Dialog& dialog)
 
 	id = dialog.AddNode(node);
 
-	node.text = "FGHI";
+	node.text = "Hello, fellow human!";
 	node.nodes.push_back(id);
-	node.options.push_back("Who are you?");
+	node.options.push_back("Hello?");
 
 	node.nodes.push_back(id);
 	node.options.push_back("Who are you?");

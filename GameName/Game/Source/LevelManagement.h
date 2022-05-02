@@ -57,6 +57,7 @@ public:
 	bool SaveState(pugi::xml_node& data) const override;
 	
 	GameScene gameScene;
+	GameScene lastOpenWorldScene;
 	CombatState combatState = NOCOMBAT;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;

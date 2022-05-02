@@ -43,7 +43,8 @@ public:
 private:
 	SString folder;
 	std::vector<DialogGroup> dialogGroups;
-	
+	SDL_Texture* dialogImg;
+	int font;
 
 	//details
 	SDL_Rect blackSquare;
@@ -57,6 +58,13 @@ public:
 	//Dialog intro
 	Dialog dialog_intro;
 	void FillDialog_Intro(Dialog& dialog);
+
+	//Dialog NoName
+	Dialog dialog_NoName;
+	void FillDialog_NoName(Dialog& dialog);
+
+	bool dialogActive_NoName = false;
+
 
 	/*int a()
 	{

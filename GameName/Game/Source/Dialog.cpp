@@ -86,7 +86,6 @@ void Dialog::SetActiveNode(size_t id)
 		buttons.clear();
 		for (size_t i = 0; i < opts; i++) {
 			bounds.w = fontobj.char_w * (activeNode->options[i].length() + 4);
-			LOG("%i", fontobj.char_w);
 			buttons.emplace_back(bounds, dialogImg, activeNode->options[i].c_str(), dialogFont);
 			bounds.x += bounds.w * app->win->GetScale();
 		}
@@ -118,7 +117,8 @@ void Dialog::Update()
 
 		size_t lines = texts.size();
 
-		for (size_t i = 0; i < lines; i++) {
+		for (size_t i = 0; i < lines; i++) 
+		{
 			app->dialogFonts->BlitText(
 				(posX + textXOffset) / app->win->GetScale(),
 				(posY + textYOffset + char_height * i * 2.5f) / app->win->GetScale(),
@@ -128,12 +128,14 @@ void Dialog::Update()
 
 		size_t optionSize = activeNode->options.size();
 
-		for (size_t i = 0; i < optionSize; i++) {
+		for (size_t i = 0; i < optionSize; i++)
+		{
 			buttons[i].Update();
 			buttons[i].Draw();
 		}
 
-		if (optionSize > 0) {
+		if (optionSize > 0)
+		{
 			for (size_t i = 0; i < optionSize; i++) {
 				if (buttons[i].clicked) {
 					SetActiveNode(activeNode->nodes[i]);
@@ -165,6 +167,12 @@ void Dialog::Update()
 		finished = true;
 	}
 }
+
+void Dialog::Restart()
+{
+	finished = false;
+}
+
 
 void Dialog::SetPosition(int x, int y)
 {

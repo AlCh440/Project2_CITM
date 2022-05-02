@@ -99,111 +99,114 @@ bool EnemyDummy::Update(float dt)
 {	
 
 
-	if (stats.hp <= 0)
+	if (app->levelManagement->gameScene == 11)
 	{
-		
-		//actualStates = DIE;
-		//isAlive = false;
-	}
-	else
-	{
-		//if (aux != nullptr && interpolating == false)
-		//{
-		//	actualStates = WALK;
-		//}
-		
-		if (interpolating)
+		if (stats.hp <= 0)
 		{
-			actualStates = INTERPOLATING;
+
+			//actualStates = DIE;
+			//isAlive = false;
 		}
-	}
+		else
+		{
+			//if (aux != nullptr && interpolating == false)
+			//{
+			//	actualStates = WALK;
+			//}
 
-	
-	switch (actualStates)
-	{
-	case WALK:
-	{
-		if (!Move) {
-
-			//Set available movement tiles
-			pathfinding->InitBFS(tilePos);
-			for (int i = 0; i < stats.movement * moveRange; i++)
-				pathfinding->PropagateBFS();
-
-
-			PhysBody* aux = app->entities->GetNearestPlayer(physBody);
-			InitPath(aux->entityPtr->tilePos);
+			if (interpolating)
+			{
+				actualStates = INTERPOLATING;
+			}
 		}
 
-		MovePath();
-		currentAnim = &idle;
-		currentAnim->Update();
 
-		//physBody->GetPosition(position.x, position.y);
-		//positionToMap = app->map->WorldToMap(position.x, position.y);
+		switch (actualStates)
+		{
+		case WALK:
+		{
+			if (!Move) {
 
-		//iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
-		//goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
-
-		//int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
-
-		//if (distanceInTiles > 2)
-		//{
-		//	iPoint* going = pathfinding->GetLastPath()->At(1);
-		//	if (going != nullptr)
-		//	{
-		//		if (stats.movement > 0)
-		//		{
-
-		//			if (going->x < positionToMap.x) // LEFT
-		//			{
-		//				Interpolate(position.x - 32, position.y, inter_speed);
-		//				--stats.movement;
-		//			}
-		//			else if (going->x > positionToMap.x) // RIGHT
-		//			{
-		//				Interpolate(position.x + 32, position.y, inter_speed);
-		//				--stats.movement;
-		//			}
-		//			else if (going->y < positionToMap.y) // UP
-		//			{
-		//				Interpolate(position.x, position.y - 32, inter_speed);
-		//				--stats.movement;
-		//			}
-		//			else if (going->y > positionToMap.y) // DOWN
-		//			{
-		//				Interpolate(position.x, position.y + 32, inter_speed);
-		//				--stats.movement;
-		//			}
-		//		}
-		//		else
-		//		{
-		//			//CAN ATTACK???
-		//		}
-		//	}
-
-		//}
-
-	}break;
-	case INTERPOLATING:
-	{
-		//Interpolate(position.x, position.y, 0.02f);
-	} break;
-	default:
-	{
-
-	}break;
-	}
-		
+				//Set available movement tiles
+				pathfinding->InitBFS(tilePos);
+				for (int i = 0; i < stats.movement * moveRange; i++)
+					pathfinding->PropagateBFS();
 
 
-	
-	if (stats.movement <= 0)
-	{
-		stats.movement = 10;
-		
-		app->entities->NextEnemyTurn();
-		entityTurn = false;
+				PhysBody* aux = app->entities->GetNearestPlayer(physBody);
+				InitPath(aux->entityPtr->tilePos);
+			}
+
+			MovePath();
+			currentAnim = &idle;
+			currentAnim->Update();
+
+			//physBody->GetPosition(position.x, position.y);
+			//positionToMap = app->map->WorldToMap(position.x, position.y);
+
+			//iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
+			//goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
+
+			//int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
+
+			//if (distanceInTiles > 2)
+			//{
+			//	iPoint* going = pathfinding->GetLastPath()->At(1);
+			//	if (going != nullptr)
+			//	{
+			//		if (stats.movement > 0)
+			//		{
+
+			//			if (going->x < positionToMap.x) // LEFT
+			//			{
+			//				Interpolate(position.x - 32, position.y, inter_speed);
+			//				--stats.movement;
+			//			}
+			//			else if (going->x > positionToMap.x) // RIGHT
+			//			{
+			//				Interpolate(position.x + 32, position.y, inter_speed);
+			//				--stats.movement;
+			//			}
+			//			else if (going->y < positionToMap.y) // UP
+			//			{
+			//				Interpolate(position.x, position.y - 32, inter_speed);
+			//				--stats.movement;
+			//			}
+			//			else if (going->y > positionToMap.y) // DOWN
+			//			{
+			//				Interpolate(position.x, position.y + 32, inter_speed);
+			//				--stats.movement;
+			//			}
+			//		}
+			//		else
+			//		{
+			//			//CAN ATTACK???
+			//		}
+			//	}
+
+			//}
+
+		}break;
+		case INTERPOLATING:
+		{
+			//Interpolate(position.x, position.y, 0.02f);
+		} break;
+		default:
+		{
+
+		}break;
+		}
+
+
+
+
+		if (stats.movement <= 0)
+		{
+			stats.movement = 10;
+
+			app->entities->NextEnemyTurn();
+			entityTurn = false;
+		}
 	}
 
 	currentAnim->Update();
@@ -229,7 +232,7 @@ bool EnemyDummy::PostUpdate()
 	}
 
 	//render entity
-	app->render->DrawTexture(texture, position.x, position.y, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());
 
 
 	//render current tile pos

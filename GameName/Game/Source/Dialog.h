@@ -67,4 +67,6 @@ public:
 
 	// Set the dialog background image
 	void SetDialogBg(SDL_Texture* dialog_bg, int width, int height, int offsetLeft = 0, int offsetUp = 0);
+
+	void Restart();
 };

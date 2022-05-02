@@ -28,6 +28,7 @@ bool LevelManagement::Start()
 {
 
 	gameScene = GameScene::INTRO;
+	lastOpenWorldScene = gameScene;
 	currentScene = nullptr;
 	return true;
 }
@@ -37,7 +38,7 @@ bool LevelManagement::PreUpdate()
 
 	if ((app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) && currentScene->active == true)
 	{
-		gameScene = WORLD_TEST;
+		gameScene = lastOpenWorldScene;
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{
@@ -61,7 +62,9 @@ bool LevelManagement::PreUpdate()
 		}
 		break;
 	case START:
-		
+	{
+
+	}
 		break;
 	case GAME_OVER:
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && currentScene->active == true)
@@ -119,6 +122,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->theFall, 30))
 			{
 				currentScene = (Module*)app->theFall;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->theFall;
 				LOG("The fall");
 			}
@@ -130,6 +134,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->greenPath, 30))
 			{
 				currentScene = (Module*)app->greenPath;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->greenPath;
 				LOG("Green Path");
 			}
@@ -141,6 +146,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->village, 30))
 			{
 				currentScene = (Module*)app->village;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->village;
 				LOG("The village");
 			}
@@ -152,6 +158,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->ruins, 30))
 			{
 				currentScene = (Module*)app->ruins;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->ruins;
 				LOG("The ruins");
 			}
@@ -163,6 +170,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->fracturedRoad, 30))
 			{
 				currentScene = (Module*)app->fracturedRoad;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->fracturedRoad;
 				LOG("Fractured road");
 			}
@@ -174,6 +182,7 @@ bool LevelManagement::Update(float dt)
 			if (app->fade->Fade(currentScene, (Module*)app->dragonCliff, 30))
 			{
 				currentScene = (Module*)app->dragonCliff;
+				lastOpenWorldScene = gameScene;
 				currentLevel = (Module*)app->dragonCliff;
 				LOG("Dragon Cliff");
 			}

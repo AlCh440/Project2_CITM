@@ -8,6 +8,7 @@
 #include "Entities.h"
 #include "Physics.h"
 #include "Pathfinding.h"
+#include "OpenWorldPlayer.h"
 
 #include "Log.h"
 
@@ -53,14 +54,23 @@ bool NpcDummy::PreUpdate()
 
 bool NpcDummy::Update(float dt)
 {
-	/*int DistanceX 
-	int DistanceY
+	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+
+	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
 
 	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
 	{
-		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN);
+		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		{
+			app->dialogManager->dialogActive_NoName = true;
+			app->dialogManager->FillDialog_Test(app->dialogManager->dialog_Test);
+			app->dialogManager->dialog_Test.Restart();
 
-	}*/
+			//it keeps adding to memory the more times you talk -> fix!!
+		}
+
+	}
 
 	switch (actualStates)
 	{

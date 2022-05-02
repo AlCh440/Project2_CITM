@@ -67,10 +67,18 @@ bool ModuleEntities::Update(float dt)
 {
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (aux->data->entityTurn)
+        if (app->levelManagement->gameScene == 11)
+        {
+            if (aux->data->entityTurn)
+            {
+                aux->data->Update(dt);
+            }
+        }
+        else 
         {
             aux->data->Update(dt);
         }
+        
     }
    
     if (app->levelManagement->gameScene == 11)
