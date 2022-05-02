@@ -44,10 +44,19 @@ private:
 	SString folder;
 	std::vector<DialogGroup> dialogGroups;
 	
+
+	//details
+	SDL_Rect blackSquare;
+	float blackSquareAlpha;
+
 public:
 	//Dialog test
 	Dialog dialog_Test;
-	void FillDialog_Text(Dialog& dialog);
+	void FillDialog_Test(Dialog& dialog);
+
+	//Dialog intro
+	Dialog dialog_intro;
+	void FillDialog_Intro(Dialog& dialog);
 
 	/*int a()
 	{

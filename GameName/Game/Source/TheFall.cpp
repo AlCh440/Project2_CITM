@@ -24,13 +24,15 @@ bool TheFall::Awake(pugi::xml_node&)
 
 bool TheFall::Start()
 {
+	music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav", 0);
+
 	app->physics->Start();
 	app->map->Load("level1.tmx");
 	app->entities->Start();
 	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
 
-
+	
 	return true;
 }
 

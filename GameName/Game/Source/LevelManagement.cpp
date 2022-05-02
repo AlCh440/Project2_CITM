@@ -51,9 +51,9 @@ bool LevelManagement::PreUpdate()
 	{
 	case INTRO:
 
-		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) && currentScene->active == true)
+	/*	if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) && currentScene->active == true)
 
-		app->audio->PlayMusic("assets/audio/music/song_menu.wav");
+		app->audio->PlayMusic("assets/audio/music/song_menu.wav");*/
 		playMusic = false;
 		if ((app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) && currentScene->active == true)
 		{

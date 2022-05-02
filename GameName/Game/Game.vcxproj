@@ -163,7 +163,6 @@
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\BattleSpace.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
-    <ClInclude Include="Source\Button.h" />
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Collectable.h" />
     <ClInclude Include="Source\Dialog.h" />

@@ -23,6 +23,8 @@ bool TheVillage::Awake(pugi::xml_node&)
 
 bool TheVillage::Start()
 {
+
+	music = app->audio->PlayMusic("assets/audio/music/village.wav", 0);
 	app->physics->Start();
 	app->map->Load("level3.tmx");
 	app->entities->Start();

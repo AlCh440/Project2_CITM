@@ -36,6 +36,7 @@ bool OpenWorldPlayer::Start()
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
+	canMove = true;
 
 	currentAnim = &walkSide;
 	walkSpeed = 0.1f;

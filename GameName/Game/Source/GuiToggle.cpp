@@ -34,8 +34,8 @@ bool GuiToggle::Update(float dt)
 		float screenScale = 1 / (float)app->win->GetScale();
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w * screenScale)) &&
-			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h * screenScale)))
+		if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
+			(mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
 		{
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
 			{

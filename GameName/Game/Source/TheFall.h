@@ -39,6 +39,10 @@ private:
 	SDL_Texture* img;
 	SDL_Rect rect;
 
+	uint music;
+
+
+
 
 };
 

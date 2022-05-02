@@ -18,7 +18,17 @@ bool DialogManager::Awake(pugi::xml_node&)
 
 bool DialogManager::Start()
 {
-	FillDialog_Text(dialog_Test);
+	//fill dialogs
+
+	//test dialog
+	FillDialog_Intro(dialog_intro);
+
+
+	float screenScale = 1 / (float)app->win->GetScale();
+
+	//details;
+	blackSquare = { 0,0,app->win->GetWidth(), app->win->GetHeight()};
+	blackSquareAlpha = 255;
 	return true;
 }
 
@@ -38,16 +48,29 @@ bool DialogManager::PostUpdate()
 
 	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
 
-	if ((app->theFall->active) && (!dialog_Test.Finished()))
+	
+	
+	if (app->theFall->active)
 	{
+		app->render->DrawRectangle(blackSquare, 0, 0, 0, blackSquareAlpha, true, false);
+		if ((!dialog_intro.Finished()))
+		{
+			
 
-		if (player != nullptr) player->SetMotion(false);
-		dialog_Test.Update();
+			if (player != nullptr) player->SetMotion(false);
+			dialog_intro.Update();
+		}
+		else
+		{
+			if (player != nullptr) player->SetMotion(true);
+			if (blackSquareAlpha - 2 > 0) 
+				blackSquareAlpha -= 2;
+			else {
+				blackSquareAlpha = 0;
+			}
+		}
 	}
-	else
-	{
-		if (player != nullptr) player->SetMotion(true);
-	}
+	
 
 	return true;
 }
@@ -58,8 +81,7 @@ bool DialogManager::CleanUp()
 	return true;
 }
 
-
-void DialogManager::FillDialog_Text(Dialog& dialog)
+void DialogManager::FillDialog_Intro(Dialog& dialog)
 {
 	// Take dialog box, and font
 	SDL_Texture* dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
@@ -73,7 +95,70 @@ void DialogManager::FillDialog_Text(Dialog& dialog)
 	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
 
 	// Set dialog box, and font
-	dialog.SetPosition(340, 460);
+	dialog.SetPosition(340, 260);
+	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
+	dialog.SetFont(font);
+
+	// Fill the dialog
+	DialogNode node;
+
+	// Last branch
+	size_t id;
+
+
+	node.text = "I wish you luck on your journey.";
+	id = dialog.AddNode(node);
+
+	node.text = "Anyways...";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "And you, my dear player, are that opponent. It's a shame that you don't remember any of this...";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "The powerful archel who sent this world to its demise only to find a worthy opponent.";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "I am Anmague.";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "Let's leave these generic introductions aside and get to the point.";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "You know what?";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "Ugh...";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	node.text = "Once upon a time, in a world desolated by chaotic energies, caused by a  powerful arc...";
+	node.nodes.push_back(id);
+	id = dialog.AddNode(node);
+
+	dialog.SetActiveNode(id);
+}
+
+void DialogManager::FillDialog_Test(Dialog& dialog)
+{
+	// Take dialog box, and font
+	SDL_Texture* dialogImg = app->tex->Load("Assets/Sprites/UI/dialog_box_paper.png");
+
+	//char lookupTable[] = { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 " };
+	char lookupTable[] = { "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[£]çç€!ççç%&'()*+,-.^0123456789:;<=>?/abcdefghijklmnopqrstuvwxyz ççççççç" };
+	char lookupTable2[] = { " !ç#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[ç]^_çabcdefghijklmnopqrstuvwxyz{|}~" };
+
+
+	//int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/font1_black_1.png", lookupTable, 6);
+	int font = app->dialogFonts->Load("Assets/Sprites/UI/Fonts/NeoSans.png", lookupTable2, 1);
+
+	// Set dialog box, and font
+	dialog.SetPosition(340, 260);
 	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
 	dialog.SetFont(font);
 

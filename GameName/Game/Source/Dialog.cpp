@@ -121,7 +121,7 @@ void Dialog::Update()
 		for (size_t i = 0; i < lines; i++) {
 			app->dialogFonts->BlitText(
 				(posX + textXOffset) / app->win->GetScale(),
-				(posY + textYOffset + char_height * i * 2) / app->win->GetScale(),
+				(posY + textYOffset + char_height * i * 2.5f) / app->win->GetScale(),
 				dialogFont, texts[i].c_str()
 			);
 		}
