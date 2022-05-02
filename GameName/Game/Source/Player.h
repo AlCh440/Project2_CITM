@@ -6,15 +6,15 @@
 #include "Textures.h"
 #include "Render.h"
 
-enum PlayerState
-{
-	IDLE,
-	COMBATMOVE,
-	CHOOSINGATTACK,
-	CHOOSINGOBJECTIVE,
-	ATTACKING,
-	DEAD
-};
+//enum PlayerState
+//{
+//	//IDLE,
+//	COMBATMOVE,
+//	CHOOSINGATTACK,
+//	CHOOSINGOBJECTIVE,
+//	ATTACKING,
+//	DEAD
+//};
 
 class Player :  public Entity
 {
@@ -56,7 +56,7 @@ public:
 	int lifePoints = 1;
 	int manaPoints = 1;
 	int actionPoints = 1;
-	PlayerState state = IDLE;
+	//PlayerState state = COMBATMOVE;
 	bool isAlive = true;
 	
 private:

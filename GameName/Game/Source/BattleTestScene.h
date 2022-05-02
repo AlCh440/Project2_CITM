@@ -39,5 +39,7 @@ private:
 	SDL_Rect rect;
 
 	
-	PhysBody* testBody;
+	p2List<Entity*> battleEntities;
+	p2ListItem<Entity*>* currentEntity;
+	
 };

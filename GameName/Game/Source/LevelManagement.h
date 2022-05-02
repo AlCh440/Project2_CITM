@@ -30,12 +30,12 @@ enum GameScene {
 	MARKET = 14
 };
 
-enum CombatState {
-	NOCOMBAT = 0,
-	PLAYERTURN = 1,
-	ENEMYTURN = 2,
-	ANIMATION = 3
-};
+//enum CombatState {
+//	NOCOMBAT = 0,
+//	PLAYERTURN = 1,
+//	ENEMYTURN = 2,
+//	ANIMATION = 3
+//};
 
 class LevelManagement : public Module
 {
@@ -58,7 +58,7 @@ public:
 	
 	GameScene gameScene;
 	GameScene lastOpenWorldScene;
-	CombatState combatState = NOCOMBAT;
+	//CombatState combatState = NOCOMBAT;
 	Module* currentScene = nullptr;
 	Module* currentLevel = nullptr;
 

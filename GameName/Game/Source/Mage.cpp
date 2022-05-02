@@ -29,22 +29,22 @@ bool Mage::Start()
 bool Mage::PreUpdate()
 {
 
-	if (state == COMBATMOVE)
-	{
-		if (lifePoints > 0)
-		{
-			isAlive = true;
-		}
-		else
-		{
-			isAlive = false;
-			CleanUp();
-		}
-	}
-	else
-	{
+	//if (state == COMBATMOVE)
+	//{
+	//	if (lifePoints > 0)
+	//	{
+	//		isAlive = true;
+	//	}
+	//	else
+	//	{
+	//		isAlive = false;
+	//		CleanUp();
+	//	}
+	//}
+	//else
+	//{
 
-	}
+	//}
 
 
 

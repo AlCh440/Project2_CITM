@@ -97,7 +97,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BattleSpace.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
@@ -157,8 +156,6 @@
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WorldSpace.cpp" />
     <ClCompile Include="Source\WorldTestScene.cpp" />
-    <ClCompile Include="WorldSpace.cpp" />
-    <ClInclude Include="BattleSpace.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\BattleSpace.h" />
@@ -232,7 +229,6 @@
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
     <ClInclude Include="Source\WorldSpace.h" />
     <ClInclude Include="Source\WorldTestScene.h" />
-    <ClInclude Include="WorldSpace.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />

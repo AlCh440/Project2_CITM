@@ -29,7 +29,7 @@ bool Ranger::Start()
 bool Ranger::PreUpdate()
 {
 
-	if (state == COMBATMOVE)
+	/*if (state == COMBATMOVE)
 	{
 		if (lifePoints > 0)
 		{
@@ -44,7 +44,7 @@ bool Ranger::PreUpdate()
 	else
 	{
 
-	}
+	}*/
 
 
 

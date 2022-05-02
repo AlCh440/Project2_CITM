@@ -1,11 +1,6 @@
 #pragma once
-
 #include "Enemy.h"
 #include "Pathfinding.h"
-
-
-
-
 
 class EnemyDummy : public Enemy
 {

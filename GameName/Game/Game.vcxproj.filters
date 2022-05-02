@@ -168,8 +168,6 @@
     <ClCompile Include="Source\Tweening.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="WorldSpace.cpp" />
-    <ClCompile Include="BattleSpace.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp">
       <Filter>Entities\Spaces</Filter>
     </ClCompile>
@@ -381,8 +379,6 @@
     <ClInclude Include="Source\Tweening.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="WorldSpace.h" />
-    <ClInclude Include="BattleSpace.h" />
     <ClInclude Include="Source\BattleSpace.h">
       <Filter>Entities\Spaces</Filter>
     </ClInclude>

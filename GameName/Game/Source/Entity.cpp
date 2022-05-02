@@ -21,6 +21,7 @@ Entity::Entity(Collider_Type _type, iPoint pos)
 	position.x = pos.x;
 	position.y = pos.y;
 	type = _type;
+	battleState = IDLE;
 }
 
 Entity::~Entity()
@@ -200,7 +201,7 @@ bool Entity::MovePath()
 				ExpandedBFS = false;
 				stepCounter = 0;
 				nextStep = true;
-				break;
+				return true;
 			}
 
 			//calculate movement direction

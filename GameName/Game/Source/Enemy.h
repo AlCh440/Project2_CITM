@@ -12,14 +12,14 @@ struct Stats
 	int momevent;
 };
 
-enum ENEMY_STATE
-{
-	INTERPOLATING,
-	WALK,
-	CHASE,
-	ATTACK,
-	DIE
-};
+//enum ENEMY_STATE
+//{
+//	INTERPOLATING,
+//	WALK,
+//	CHASE,
+////	ATTACK,
+//	DIE
+//};
 
 
 class Enemy :  public Entity
@@ -49,6 +49,6 @@ protected:
 	fPoint lastPosition;
 	fPoint pos;
 	b2Vec2 movementSpeed;
-	ENEMY_STATE actualStates;
+	//ENEMY_STATE actualStates;
 };
 

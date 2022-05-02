@@ -21,6 +21,12 @@ struct Statistics
 	int baseDamage;
 	int movement;
 };
+enum BattleSates {
+	MOVE,			//Find a target positin, move to it
+	ATTACK,			//Show selected attack range, use it
+	DEATH,			//Display death animation
+	IDLE			//Entity in idle state waiting turn
+};
 
 class Entity abstract
 {
@@ -120,7 +126,7 @@ protected:
 public:
 	iPoint tilePos;
 	bool ExpandedBFS;
-
+	BattleSates battleState;
 
 	bool InitPath(iPoint destiantion);
 	bool MovePath();

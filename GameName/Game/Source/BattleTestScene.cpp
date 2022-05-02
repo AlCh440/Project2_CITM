@@ -33,10 +33,14 @@ bool BattleTestScene::Start()
 	app->map->Load("BattleGroundTest.tmx");
 	//start etities
 	app->entities->Start();
+
+	battleEntities = app->entities->entities;
+	currentEntity = app->entities->entities.start;
+	currentEntity->data->battleState = MOVE;
+
 	//start combat
 	app->entities->StartPlayerTurn();
 
-	//app->render->ActivateCameraCombat();
 	app->render->cameraDrag = false;
 	app->render->borderMovement = true;
 	return true;
@@ -49,6 +53,13 @@ bool BattleTestScene::PreUpdate()
 
 bool BattleTestScene::Update(float dt)
 {
+
+	for (int i = 0; i < battleEntities.count(); i++)
+	{
+
+	}
+
+
 	return true;
 }
 

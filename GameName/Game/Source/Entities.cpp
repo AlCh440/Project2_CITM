@@ -57,7 +57,6 @@ bool ModuleEntities::PreUpdate()
     {
         aux->data->DEBUG = DEBUG;
         aux->data->PreUpdate();
-
     }
 
     return true;
@@ -67,37 +66,37 @@ bool ModuleEntities::Update(float dt)
 {
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        if (app->levelManagement->gameScene == 11)
-        {
-            if (aux->data->entityTurn)
-            {
-                aux->data->Update(dt);
-            }
-        }
-        else 
-        {
+        //if (app->levelManagement->gameScene == 11)
+        //{
+        //    if (aux->data->entityTurn)
+        //    {
+        //        aux->data->Update(dt);
+        //    }
+        //}
+        //else 
+        //{
             aux->data->Update(dt);
-        }
+        //}
         
     }
    
-    if (app->levelManagement->gameScene == 11)
-    {
-        if (app->levelManagement->combatState == PLAYERTURN)
-        {
-            if (!CheckPlayerTurn())
-            {
-                StartEnemiesTurn();
-            }
-        }
-        else if (app->levelManagement->combatState == ENEMYTURN)
-        {
-            if (enemiesAlive <= 0)
-            {
-                StartPlayerTurn();
-            }
-        }
-    }
+    //if (app->levelManagement->gameScene == 11)
+    //{
+    //    if (app->levelManagement->combatState == PLAYERTURN)
+    //    {
+    //        if (!CheckPlayerTurn())
+    //        {
+    //            StartEnemiesTurn();
+    //        }
+    //    }
+    //    else if (app->levelManagement->combatState == ENEMYTURN)
+    //    {
+    //        if (enemiesAlive <= 0)
+    //        {
+    //            StartPlayerTurn();
+    //        }
+    //    }
+    //}
     return true;
 }
 
@@ -205,9 +204,6 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
         }
 
     }
-
-
-
 }
 
 
@@ -291,14 +287,14 @@ void ModuleEntities::StartPlayerTurn()
         aux->data->entityTurn = true;
     }
 
-    app->levelManagement->combatState = PLAYERTURN;
+    //app->levelManagement->combatState = PLAYERTURN;
 }
 
 void ModuleEntities::StartEnemiesTurn()
 {
-    enemies.getFirst()->data->entityTurn = true;
-    enemiesAlive = enemies.count();
-    app->levelManagement->combatState = ENEMYTURN;
+    //enemies.getFirst()->data->entityTurn = true;
+    //enemiesAlive = enemies.count();
+    //app->levelManagement->combatState = ENEMYTURN;
 }
 
 PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)

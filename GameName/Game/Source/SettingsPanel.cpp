@@ -37,21 +37,23 @@ bool SettingsPanel::Start()
 	tg_fullScreen->textPosition.x = tg_fullScreen->position.x;
 	tg_fullScreen->textPosition.y = tg_fullScreen->position.y + 25;
 
-	sl_fx = (GuiSlider*)CreateGuiSlider(2, app->guiManager, this, { this->position.x + 450, this->position.y + 300, 150 ,50 }, { this->position.x + 450, this->position.y + 290, 50 ,50 });
+	sl_fx = (GuiSlider*)CreateGuiSlider(2, app->guiManager, this, { this->position.x + 450, this->position.y + 300, 150 ,50 }, { this->position.x + 450 + 150, this->position.y + 290, 50 ,50 });
 	sl_fx->texture =  app->guiManager->UItexture2;
 	sl_fx->textTex = app->fonts->LoadRenderedText(sl_fx->textRect, 0, "Fx Volume", { 0,0,0 });
 	sl_fx->textPosition.x = sl_fx->position.x;
 	sl_fx->textPosition.y = sl_fx->position.y + 10;
 	sl_fx->backgroundRect = { 8,56,154,7 };
 	sl_fx->thumbRect = { 22,240,22,22};
+	sl_fx->UpdateThumbPos(app->audio->GetFxVolume());
 
-	sl_music = (GuiSlider*)CreateGuiSlider(3, app->guiManager, this, { this->position.x + 650, this->position.y + 300, 150 ,50 }, { this->position.x + 650, this->position.y + 290, 50 ,50 });
+	sl_music = (GuiSlider*)CreateGuiSlider(3, app->guiManager, this, { this->position.x + 650, this->position.y + 300, 150 ,50 }, { this->position.x + 650 + 150, this->position.y + 290, 50 ,50 });
 	sl_music->texture = app->guiManager->UItexture2;
 	sl_music->textTex = app->fonts->LoadRenderedText(sl_music->textRect, 0, "Music Volume", { 0,0,0 });
 	sl_music->textPosition.x = sl_music->position.x;
 	sl_music->textPosition.y = sl_music->position.y + 10;
 	sl_music->backgroundRect = { 8,56,154,7 };
 	sl_music->thumbRect = { 22,240,22,22 };
+	sl_music->UpdateThumbPos(app->audio->GetMusicVolume());
 
 
 	bt_return = (GuiButton*)CreateGuiButton(4, app->guiManager, this, { this->position.x + 555,this->position.y + 525,170,60 }, "Return", app->fonts->menuButtonFont, app->fonts->c_Menus);
@@ -102,12 +104,12 @@ bool SettingsPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (control->id == sl_fx->id)
 	{
-		app->audio->SetFxVolume(sl_fx->value);
+		app->audio->SetFxVolume(sl_fx->GetValue());
 
 	}
 	else if (control->id == sl_music->id) 
 	{
-		app->audio->SetMusicVolume(sl_music->value);
+		app->audio->SetMusicVolume(sl_music->GetValue());
 	}
 
 	return true;

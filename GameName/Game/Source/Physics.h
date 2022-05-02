@@ -35,7 +35,6 @@ enum Collider_Type {
 	PLAYEROPENWORLD,
 	CHECK_POINT, 
 	SPAWNER,
-	DEATH,
 	PORTAL,
 	PLAYER,
 	PLAYER_ATTACK,
@@ -43,8 +42,7 @@ enum Collider_Type {
 	ENEMY,
 	POTION,
 	ENTRANCE,
-	EXIT,
-
+	EXIT
 };
 
 struct Color {

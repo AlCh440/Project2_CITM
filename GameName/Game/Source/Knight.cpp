@@ -24,7 +24,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-	state = COMBATMOVE;
+	//state = COMBATMOVE;
 	moveTime = 32; //milisec
 	counter = moveTime;
 }
@@ -95,46 +95,13 @@ bool Knight::Start()
 bool Knight::PreUpdate()
 {
 
-	if(state == COMBATMOVE)
+	switch (battleState)
 	{
-		if (stats.hp > 0)
-		{
-			isAlive = true;
-		}
-		else
-		{
-			isAlive = false;
-
-			//deadth anim
-
-			CleanUp();
-		}
-	}
-	else
-	{
-
-	}
-
-	
-
-	return true;
-}
-
-bool Knight::Update(float dt)
-{
-	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-	{
-		state = COMBATMOVE;
-	}
-	if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
-	{
-		state = CHOOSINGATTACK;
-	}
-	switch (state)
-	{
-	case COMBATMOVE:
-	{
-		
+	case IDLE:
+		//nothing to do
+		break;
+	case MOVE:
+		//Select tile to move to
 		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move && ExpandedBFS) {
 			int x, y;
 			app->input->GetMouseWorldPosition(x, y);
@@ -145,77 +112,137 @@ bool Knight::Update(float dt)
 
 			InitPath(p);
 		}
-		else if(!ExpandedBFS){
-			pathfinding->ResetBFSPath();
-			iPoint mapPos;
-			mapPos = app->map->WorldToMap(position.x, position.y);
-
-			pathfinding->InitBFS(mapPos);
-
-			for (int i = 0; i < stats.movement * 4 + 1; i++)
-				pathfinding->PropagateBFS();
-
-			ExpandedBFS = true;
-		}
-
-		MovePath();
-
-		if(currentAnim != NULL)
-			currentAnim->Update();
-
-	}break;
-	case CHOOSINGATTACK:
-	{
-		if (app->input->GetKey(SDL_SCANCODE_V) == KEY_DOWN)
-		{
-			attackChoosed = TAUNT;
-			state = CHOOSINGOBJECTIVE;
-		}
-		else if (app->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
-		{
-			attackChoosed = BIND;
-			state = CHOOSINGOBJECTIVE;
-		}
-		else if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
-		{
-			attackChoosed = CONCUSSION;
-			state = CHOOSINGOBJECTIVE;
-		}
-
-	} break;
-	case CHOOSINGOBJECTIVE:
-	{
-		switch (attackChoosed)
-		{
-		case CONCUSSION:
-		{
-			// THE PLAYER CHOOSES THE ENEMY HE WANTS, RIGHT NOW  IS JUST THE CLOSER!!!
-			ConcusionHability(checkCloseEnemies());
-			state = ATTACKING;
-
-		} break;
-		default:
-		{
-
-		} break;
-		}
-
-	} break;
-	case ATTACKING:
-	{
-		state = COMBATMOVE;
-	} break;
+		break;
+	case ATTACK:
+		break;
+	case DEATH:
+		break;
 	default:
-	{
-
-	}break;
+		break;
 	}
 
-	if (stats.movement <= 0)
+
+	return true;
+}
+
+bool Knight::Update(float dt)
+{
+	switch (battleState)
 	{
-		stats.movement = 10;
-		entityTurn = false;
+	case IDLE:
+		//update idle
+		break;
+	case MOVE:
+		//Select tile to move to
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move && ExpandedBFS) {
+			int x, y;
+			app->input->GetMouseWorldPosition(x, y);
+			iPoint p;
+			p.x = x;
+			p.y = y;
+			p = app->map->WorldToMap(p.x, p.y);
+
+			InitPath(p);
+		}
+		break;
+	case ATTACK:
+		break;
+	case DEATH:
+		break;
+	default:
+		break;
 	}
+
+
+
+
+	//if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	//{
+	//	state = COMBATMOVE;
+	//}
+	//if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
+	//{
+	//	state = CHOOSINGATTACK;
+	//}
+	//switch (state)
+	//{
+	//case COMBATMOVE:
+	//{
+
+	//	//Expand tiles to available
+	//	 if(!ExpandedBFS){
+
+	//		pathfinding->ResetBFSPath();
+	//		iPoint mapPos;
+	//		mapPos = app->map->WorldToMap(position.x, position.y);
+
+	//		pathfinding->InitBFS(mapPos);
+
+	//		for (int i = 0; i < stats.movement * 4 + 1; i++)
+	//			pathfinding->PropagateBFS();
+
+	//		ExpandedBFS = true;
+	//	}
+
+	//	//move
+	//	MovePath();
+
+	//	if(currentAnim != NULL)
+	//		currentAnim->Update();
+
+	//}break;
+	//case CHOOSINGATTACK:
+	//{
+	//	if (app->input->GetKey(SDL_SCANCODE_V) == KEY_DOWN)
+	//	{
+	//		attackChoosed = TAUNT;
+	//		state = CHOOSINGOBJECTIVE;
+	//	}
+	//	else if (app->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
+	//	{
+	//		attackChoosed = BIND;
+	//		state = CHOOSINGOBJECTIVE;
+	//	}
+	//	else if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
+	//	{
+	//		attackChoosed = CONCUSSION;
+	//		state = CHOOSINGOBJECTIVE;
+	//	}
+
+	//} break;
+	//case CHOOSINGOBJECTIVE:
+	//{
+	//	switch (attackChoosed)
+	//	{
+	//	case CONCUSSION:
+	//	{
+	//		// THE PLAYER CHOOSES THE ENEMY HE WANTS, RIGHT NOW  IS JUST THE CLOSER!!!
+	//		ConcusionHability(checkCloseEnemies());
+	//		state = ATTACKING;
+
+	//	} break;
+	//	default:
+	//	{
+
+	//	} break;
+	//	}
+
+	//} break;
+	//case ATTACKING:
+	//{
+	//	state = COMBATMOVE;
+	//} break;
+	//default:
+	//{
+
+	//}break;
+	//}
+
+	//if (stats.movement <= 0)
+	//{
+	//	stats.movement = 10;
+	//	entityTurn = false;
+	//}
 
 
 
@@ -225,6 +252,24 @@ bool Knight::Update(float dt)
 bool Knight::PostUpdate()
 {
 	SDL_Rect r;
+
+	switch (battleState)
+	{
+	case IDLE:
+		//render idle 
+		break;
+	case MOVE:
+		//draw movement
+		break;
+	case ATTACK:
+		break;
+	case DEATH:
+		break;
+	default:
+		break;
+	}
+
+
 
 	pathfinding->DrawBFSPath();
 

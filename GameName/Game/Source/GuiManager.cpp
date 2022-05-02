@@ -44,6 +44,8 @@ bool GuiManager::Start()
 
 	Debug = false;
 
+	//add more UI panels here
+
 	pn_quest = new QuestPanel(false);
 	pn_start = new MainMenuPanel(false);
 	pn_pause = new PausePanel(false);
@@ -119,10 +121,6 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 bool GuiManager::PostUpdate() {
 
-
-
-
-
 	p2ListItem<GuiPanel*>* panel = panels.start;
 
 	while (panel != nullptr)
@@ -132,9 +130,6 @@ bool GuiManager::PostUpdate() {
 		
 		panel = panel->next;
 	}
-
-
-	
 
 	return true;
 

@@ -64,12 +64,10 @@ bool GuiSlider::Update(float dt)
 					thumbBounds.x = (bounds.x + bounds.w) - 10;
 
 				
-
-				value = GetValue(mouseX);
-				LOG("slider value:%f", GetValue(mouseX));
+				value = UpdateValue(mouseX);
+				//LOG("slider value:%f", GetValue(mouseX));
 				state = GuiControlState::PRESSED;
 			}
-
 			// If mouse button pressed -> Generate event!
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
 			{
@@ -84,8 +82,6 @@ bool GuiSlider::Update(float dt)
 
 bool GuiSlider::Draw(Render* render)
 {
-
-
 	//this text render could go to the state machine if necesary
 	float screenScale = 1 / (float)app->win->GetScale();
 	render->DrawTexture(textTex, textPosition.x * screenScale, textPosition.y * screenScale, &textRect, 0, 0, 0, 0, screenScale);
@@ -176,13 +172,13 @@ bool GuiSlider::CleanUp()
 	return true;
 }
 
-int GuiSlider::GetValue(float pos)
+int GuiSlider::UpdateValue(float pos)
 {
 
-	if (pos < bounds.x)
+	if (pos <= bounds.x+ (thumbBounds.w * 0.5f))
 		return value = minValue;
 
-	if (pos > (bounds.x + bounds.w))
+	if (pos >= (bounds.x + bounds.w) + (thumbBounds.w * 0.5f))
 		return	value = maxValue;
 
 	value = minValue + (maxValue - minValue) * ((pos - minValueFrom) / (maxValueFrom - minValueFrom));
@@ -190,7 +186,7 @@ int GuiSlider::GetValue(float pos)
 	return value;
 }
 
-void GuiSlider::SetValue(int _value)
+void GuiSlider::UpdateThumbPos(int _value)
 {
 	thumbBounds.x = bounds.x + ((bounds.x +bounds.w) - bounds.x) * ((_value - 0) / (128 - 0));
 }
