@@ -10,6 +10,7 @@
 #include "Pathfinding.h"
 #include "OpenWorldPlayer.h"
 
+
 #include "Log.h"
 
 
@@ -43,6 +44,8 @@ bool NpcDummy::Start()
 	pos = app->map->WorldToMap(pos.x, pos.y);
 
 	tilePos = pos;
+
+	
 
 	return true;
 }

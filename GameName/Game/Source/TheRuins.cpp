@@ -5,6 +5,7 @@
 #include "Entities.h"
 #include "Audio.h"
 #include "Physics.h"
+#include "GuiManager.h"
 
 TheRuins::TheRuins(bool isActive) : Module(isActive)
 {
@@ -23,6 +24,7 @@ bool TheRuins::Awake(pugi::xml_node&)
 
 bool TheRuins::Start()
 {
+	app->guiManager->OpenPanel(P_QUEST);
 	return true;
 }
 
