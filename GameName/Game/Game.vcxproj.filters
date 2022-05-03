@@ -180,6 +180,9 @@
     <ClCompile Include="Source\NpcWoVillager.cpp">
       <Filter>Entities\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BattlePanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -390,6 +393,9 @@
     </ClInclude>
     <ClInclude Include="Source\NpcWoVillager.h">
       <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BattlePanel.h">
+      <Filter>GUI\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

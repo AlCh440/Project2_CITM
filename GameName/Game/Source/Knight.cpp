@@ -95,6 +95,12 @@ bool Knight::Start()
 bool Knight::PreUpdate()
 {
 
+	if(app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	{
+		entityTurn = false;
+	}
+
+
 	switch (battleState)
 	{
 	case IDLE:
@@ -133,17 +139,28 @@ bool Knight::Update(float dt)
 		//update idle
 		break;
 	case MOVE:
-		//Select tile to move to
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN && !Move && ExpandedBFS) {
-			int x, y;
-			app->input->GetMouseWorldPosition(x, y);
-			iPoint p;
-			p.x = x;
-			p.y = y;
-			p = app->map->WorldToMap(p.x, p.y);
+		
+		//Expand tiles to available
+		 if(!ExpandedBFS){
 
-			InitPath(p);
-		}
+			pathfinding->ResetBFSPath();
+			iPoint mapPos;
+			mapPos = app->map->WorldToMap(position.x, position.y);
+
+			pathfinding->InitBFS(mapPos);
+
+			for (int i = 0; i < stats.movement * 4 + 1; i++)
+				pathfinding->PropagateBFS();
+
+			ExpandedBFS = true;
+		 }
+
+		//move
+		MovePath();
+
+		if(currentAnim != NULL)
+			currentAnim->Update();
+
 		break;
 	case ATTACK:
 		break;
@@ -152,100 +169,6 @@ bool Knight::Update(float dt)
 	default:
 		break;
 	}
-
-
-
-
-	//if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-	//{
-	//	state = COMBATMOVE;
-	//}
-	//if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
-	//{
-	//	state = CHOOSINGATTACK;
-	//}
-	//switch (state)
-	//{
-	//case COMBATMOVE:
-	//{
-
-	//	//Expand tiles to available
-	//	 if(!ExpandedBFS){
-
-	//		pathfinding->ResetBFSPath();
-	//		iPoint mapPos;
-	//		mapPos = app->map->WorldToMap(position.x, position.y);
-
-	//		pathfinding->InitBFS(mapPos);
-
-	//		for (int i = 0; i < stats.movement * 4 + 1; i++)
-	//			pathfinding->PropagateBFS();
-
-	//		ExpandedBFS = true;
-	//	}
-
-	//	//move
-	//	MovePath();
-
-	//	if(currentAnim != NULL)
-	//		currentAnim->Update();
-
-	//}break;
-	//case CHOOSINGATTACK:
-	//{
-	//	if (app->input->GetKey(SDL_SCANCODE_V) == KEY_DOWN)
-	//	{
-	//		attackChoosed = TAUNT;
-	//		state = CHOOSINGOBJECTIVE;
-	//	}
-	//	else if (app->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
-	//	{
-	//		attackChoosed = BIND;
-	//		state = CHOOSINGOBJECTIVE;
-	//	}
-	//	else if (app->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
-	//	{
-	//		attackChoosed = CONCUSSION;
-	//		state = CHOOSINGOBJECTIVE;
-	//	}
-
-	//} break;
-	//case CHOOSINGOBJECTIVE:
-	//{
-	//	switch (attackChoosed)
-	//	{
-	//	case CONCUSSION:
-	//	{
-	//		// THE PLAYER CHOOSES THE ENEMY HE WANTS, RIGHT NOW  IS JUST THE CLOSER!!!
-	//		ConcusionHability(checkCloseEnemies());
-	//		state = ATTACKING;
-
-	//	} break;
-	//	default:
-	//	{
-
-	//	} break;
-	//	}
-
-	//} break;
-	//case ATTACKING:
-	//{
-	//	state = COMBATMOVE;
-	//} break;
-	//default:
-	//{
-
-	//}break;
-	//}
-
-	//if (stats.movement <= 0)
-	//{
-	//	stats.movement = 10;
-	//	entityTurn = false;
-	//}
-
-
-
 	return true;
 }
 
@@ -259,7 +182,23 @@ bool Knight::PostUpdate()
 		//render idle 
 		break;
 	case MOVE:
-		//draw movement
+	{//draw movement
+		pathfinding->DrawBFSPath();
+
+		//Draw path
+		const DynArray<iPoint>* path = pathfinding->GetLastPath();
+
+		SDL_Rect rect;
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			rect.x = (pos.x);
+			rect.y = (pos.y);
+			rect.w = (app->map->mapData.tileWidth);
+			rect.h = (app->map->mapData.tileHeight);
+			app->render->DrawRectangle(rect, 255, 125, 0, 150);
+		}
+	}
 		break;
 	case ATTACK:
 		break;
@@ -271,7 +210,7 @@ bool Knight::PostUpdate()
 
 
 
-	pathfinding->DrawBFSPath();
+
 
 	if (direction->x <= 0)
 	{
@@ -282,19 +221,7 @@ bool Knight::PostUpdate()
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
 
-	//Draw path
-	const DynArray<iPoint>* path = pathfinding->GetLastPath();
 
-	SDL_Rect rect;
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		rect.x = (pos.x);
-		rect.y = (pos.y);
-		rect.w = (app->map->mapData.tileWidth);
-		rect.h = (app->map->mapData.tileHeight);
-		app->render->DrawRectangle(rect, 255, 125, 0, 150);
-	}
 
 
 	int x, y;

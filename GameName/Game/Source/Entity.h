@@ -126,6 +126,7 @@ protected:
 public:
 	iPoint tilePos;
 	bool ExpandedBFS;
+	bool ConfirmMovement;
 	BattleSates battleState;
 
 	bool InitPath(iPoint destiantion);

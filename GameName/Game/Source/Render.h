@@ -60,7 +60,7 @@ public:
 	void SetBackgroundColor(SDL_Color color);
 
 	//Make camera focus a coordinate on the screen
-	void CameraFocus(fPoint position);
+	void CameraFocus(iPoint position);
 	void CameraMovement();
 	void ResetCameraPosition();
 	void DeactivateCamerMovement();

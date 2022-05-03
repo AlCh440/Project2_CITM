@@ -53,8 +53,9 @@ bool EnemyDummy::Start()
 	
 
 	stepCounter = 0;
-	
+	moveRange = 5;
 	pathfinding = new PathFinding(true);
+
 	//create navigation map
 	int w, h;
 	uchar* data = NULL;
@@ -92,121 +93,69 @@ bool EnemyDummy::Start()
 
 bool EnemyDummy::PreUpdate()
 {
+	switch (battleState)
+	{
+	case IDLE:
+		//Nothing to do
+		//if (entityTurn)
+		//{
+		//	battleState = MOVE;
+		//}
+		break;
+	case MOVE:
+		//Search for new pos
+		break;
+	case ATTACK:
+		//Search for target
+		break;
+	case DEATH:
+		break;
+	default:
+		break;
+	}
 	return true;
 }
 
 bool EnemyDummy::Update(float dt)
 {	
-
-
-	if (app->levelManagement->gameScene == 11)
+	switch (battleState)
 	{
-		if (stats.hp <= 0)
-		{
+	case IDLE:
+		//Nothing to do
+		break;
+	case MOVE:
+		if (!Move) {
 
-			//actualStates = DIE;
-			//isAlive = false;
+			//Set available movement tiles
+
+			if (!NewTarget)
+			{
+				pathfinding->InitBFS(tilePos);
+				for (int i = 0; i < stats.movement * moveRange; i++)
+				{
+					pathfinding->PropagateBFS();
+				}
+
+				PhysBody* aux = app->entities->GetNearestPlayer(physBody);
+				if (InitPath(aux->entityPtr->tilePos)) {
+					NewTarget = true;
+				}
+			}
 		}
-		else
-		{
-			//if (aux != nullptr && interpolating == false)
-			//{
-			//	actualStates = WALK;
-			//}
 
-			//if (interpolating)
-			//{
-			//	actualStates = INTERPOLATING;
-			//}
-		}
-
-
-		//switch (actualStates)
-		//{
-		//case WALK:
-		//{
-		//	if (!Move) {
-
-		//		//Set available movement tiles
-		//		pathfinding->InitBFS(tilePos);
-		//		for (int i = 0; i < stats.movement * moveRange; i++)
-		//			pathfinding->PropagateBFS();
-
-
-		//		PhysBody* aux = app->entities->GetNearestPlayer(physBody);
-		//		InitPath(aux->entityPtr->tilePos);
-		//	}
-
-		//	MovePath();
-		//	currentAnim = &idle;
-		//	currentAnim->Update();
-
-		//	//physBody->GetPosition(position.x, position.y);
-		//	//positionToMap = app->map->WorldToMap(position.x, position.y);
-
-		//	//iPoint goingPoint(aux->entityPtr->position.x, aux->entityPtr->position.y);
-		//	//goingPoint = app->map->WorldToMap(goingPoint.x, goingPoint.y);
-
-		//	//int distanceInTiles = pathfinding->CreatePath(positionToMap, goingPoint);
-
-		//	//if (distanceInTiles > 2)
-		//	//{
-		//	//	iPoint* going = pathfinding->GetLastPath()->At(1);
-		//	//	if (going != nullptr)
-		//	//	{
-		//	//		if (stats.movement > 0)
-		//	//		{
-
-		//	//			if (going->x < positionToMap.x) // LEFT
-		//	//			{
-		//	//				Interpolate(position.x - 32, position.y, inter_speed);
-		//	//				--stats.movement;
-		//	//			}
-		//	//			else if (going->x > positionToMap.x) // RIGHT
-		//	//			{
-		//	//				Interpolate(position.x + 32, position.y, inter_speed);
-		//	//				--stats.movement;
-		//	//			}
-		//	//			else if (going->y < positionToMap.y) // UP
-		//	//			{
-		//	//				Interpolate(position.x, position.y - 32, inter_speed);
-		//	//				--stats.movement;
-		//	//			}
-		//	//			else if (going->y > positionToMap.y) // DOWN
-		//	//			{
-		//	//				Interpolate(position.x, position.y + 32, inter_speed);
-		//	//				--stats.movement;
-		//	//			}
-		//	//		}
-		//	//		else
-		//	//		{
-		//	//			//CAN ATTACK???
-		//	//		}
-		//	//	}
-
-		//	//}
-
-		//}break;
-		//case INTERPOLATING:
-		//{
-		//	//Interpolate(position.x, position.y, 0.02f);
-		//} break;
-		//default:
-		//{
-
-		//}break;
-		//}
-
-
-
-
-		if (stats.movement <= 0)
-		{
-			stats.movement = 10;
-
-			app->entities->NextEnemyTurn();
+		if (MovePath()) {
 			entityTurn = false;
+			NewTarget = false;
 		}
+		currentAnim = &idle;
+		break;
+	case ATTACK:
+		//Search for target
+		break;
+	case DEATH:
+		break;
+	default:
+		break;
 	}
 
 	currentAnim->Update();
@@ -216,20 +165,37 @@ bool EnemyDummy::Update(float dt)
 bool EnemyDummy::PostUpdate()
 {
 
-
-	//Draw path
-	const DynArray<iPoint>* path = pathfinding->GetLastPath();
-
-	SDL_Rect rect;
-	for (uint i = 0; i < path->Count(); ++i)
+	switch (battleState)
 	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		rect.x = (pos.x);
-		rect.y = (pos.y);
-		rect.w = (app->map->mapData.tileWidth);
-		rect.h = (app->map->mapData.tileHeight);
-		app->render->DrawRectangle(rect, 255, 125, 125, 150);
+	case IDLE:
+		//Nothing to do
+		break;
+	case MOVE:
+	{
+		//Search for new pos//Draw path
+		const DynArray<iPoint>* path = pathfinding->GetLastPath();
+
+		SDL_Rect rect;
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			rect.x = (pos.x);
+			rect.y = (pos.y);
+			rect.w = (app->map->mapData.tileWidth);
+			rect.h = (app->map->mapData.tileHeight);
+			app->render->DrawRectangle(rect, 255, 125, 125, 150);
+		}
 	}
+		break;
+	case ATTACK:
+		//Search for target
+		break;
+	case DEATH:
+		break;
+	default:
+		break;
+	}
+	
 
 	//render entity
 	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());

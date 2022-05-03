@@ -70,16 +70,11 @@ public:
 	GuiPanel* pn_pause;
 	GuiPanel* pn_settings;
 	GuiPanel* pn_gameOver;
+	GuiPanel* pn_battle;
 
 	p2List<PanelID>* panelTrace;
 	PanelID lastPanel;
 	int currentPanel;
-
-	
-
-
-
-
 };
 
 #endif // __GUIMANAGER_H__

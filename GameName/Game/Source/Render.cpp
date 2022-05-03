@@ -142,7 +142,7 @@ void Render::SetBackgroundColor(SDL_Color color)
 	background = color;
 }
 
-void Render::CameraFocus(fPoint position)
+void Render::CameraFocus(iPoint position)
 {
 	if (!isFreeCam)
 	{

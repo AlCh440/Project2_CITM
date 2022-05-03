@@ -36,6 +36,7 @@ public:
 
 protected:
 	int scorePoints = 0;	
+	bool NewTarget = false;
 private:
 };
 

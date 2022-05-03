@@ -95,7 +95,7 @@ bool OpenWorldPlayer::Update(float dt)
 {
 
 	
-	app->render->CameraFocus(fPoint{ (float)position.x, (float)position.y });
+	app->render->CameraFocus(position);
 
 
 

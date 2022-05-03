@@ -22,6 +22,7 @@ Entity::Entity(Collider_Type _type, iPoint pos)
 	position.y = pos.y;
 	type = _type;
 	battleState = IDLE;
+	ConfirmMovement = false;
 }
 
 Entity::~Entity()
@@ -170,6 +171,7 @@ void Entity::Interpolate(int x, int y, float speed)
 bool Entity::InitPath(iPoint destiantion)
 {
 	bool ret = true;
+	// Todo confirm choice 
 	if (pathfinding->CreateVisitedPath(tilePos, destiantion) != -1)
 	{
 		Move = true;
@@ -201,6 +203,7 @@ bool Entity::MovePath()
 				ExpandedBFS = false;
 				stepCounter = 0;
 				nextStep = true;
+				battleState = ATTACK;
 				return true;
 			}
 
@@ -264,7 +267,7 @@ bool Entity::MovePath()
 			if (pUpleft.x == p.x && pUpleft.y == p.y)
 			{
 				nextStep = true;
-				stats.movement -= 1;
+				//stats.movement -= 1;
 
 				//store the entity position in tiles
 				iPoint pos;

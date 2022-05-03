@@ -12,6 +12,7 @@
 #include "MainMenuPanel.h"
 #include "PausePanel.h"
 #include "SettingsPanel.h"
+#include "BattlePanel.h"
 
 
 
@@ -50,11 +51,13 @@ bool GuiManager::Start()
 	pn_start = new MainMenuPanel(false);
 	pn_pause = new PausePanel(false);
 	pn_settings = new SettingsPanel(false);
+	pn_battle = new BattlePanel(false);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
 	panels.add(pn_pause);
 	panels.add(pn_settings);
+	panels.add(pn_battle);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -85,12 +88,8 @@ bool GuiManager::PreUpdate()
 bool GuiManager::Update(float dt)
 {	
 
-
-
 	accumulatedTime += dt;
 	if (accumulatedTime >= updateMsCycle) doLogic = true;
-
-
 
 	UpdateAll(dt,doLogic);
 

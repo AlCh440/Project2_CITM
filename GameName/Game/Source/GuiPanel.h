@@ -19,7 +19,8 @@ enum PanelID {
 	P_SETTINGS,
 	P_PAUSE,
 	P_DIALOG,
-	P_QUEST
+	P_QUEST,
+	P_BATTLE
 };
 
 class GuiPanel

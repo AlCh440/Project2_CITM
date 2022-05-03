@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BattlePanel.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Source\WorldTestScene.cpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\BattlePanel.h" />
     <ClInclude Include="Source\BattleSpace.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />

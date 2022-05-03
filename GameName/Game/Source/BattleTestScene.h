@@ -4,6 +4,7 @@
 #include "Defs.h"
 #include "Physics.h"
 #include "Animation.h"
+#include "Fonts.h"
 
 struct SDL_Texture;
 
@@ -34,12 +35,15 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void NextEntity();
+
 private:
-	SDL_Texture* img;
+	SDL_Texture* entityText;
 	SDL_Rect rect;
 
-	
+	int entityIndex = 0;
 	p2List<Entity*> battleEntities;
+public:
 	p2ListItem<Entity*>* currentEntity;
 	
 };
