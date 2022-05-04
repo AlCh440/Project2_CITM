@@ -44,6 +44,22 @@ bool NpcDummy::Start()
 
 	tilePos = pos;
 
+	inter_speed = 0.02f;
+
+
+	idle.PushBack({ 259, 49, 30, 43 });
+	idle.PushBack({ 290, 51, 31, 41 });
+	idle.PushBack({322, 39, 30, 53 });
+	idle.PushBack({ 355, 39, 26, 53 });
+	idle.PushBack({ 258, 93, 29, 47 });
+	idle.PushBack({ 259, 49, 30, 43 });
+	
+	idle.speed = 0.1f;
+
+	inter_speed = 0.02f;
+
+	currentAnim = &idle;
+
 	return true;
 }
 
