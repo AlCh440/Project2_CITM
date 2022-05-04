@@ -16,7 +16,7 @@ public:
 
 
 
-	float detectionDistance = 7; // in pixels
+	float detectionDistance = 45; // in pixels
 
 	bool PreUpdate() override;
 	bool Update(float dt) override;

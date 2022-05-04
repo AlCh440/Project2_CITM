@@ -63,6 +63,12 @@ public:
 	Dialog dialog_NoName;
 	void FillDialog_NoName(Dialog& dialog);
 
+	Dialog dialog_Guard;
+	void FillDialog_Guard(Dialog& dialog);
+
+	Dialog dialog_Villager;
+	void FillDialog_Villager(Dialog& dialog);
+
 	bool dialogActive_NoName = false;
 
 

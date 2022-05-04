@@ -35,7 +35,7 @@ bool NpcDummy::Start()
 {
 	actualStates = NORMAL;
 
-	rect = { 258, 49, 27, 43 };
+	rect = { 259, 49, 30, 43 };
 
 	iPoint pos;
 	pos.x = position.x;

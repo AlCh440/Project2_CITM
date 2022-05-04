@@ -61,6 +61,23 @@ bool NpcWoVillager::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN);
 
 	}*/
+	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+
+	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		{
+			app->dialogManager->dialogActive_NoName = true;
+			app->dialogManager->FillDialog_Villager(app->dialogManager->dialog_Villager);
+			app->dialogManager->dialog_Villager.Restart();
+
+			//it keeps adding to memory the more times you talk -> fix!!
+		}
+
+	}
 
 	switch (actualStates)
 	{

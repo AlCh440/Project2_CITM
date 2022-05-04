@@ -456,6 +456,178 @@ void DialogManager::FillDialog_Test(Dialog& dialog)
 	dialog.SetActiveNode(id);
 }
 
+void DialogManager::FillDialog_Guard(Dialog& dialog)
+{
+	// Set dialog box, and font
+	dialog.SetPosition(340, 260);
+	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
+	dialog.SetFont(font);
+
+	// Fill the dialog
+	DialogNode node;
+
+	// Last branch
+	size_t id;
+	node.text = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla...";
+
+	id = dialog.AddNode(node);
+
+	node.text = "alright... let me tell you who i am.";
+	node.nodes.push_back(id);
+
+	id = dialog.AddNode(node);
+
+	// Branch 1
+	size_t id_1;
+
+	node.text = "are you sure you never heard of ralph the mage master?";
+	node.nodes.push_back(id);
+
+	id_1 = dialog.AddNode(node);
+
+	node.text = "...";
+	node.nodes.push_back(id_1);
+
+	id_1 = dialog.AddNode(node);
+
+	// Branch 2
+	size_t id_2;
+
+	node.text = "of course, i am famous!";
+	node.nodes.push_back(id);
+	node.options.push_back("just kidding, never heard of you.");
+
+	id_2 = dialog.AddNode(node);
+
+	// Branch 3
+	size_t id_3;
+
+	node.text = "i would never trick you, i am good, i help people!";
+	node.nodes.push_back(id);
+
+	id_3 = dialog.AddNode(node);
+
+	node.text = "what? why would i do that?!";
+	node.nodes.push_back(id_3);
+
+	id_3 = dialog.AddNode(node);
+
+	// Connect to main branch
+	node.text = "i am sure you heard speak of me!";
+	node.nodes.push_back(id_1);
+	node.options.push_back("uh... no?");
+
+	node.nodes.push_back(id_2);
+	node.options.push_back("oh yes I remember");
+
+	node.nodes.push_back(id_3);
+	node.options.push_back("are you trying to trick me?");
+
+	id = dialog.AddNode(node);
+
+	node.text = "i am ralph, the mage master!";
+	node.nodes.push_back(id);
+
+	id = dialog.AddNode(node);
+
+	node.text = "Hello, fellow human!";
+	node.nodes.push_back(id);
+	node.options.push_back("Hello?");
+
+	node.nodes.push_back(id);
+	node.options.push_back("Who are you?");
+
+	id = dialog.AddNode(node);
+
+	dialog.SetActiveNode(id);
+}
+
+void DialogManager::FillDialog_Villager(Dialog& dialog)
+{
+	// Set dialog box, and font
+	dialog.SetPosition(340, 260);
+	dialog.SetDialogBg(dialogImg, 600, 206, 20, 20);
+	dialog.SetFont(font);
+
+	// Fill the dialog
+	DialogNode node;
+
+	// Last branch
+	size_t id;
+	node.text = "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla...";
+
+	id = dialog.AddNode(node);
+
+	node.text = "alright... let me tell you who i am.";
+	node.nodes.push_back(id);
+
+	id = dialog.AddNode(node);
+
+	// Branch 1
+	size_t id_1;
+
+	node.text = "are you sure you never heard of ralph the mage master?";
+	node.nodes.push_back(id);
+
+	id_1 = dialog.AddNode(node);
+
+	node.text = "...";
+	node.nodes.push_back(id_1);
+
+	id_1 = dialog.AddNode(node);
+
+	// Branch 2
+	size_t id_2;
+
+	node.text = "of course, i am famous!";
+	node.nodes.push_back(id);
+	node.options.push_back("just kidding, never heard of you.");
+
+	id_2 = dialog.AddNode(node);
+
+	// Branch 3
+	size_t id_3;
+
+	node.text = "i would never trick you, i am good, i help people!";
+	node.nodes.push_back(id);
+
+	id_3 = dialog.AddNode(node);
+
+	node.text = "what? why would i do that?!";
+	node.nodes.push_back(id_3);
+
+	id_3 = dialog.AddNode(node);
+
+	// Connect to main branch
+	node.text = "i am sure you heard speak of me!";
+	node.nodes.push_back(id_1);
+	node.options.push_back("uh... no?");
+
+	node.nodes.push_back(id_2);
+	node.options.push_back("oh yes I remember");
+
+	node.nodes.push_back(id_3);
+	node.options.push_back("are you trying to trick me?");
+
+	id = dialog.AddNode(node);
+
+	node.text = "i am ralph, the mage master!";
+	node.nodes.push_back(id);
+
+	id = dialog.AddNode(node);
+
+	node.text = "Hello, fellow human!";
+	node.nodes.push_back(id);
+	node.options.push_back("Hello?");
+
+	node.nodes.push_back(id);
+	node.options.push_back("Who are you?");
+
+	id = dialog.AddNode(node);
+
+	dialog.SetActiveNode(id);
+}
+
 //bool DialogManager::LoadDialogs(const char* filename)
 //{
 //	bool ret = true;
