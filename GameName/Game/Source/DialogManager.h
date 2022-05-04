@@ -12,6 +12,7 @@
 #include "OpenWorldPlayer.h"
 #include "TheFall.h"
 #include "Entities.h"
+#include "TheVillage.h"
 
 struct DialogGroup
 {
