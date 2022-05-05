@@ -10,6 +10,9 @@
   <image source="Interiors_free_32x32.png" width="512" height="2848"/>
  </tileset>
  <layer id="1" name="Ground" width="11" height="11">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -135,6 +138,9 @@
   </data>
  </layer>
  <layer id="2" name="Walls" width="11" height="11">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile gid="165"/>
    <tile gid="260"/>
@@ -260,6 +266,9 @@
   </data>
  </layer>
  <layer id="4" name="Furniture" width="11" height="11">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>

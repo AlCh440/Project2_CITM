@@ -21621,6 +21621,9 @@
   </data>
  </layer>
  <layer id="14" name="TempleFloor" width="108" height="100">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -108071,6 +108074,9 @@
   </data>
  </layer>
  <layer id="13" name="Furniture" width="108" height="100">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -118875,6 +118881,9 @@
   </data>
  </layer>
  <layer id="15" name="Treasures" width="108" height="100">
+  <properties>
+   <property name="Draw" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
