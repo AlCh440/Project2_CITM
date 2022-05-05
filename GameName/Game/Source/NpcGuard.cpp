@@ -43,6 +43,46 @@ bool NpcGuard::Start()
 
 	tilePos = pos;
 
+	idle.PushBack({ 2, 56, 30, 38});
+	idle.PushBack({ 2, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+
+	idle.PushBack({ 2, 56, 30, 38 });
+	idle.PushBack({ 2, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+
+	idle.PushBack({ 2, 56, 30, 38 });
+	idle.PushBack({ 2, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 34, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 66, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+	idle.PushBack({ 98, 56, 30, 38 });
+
+	idle.PushBack({ 2,104 , 30, 38 });
+	idle.PushBack({ 38, 104, 30, 38 });
+
+
+
+
+	idle.loop = true;
+	idle.speed = 0.05f;
+
+	currentAnim = &idle;
+
+	tilePos = pos;
+
 	return true;
 }
 
@@ -85,6 +125,8 @@ bool NpcGuard::Update(float dt)
 bool NpcGuard::PostUpdate()
 {
 
+	currentAnim->Update();
+
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f;
@@ -97,9 +139,9 @@ bool NpcGuard::PostUpdate()
 		app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	}
 
-	app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
+	//app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
 
-
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
 
 	SDL_Rect Rask = { 0,0,9,12 };
 

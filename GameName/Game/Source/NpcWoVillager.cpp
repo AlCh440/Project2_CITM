@@ -43,6 +43,22 @@ bool NpcWoVillager::Start()
 
 	tilePos = pos;
 
+	idle.PushBack({ 132, 56, 24, 36 });
+	idle.PushBack({ 132, 56, 24, 36 });
+	idle.PushBack({ 164, 56, 24, 36 });
+	idle.PushBack({ 164, 56, 24, 36 });
+	idle.PushBack({ 197, 56, 24, 36 });
+	idle.PushBack({ 197, 56, 24, 36 });
+	idle.PushBack({ 229, 56, 24, 36 });
+	idle.PushBack({ 229, 56, 24, 36 });
+
+	
+
+	idle.loop = true;
+	idle.speed = 0.05f;
+
+	currentAnim = &idle;
+
 	return true;
 }
 
@@ -84,6 +100,8 @@ bool NpcWoVillager::Update(float dt)
 
 bool NpcWoVillager::PostUpdate()
 {
+	currentAnim->Update();
+	
 
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
@@ -93,7 +111,7 @@ bool NpcWoVillager::PostUpdate()
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
-	app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
 
 	SDL_Rect Rask = { 0,0,9,12 };
 
