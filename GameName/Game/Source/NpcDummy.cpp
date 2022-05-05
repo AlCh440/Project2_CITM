@@ -44,22 +44,34 @@ bool NpcDummy::Start()
 
 	tilePos = pos;
 
-	inter_speed = 0.02f;
 
 
-	idle.PushBack({ 259, 49, 30, 53 });
-	idle.PushBack({ 290, 51, 31, 53 });
-	idle.PushBack({322, 39, 30, 53 });
-	idle.PushBack({ 355, 39, 26, 53 });
-	idle.PushBack({ 258, 93, 29, 53 });
-	idle.PushBack({ 259, 49, 30, 53 });
+	idle.PushBack({ 259, 50, 26, 42 });
+	idle.PushBack({ 290, 50, 26, 42 });
+	idle.PushBack({ 322, 50, 26, 42 });
+	idle.PushBack({ 355, 50, 26, 42 });
+
+	idle.PushBack({ 259, 104,26, 42 });
+
+	idle.PushBack({ 355, 50, 26, 42 });
+	idle.PushBack({ 322, 50, 26, 42 });
+	idle.PushBack({ 290, 50, 26, 42 });
+	idle.PushBack({ 259, 50, 26, 42 });
+
 	idle.loop = true;
-
-	idle.speed = 0.1f;
-
-	inter_speed = 0.02f;
+	idle.speed = 0.05f;
 
 	currentAnim = &idle;
+
+	bardMusic.PushBack({ 9, 50,		0, 42 });
+	bardMusic.PushBack({ 9 + 26,		0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 2, 0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 3, 0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 4, 0, 26, 42 });
+
+	bardMusic.loop = true;
+	bardMusic.speed = 0.05f;
+
 
 	return true;
 }
@@ -110,7 +122,8 @@ bool NpcDummy::Update(float dt)
 bool NpcDummy::PostUpdate()
 {
 	currentAnim->Update();
-	currentAnim->GetCurrentFrame();
+	bardMusic.Update();
+
 
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
@@ -121,6 +134,7 @@ bool NpcDummy::PostUpdate()
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	
 	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15 + 16, position.y - 20 - 6, &bardMusic.GetCurrentFrame());
 
 	SDL_Rect Rask = { 0,0,9,12 };
 

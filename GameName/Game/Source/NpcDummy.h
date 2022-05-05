@@ -43,4 +43,5 @@ protected:
 private:
 	SDL_Rect rect;
 	Animation idleAnim;
+	Animation bardMusic;
 };

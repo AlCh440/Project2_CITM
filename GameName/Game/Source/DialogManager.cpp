@@ -62,7 +62,11 @@ bool DialogManager::PostUpdate()
 	
 	if (app->theFall->active)
 	{
-		
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			dialog_intro.Finish();
+		}
+
 		app->render->DrawRectangle(blackSquare, 0, 0, 0, blackSquareAlpha, true, false);
 		if ((!dialog_intro.Finished()))
 		{

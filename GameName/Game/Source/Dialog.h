@@ -59,6 +59,8 @@ public:
 	// Return if the dialog has finished
 	bool Finished() { return finished; }
 
+	void Finish() { finished = true; }
+
 	// Set position of dialog
 	void SetPosition(int x, int y);
 
