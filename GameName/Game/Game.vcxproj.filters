@@ -15,8 +15,8 @@
     <ClCompile Include="Source\Enemy.cpp">
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collectable.cpp">
-      <Filter>Entities\Collectable</Filter>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>Entities\Items</Filter>
     </ClCompile>
     <ClCompile Include="Source\LevelManagement.cpp">
       <Filter>Scenes</Filter>
@@ -183,6 +183,12 @@
     <ClCompile Include="Source\BattlePanel.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Consumable.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Weapon.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -213,8 +219,8 @@
     <ClInclude Include="Source\Enemy.h">
       <Filter>Entities\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Collectable.h">
-      <Filter>Entities\Collectable</Filter>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Source\LevelManagement.h">
       <Filter>Scenes</Filter>
@@ -397,6 +403,12 @@
     <ClInclude Include="Source\BattlePanel.h">
       <Filter>GUI\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Consumable.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Weapon.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -413,9 +425,6 @@
     </Filter>
     <Filter Include="Entities\Enemy">
       <UniqueIdentifier>{2ea328f9-2aca-40e2-badd-9295c7fb965e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Collectable">
-      <UniqueIdentifier>{70aaa4f5-e922-4544-8337-d67f0d0479be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{4eca5673-1e50-465a-8fc9-48117793e985}</UniqueIdentifier>
@@ -455,6 +464,9 @@
     </Filter>
     <Filter Include="Entities\Spaces">
       <UniqueIdentifier>{15baa1cf-7f86-4962-83ee-9787be276a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Items">
+      <UniqueIdentifier>{70aaa4f5-e922-4544-8337-d67f0d0479be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
