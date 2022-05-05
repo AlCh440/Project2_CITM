@@ -241,7 +241,7 @@ void LevelManagement::ReturnToMainMenu()
 
 void LevelManagement::RestartLevel()
 {
-	if (app->entities->playerInstance->lifePoints < 0)
+	if (app->entities->playerInstance->stats.hp < 0)
 	{
 		gameScene = GAME_OVER;
 	

@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "Textures.h"
 #include "Render.h"
+#include "Item.h"
+#include "p2List.h"
 
 //enum PlayerState
 //{
@@ -53,12 +55,14 @@ public:
 	// 3 for Mage
 	// else ERROR
 
-	int lifePoints = 1;
-	int manaPoints = 1;
+
 	int actionPoints = 1;
 	//PlayerState state = COMBATMOVE;
 	bool isAlive = true;
 	
+	p2List<Item*> Objects;
+	Item* ItemEquiped;
+
 private:
 
 	

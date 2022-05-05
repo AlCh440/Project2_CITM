@@ -32,10 +32,7 @@ Player::~Player()
 // Load assets
 bool Player::Start()
 {
-	//Initializing player struct data
-	lifePoints = 1;
-	manaPoints = 1;
-	typeOfPlayer = 0;
+
 	
 	return true;
 }

@@ -16,8 +16,8 @@
 bool Ranger::Start()
 {
 
-	lifePoints = 75;
-	manaPoints = 75;
+	stats.hp = 75;
+	stats.mana = 75;
 	typeOfPlayer = 2;
 	actionPoints = 10; // To determine
 	isAlive = true;
