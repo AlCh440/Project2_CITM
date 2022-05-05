@@ -95,6 +95,18 @@ bool NpcWoVillager::PostUpdate()
 
 	app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
 
+	SDL_Rect Rask = { 0,0,9,12 };
+
+	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+
+	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	{
+		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
+	}
+
 	return true;
 
 
