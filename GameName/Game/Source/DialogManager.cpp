@@ -101,26 +101,32 @@ bool DialogManager::PostUpdate()
 	
 	if (app->village->active)
 	{
-		if ((!dialog_Guard.Finished()))
+		if (app->dialogManager->dialogActive_Guard)
 		{
-			if (player != nullptr) player->SetMotion(false);
-			dialog_Guard.Update();
-		}
-		else
-		{
-			if (player != nullptr) player->SetMotion(true);
-			dialogActive_NoName = false;
+			if ((!dialog_Guard.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_Guard.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_Guard = false;
+			}
 		}
 
-		if ((!dialog_Villager.Finished()))
+		if (app->dialogManager->dialogActive_Villager)
 		{
-			if (player != nullptr) player->SetMotion(false);
-			dialog_Villager.Update();
-		}
-		else
-		{
-			if (player != nullptr) player->SetMotion(true);
-			dialogActive_NoName = false;
+			if ((!dialog_Villager.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_Villager.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_Villager = false;
+			}
 		}
 	}
 	

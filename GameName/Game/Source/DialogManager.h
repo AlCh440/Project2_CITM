@@ -63,14 +63,16 @@ public:
 	//Dialog NoName
 	Dialog dialog_NoName;
 	void FillDialog_NoName(Dialog& dialog);
+	bool dialogActive_NoName = false;
 
 	Dialog dialog_Guard;
 	void FillDialog_Guard(Dialog& dialog);
+	bool dialogActive_Guard = false;
 
 	Dialog dialog_Villager;
 	void FillDialog_Villager(Dialog& dialog);
-
-	bool dialogActive_NoName = false;
+	bool dialogActive_Villager = false;
+	
 
 
 	/*int a()

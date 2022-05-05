@@ -70,7 +70,7 @@ bool NpcWoVillager::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 		{
-			app->dialogManager->dialogActive_NoName = true;
+			app->dialogManager->dialogActive_Villager = true;
 			app->dialogManager->FillDialog_Villager(app->dialogManager->dialog_Villager);
 			app->dialogManager->dialog_Villager.Restart();
 
@@ -79,17 +79,6 @@ bool NpcWoVillager::Update(float dt)
 
 	}
 
-	switch (actualStates)
-	{
-	case NORMAL:
-	{
-		return true;
-	}
-	case TALK:
-	{
-		//Activar dialogo
-	}
-	}
 	return true;
 }
 

@@ -122,6 +122,11 @@ bool OpenWorldPlayer::Update(float dt)
 		{
 			physBody->body->SetLinearVelocity(movement);
 		}
+		else 
+		{
+			b2Vec2 v(0, 0);
+			physBody->body->SetLinearVelocity(v);
+		}
 	}
 
 	physBody->GetPosition(position.x, position.y);
