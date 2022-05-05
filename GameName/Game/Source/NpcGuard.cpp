@@ -91,9 +91,28 @@ bool NpcGuard::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+
+	if (app->physics->debug)
+	{
+		app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	}
 
 	app->render->DrawTexture(texture, position.x -15, position.y -20, &rect);
+
+
+
+	SDL_Rect Rask = { 0,0,9,12 };
+
+	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+
+	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	{
+		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
+	}
+
 
 	return true;
 
