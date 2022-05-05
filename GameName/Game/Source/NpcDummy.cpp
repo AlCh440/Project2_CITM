@@ -47,13 +47,14 @@ bool NpcDummy::Start()
 	inter_speed = 0.02f;
 
 
-	idle.PushBack({ 259, 49, 30, 43 });
-	idle.PushBack({ 290, 51, 31, 41 });
+	idle.PushBack({ 259, 49, 30, 53 });
+	idle.PushBack({ 290, 51, 31, 53 });
 	idle.PushBack({322, 39, 30, 53 });
 	idle.PushBack({ 355, 39, 26, 53 });
-	idle.PushBack({ 258, 93, 29, 47 });
-	idle.PushBack({ 259, 49, 30, 43 });
-	
+	idle.PushBack({ 258, 93, 29, 53 });
+	idle.PushBack({ 259, 49, 30, 53 });
+	idle.loop = true;
+
 	idle.speed = 0.1f;
 
 	inter_speed = 0.02f;
@@ -65,11 +66,15 @@ bool NpcDummy::Start()
 
 bool NpcDummy::PreUpdate()
 {
+	
+
 	return true;
 }
 
 bool NpcDummy::Update(float dt)
 {
+	
+
 	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
@@ -104,7 +109,9 @@ bool NpcDummy::Update(float dt)
 
 bool NpcDummy::PostUpdate()
 {
-	
+	currentAnim->Update();
+	currentAnim->GetCurrentFrame();
+
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f;
@@ -113,7 +120,7 @@ bool NpcDummy::PostUpdate()
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	
-	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
 
 	SDL_Rect Rask = { 0,0,9,12 };
 
@@ -126,6 +133,8 @@ bool NpcDummy::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
 	}
+
+
 
 	return true;
 
