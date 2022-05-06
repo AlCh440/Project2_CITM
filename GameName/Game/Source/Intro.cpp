@@ -34,9 +34,7 @@ bool Intro::Awake()
 // Called before the first frame
 bool Intro::Start()
 {
-	//yes = new EnemyDummy(iPoint(30, 200));
 
-	
 	intro = app->audio->LoadFx("Assets/audio/fx/intro.wav");
 	app->audio->PlayFx(intro);
 	waitTime = 200;
@@ -66,7 +64,6 @@ bool Intro::Update(float dt)
 // Called each loop iteration
 bool Intro::PostUpdate()
 {
-	//yes->PostUpdate();
 
 	app->render->DrawTexture(img, 0, 0, &rect, 0, 0, 0, 0, 0.5f);
 

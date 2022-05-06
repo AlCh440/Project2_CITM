@@ -51,7 +51,6 @@ bool BattlePanel::Update(float dt, bool doLogic)
 
 bool BattlePanel::Draw()
 {
-
 	GuiPanel::Draw();
 	return true;
 }

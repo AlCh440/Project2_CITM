@@ -45,5 +45,5 @@ private:
 	p2List<Entity*> battleEntities;
 public:
 	p2ListItem<Entity*>* currentEntity;
-	
+	int turnCounter = 0;
 };

@@ -36,9 +36,6 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	moveRange = 5;
 }
 
-//void EnemyDummy::Move(float dt)
-//{
-//}
 
 void EnemyDummy::UpdatePath()
 {
@@ -46,11 +43,6 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::Start()
 {
-
-
-
-	//actualStates = WALK;
-	
 
 	stepCounter = 0;
 	moveRange = 5;
@@ -93,10 +85,20 @@ bool EnemyDummy::Start()
 
 bool EnemyDummy::PreUpdate()
 {
+
+
 	switch (battleState)
 	{
 	case IDLE:
-		//Nothing to do
+	{//store the entity position in tiles
+		iPoint pos;
+		pos.x = position.x;
+		pos.y = position.y;
+		pos = app->map->WorldToMap(pos.x, pos.y);
+
+		tilePos = pos;
+	}
+
 		//if (entityTurn)
 		//{
 		//	battleState = MOVE;
@@ -127,7 +129,6 @@ bool EnemyDummy::Update(float dt)
 		if (!Move) {
 
 			//Set available movement tiles
-
 			if (!NewTarget)
 			{
 				pathfinding->InitBFS(tilePos);
@@ -147,6 +148,7 @@ bool EnemyDummy::Update(float dt)
 			entityTurn = false;
 			NewTarget = false;
 		}
+
 		currentAnim = &idle;
 		break;
 	case ATTACK:

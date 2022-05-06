@@ -44,7 +44,8 @@ bool GuiPanel::Draw()
 		return false;
 
 	//draw background
-	app->render->DrawTexture(texture, position.x / app->win->GetScale(), position.y / app->win->GetScale(), &bounds, 0, 0, 0, 0, 0.5f);
+	if(texture != nullptr)
+		app->render->DrawTexture(texture, position.x / app->win->GetScale(), position.y / app->win->GetScale(), &bounds, 0, 0, 0, 0, 0.5f);
 	
 	//draw items
 	p2ListItem<GuiControl*>* control = controls.start;

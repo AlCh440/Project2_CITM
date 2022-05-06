@@ -25,9 +25,9 @@ public:
 	Knight(Collider_Type type, iPoint pos);
 	
 
-	bool BasicAttack(); // pass an ennemy
-	bool TauntHability();
-	bool BindHability();
+	bool BasicAttack(Entity* entity); // pass an ennemy
+	bool TauntHability(Entity* entity);
+	bool BindHability(Entity* entity);
 	bool ConcusionHability(PhysBody* tarjet);
 
 	bool Start() override;

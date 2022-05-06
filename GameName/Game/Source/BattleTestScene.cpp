@@ -53,11 +53,11 @@ bool BattleTestScene::Start()
 	currentEntity = app->entities->entities.start;
 	currentEntity->data->entityTurn = true;
 
-	//app->render->CameraFocus(currentEntity->data->position);
 	app->render->cameraDrag = true;
-	//app->render->borderMovement = true;
+
 
 	entityIndex = 0;
+	turnCounter = 0;
 
 	return true;
 }
@@ -70,15 +70,11 @@ bool BattleTestScene::PreUpdate()
 bool BattleTestScene::Update(float dt)
 {
 
-	for (entityIndex; entityIndex < battleEntities.count();)
-	{
-		if (!currentEntity->data->entityTurn) {
-			currentEntity = currentEntity->next;
-		//	app->render->CameraFocus(currentEntity->data->position);
-		}
-		entityIndex++;
+
+	if (!currentEntity->data->entityTurn) {
+		NextEntity();
 	}
-	
+
 
 	return true;
 }
@@ -112,8 +108,12 @@ void BattleTestScene::NextEntity()
 
 	if (currentEntity == nullptr)
 	{
+		// all entitites had their turn
+		// start the list again
+		//increment the turn coutner
 		currentEntity = battleEntities.start;
 		currentEntity->data->entityTurn = true;
+		turnCounter++;
 	}
 	else{
 		currentEntity->data->entityTurn = true;;

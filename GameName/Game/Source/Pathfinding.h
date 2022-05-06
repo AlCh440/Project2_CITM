@@ -42,6 +42,8 @@ public:
 
 	void InitBFS(iPoint pos);
 
+	void GenerateWalkeableArea(iPoint center, int range);
+
 	void DrawBFSPath();
 
 	bool IsVisited(const iPoint& pos) const;
@@ -63,6 +65,8 @@ public:
 	
 	// draw
 	void DrawPath();
+
+	bool ReadPattern(char pattern[][10]);
 
 	DynArray<iPoint> lastPath;
 

@@ -288,9 +288,9 @@ void App::FinishUpdate()
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
-	sprintf_s(title,256,"Tile:[%d,%d]", mouseTile.x, mouseTile.y);
+	//sprintf_s(title,256,"Tile:[%d,%d]", mouseTile.x, mouseTile.y);
 
-
+	sprintf_s(title, 256, "FPS: %i Tile:[%d,%d] ", framesPerSecond, mouseTile.x, mouseTile.y);
 
 	if (FPSCapTo30)
 		maxFrameRate = 30;

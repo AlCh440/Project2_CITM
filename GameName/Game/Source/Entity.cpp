@@ -162,9 +162,6 @@ void Entity::Interpolate(int x, int y, float speed)
 		}
 
 	}
-
-
-
 }
 
 //Destination must be in map coordinates
@@ -267,7 +264,6 @@ bool Entity::MovePath()
 			if (pUpleft.x == p.x && pUpleft.y == p.y)
 			{
 				nextStep = true;
-				//stats.movement -= 1;
 
 				//store the entity position in tiles
 				iPoint pos;
@@ -283,4 +279,8 @@ bool Entity::MovePath()
 	}
 
 	return false;
+}
+
+void Entity::Attack()
+{
 }

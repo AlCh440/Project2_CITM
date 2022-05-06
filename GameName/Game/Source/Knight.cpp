@@ -34,12 +34,12 @@ bool Knight::Start()
 
 	stats.hp = 100;
 	stats.mana = 50;
-	stats.movement = 10;
+	stats.movement = 5;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
 	stepCounter = 0;
-	moveRange = 5;
+	moveRange = 2;
 
 	direction = new iPoint{ 0, 0 };
 
@@ -95,7 +95,7 @@ bool Knight::Start()
 bool Knight::PreUpdate()
 {
 
-	if(app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	if(app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		entityTurn = false;
 	}
@@ -104,7 +104,15 @@ bool Knight::PreUpdate()
 	switch (battleState)
 	{
 	case IDLE:
-		//nothing to do
+	{
+		iPoint pos;
+		pos.x = position.x;
+		pos.y = position.y;
+		pos = app->map->WorldToMap(pos.x, pos.y);
+		tilePos = pos; 
+
+		ExpandedBFS = false;
+	}
 		break;
 	case MOVE:
 		//Select tile to move to
@@ -143,14 +151,17 @@ bool Knight::Update(float dt)
 		//Expand tiles to available
 		 if(!ExpandedBFS){
 
-			pathfinding->ResetBFSPath();
-			iPoint mapPos;
-			mapPos = app->map->WorldToMap(position.x, position.y);
+			//pathfinding->ResetBFSPath();
+			//iPoint mapPos;
+			//mapPos = app->map->WorldToMap(position.x, position.y);
 
-			pathfinding->InitBFS(mapPos);
+			//pathfinding->InitBFS(mapPos);
 
-			for (int i = 0; i < stats.movement * 4 + 1; i++)
-				pathfinding->PropagateBFS();
+			//for (int i = 0; i < stats.movement * 4 + 1; i++)
+				//pathfinding->PropagateBFS();
+			
+
+			pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
 
 			ExpandedBFS = true;
 		 }
@@ -182,21 +193,24 @@ bool Knight::PostUpdate()
 		//render idle 
 		break;
 	case MOVE:
-	{//draw movement
+	{
+		//draw movement
 		pathfinding->DrawBFSPath();
 
 		//Draw path
 		const DynArray<iPoint>* path = pathfinding->GetLastPath();
-
-		SDL_Rect rect;
-		for (uint i = 0; i < path->Count(); ++i)
+		if (path != nullptr)
 		{
-			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			rect.x = (pos.x);
-			rect.y = (pos.y);
-			rect.w = (app->map->mapData.tileWidth);
-			rect.h = (app->map->mapData.tileHeight);
-			app->render->DrawRectangle(rect, 255, 125, 0, 150);
+			SDL_Rect rect;
+			for (uint i = 0; i < path->Count(); ++i)
+			{
+				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+				rect.x = (pos.x);
+				rect.y = (pos.y);
+				rect.w = (app->map->mapData.tileWidth);
+				rect.h = (app->map->mapData.tileHeight);
+				app->render->DrawRectangle(rect, 255, 125, 0, 150);
+			}
 		}
 	}
 		break;
@@ -209,9 +223,6 @@ bool Knight::PostUpdate()
 	}
 
 
-
-
-
 	if (direction->x <= 0)
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame());
@@ -220,9 +231,6 @@ bool Knight::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
-
-
-
 
 	int x, y;
 
@@ -257,21 +265,28 @@ bool Knight::CleanUp()
 	return true;
 }
 
-bool Knight::BasicAttack() // pass an ennemy
+bool Knight::BasicAttack(Entity* entity) // pass an ennemy
+{
+	char pattern[10][10];
+	pattern[0][0] = '1';
+	pattern[1][0] = '1';
+	pattern[2][0] = '1';
+
+	pattern[0][0] = '1';
+	pattern[1][0] = '1';
+	pattern[2][0] = '1';
+
+	return true;
+}
+
+bool Knight::TauntHability(Entity* entity)
 {
 
 
 	return true;
 }
 
-bool Knight::TauntHability()
-{
-
-
-	return true;
-}
-
-bool Knight::BindHability()
+bool Knight::BindHability(Entity* entity)
 {
 
 

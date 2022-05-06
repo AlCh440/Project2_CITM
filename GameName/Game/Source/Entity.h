@@ -21,11 +21,29 @@ struct Statistics
 	int baseDamage;
 	int movement;
 };
+
+struct AbilityEffects {
+	
+	//offensive
+	bool taunt = false;
+	int t_taunt = 3;
+	bool concussion = false;
+	int t_concussion = 1;
+	bool confusion = false;;
+	int t_confusion = 1;
+
+	//support
+	bool bind = false;
+	int t_bind = 3;
+	Entity* bindedEntity;
+	bool heal = false;
+};
+
 enum BattleSates {
-	MOVE,			//Find a target positin, move to it
+	MOVE,			//Find a target position, move to it
 	ATTACK,			//Show selected attack range, use it
 	DEATH,			//Display death animation
-	IDLE			//Entity in idle state waiting turn
+	IDLE			//Entity in idle state waiting turn / / or calculating AI movement
 };
 
 class Entity abstract
@@ -69,7 +87,6 @@ public:
 	iPoint GetPositionTiles();
 	void SetPositionPixels();
 
-	Statistics stats;
 
 
 
@@ -77,7 +94,6 @@ public:
 // Common scene elements
 //----------------------------------------------------------------------------
 public:
-	void takeDamage(int damage);
 	// Returns distance to a point
 	int CheckDistanceToPhysBody(PhysBody* PhysPos);
 	// The current position in the world
@@ -128,11 +144,16 @@ public:
 	iPoint tilePos;
 	bool ExpandedBFS;
 	bool ConfirmMovement;
+	bool CanAttack = true;
+
 	BattleSates battleState;
+	Statistics stats;
+	AbilityEffects effects;
 
 	bool InitPath(iPoint destiantion);
+	void takeDamage(int damage);
 	bool MovePath();
-	void DrawPath();
+	virtual void Attack();
 protected:
 	iPoint* currentP;
 	iPoint* nextP;

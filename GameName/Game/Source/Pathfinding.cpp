@@ -69,6 +69,13 @@ bool PathFinding::IsTileEmpty(const iPoint& pos) const
 	return true;
 }
 
+bool PathFinding::ReadPattern(char pattern[][10])
+{
+
+	return false;
+}
+
+
 // Utility: return the walkability value of a tile
 uchar PathFinding::GetTileAt(const iPoint& pos) const
 {
@@ -337,6 +344,7 @@ int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destinati
 				lastPath.Clear();
 				// backtrack the path
 				const PathNode* lastItem = &current->data;
+
 				//check that the last node is empty,
 				//if not last item is parent item
 				if (!IsTileEmpty(lastItem->pos))
@@ -348,6 +356,7 @@ int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destinati
 
 					lastItem = lastItem->parent;
 				}
+
 				lastPath.Flip();
 				ret = lastPath.Count();
 				break;
@@ -415,6 +424,37 @@ void PathFinding::PropagateBFS()
 	}
 }
 
+
+void PathFinding::GenerateWalkeableArea(iPoint center, int range)
+{
+
+
+
+	ResetBFSPath();
+	InitBFS(center);
+
+	iPoint current;
+	for (int x = center.x - range; x < center.x + range; x++)
+		for (int y = center.y - range; y < center.y + range; y++)
+		{
+			iPoint next;
+			next.x = x;
+			next.y = y;
+						
+			if (!visited.find(next) && IsWalkable(next) 
+				&& IsTileEmpty(next)&& CreatePath(center,next) <= range)
+			{
+				frontier.Push(next);								
+				visited.add(next);
+			}
+
+		}
+
+	lastPath.Clear();
+}
+
+
+
 //Reset bfs expanison
 void PathFinding::ResetBFSPath()
 {
@@ -444,7 +484,7 @@ void PathFinding::DrawBFSPath()
 		rect.y = pos.y;
 		rect.w = (app->map->mapData.tileWidth);
 		rect.h = (app->map->mapData.tileHeight);
-		app->render->DrawRectangle(rect, 100, 0, 170, 150);
+		app->render->DrawRectangle(rect, 100, 50, 100, 125);
 
 		item = item->next;
 	}
@@ -461,6 +501,7 @@ void PathFinding::DrawBFSPath()
 	}
 
 }
+
 
 bool PathFinding::IsVisited(const iPoint& pos) const
 {
