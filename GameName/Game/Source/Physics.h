@@ -42,6 +42,7 @@ enum Collider_Type {
 	ENEMY,
 	POTION,
 	ENTRANCE,
+	COMBATTRIGGER,
 	EXIT
 };
 

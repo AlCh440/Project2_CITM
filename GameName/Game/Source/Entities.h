@@ -99,6 +99,7 @@ public:
 	// triggers to move room to room
 	Trigger* entranceIntance;
 	Trigger* exitIntance;
+	Trigger* combatTrigger01;
 
 	//triggers to enter locations
 

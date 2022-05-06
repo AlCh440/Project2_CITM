@@ -106,6 +106,13 @@ bool ModuleEntities::PostUpdate()
     {
         aux->data->PostUpdate();
     }
+
+   //if (combatTrigger01 != nullptr)
+   //{
+   //    app->render->DrawRectangle({ combatTrigger01->GetPosition().x+(32/2), combatTrigger01->GetPosition().y + (32 / 2),32,32}, 250, 0, 0);
+   //    //combatTrigger01->GetPosition();
+   //}
+    
   
     return true;
 }
@@ -122,6 +129,9 @@ bool ModuleEntities::CleanUp()
     knightInstance = nullptr;
     dummyInstance = nullptr;
     dummyNpcInstance = nullptr;
+    entranceIntance = nullptr;
+    exitIntance = nullptr;
+    combatTrigger01 = nullptr;
     players.clear();
     entities.clear();
     return true;
@@ -199,6 +209,8 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
         case ENTRANCE:
             app->levelManagement->gameScene = entranceIntance->scene;
             break;
+        case COMBATTRIGGER:
+            app->levelManagement->gameScene = combatTrigger01->scene;
         default:
             break;
         }

@@ -29,6 +29,7 @@ bool GreenPath::Start()
 	app->entities->Start();
 	app->entities->exitIntance->scene = GameScene::VILLAGE;
 	app->entities->entranceIntance->scene = GameScene::THE_FALL;
+	app->entities->combatTrigger01->scene = GameScene::COMBAT;
 	return true;
 }
 
