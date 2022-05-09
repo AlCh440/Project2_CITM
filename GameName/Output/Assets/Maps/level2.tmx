@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="111" height="56" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="90">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="111" height="56" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="97">
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -37417,6 +37417,7 @@
   <object id="82" name="enemy" type="dummy" x="2848" y="672" width="32" height="32"/>
   <object id="83" name="player" type="player" x="3136" y="672" width="32" height="32"/>
   <object id="88" name="NPC" type="dummyNPC" x="289.333" y="576" width="32" height="32"/>
+  <object id="96" name="NPC" type="RangerNPC" x="448" y="576" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="11" name="sensors" visible="0">
   <object id="86" name="exit" type="exit" x="3232" y="640" width="32" height="96"/>

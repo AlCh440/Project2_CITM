@@ -97,7 +97,7 @@
   <object id="11" name="exit" type="exit" x="160" y="320" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="Entities">
-  <object id="12" name="NPC" type="guardNPC" x="160" y="96" width="32" height="32"/>
+  <object id="12" name="NPC" type="ArchmageNPC" x="160" y="96" width="32" height="32"/>
   <object id="13" name="player" type="player" x="160" y="256" width="32" height="32"/>
  </objectgroup>
 </map>

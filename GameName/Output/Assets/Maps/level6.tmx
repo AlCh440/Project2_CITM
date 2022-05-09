@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="103">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="104">
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" width="256" height="256"/>
  </tileset>
@@ -15030,7 +15030,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="9" name="Sensor" width="50" height="50" visible="0">
+ <layer id="9" name="Sensor" width="50" height="50">
   <data>
    <tile/>
    <tile/>
@@ -17106,7 +17106,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="7"/>
    <tile/>
    <tile/>
    <tile/>
@@ -17534,10 +17534,11 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="10" name="Entities" visible="0">
-  <object id="102" name="NPC" x="768" y="800" width="32" height="32"/>
+ <objectgroup id="10" name="Entities">
+  <object id="102" name="BossNPC" type="BossNPC" x="768" y="800" width="32" height="32"/>
+  <object id="103" name="player" type="player" x="768" y="1312" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="8" name="Entrance" visible="0">
+ <objectgroup id="8" name="Entrance">
   <object id="101" name="entrance" type="entrance" x="736" y="1408" width="32" height="128" rotation="-90"/>
  </objectgroup>
  <objectgroup id="7" name="Wall" visible="0">
