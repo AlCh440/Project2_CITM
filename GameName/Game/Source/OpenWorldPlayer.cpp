@@ -93,19 +93,27 @@ bool OpenWorldPlayer::PreUpdate()
 
 bool OpenWorldPlayer::Update(float dt)
 {
-
+	b2Vec2 movement;
 	
 	app->render->CameraFocus(position);
-
-
 
 	bool goLeft = (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT);
 	bool goRight = (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT);
 	bool goUp = (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT);
 	bool goDown = (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT);
 
-	b2Vec2 movement = { (goRight - goLeft) * velocity, (goDown - goUp) * velocity };
+	b2Vec2 auxVector = { (goRight - goLeft), (goDown - goUp) };
+	auxVector.Normalize();
+	
+	auxVector.x *= velocity;
+	auxVector.y *= velocity;
 
+
+	//movement = { (goRight - goLeft) * velocity, (goDown - goUp) * velocity };
+
+	movement = auxVector;
+
+	
 	if (AdminMode)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
