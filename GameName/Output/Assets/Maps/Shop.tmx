@@ -532,10 +532,10 @@
   <object id="11" name="wall" type="wall" x="226.968" y="64" width="24.134" height="12.1999"/>
  </objectgroup>
  <objectgroup id="6" name="Sensors">
-  <object id="12" name="exit" type="exit" x="160" y="320" width="32" height="32"/>
+  <object id="12" name="ShopExit" type="ShopExit" x="160" y="320" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Entities">
-  <object id="13" name="NPC" type="guardNPC" x="160" y="96" width="32" height="32"/>
+  <object id="13" name="MerchantNPC" type="MerchantNPC" x="160" y="96" width="32" height="32"/>
   <object id="14" name="player" type="player" x="160" y="256" width="32" height="32"/>
  </objectgroup>
 </map>
