@@ -455,8 +455,7 @@ void PathFinding::GenerateWalkeableArea(iPoint center, int range)
 						
 			if (!visited.find(next) && IsWalkable(next) 
 				&& IsTileEmpty(next)&& CreatePath(center,next) <= range)
-			{
-				//frontier.Push(next);								
+			{		
 				visited.add(next);
 			}
 		}
@@ -469,20 +468,20 @@ void PathFinding::GenerateInteractionArea(iPoint center, int range)
 	ResetBFSPath();
 	InitBFS(center);
 
-	for (int x = center.x - range; x < center.x + range; x++)
-		for (int y = center.y - range; y < center.y + range; y++)
+	for (int x = center.x - range; x <= center.x + range; x++)
+	{
+		for (int y = center.y - range; y <= center.y + range; y++)
 		{
 			iPoint next;
 			next.x = x;
 			next.y = y;
 
-			if (!visited.find(next) && IsWalkable(next)
-				 && CreatePath(center, next) <= range)
-			{					
+			if (!visited.find(next) && IsWalkable(next)) //&& CreatePath(center, next) <= range
+			{
 				visited.add(next);
 			}
 		}
-
+	}
 	lastPath.Clear();
 }
 
@@ -521,16 +520,15 @@ void PathFinding::DrawBFSPath()
 	}
 
 	// Draw frontier
-	for (uint i = 0; i < frontier.Count(); ++i)
-	{
-		point = *(frontier.Peek(i));
-		rect.x = point.x;
-		rect.y = point.y;
-		rect.w = (app->map->mapData.tileWidth);
-		rect.h = (app->map->mapData.tileHeight);
-		app->render->DrawRectangle(rect, 100, 0, 155, 100);
-	}
-
+	//for (uint i = 0; i < frontier.Count(); ++i)
+	//{
+	//	point = *(frontier.Peek(i));
+	//	rect.x = point.x;
+	//	rect.y = point.y;
+	//	rect.w = (app->map->mapData.tileWidth);
+	//	rect.h = (app->map->mapData.tileHeight);
+	//	app->render->DrawRectangle(rect, 100, 0, 155, 100);
+	//}
 }
 
 

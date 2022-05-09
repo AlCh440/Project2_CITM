@@ -22,10 +22,13 @@ struct Statistics
 	int movement;
 };
 
-struct Attack {
-
-	iPoint pattern[25];
-	Entity* target;
+struct HitEffect {
+	Animation anim;
+	SDL_Texture* tex;
+	iPoint position;
+	void Draw(){
+		app->render->DrawTexture(tex, position.x, position.y, &anim.GetCurrentFrame());
+	}
 };
 
 struct AbilityEffects {
@@ -152,15 +155,22 @@ public:
 	bool ConfirmMovement;
 	bool CanAttack = true;
 
+	bool HasAttackAction = false;
+	bool HasMoveAction = false;
+
 	BattleSates battleState;
 	Statistics stats;
 	AbilityEffects effects;
 
 	Entity* target;
+	Animation* currentHitAnim = nullptr;
+	SDL_Texture* tex_hitfx = nullptr;
 
 	bool InitPath(iPoint destiantion);
 	void takeDamage(int damage);
+	void StartTurn();
 	bool MovePath();
+	void ChangeBattleSate(BattleSates state);
 	virtual void Attack();
 protected:
 	iPoint* currentP;

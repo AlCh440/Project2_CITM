@@ -166,7 +166,14 @@ bool EnemyDummy::Update(float dt)
 
 bool EnemyDummy::PostUpdate()
 {
+	//render current tile pos
+	SDL_Rect r;
+	r.x = position.x - app->map->mapData.tileWidth * .5f;
+	r.y = position.y - app->map->mapData.tileHeight * .5f;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
 
+	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	switch (battleState)
 	{
 	case IDLE:
@@ -203,14 +210,7 @@ bool EnemyDummy::PostUpdate()
 	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());
 
 
-	//render current tile pos
-	SDL_Rect r;
-	r.x = position.x - app->map->mapData.tileWidth * .5f;
-	r.y = position.y - app->map->mapData.tileHeight * .5f;
-	r.w = app->map->mapData.tileWidth;
-	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
 
 

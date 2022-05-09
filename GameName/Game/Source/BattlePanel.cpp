@@ -64,10 +64,12 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 {
 	if (bt_attack->id == control->id)
 	{
-		app->battleTest->currentEntity->data->battleState = ATTACK;
+		if(app->battleTest->currentEntity->data->HasAttackAction)
+			app->battleTest->currentEntity->data->ChangeBattleSate(ATTACK);
 	}
 	else if (bt_move->id == control->id) {
-		app->battleTest->currentEntity->data->battleState = MOVE;
+		if (app->battleTest->currentEntity->data->HasMoveAction)
+			app->battleTest->currentEntity->data->ChangeBattleSate(MOVE);
 	}
 	else if (bt_endTurn->id == control->id){
 		app->battleTest->NextEntity();

@@ -21,10 +21,10 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	stats.hp = 100;
 	stats.mana = 50;
 	stats.movement = 10;
+	stats.baseDamage = 2;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
-	//state = COMBATMOVE;
 	moveTime = 32; //milisec
 	counter = moveTime;
 }
@@ -67,6 +67,15 @@ bool Knight::Start()
 	walkUp.speed = 0.1f;
 
 	currentAnim = &walkDown;
+
+	
+
+	tex_hitfx = app->tex->Load("Assets/Sprites/HitFx/hitEffect1.png");
+	for (int i = 0; i < 5; i++)
+		basicHit.PushBack({ 32 * i,0,32,32 });
+
+	basicHit.loop = false;
+	basicHit.speed = 0.1f;
 
 	pathfinding = new PathFinding(true);
 	//create navigation map
@@ -129,7 +138,20 @@ bool Knight::PreUpdate()
 		break;
 	case ATTACK:
 		//load attack 
+	    //Expand tiles to available
+		if (!ExpandedBFS) {
 
+			switch (attackChoosed)
+			{
+			
+			default:
+				break;
+			}
+			pathfinding->GenerateInteractionArea(tilePos, 1);
+
+
+			ExpandedBFS = true;
+		}
 		//Select entity target
 		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN) {
 			int x, y;
@@ -139,7 +161,27 @@ bool Knight::PreUpdate()
 			p.y = y;
 			p = app->map->WorldToMap(p.x, p.y);
 
-			target = app->entities->GetEntityFromTile(p);
+			if (pathfinding->IsVisited(p))
+			{
+				target = app->entities->GetEntityFromTile(p);
+				if (target == nullptr)
+				{
+					battleState = IDLE;
+					pathfinding->ResetBFSPath();
+				}
+				else
+				{
+					target->takeDamage(stats.baseDamage);
+					basicHit.Reset();
+					currentHitAnim = &basicHit;
+					battleState = IDLE;
+					HasAttackAction = false;
+				}
+			}
+			else {
+				battleState = IDLE;
+				pathfinding->ResetBFSPath();
+			}
 
 		}
 		break;
@@ -149,6 +191,10 @@ bool Knight::PreUpdate()
 		break;
 	}
 
+	if (currentHitAnim != nullptr && currentHitAnim->HasFinished())
+	{
+		currentHitAnim = nullptr;
+	}
 
 	return true;
 }
@@ -177,13 +223,7 @@ bool Knight::Update(float dt)
 
 		break;
 	case ATTACK:
-		//Expand tiles to available
-		if (!ExpandedBFS && target != nullptr) {
 
-			pathfinding->GenerateInteractionArea(target->tilePos, stats.movement);
-
-			ExpandedBFS = true;
-		}
 		break;
 	case DEATH:
 		break;
@@ -191,7 +231,8 @@ bool Knight::Update(float dt)
 		break;
 	}
 
-
+	if (currentHitAnim != NULL)
+		currentHitAnim->Update();
 	if (currentAnim != NULL)
 		currentAnim->Update();
 	return true;
@@ -200,6 +241,14 @@ bool Knight::Update(float dt)
 bool Knight::PostUpdate()
 {
 	SDL_Rect r;
+	//Entity tile Pos
+	r.x = position.x - app->map->mapData.tileWidth * .5f;
+	r.y = position.y - app->map->mapData.tileHeight * .5f;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
+
+	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
+
 
 	switch (battleState)
 	{
@@ -241,20 +290,16 @@ bool Knight::PostUpdate()
 
 	if (direction->x <= 0)
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame());
+		app->render->DrawTexture(texture, position.x - 16, position.y -30, &currentAnim->GetCurrentFrame());
 	}
 	else
 	{
-		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
+		app->render->DrawTexture(texture, position.x - 16, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
 
-	r.x = position.x - app->map->mapData.tileWidth * .5f;
-	r.y = position.y - app->map->mapData.tileHeight * .5f ;
-	r.w = app->map->mapData.tileWidth;
-	r.h = app->map->mapData.tileHeight;
-
-	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
-
+	if(currentHitAnim != nullptr && target!=nullptr)
+		app->render->DrawTexture(tex_hitfx, target->position.x - 16, target->position.y -32, &currentHitAnim->GetCurrentFrame());
+	
 	return true;
 }
 
@@ -267,12 +312,6 @@ bool Knight::CleanUp()
 
 bool Knight::BasicAttack(Entity* entity) // pass an ennemy
 {
-	iPoint pattern[10] = {   {-1,-1},{0,-1},{1,-1},
-							 {-1,0}, {0,0}, {1,0},
-							 {-1,1}, {0,1}, {1,1}};
-
-	pathfinding->ReadPattern(tilePos, pattern);
-
 	return true;
 }
 

@@ -112,7 +112,21 @@ iPoint Entity::GetPositionTiles()
 
 void Entity::takeDamage(int damage)
 {
+	LOG("Ouch!");
 	stats.hp -= damage;
+
+	if (stats.hp <= 0)
+	{
+		battleState = DEATH;
+		LOG("Dead");
+	}
+}
+
+void Entity::StartTurn()
+{
+	HasAttackAction = true;
+	HasMoveAction = true;
+	entityTurn = true;
 }
 
 int Entity::CheckDistanceToPhysBody(PhysBody* PhysPos)
@@ -198,9 +212,11 @@ bool Entity::MovePath()
 			{
 				Move = false;
 				ExpandedBFS = false;
-				stepCounter = 0;
 				nextStep = true;
+				pathfinding->ResetBFSPath();
+				stepCounter = 0;
 				battleState = IDLE;
+				HasMoveAction = false;
 				return true;
 			}
 
@@ -279,6 +295,16 @@ bool Entity::MovePath()
 	}
 
 	return false;
+}
+
+void Entity::ChangeBattleSate(BattleSates state)
+{
+	if (!Move)
+	{
+		ExpandedBFS = false;
+		pathfinding->ResetBFSPath();
+		battleState = state;
+	}
 }
 
 void Entity::Attack()

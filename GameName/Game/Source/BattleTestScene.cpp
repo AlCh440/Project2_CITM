@@ -130,10 +130,10 @@ void BattleTestScene::NextEntity()
 		// start the list again
 		//increment the turn coutner
 		currentEntity = battleEntities.start;
-		currentEntity->data->entityTurn = true;
+		currentEntity->data->StartTurn();
 		turnCounter++;
 	}
 	else{
-		currentEntity->data->entityTurn = true;;
+		currentEntity->data->StartTurn();
 	}
 }

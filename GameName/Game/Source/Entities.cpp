@@ -288,6 +288,7 @@ Entity* ModuleEntities::GetEntityFromTile(iPoint pos)
     {
         if (ent->data->tilePos == pos)
             return ent->data;
+        ent = ent->next;
     }
     return nullptr;
 }

@@ -44,8 +44,7 @@ public:
 	bool SaveState(pugi::xml_node& data) const override;
 
 private:
-
-	
+	Animation basicHit;
 	knightAttacks attackChoosed;
 
 };
