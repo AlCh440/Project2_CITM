@@ -200,7 +200,7 @@ bool Entity::MovePath()
 				ExpandedBFS = false;
 				stepCounter = 0;
 				nextStep = true;
-				battleState = ATTACK;
+				battleState = IDLE;
 				return true;
 			}
 

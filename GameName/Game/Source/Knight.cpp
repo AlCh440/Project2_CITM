@@ -128,6 +128,20 @@ bool Knight::PreUpdate()
 		}
 		break;
 	case ATTACK:
+		//load attack 
+
+		//Select entity target
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN) {
+			int x, y;
+			app->input->GetMouseWorldPosition(x, y);
+			iPoint p;
+			p.x = x;
+			p.y = y;
+			p = app->map->WorldToMap(p.x, p.y);
+
+			target = app->entities->GetEntityFromTile(p);
+
+		}
 		break;
 	case DEATH:
 		break;
@@ -150,16 +164,7 @@ bool Knight::Update(float dt)
 		
 		//Expand tiles to available
 		 if(!ExpandedBFS){
-
-			//pathfinding->ResetBFSPath();
-			//iPoint mapPos;
-			//mapPos = app->map->WorldToMap(position.x, position.y);
-
-			//pathfinding->InitBFS(mapPos);
-
-			//for (int i = 0; i < stats.movement * 4 + 1; i++)
-				//pathfinding->PropagateBFS();
-			
+		
 
 			pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
 
@@ -169,17 +174,26 @@ bool Knight::Update(float dt)
 		//move
 		MovePath();
 
-		if(currentAnim != NULL)
-			currentAnim->Update();
 
 		break;
 	case ATTACK:
+		//Expand tiles to available
+		if (!ExpandedBFS && target != nullptr) {
+
+			pathfinding->GenerateInteractionArea(target->tilePos, stats.movement);
+
+			ExpandedBFS = true;
+		}
 		break;
 	case DEATH:
 		break;
 	default:
 		break;
 	}
+
+
+	if (currentAnim != NULL)
+		currentAnim->Update();
 	return true;
 }
 
@@ -215,6 +229,8 @@ bool Knight::PostUpdate()
 	}
 		break;
 	case ATTACK:
+		//draw movement
+		pathfinding->DrawBFSPath();
 		break;
 	case DEATH:
 		break;
@@ -231,22 +247,6 @@ bool Knight::PostUpdate()
 	{
 		app->render->DrawTexture(texture, position.x - 20, position.y -30, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
-
-	int x, y;
-
-	app->input->GetMouseWorldPosition(x, y);
-	iPoint p;
-	p.x = x;
-	p.y = y;
-	p = app->map->WorldToMap(p.x, p.y);
-	p = app->map->MapToWorld(p.x, p.y);
-
-	r.x = p.x;
-	r.y = p.y;
-	r.w = app->map->mapData.tileWidth;
-	r.h = app->map->mapData.tileHeight;
-
-	app->render->DrawRectangle(r, 125, 255, 255, 150, true);
 
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f ;
@@ -267,14 +267,11 @@ bool Knight::CleanUp()
 
 bool Knight::BasicAttack(Entity* entity) // pass an ennemy
 {
-	char pattern[10][10];
-	pattern[0][0] = '1';
-	pattern[1][0] = '1';
-	pattern[2][0] = '1';
+	iPoint pattern[10] = {   {-1,-1},{0,-1},{1,-1},
+							 {-1,0}, {0,0}, {1,0},
+							 {-1,1}, {0,1}, {1,1}};
 
-	pattern[0][0] = '1';
-	pattern[1][0] = '1';
-	pattern[2][0] = '1';
+	pathfinding->ReadPattern(tilePos, pattern);
 
 	return true;
 }

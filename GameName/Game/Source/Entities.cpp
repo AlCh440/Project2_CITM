@@ -280,6 +280,18 @@ void ModuleEntities::NextEnemyTurn()
     }
 }
 
+Entity* ModuleEntities::GetEntityFromTile(iPoint pos)
+{
+    p2ListItem<Entity*>* ent = entities.start;
+
+    while (ent != nullptr)
+    {
+        if (ent->data->tilePos == pos)
+            return ent->data;
+    }
+    return nullptr;
+}
+
 void ModuleEntities::StartPlayerTurn()
 {
     for (p2ListItem<Player*>* aux = players.getFirst(); aux != nullptr; aux = aux->next)

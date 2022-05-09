@@ -10,6 +10,11 @@
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
 
+enum AttackShape {
+	SQUARE,
+	X
+};
+
 // --------------------------------------------------
 // Recommended reading:
 // Intro: http://www.raywenderlich.com/4946/introduction-to-a-pathfinding
@@ -44,6 +49,8 @@ public:
 
 	void GenerateWalkeableArea(iPoint center, int range);
 
+	void GenerateInteractionArea(iPoint center, int range);
+
 	void DrawBFSPath();
 
 	bool IsVisited(const iPoint& pos) const;
@@ -62,11 +69,11 @@ public:
 
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
-	
+
 	// draw
 	void DrawPath();
 
-	bool ReadPattern(char pattern[][10]);
+	bool ReadPattern(iPoint center, iPoint pattern[]);
 
 	DynArray<iPoint> lastPath;
 

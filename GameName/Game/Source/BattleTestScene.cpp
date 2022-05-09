@@ -40,7 +40,7 @@ bool BattleTestScene::Start()
 
 	battleEntities = app->entities->entities;
 	currentEntity = app->entities->entities.start;
-	currentEntity->data->battleState = MOVE;
+	currentEntity->data->battleState = IDLE;
 
 	while (currentEntity != nullptr)
 	{
@@ -83,6 +83,24 @@ bool BattleTestScene::PostUpdate()
 {
 	
 	app->map->Draw();
+
+	int x, y;
+	SDL_Rect r;
+
+	app->input->GetMouseWorldPosition(x, y);
+	iPoint p;
+	p.x = x;
+	p.y = y;
+	p = app->map->WorldToMap(p.x, p.y);
+	p = app->map->MapToWorld(p.x, p.y);
+
+	r.x = p.x;
+	r.y = p.y;
+	r.w = app->map->mapData.tileWidth;
+	r.h = app->map->mapData.tileHeight;
+
+	app->render->DrawRectangle(r, 125, 255, 255, 150, true);
+
 
 	return true;
 }

@@ -69,8 +69,24 @@ bool PathFinding::IsTileEmpty(const iPoint& pos) const
 	return true;
 }
 
-bool PathFinding::ReadPattern(char pattern[][10])
+bool PathFinding::ReadPattern( iPoint center, iPoint pattern[])
 {
+
+	ResetBFSPath();
+	InitBFS(center);
+
+	iPoint attackTile;
+
+	for (int i = 0; i < 20; i++)
+	{
+	
+		attackTile.x = center.x + pattern[i].x;
+		attackTile.y = center.y + pattern[i].y;
+		visited.add(attackTile);
+		
+	}
+
+
 
 	return false;
 }
@@ -427,13 +443,9 @@ void PathFinding::PropagateBFS()
 
 void PathFinding::GenerateWalkeableArea(iPoint center, int range)
 {
-
-
-
 	ResetBFSPath();
 	InitBFS(center);
 
-	iPoint current;
 	for (int x = center.x - range; x < center.x + range; x++)
 		for (int y = center.y - range; y < center.y + range; y++)
 		{
@@ -444,16 +456,35 @@ void PathFinding::GenerateWalkeableArea(iPoint center, int range)
 			if (!visited.find(next) && IsWalkable(next) 
 				&& IsTileEmpty(next)&& CreatePath(center,next) <= range)
 			{
-				frontier.Push(next);								
+				//frontier.Push(next);								
 				visited.add(next);
 			}
-
 		}
 
 	lastPath.Clear();
 }
 
+void PathFinding::GenerateInteractionArea(iPoint center, int range)
+{
+	ResetBFSPath();
+	InitBFS(center);
 
+	for (int x = center.x - range; x < center.x + range; x++)
+		for (int y = center.y - range; y < center.y + range; y++)
+		{
+			iPoint next;
+			next.x = x;
+			next.y = y;
+
+			if (!visited.find(next) && IsWalkable(next)
+				 && CreatePath(center, next) <= range)
+			{					
+				visited.add(next);
+			}
+		}
+
+	lastPath.Clear();
+}
 
 //Reset bfs expanison
 void PathFinding::ResetBFSPath()
@@ -475,7 +506,7 @@ void PathFinding::DrawBFSPath()
 	// Draw visited
 	p2ListItem<iPoint>* item = visited.start;
 	SDL_Rect rect;
-	while (item)
+	while (item != nullptr)
 	{
 		point = item->data;
 

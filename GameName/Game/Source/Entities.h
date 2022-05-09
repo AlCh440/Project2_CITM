@@ -78,7 +78,11 @@ public:
 	// Start enemies turn
 	void StartEnemiesTurn();
 
+	//
 	void NextEnemyTurn();
+
+	//returns entity in a tile
+	Entity* GetEntityFromTile(iPoint pos);
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;

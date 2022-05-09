@@ -11,7 +11,7 @@
 
 enum knightAttacks
 {
-	NOATTACK, 
+	BASIC_ATTACK, 
 	TAUNT,
 	BIND, 
 	CONCUSSION
@@ -46,6 +46,6 @@ public:
 private:
 
 	
-	knightAttacks attackChoosed = NOATTACK;
+	knightAttacks attackChoosed;
 
 };

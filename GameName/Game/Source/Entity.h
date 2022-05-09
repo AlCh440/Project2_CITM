@@ -22,6 +22,12 @@ struct Statistics
 	int movement;
 };
 
+struct Attack {
+
+	iPoint pattern[25];
+	Entity* target;
+};
+
 struct AbilityEffects {
 	
 	//offensive
@@ -149,6 +155,8 @@ public:
 	BattleSates battleState;
 	Statistics stats;
 	AbilityEffects effects;
+
+	Entity* target;
 
 	bool InitPath(iPoint destiantion);
 	void takeDamage(int damage);
