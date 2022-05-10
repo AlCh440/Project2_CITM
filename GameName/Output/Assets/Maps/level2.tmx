@@ -37412,9 +37412,9 @@
  </objectgroup>
  <objectgroup id="9" name="entities">
   <object id="78" name="player" type="player" x="352" y="416" width="32" height="32"/>
-  <object id="79" name="enemy" type="dummy" x="832" y="672" width="32" height="32"/>
-  <object id="80" name="enemy" type="dummy" x="1536" y="1088" width="32" height="32"/>
-  <object id="82" name="enemy" type="dummy" x="2848" y="672" width="32" height="32"/>
+  <object id="79" name="combattrigger" type="combattrigger" x="896" y="640" width="32" height="32"/>
+  <object id="80" name="combattrigger" type="dummy" x="1536" y="1088" width="32" height="32"/>
+  <object id="82" name="combattrigger" type="dummy" x="2848" y="672" width="32" height="32"/>
   <object id="83" name="player" type="player" x="3136" y="672" width="32" height="32"/>
   <object id="88" name="NPC" type="dummyNPC" x="289.333" y="576" width="32" height="32"/>
   <object id="96" name="NPC" type="RangerNPC" x="448" y="576" width="32" height="32"/>

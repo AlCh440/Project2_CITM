@@ -118,12 +118,15 @@ bool ModuleEntities::CleanUp()
         delete aux->data;
         aux->data = nullptr;
     }
+
+
     playerInstance = nullptr;
     knightInstance = nullptr;
     dummyInstance = nullptr;
     dummyNpcInstance = nullptr;
     players.clear();
     entities.clear();
+    listOfCombatTriggers.clear();
     return true;
 }
 
@@ -198,6 +201,9 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             break;
         case ENTRANCE:
             app->levelManagement->gameScene = entranceIntance->scene;
+            break;
+        case COMBATTRIGGER:
+            app->levelManagement->gameScene = COMBAT; // change when there is multiple batle scenes
             break;
         default:
             break;
