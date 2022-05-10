@@ -9,6 +9,7 @@
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
+#define MAX_AREA_EXPANSION 25
 
 enum AttackShape {
 	SQUARE,
@@ -69,6 +70,9 @@ public:
 
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
+
+	//clear last path
+	void ClearPath();
 
 	// draw
 	void DrawPath();

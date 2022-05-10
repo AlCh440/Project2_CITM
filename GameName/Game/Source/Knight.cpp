@@ -14,6 +14,9 @@
 // Update Code
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
+
+	name.Create("Knight");
+
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
@@ -40,6 +43,9 @@ bool Knight::Start()
 	isAlive = true;
 	stepCounter = 0;
 	moveRange = 2;
+
+	HasMoveAction = true;
+	HasAttackAction = true;
 
 	direction = new iPoint{ 0, 0 };
 
@@ -73,7 +79,7 @@ bool Knight::Start()
 	basicAttack->damage = 2;
 	basicAttack->id = 0;
 
-	attackList->add(basicAttack);
+	//attackList->add(basicAttack);
 	
 
 	tex_hitfx = app->tex->Load("Assets/Sprites/HitFx/hitEffect1.png");
@@ -97,12 +103,6 @@ bool Knight::Start()
 	pos = app->map->WorldToMap(pos.x, pos.y);
 
 	tilePos = pos;
-
-	pathfinding->InitBFS(tilePos);
-	for (int i = 0; i < stats.movement * moveRange; i++)
-		pathfinding->PropagateBFS();
-
-	
 
 	return true;
 }

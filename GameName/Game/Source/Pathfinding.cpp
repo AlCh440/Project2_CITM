@@ -101,6 +101,12 @@ uchar PathFinding::GetTileAt(const iPoint& pos) const
 	return INVALID_WALK_CODE;
 }
 
+void PathFinding::ClearPath()
+{
+	if (lastPath.Count() > 0)
+		lastPath.Clear();
+}
+
 void PathFinding::DrawPath()
 {
 	if (DEBUG)
@@ -443,22 +449,57 @@ void PathFinding::PropagateBFS()
 
 void PathFinding::GenerateWalkeableArea(iPoint center, int range)
 {
-	ResetBFSPath();
 	InitBFS(center);
+	iPoint current;
+	
+	for (int x = 0; x <= MAX_AREA_EXPANSION; x++)
+	{ 
+		if (frontier.Pop(current)) {		
+			p2List<iPoint> neightbours;
 
-	for (int x = center.x - range; x < center.x + range; x++)
-		for (int y = center.y - range; y < center.y + range; y++)
-		{
-			iPoint next;
-			next.x = x;
-			next.y = y;
-						
-			if (!visited.find(next) && IsWalkable(next) 
-				&& IsTileEmpty(next)&& CreatePath(center,next) <= range)
-			{		
-				visited.add(next);
+			neightbours.add(iPoint(current.x + 1, current.y));
+			neightbours.add(iPoint(current.x, current.y + 1));
+			neightbours.add(iPoint(current.x, current.y - 1));
+			neightbours.add(iPoint(current.x - 1, current.y));
+
+			p2ListItem<iPoint>* neightbour = neightbours.start;
+			while (neightbour != NULL)
+			{
+				if (visited.find(neightbour->data) == false && IsWalkable(neightbour->data)
+					&& IsTileEmpty(neightbour->data) && CreatePath(center, neightbour->data) <= range)
+				{
+					frontier.Push(neightbour->data);
+					visited.add(neightbour->data);
+				}
+				neightbour = neightbour->next;
 			}
 		}
+	}
+
+
+	lastPath.Clear();
+
+	//ResetBFSPath();
+	//InitBFS(center);
+
+	//for (int x = center.x - range; x < center.x + range; x++)
+	//{
+	//	for (int y = center.y - range; y < center.y + range; y++)
+	//	{
+	//		iPoint next;
+	//		next.x = x;
+	//		next.y = y;
+
+	//		if (!visited.find(next) && IsWalkable(next)
+	//			&& IsTileEmpty(next) && CreatePath(center, next) <= range)
+	//		{
+	//			frontier.Push(next);
+	//			visited.add(next);
+	//		}
+	//	}
+	//}
+	//if(visited.start != nullptr)
+	//	LOG("Walkeable area created");
 
 	lastPath.Clear();
 }

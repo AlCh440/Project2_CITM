@@ -24,6 +24,8 @@ EnemyDummy::EnemyDummy(iPoint pos) : Enemy(pos)
 
 EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
+
+	name.Create("Dummy");
 	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
@@ -79,7 +81,9 @@ bool EnemyDummy::Start()
 	inter_speed = 0.02f;
 
 	currentAnim = &idle;
-	
+
+	HasMoveAction = true;
+	HasAttackAction = true;
 	return true;
 }
 
@@ -145,7 +149,7 @@ bool EnemyDummy::Update(float dt)
 		}
 
 		if (MovePath()) {
-			entityTurn = false;
+			//entityTurn = false;
 			NewTarget = false;
 		}
 
@@ -183,16 +187,18 @@ bool EnemyDummy::PostUpdate()
 	{
 		//Search for new pos//Draw path
 		const DynArray<iPoint>* path = pathfinding->GetLastPath();
-
-		SDL_Rect rect;
-		for (uint i = 0; i < path->Count(); ++i)
+		if (path != nullptr)
 		{
-			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			rect.x = (pos.x);
-			rect.y = (pos.y);
-			rect.w = (app->map->mapData.tileWidth);
-			rect.h = (app->map->mapData.tileHeight);
-			app->render->DrawRectangle(rect, 255, 125, 125, 150);
+			SDL_Rect rect;
+			for (uint i = 0; i < path->Count(); ++i)
+			{
+				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+				rect.x = (pos.x);
+				rect.y = (pos.y);
+				rect.w = (app->map->mapData.tileWidth);
+				rect.h = (app->map->mapData.tileHeight);
+				app->render->DrawRectangle(rect, 255, 125, 125, 150);
+			}
 		}
 	}
 		break;
@@ -205,14 +211,8 @@ bool EnemyDummy::PostUpdate()
 		break;
 	}
 	
-
 	//render entity
 	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());
-
-
-
-
-
 
 	return true;
 }

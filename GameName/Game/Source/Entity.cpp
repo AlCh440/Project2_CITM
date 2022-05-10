@@ -303,6 +303,7 @@ void Entity::ChangeBattleSate(BattleSates state)
 	{
 		ExpandedBFS = false;
 		pathfinding->ResetBFSPath();
+		pathfinding->ClearPath();
 		battleState = state;
 	}
 }
