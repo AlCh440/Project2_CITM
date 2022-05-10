@@ -68,6 +68,12 @@ bool Knight::Start()
 
 	currentAnim = &walkDown;
 
+	//Load Entity attacks
+	Attack* basicAttack = new Attack();
+	basicAttack->damage = 2;
+	basicAttack->id = 0;
+
+	attackList->add(basicAttack);
 	
 
 	tex_hitfx = app->tex->Load("Assets/Sprites/HitFx/hitEffect1.png");

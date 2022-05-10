@@ -171,7 +171,7 @@ private:
 	SString title;
 	SString organization;
 
-	p2List<Module *> modules;
+	p2List<Module*> modules;
 
 	uint frames;
 	

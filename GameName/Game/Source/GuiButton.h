@@ -28,6 +28,9 @@ public:
 
 	SDL_Rect normalRec,disabledRec,focusedRec,pressedRec,selectedRec;
 
+	SDL_Texture* imageTexture;
+	SDL_Rect imageBound;
+
 	uint focusedfx, selectedfx;
 	bool playfx = true;
 };

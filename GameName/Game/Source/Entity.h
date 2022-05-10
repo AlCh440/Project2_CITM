@@ -31,6 +31,12 @@ struct HitEffect {
 	}
 };
 
+struct Attack {
+	int damage;
+	int id;	
+	SString name;
+};
+
 struct AbilityEffects {
 	
 	//offensive
@@ -166,12 +172,13 @@ public:
 	Animation* currentHitAnim = nullptr;
 	SDL_Texture* tex_hitfx = nullptr;
 
+	p2List<Attack*>* attackList;
+
 	bool InitPath(iPoint destiantion);
 	void takeDamage(int damage);
 	void StartTurn();
 	bool MovePath();
 	void ChangeBattleSate(BattleSates state);
-	virtual void Attack();
 protected:
 	iPoint* currentP;
 	iPoint* nextP;

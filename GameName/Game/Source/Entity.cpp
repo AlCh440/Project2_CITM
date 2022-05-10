@@ -306,7 +306,3 @@ void Entity::ChangeBattleSate(BattleSates state)
 		battleState = state;
 	}
 }
-
-void Entity::Attack()
-{
-}

@@ -13,8 +13,14 @@ public:
 	bool CleanUp();
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
+	void LoadEntityAttacks();
+
+
 	GuiButton* bt_attack;
 	GuiButton* bt_move;
 	GuiButton* bt_endTurn;
+
+
+	GuiButton* bt_test;
 };
 

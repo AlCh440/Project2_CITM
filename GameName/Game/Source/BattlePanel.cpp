@@ -16,8 +16,8 @@ BattlePanel::~BattlePanel()
 
 bool BattlePanel::Start()
 {
-	texture = nullptr;
-	bounds = { 0,0,1280,720 };
+	texture = app->tex->Load("Assets/Sprites/UI/BattleUIBackground.png");
+	bounds = { 0,0,1080,720 };
 	position = { 0,0 };
 
 	bt_attack = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { this->position.x ,this->position.y,56,56 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
@@ -38,6 +38,9 @@ bool BattlePanel::Start()
 	bt_endTurn->normalRec = { 0,663,56,56 };
 	bt_endTurn->focusedRec = { 0,610,56,56 };
 	bt_endTurn->pressedRec = { 0,663,56,56 };
+
+
+	LoadEntityAttacks();
 	return true;
 }
 
@@ -75,5 +78,24 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 		app->battleTest->NextEntity();
 	}
 	return true;
+}
+
+void BattlePanel::LoadEntityAttacks()
+{
+	//if (app->battleTest->currentEntity != nullptr)
+	//{
+	//	p2ListItem<Attack*>* a = app->battleTest->currentEntity->data->attackList->start;
+	//	int i = 0;
+
+	//	while (a != nullptr)
+	//	{
+	//		bt_test = (GuiButton*)CreateGuiButton(a->data->id, app->guiManager, this, { this->position.x + 538 + (i * 63),this->position.y + 664,40,40 });
+	//		bt_test->texture = app->guiManager->UItexture2;
+	//		bt_test->normalRec = { 113,302,40,40 };
+
+	//		i++;
+	//		a = a->next;
+	//	}
+	//}
 }
 

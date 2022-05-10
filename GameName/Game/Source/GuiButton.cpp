@@ -18,7 +18,8 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, S
 	texture = app->guiManager->UItexture;
 	canClick = true;
 	playfx = true;
-	textTex = app->fonts->LoadRenderedText(textRect, fontid, text, textcolor);
+	if(text != "")
+		textTex = app->fonts->LoadRenderedText(textRect, fontid, text, textcolor);
 	CenterText(bounds);
 	name.Create("Button");
 	
