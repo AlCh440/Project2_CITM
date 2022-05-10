@@ -641,6 +641,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			obj->type = Collider_Type::EXIT;
 		}
+		else if (strcmp(object.attribute("type").as_string(), "combattrigger") == 0)
+		{
+			obj->type = Collider_Type::COMBATTRIGGER;
+		}
 
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
@@ -767,6 +771,17 @@ bool Map::SetMapColliders()
 					app->entities->entities.add(t); 
 				}
 				break;
+			case COMBATTRIGGER:
+			{
+				Trigger* t = new Trigger();
+				t->physBody = app->physics->CreateRectangleSensor(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2BodyType::b2_staticBody, { 154,38,154,155 });
+				t->type = object->data->type;
+				t->physBody->listener = app->entities;
+				t->physBody->type = object->data->type;
+				t->id = 0; // Use when there is multiple battle scenes
+				app->entities->listOfCombatTriggers.add(t);
+				app->entities->entities.add(t);
+			}break;
 			default:
 				break;
 			}

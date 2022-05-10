@@ -103,6 +103,7 @@ public:
 	// triggers to move room to room
 	Trigger* entranceIntance;
 	Trigger* exitIntance;
+	p2List<Trigger*> listOfCombatTriggers;
 
 	//triggers to enter locations
 
