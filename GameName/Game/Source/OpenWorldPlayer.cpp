@@ -30,6 +30,9 @@ OpenWorldPlayer::~OpenWorldPlayer()
 
 bool OpenWorldPlayer::Start()
 {
+	steps = app->audio->LoadFx("Assets/audio/fx/footSteps2.wav");
+	steps2 = app->audio->LoadFx("Assets/audio/fx/footSteps3.wav");
+
 	stats.hp = 100;
 	stats.mana = 50;
 	stats.movement = 10;
@@ -98,9 +101,31 @@ bool OpenWorldPlayer::Update(float dt)
 	app->render->CameraFocus(position);
 
 	bool goLeft = (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT);
+	
 	bool goRight = (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT);
+	
 	bool goUp = (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT);
+	
 	bool goDown = (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT);
+	
+	/*if (goLeft = true)
+	{
+		app->audio->PlayFx(steps);
+	}
+	else if (goRight = true)
+	{
+		app->audio->PlayFx(steps);
+	}
+	else if (goUp = true)
+	{
+		app->audio->PlayFx(steps);
+	}
+	else if (goDown = true)
+	{
+		app->audio->PlayFx(steps);
+	}*/
+	
+	
 
 	b2Vec2 movement = { (float)(goRight - goLeft), (float)(goDown - goUp) };
 	movement.Normalize();
@@ -146,6 +171,8 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection = &walkSide;
 			lastDirection->speed = walkSpeed;
 			goingLeft = false;
+			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 		}
 		else if (movement.x < 0)
 		{
@@ -153,26 +180,33 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection = &walkSide;
 			lastDirection->speed = walkSpeed;
 			goingLeft = true;
+			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 		}
 		else if (movement.y < 0)
 		{
 			currentAnim = &walkUp;
 			lastDirection = &walkUp;
 			lastDirection->speed = walkSpeed;
-			goingLeft = false;
+			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
+			//app->audio->Pause = true;
 		}
 		else if (movement.y > 0)
 		{
 			currentAnim = &walkDown;
 			lastDirection = &walkDown;
 			lastDirection->speed = walkSpeed;
-			goingLeft = false;
+			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
+			//app->audio->PlayFx(steps);
 		}
 		else
 		{
 			currentAnim = lastDirection;
 			lastDirection->Reset();
 			lastDirection->speed = 0;
+			//app->audio->PlayFx(steps);
 		}
 	}
 	else
@@ -180,6 +214,7 @@ bool OpenWorldPlayer::Update(float dt)
 		currentAnim = lastDirection;
 		lastDirection->Reset();
 		lastDirection->speed = 0;
+		//app->audio->Pause = true;
 	}
 
 	return true;

@@ -42,6 +42,8 @@ public:
 
 	float32 velocity = 7;
 
+	uint steps;
+	uint steps2;
 
 private:
 
