@@ -189,6 +189,9 @@
     <ClCompile Include="Source\Weapon.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Key.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -407,6 +410,9 @@
       <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Source\Weapon.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Key.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
   </ItemGroup>

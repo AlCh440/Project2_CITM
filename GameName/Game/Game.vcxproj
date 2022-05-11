@@ -21,7 +21,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -121,6 +121,7 @@
     <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\GuiToggle.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
+    <ClCompile Include="Source\Key.cpp" />
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Mage.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
+    <ClInclude Include="Source\Key.h" />
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Mage.h" />
