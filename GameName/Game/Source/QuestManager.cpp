@@ -115,6 +115,7 @@ void QuestManager::FinishQuest(int questID)
 
 void QuestManager::AddItem()
 {
+
 }
 
 bool QuestManager::GetAvailableQuest(int questID)

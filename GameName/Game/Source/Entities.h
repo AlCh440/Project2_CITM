@@ -47,7 +47,7 @@ public:
 	bool CleanUp() override;
 
 	//used to add entities 
-	void AddEntity(Collider_Type type ,iPoint spawnPos);
+	void AddEntity(Collider_Type type ,iPoint spawnPos, p2List <Item*> items = p2List<Item*>());
 
 	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);
@@ -95,6 +95,7 @@ public:
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;
 	NpcWoVillager* dummyNpcWoVillagerInstance;
+	Item* itemInstance;
 
 	// triggers to move room to room
 	Trigger* entranceIntance;

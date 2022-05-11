@@ -1,5 +1,5 @@
 #pragma once
-#pragma once
+
 #include "Entity.h"
 #include "Item.h"
 
@@ -7,6 +7,7 @@ class Key : public Item
 {
 public:
 
+	Key(int id);
 	Key(iPoint pos);
 	Key(Collider_Type type, iPoint pos);
 

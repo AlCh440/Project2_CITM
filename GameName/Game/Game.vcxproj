@@ -100,6 +100,7 @@
     <ClCompile Include="Source\BattlePanel.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
+    <ClCompile Include="Source\Chest.cpp" />
     <ClCompile Include="Source\Consumable.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Source\BattleSpace.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />
+    <ClInclude Include="Source\Chest.h" />
     <ClInclude Include="Source\Consumable.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Dialog.h" />

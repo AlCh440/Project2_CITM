@@ -6,6 +6,7 @@ class Item : public Entity
 {
 public:
 
+	Item();
 	Item(iPoint pos);
 	Item(Collider_Type type, iPoint pos);
 
@@ -19,6 +20,7 @@ public:
 
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+
 
 protected:
 	int spriteRotation = 0;

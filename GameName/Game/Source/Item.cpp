@@ -1,12 +1,18 @@
 #include "Item.h"
 #include "Entities.h"
 
+Item::Item() : Entity()
+{
+}
+
 Item::Item(iPoint pos) : Entity(pos)
 {
+
 }
 
 Item::Item(Collider_Type type, iPoint pos) : Entity(type, pos)
 {
+
 }
 
 bool Item::Start()

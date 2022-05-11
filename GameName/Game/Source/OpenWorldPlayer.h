@@ -6,6 +6,9 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Player.h"
+#include "Item.h"
+
+class Item;
 
 class OpenWorldPlayer : public Player
 {
@@ -42,6 +45,9 @@ public:
 
 	float32 velocity = 7;
 
+	p2List <Item*> inventory;
+	Item* knightEquiped;
+	Item* MageEquiped;
 
 private:
 
@@ -54,5 +60,4 @@ private:
 	bool goingLeft;
 	bool AdminMode;
 	bool canMove;
-
 };

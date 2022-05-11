@@ -10,6 +10,8 @@
 #include "Map.h"
 #include "Log.h"
 #include "Player.h"
+#include "Item.h"
+
 
 // Update Code
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)

@@ -21,7 +21,7 @@
 #include "NpcDummy.h"
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
-
+#include "Chest.h"
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
@@ -127,7 +127,7 @@ bool ModuleEntities::CleanUp()
     return true;
 }
 
-void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
+void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item*> items)
 {
     switch (type)
     {
@@ -160,6 +160,10 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case NPCWOVILLAGER:
         dummyNpcWoVillagerInstance = new NpcWoVillager(type, spawnPos);
         entities.add(dummyNpcWoVillagerInstance);
+        break;
+    case CHEST:
+        itemInstance = new Chest(type, spawnPos, items);
+        entities.add(itemInstance);
         break;
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);

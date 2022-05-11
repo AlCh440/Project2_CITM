@@ -1,5 +1,9 @@
 #include "Key.h"
 
+Key::Key(int id) : Item()
+{
+}
+
 Key::Key(iPoint pos) : Item(pos)
 {
 }
