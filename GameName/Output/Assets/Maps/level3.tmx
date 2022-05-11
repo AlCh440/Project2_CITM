@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="108" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="188">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="108" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="199">
  <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -129851,5 +129851,14 @@
   <object id="184" name="NPC" type="MinerNPC" x="1536" y="768" width="32" height="32"/>
   <object id="185" name="NPC" type="MinerNPC" x="1504" y="1120" width="32" height="32"/>
   <object id="186" name="NPC" type="MinerNPC" x="1312" y="768" width="32" height="32"/>
+  <object id="189" name="combattrigger" type="combattrigger" x="1120" y="1342" width="32" height="32"/>
+  <object id="191" name="combattrigger" type="combattrigger" x="1024" y="1152" width="32" height="32"/>
+  <object id="192" name="combattrigger" type="combattrigger" x="865" y="1217" width="32" height="32"/>
+  <object id="193" name="combattrigger" type="combattrigger" x="605.333" y="2558" width="32" height="32"/>
+  <object id="194" name="combattrigger" type="combattrigger" x="772" y="2596" width="32" height="32"/>
+  <object id="195" name="combattrigger" type="combattrigger" x="862" y="2688" width="32" height="32"/>
+  <object id="196" name="combattrigger" type="combattrigger" x="578" y="2692.67" width="32" height="32"/>
+  <object id="197" name="combattrigger" type="combattrigger" x="670.667" y="2847.33" width="32" height="32"/>
+  <object id="198" name="combattrigger" type="combattrigger" x="772" y="2848" width="32" height="32"/>
  </objectgroup>
 </map>
