@@ -42,6 +42,7 @@ public:
 	// Load / Save
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&) const;
+	bool SaveConfig(pugi::xml_node& data) const override;
 
 	void SetVSYNC(bool vsync);
 	bool GetVSYNC();

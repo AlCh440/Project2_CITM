@@ -219,10 +219,6 @@ void OpenWorldPlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 // Load / Save
 bool OpenWorldPlayer::LoadState(pugi::xml_node& data)
 {
-
-
-
-
 	float x_ = data.child("player").attribute("x").as_int();
 	float y_ = data.child("player").attribute("y").as_int();
 

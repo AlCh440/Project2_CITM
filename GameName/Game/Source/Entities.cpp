@@ -27,6 +27,7 @@ ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
     name.Create("entities");
     toSave = true;
+    saveConfigs = false;
     
 }
 
@@ -141,9 +142,12 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         break;
     case PLAYEROPENWORLD:
     {
-        openWorldInstance = new OpenWorldPlayer(type, spawnPos);
-        entities.add(openWorldInstance);
-        openWorld = openWorldInstance;
+        if (openWorld == nullptr) 
+        {
+            openWorldInstance = new OpenWorldPlayer(type, spawnPos);
+            entities.add(openWorldInstance);
+            openWorld = openWorldInstance;
+        }
     } break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
@@ -222,6 +226,13 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
     }
     else
     {
+        if (openWorld == nullptr)
+        {
+            AddEntity(PLAYEROPENWORLD, iPoint(0, 0));
+            openWorld->Start();
+        }
+
+
         for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
         {
             aux->data->LoadState(data);

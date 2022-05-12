@@ -10,6 +10,7 @@ PathFinding::PathFinding(bool isActive) : Module(isActive), map(NULL), lastPath(
 {
 	name.Create("pathfinding");
 	toSave = false;
+	saveConfigs = false;
 }
 
 // Destructor

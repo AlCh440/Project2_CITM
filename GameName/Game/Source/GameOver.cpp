@@ -16,6 +16,7 @@ GameOver::GameOver(bool isActive) : Module(isActive)
 {
 	name.Create("game_over");
 	toSave = false;
+	saveConfigs = false;
 }
 
 // Destructor

@@ -20,6 +20,7 @@ GuiManager::GuiManager(bool isActive) :Module(isActive)
 {
 	name.Create("gui_manager");
 	toSave = false;
+	saveConfigs = false;
 }
 
 GuiManager::~GuiManager() {}

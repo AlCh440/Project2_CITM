@@ -13,6 +13,7 @@ LevelManagement::LevelManagement(bool isActive) : Module(isActive)
 {
 	name.Create("Level_manager");
 	toSave = true;
+	saveConfigs = false;
 }
 
 LevelManagement::~LevelManagement()
@@ -53,6 +54,7 @@ bool LevelManagement::PreUpdate()
 	{
  		app->entities->AddEntity(Collider_Type::CHEST, iPoint(500, 500));
 	}
+
 	switch (gameScene)
 	{
 	case INTRO:

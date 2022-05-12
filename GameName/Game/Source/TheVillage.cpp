@@ -10,6 +10,7 @@ TheVillage::TheVillage(bool isActive) : Module(isActive)
 {
 	name.Create("The_Village");
 	toSave = false;
+	saveConfigs = false;
 }
 
 TheVillage::~TheVillage()

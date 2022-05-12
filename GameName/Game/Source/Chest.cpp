@@ -56,7 +56,7 @@ bool Chest::Update(float dt)
 
 bool Chest::CleanUp()
 {
-
+	 
 	return true;
 }
 

@@ -13,6 +13,7 @@ Window::Window(bool isActive) : Module(isActive)
 	screenSurface = NULL;
 	name.Create("window");
 	toSave = true;
+	saveConfigs = true;
 }
 
 // Destructor
@@ -36,20 +37,20 @@ bool Window::Awake(pugi::xml_node& config)
 		// Create window
 		// L01: DONE 6: Load all required configurations from config.xml
 		Uint32 flags = SDL_WINDOW_SHOWN;
-		bool fullscreen = config.child("fullscreen").attribute("value").as_bool(false);
-		bool borderless = config.child("borderless").attribute("value").as_bool(false);
-		bool resizable = config.child("resizable").attribute("value").as_bool(false);
-		bool fullscreen_window = config.child("fullscreen_window").attribute("value").as_bool(false);
+		fullScreen = config.child("fullscreen").attribute("value").as_bool(false);
+		bool borderless = false;//config.child("borderless").attribute("value").as_bool();
+		bool resizable = false;//config.child("resizable").attribute("value").as_bool();
+		bool fullscreen_window = false;//config.child("fullscreen_window").attribute("value").as_bool();
 
 		width = config.child("resolution").attribute("width").as_int();
 		height = config.child("resolution").attribute("height").as_int();
-		scale = config.child("resolution").attribute("scale").as_int(1);
+		scale = config.child("resolution").attribute("scale").as_int();
 
-		if(fullscreen == true) flags |= SDL_WINDOW_FULLSCREEN;
+		if(fullScreen == true) flags |= SDL_WINDOW_FULLSCREEN;
 		if(borderless == true) flags |= SDL_WINDOW_BORDERLESS;
 		if(resizable == true) flags |= SDL_WINDOW_RESIZABLE;
 		if(fullscreen_window == true) flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-
+		
 		window = SDL_CreateWindow(app->GetTitle(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if(window == NULL)
@@ -122,4 +123,19 @@ void Window::SetFullScreen(bool fullScreen)
 bool Window::GetFullScreen()
 {
 	return fullScreen;
+}
+
+bool Window::SaveConfig(pugi::xml_node& data) const
+{
+
+	pugi::xml_node aux = data.append_child("resolution");
+
+	aux.append_attribute("width") = width;
+	aux.append_attribute("height") = height;
+	aux.append_attribute("scale") = scale;
+
+	aux = data.append_child("fullscreen");
+	aux.append_attribute("value") = fullScreen;
+
+	return true;
 }

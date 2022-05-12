@@ -19,6 +19,7 @@ Audio::Audio(bool isActive) : Module(isActive)
 	fxVolume = 100;
 	musicVolume = 100;
 	toSave = true;
+	saveConfigs = true;
 }
 
 // Destructor
@@ -146,6 +147,27 @@ bool Audio::PlayMusic(const char* path, float fade_time)
 void Audio::StopMusic()
 {
 	Mix_HaltMusic();
+}
+
+bool Audio::LoadState(pugi::xml_node& data)
+{
+
+	return true;
+}
+
+bool Audio::SaveState(pugi::xml_node& data) const
+{
+	return true;
+}
+
+bool Audio::SaveConfig(pugi::xml_node& data) const
+{
+	pugi::xml_node aux = data.append_child("volume");
+
+	aux.append_attribute("music") = musicVolume;
+	aux.append_attribute("fx") = fxVolume;
+
+	return true;
 }
 
 // Load WAV

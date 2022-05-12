@@ -227,6 +227,11 @@ bool App::Update()
 	if (exit)
 		ret = false;
 
+	if (ret == false)
+	{
+		SaveConfig();
+	}
+
 	return ret;
 }
 
@@ -236,7 +241,7 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 {
 	pugi::xml_node ret;
 
-	pugi::xml_parse_result result = configFile.load_file(CONFIG_FILENAME);
+	pugi::xml_parse_result result = configFile.load_file("config.xml");
 
 	if (result == NULL)
 	{
@@ -245,6 +250,43 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 	else ret = configFile.child("config");
 
 
+
+	return ret;
+}
+
+bool App::SaveConfig()
+{
+	bool ret = true;
+
+	pugi::xml_document* configDoc = new pugi::xml_document();
+	pugi::xml_node  saveStateNode = configDoc->append_child("config");
+
+	p2ListItem<Module*>* item;
+	item = modules.start;
+
+	pugi::xml_node aux = saveStateNode.append_child("app");
+
+	
+	aux.append_child("title").append_attribute("value") = "Game Development Testbed";
+	aux.append_child("organization").append_attribute("value") = "UPC";
+
+
+	while (item != NULL)
+	{
+		if (item->data->saveConfigs == true)
+		{
+			if (ret != item->data->SaveConfig(saveStateNode.append_child(item->data->name.GetString())))
+				LOG("could not save status of %s", item->data->name.GetString());
+		}
+		
+		item = item->next;
+	}
+
+	if (ret != configDoc->save_file("config.xml"))
+		LOG("Could not save savegame file....");
+
+
+	LOG("Config Saved...");
 
 	return ret;
 }
@@ -526,9 +568,10 @@ bool App::SaveGame() const
 	p2ListItem<Module*>* item;
 	item = modules.start;
 
+
 	while (item != NULL)
 	{
-		if (item->data->toSave == true)
+		if (item->data->saveConfigs == true)
 		{
 			if (ret != item->data->SaveState(saveStateNode.append_child(item->data->name.GetString())))
 				LOG("could not save status of %s", item->data->name.GetString());

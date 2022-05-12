@@ -21,6 +21,7 @@ Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
 {
 	name.Create("map");
 	toSave = false;
+	saveConfigs = true;
 
 }
 
@@ -64,8 +65,9 @@ bool Map::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Map Parser");
 	bool ret = true;
-
-	folder.Create(config.child("folder").child_value());
+	
+	//folder.Create(config.child("folder").child_value());
+	folder.Create("Assets/maps/");
 	tx_tileInfo = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	return ret;
 }
@@ -700,8 +702,14 @@ bool Map::SetMapColliders()
 			{
 
 			case PLAYEROPENWORLD:
-				if (app->entities->playerInstance == nullptr)
+				if (app->entities->openWorld == nullptr)
+				{
 					app->entities->AddEntity(object->data->type, spawnPos);
+				}
+				else
+				{
+					app->entities->openWorld->SetPosition(spawnPos);
+				}
 
 				LOG("spawn world player...");
 				break;
@@ -793,4 +801,12 @@ bool Map::SaveState(pugi::xml_node& data) const
 
 	bool ret = true;
 	return ret;
+}
+
+bool Map::SaveConfig(pugi::xml_node& data) const
+{
+	pugi::xml_node aux = data.append_child("folder");
+
+	aux.set_value(folder.GetString());
+	return true;
 }

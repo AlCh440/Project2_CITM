@@ -13,6 +13,7 @@ BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
 	name.Create("Battle_test_scene");
 	toSave = false;
+	saveConfigs = false;
 	
 }
 

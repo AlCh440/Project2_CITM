@@ -30,6 +30,7 @@ ModulePhysics::ModulePhysics(bool isActive) : Module(isActive)
 	
 	name.Create("physics");
 	toSave = false;
+	saveConfigs = false;
 
 }
 

@@ -11,6 +11,7 @@ WorldTestScene::WorldTestScene(bool isActive) : Module(isActive)
 {
 	name.Create("World_Test_Scene");
 	toSave = false;
+	saveConfigs = false;
 }
 
 WorldTestScene::~WorldTestScene()

@@ -5,6 +5,7 @@ QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
 	name.Create("quest_manager");
 	toSave = false;
+	saveConfigs = false;
 }
 
 QuestManager::~QuestManager()

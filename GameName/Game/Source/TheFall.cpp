@@ -11,6 +11,7 @@ TheFall::TheFall(bool isActive) : Module(isActive)
 {
 	name.Create("The_fall");
 	toSave = false;
+	saveConfigs = false;
 }
 
 TheFall::~TheFall()

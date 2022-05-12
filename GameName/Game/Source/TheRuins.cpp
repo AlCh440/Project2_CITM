@@ -10,6 +10,7 @@ TheRuins::TheRuins(bool isActive) : Module(isActive)
 {
 	name.Create("The_Ruins");
 	toSave = false;
+	saveConfigs = false;
 }
 
 TheRuins::~TheRuins()

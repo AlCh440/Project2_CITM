@@ -18,6 +18,7 @@ Input::Input(bool isActive) : Module(isActive)
 	memset(keyboard, KEY_IDLE, sizeof(KeyState) * MAX_KEYS);
 	memset(mouseButtons, KEY_IDLE, sizeof(KeyState) * NUM_MOUSE_BUTTONS);
 	toSave = true;
+	saveConfigs = false;
 }
 
 // Destructor
