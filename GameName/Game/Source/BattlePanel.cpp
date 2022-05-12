@@ -39,8 +39,6 @@ bool BattlePanel::Start()
 	bt_endTurn->focusedRec = { 0,610,56,56 };
 	bt_endTurn->pressedRec = { 0,663,56,56 };
 
-
-	LoadEntityAttacks();
 	return true;
 }
 
@@ -80,22 +78,28 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 	return true;
 }
 
+void BattlePanel::Enable()
+{
+	Active = true;
+	LoadEntityAttacks();
+}
+
 void BattlePanel::LoadEntityAttacks()
 {
-	//if (app->battleTest->currentEntity != nullptr)
-	//{
-	//	p2ListItem<Attack*>* a = app->battleTest->currentEntity->data->attackList->start;
-	//	int i = 0;
+	if (app->battleTest->currentEntity != nullptr)
+	{
+		p2ListItem<Attack*>* a = app->battleTest->currentEntity->data->attackList->start;
+		int i = 0;
 
-	//	while (a != nullptr)
-	//	{
-	//		bt_test = (GuiButton*)CreateGuiButton(a->data->id, app->guiManager, this, { this->position.x + 538 + (i * 63),this->position.y + 664,40,40 });
-	//		bt_test->texture = app->guiManager->UItexture2;
-	//		bt_test->normalRec = { 113,302,40,40 };
+		while (a != nullptr)
+		{
+			bt_test = (GuiButton*)CreateGuiButton(a->data->id, app->guiManager, this, { this->position.x + 538 + (i * 63),this->position.y + 664,40,40 });
+			bt_test->texture = app->guiManager->UItexture2;
+			bt_test->normalRec = { 113,302,40,40 };
 
-	//		i++;
-	//		a = a->next;
-	//	}
-	//}
+			i++;
+			a = a->next;
+		}
+	}
 }
 

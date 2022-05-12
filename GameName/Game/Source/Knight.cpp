@@ -72,6 +72,17 @@ bool Knight::Start()
 	walkUp.loop = true;
 	walkUp.speed = 0.1f;
 
+	dead.PushBack({});
+	dead.loop = false;
+	dead.speed = 0.1;
+	
+	hit.PushBack({ 0, 96, 32, 48 });
+	hit.PushBack({ 32, 96, 32, 48 });
+	hit.PushBack({ 64, 96, 32, 48 });
+	hit.PushBack({ 96, 96, 32, 48 });
+	hit.loop = false;
+	hit.speed = 0.1f;
+
 	currentAnim = &walkDown;
 
 	//Load Entity attacks
@@ -87,7 +98,7 @@ bool Knight::Start()
 		basicHit.PushBack({ 32 * i,0,32,32 });
 
 	basicHit.loop = false;
-	basicHit.speed = 0.1f;
+	basicHit.speed = 0.5f;
 
 	pathfinding = new PathFinding(true);
 	//create navigation map
@@ -114,7 +125,6 @@ bool Knight::PreUpdate()
 	{
 		entityTurn = false;
 	}
-
 
 	switch (battleState)
 	{

@@ -33,6 +33,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	
 	stats.hp = 10;
 	stats.movement = 10;
+	stats.baseDamage = 4;
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;
@@ -67,23 +68,39 @@ bool EnemyDummy::Start()
 
 	inter_speed = 0.02f;
 
-	
-	idle.PushBack({ 0, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 1, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 2, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 3, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 4, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 5, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 6, 48 * 3, 48, 48 });
-	idle.PushBack({ 48 * 7, 48 * 3, 48, 48 });
-	idle.speed = 0.1f;
+	for(int i = 0; i < 21; i++)
+	{
+		if (i <= 7)
+		{
+			idle.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			idle.speed = 0.1f;
+			idle.loop = true;
+		}
+		else if (i >= 8 && i <= 13)
+		{
+			dead.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			dead.loop = false;
+			dead.speed = 0.3f;
+		}
+		else if (i >= 14 && i <= 16)
+		{
+			hit.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			hit.loop = false;
+			hit.speed = 0.2f;
+		}
+		else if (i <= 17)
+		{
+			attack.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			attack.loop = false;
+			attack.speed = 0.1f;
+		}
+	}
+
 
 	inter_speed = 0.02f;
 
 	currentAnim = &idle;
 
-	HasMoveAction = true;
-	HasAttackAction = true;
 	return true;
 }
 
@@ -94,19 +111,55 @@ bool EnemyDummy::PreUpdate()
 	switch (battleState)
 	{
 	case IDLE:
-	{//store the entity position in tiles
+	{
+		//store the entity position in tiles
 		iPoint pos;
 		pos.x = position.x;
 		pos.y = position.y;
 		pos = app->map->WorldToMap(pos.x, pos.y);
 
 		tilePos = pos;
-	}
 
-		//if (entityTurn)
-		//{
-		//	battleState = MOVE;
-		//}
+		if (OnHit)
+			currentAnim = &hit;
+
+		if (entityTurn)
+		{
+
+
+			if (battleState == DEATH)
+				break;
+			if (target == nullptr)
+			{
+				target = app->entities->GetNearestPlayer(physBody)->entityPtr;
+
+			}
+			else {
+				
+				if ( HasAttackAction &&  pathfinding->CreatePath(tilePos, target->tilePos ) <=  2)
+				{
+					battleState = ATTACK;
+					attack.Reset();
+					currentAnim = &attack;
+				}
+				else if (HasMoveAction)
+				{
+					battleState = MOVE;
+					currentAnim = &idle;
+				}
+				else 
+				{
+					// if has mmoved and has no range then, has no attack action
+					HasAttackAction = false;
+				}
+			}
+		}
+		//if has no attack, move action end turn
+		if (!HasAttackAction && !HasMoveAction) {
+			entityTurn = false;
+		}
+
+	}
 		break;
 	case MOVE:
 		//Search for new pos
@@ -128,6 +181,14 @@ bool EnemyDummy::Update(float dt)
 	{
 	case IDLE:
 		//Nothing to do
+		if(OnHit)
+		{
+			if (currentAnim->HasFinished()) {
+				OnHit = false;
+				hit.Reset();
+				currentAnim = &idle;
+			}
+		}
 		break;
 	case MOVE:
 		if (!Move) {
@@ -141,6 +202,9 @@ bool EnemyDummy::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
+				pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
+
+
 				PhysBody* aux = app->entities->GetNearestPlayer(physBody);
 				if (InitPath(aux->entityPtr->tilePos)) {
 					NewTarget = true;
@@ -149,14 +213,19 @@ bool EnemyDummy::Update(float dt)
 		}
 
 		if (MovePath()) {
-			//entityTurn = false;
 			NewTarget = false;
+			currentAnim = &idle;
 		}
-
-		currentAnim = &idle;
 		break;
 	case ATTACK:
 		//Search for target
+		if (target != nullptr && currentAnim->HasFinished())
+		{
+			target->takeDamage(stats.baseDamage);
+			HasAttackAction = false;
+			currentAnim = &idle;
+			battleState = IDLE;
+		}
 		break;
 	case DEATH:
 		break;

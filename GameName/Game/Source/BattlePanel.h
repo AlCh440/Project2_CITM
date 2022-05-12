@@ -13,6 +13,7 @@ public:
 	bool CleanUp();
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
+	void Enable() override;
 	void LoadEntityAttacks();
 
 

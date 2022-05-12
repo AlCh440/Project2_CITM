@@ -114,6 +114,7 @@ void Entity::takeDamage(int damage)
 {
 	LOG("Ouch!");
 	stats.hp -= damage;
+	OnHit = true;
 
 	if (stats.hp <= 0)
 	{
@@ -265,7 +266,6 @@ bool Entity::MovePath()
 			//move
 			position.x += direction->x;
 			position.y += direction->y;
-
 
 			//get next tile world position
 			iPoint p;

@@ -33,10 +33,11 @@ bool BattleTestScene::Start()
 	app->physics->Start();
 	//load map tiles, entities, colliders
 	app->map->Load("BattleGroundTest.tmx");
-	//Start UI
-	app->guiManager->OpenPanel(P_BATTLE);
 	//start etities
 	app->entities->Start();
+	//Start UI
+	app->guiManager->OpenPanel(P_BATTLE);
+
 
 	battleEntities = app->entities->entities;
 	currentEntity = app->entities->entities.start;
@@ -70,11 +71,9 @@ bool BattleTestScene::PreUpdate()
 bool BattleTestScene::Update(float dt)
 {
 
-
 	if (!currentEntity->data->entityTurn) {
 		NextEntity();
 	}
-
 
 	return true;
 }
@@ -119,10 +118,13 @@ void BattleTestScene::NextEntity()
 {
 	//Stop current Entity
 	currentEntity->data->entityTurn = false;
-	currentEntity->data->battleState = IDLE;
 
 	//next entity
 	currentEntity = currentEntity->next;
+
+	//skip entities that are dead
+	//while (currentEntity->data->battleState == DEATH)
+	//	currentEntity = currentEntity->next;
 
 	if (currentEntity == nullptr)
 	{
