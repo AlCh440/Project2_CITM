@@ -25,9 +25,10 @@ enum GameScene {
 	FRACTURED_ROAD = 9,
 	DRAGRON_CLIFF = 10,
 	COMBAT = 11,
-	WORLD_TEST = 12,
-	TABERN = 13,
-	MARKET = 14
+	WORLD_TEST = 12
+
+
+
 };
 
 //enum CombatState {

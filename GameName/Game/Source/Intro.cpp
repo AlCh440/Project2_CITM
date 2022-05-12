@@ -53,7 +53,15 @@ bool Intro::PreUpdate()
 // Called each loop iteration
 bool Intro::Update(float dt)
 {
-	waitTime -= 1;
+	
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		waitTime = 0;
+	}
+	else
+	{
+		waitTime -= 1;
+	}
 
 	if (waitTime < 0)
 		app->levelManagement->LoadScene(GameScene::START);

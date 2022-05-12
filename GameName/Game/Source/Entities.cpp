@@ -167,6 +167,12 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);
         break;
+    case GENERAL_ENTRANCE:
+        generalEntrance = new Trigger(type, spawnPos);
+        break;
+    case MAGE_ENTRANCE:
+        mageEntrance = new Trigger(type, spawnPos);
+        break;
     default :
         break;
     }

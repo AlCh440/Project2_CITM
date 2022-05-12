@@ -216,13 +216,6 @@ void Render::CameraMovement()
 		camera.x -= (int) (distanceX / 100);
 		camera.y -= (int) (distanceY / 100);
 
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
-			camera.x = 0;
-			camera.y = 0;
-		}
-
-
 	}
 	else if (borderMovement)
 	{
@@ -251,11 +244,6 @@ void Render::CameraMovement()
 
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		camera.x = 0;
-		camera.y = 0;
-	}
 
 }
 
