@@ -151,6 +151,9 @@ protected:
 	Animation walkUp;
 	Animation walkDown;
 	Animation idle;
+	Animation dead;
+	Animation attack;
+	Animation  hit;
 	
 //----------------------------------------------------------------------------
 // Battle scene elements
@@ -163,6 +166,8 @@ public:
 
 	bool HasAttackAction = false;
 	bool HasMoveAction = false;
+
+	bool OnHit = false;
 
 	BattleSates battleState;
 	Statistics stats;
