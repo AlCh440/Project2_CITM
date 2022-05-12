@@ -188,6 +188,42 @@ bool LevelManagement::Update(float dt)
 			}
 		}
 		break;
+	case GameScene::GENERAL_ROOM:
+		if (currentScene != (Module*)app->generalRoom) {
+
+			if (app->fade->Fade(currentScene, (Module*)app->generalRoom, 30))
+			{
+				currentScene = (Module*)app->generalRoom;
+				lastOpenWorldScene = gameScene;
+				currentLevel = (Module*)app->generalRoom;
+				LOG("General Room");
+			}
+		}
+		break;
+	case GameScene::MAGE_ROOM:
+		if (currentScene != (Module*)app->mageRoom) {
+
+			if (app->fade->Fade(currentScene, (Module*)app->mageRoom, 30))
+			{
+				currentScene = (Module*)app->mageRoom;
+				lastOpenWorldScene = gameScene;
+				currentLevel = (Module*)app->mageRoom;
+				LOG("General Room");
+			}
+		}
+		break;
+	case GameScene::SHOP_ROOM:
+		if (currentScene != (Module*)app->shopRoom) {
+
+			if (app->fade->Fade(currentScene, (Module*)app->shopRoom, 30))
+			{
+				currentScene = (Module*)app->shopRoom;
+				lastOpenWorldScene = gameScene;
+				currentLevel = (Module*)app->shopRoom;
+				LOG("General Room");
+			}
+		}
+		break;
 	case WORLD_TEST:
 		if (currentScene != (Module*)app->worldTest) {
 

@@ -31,6 +31,10 @@ bool TheVillage::Start()
 	app->entities->exitIntance->scene = GameScene::START;
 	app->entities->entranceIntance->scene = GameScene::GREEN_PATH;
 
+	app->entities->generalEntrance->scene= GameScene::GENERAL_ROOM;
+	app->entities->mageEntrance->scene = GameScene::MAGE_ROOM;
+	app->entities->shopEntrance->scene = GameScene::SHOP_ROOM;
+
 	return true;
 }
 

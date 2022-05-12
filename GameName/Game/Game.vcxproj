@@ -113,6 +113,7 @@
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\FracturedRoad.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
+    <ClCompile Include="Source\GeneralRoom.cpp" />
     <ClCompile Include="Source\GreenPath.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Mage.cpp" />
+    <ClCompile Include="Source\MageRoom.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -146,6 +148,7 @@
     <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\SettingsPanel.cpp" />
+    <ClCompile Include="Source\ShopRoom.cpp" />
     <ClCompile Include="Source\StartMenu.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\TheFall.cpp" />
@@ -174,6 +177,7 @@
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\FracturedRoad.h" />
     <ClInclude Include="Source\GameOver.h" />
+    <ClInclude Include="Source\GeneralRoom.h" />
     <ClInclude Include="Source\GreenPath.h" />
     <ClInclude Include="Source\GuiButton.h" />
     <ClInclude Include="Source\GuiControl.h" />
@@ -185,6 +189,7 @@
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Mage.h" />
+    <ClInclude Include="Source\MageRoom.h" />
     <ClInclude Include="Source\MainMenuPanel.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
@@ -211,6 +216,7 @@
     <ClInclude Include="Source\Ranger.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\SettingsPanel.h" />
+    <ClInclude Include="Source\ShopRoom.h" />
     <ClInclude Include="Source\StartMenu.h" />
     <ClInclude Include="Source\Textures.h" />
     <ClInclude Include="Source\TheFall.h" />

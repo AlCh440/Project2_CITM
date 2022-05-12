@@ -28,6 +28,10 @@
 #include "DragonCliff.h"
 #include "SettingsPanel.h"
 
+#include "GeneralRoom.h"
+#include "MageRoom.h"
+#include "ShopRoom.h"
+
 #include "BattleTestScene.h"
 #include "WorldTestScene.h"
 
@@ -73,6 +77,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	ruins = new TheRuins(false);
 	dragonCliff = new DragonCliff(false);
 
+	generalRoom = new GeneralRoom(false);
+	mageRoom = new MageRoom(false);
+	shopRoom = new ShopRoom(false);
+
 	//test
 	worldTest = new WorldTestScene(false);
 	battleTest = new BattleTestScene(false);
@@ -101,6 +109,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fracturedRoad);
 	AddModule(ruins);
     AddModule(dragonCliff);
+	AddModule(generalRoom);
+	AddModule(mageRoom);
+	AddModule(shopRoom);
 
 	AddModule(battleTest);
 	AddModule(worldTest);

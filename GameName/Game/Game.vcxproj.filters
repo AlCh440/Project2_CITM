@@ -183,6 +183,15 @@
     <ClCompile Include="Source\BattlePanel.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GeneralRoom.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MageRoom.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShopRoom.cpp">
+      <Filter>Scenes\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -396,6 +405,15 @@
     </ClInclude>
     <ClInclude Include="Source\BattlePanel.h">
       <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GeneralRoom.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MageRoom.h">
+      <Filter>Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ShopRoom.h">
+      <Filter>Scenes\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

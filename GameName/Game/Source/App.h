@@ -40,6 +40,10 @@ class FracturedRoad;
 class TheRuins;
 class DragonCliff;
 
+class GeneralRoom;
+class MageRoom;
+class ShopRoom;
+
 class WorldTestScene;
 class BattleTestScene;
 
@@ -139,6 +143,11 @@ public:
 	FracturedRoad* fracturedRoad;
 	TheRuins* ruins;
 	DragonCliff* dragonCliff;
+
+	GeneralRoom* generalRoom;
+	MageRoom* mageRoom;
+	ShopRoom* shopRoom;
+
 	//test
 	WorldTestScene* worldTest;
 	BattleTestScene* battleTest;

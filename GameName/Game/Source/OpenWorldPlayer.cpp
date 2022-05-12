@@ -140,8 +140,8 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		{
-			movement.x *= 2;
-			movement.y *= 2;
+			movement.x *= 5;
+			movement.y *= 5;
 		}
 
 		physBody->body->SetLinearVelocity(movement);

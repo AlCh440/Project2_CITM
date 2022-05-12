@@ -173,6 +173,9 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
     case MAGE_ENTRANCE:
         mageEntrance = new Trigger(type, spawnPos);
         break;
+    case SHOP_ENTRANCE:
+        shopEntrance = new Trigger(type, spawnPos);
+        break;
     default :
         break;
     }
@@ -207,6 +210,15 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             break;
         case ENTRANCE:
             app->levelManagement->gameScene = entranceIntance->scene;
+            break;
+        case GENERAL_ENTRANCE:
+            app->levelManagement->gameScene = generalEntrance->scene;
+            break;
+        case MAGE_ENTRANCE:
+            app->levelManagement->gameScene = mageEntrance->scene;
+            break;
+        case SHOP_ENTRANCE:
+            app->levelManagement->gameScene = shopEntrance->scene;
             break;
         case COMBATTRIGGER:
             app->levelManagement->gameScene = COMBAT; // change when there is multiple batle scenes
