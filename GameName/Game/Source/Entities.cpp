@@ -141,8 +141,9 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         break;
     case PLAYEROPENWORLD:
     {
-        playerInstance = new OpenWorldPlayer(type, spawnPos);
-        entities.add(playerInstance);
+        openWorldInstance = new OpenWorldPlayer(type, spawnPos);
+        entities.add(openWorldInstance);
+        openWorld = openWorldInstance;
     } break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);

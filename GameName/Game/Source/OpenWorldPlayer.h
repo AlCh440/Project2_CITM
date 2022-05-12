@@ -60,4 +60,5 @@ private:
 	bool goingLeft;
 	bool AdminMode;
 	bool canMove;
+
 };

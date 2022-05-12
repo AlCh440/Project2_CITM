@@ -25,7 +25,6 @@
 enum Collider_Type {
 
 	NO_TYPE,
-	GEM,
 	KEY, 
 	DUMMY,
 	NPCDUMMY,
@@ -40,9 +39,11 @@ enum Collider_Type {
 	PLAYER_ATTACK,
 	WALL,
 	ENEMY,
-	POTION,
 	ENTRANCE,
 	CHEST,
+	POTION_HP,
+	POTION_MANA,
+	KEY_01,
 	EXIT
 };
 

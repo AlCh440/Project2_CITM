@@ -58,6 +58,7 @@ public:
 	SDL_Texture* tex_smallPanel = nullptr;
 	SDL_Texture* tex_mediumPanel = nullptr;
 	SDL_Texture* tex_bigPanel = nullptr;
+	SDL_Texture* tex_invetory = nullptr;
 
 	int mainFont;
 	int numberFont;
@@ -71,6 +72,7 @@ public:
 	GuiPanel* pn_settings;
 	GuiPanel* pn_gameOver;
 	GuiPanel* pn_battle;
+	GuiPanel* pn_inventory;
 
 	p2List<PanelID>* panelTrace;
 	PanelID lastPanel;

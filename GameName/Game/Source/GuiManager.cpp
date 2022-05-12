@@ -13,7 +13,7 @@
 #include "PausePanel.h"
 #include "SettingsPanel.h"
 #include "BattlePanel.h"
-
+#include "InventoryPanel.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -38,7 +38,7 @@ bool GuiManager::Start()
 	tex_smallPanel = app->tex->Load("Assets/Sprites/UI/smallPanel.png");
 	tex_mediumPanel = app->tex->Load("Assets/Sprites/UI/mediumPanel.png");
 	tex_bigPanel = app->tex->Load("Assets/Sprites/UI/bigPanel.png");
-
+	tex_invetory = app->tex->Load("Assets/Sprites/UI/inventory.png");
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
@@ -52,12 +52,14 @@ bool GuiManager::Start()
 	pn_pause = new PausePanel(false);
 	pn_settings = new SettingsPanel(false);
 	pn_battle = new BattlePanel(false);
+	pn_inventory = new InventoryPanel(false);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
 	panels.add(pn_pause);
 	panels.add(pn_settings);
 	panels.add(pn_battle);
+	panels.add(pn_inventory);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -77,7 +79,10 @@ bool GuiManager::PreUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 		pn_quest->Active = !pn_quest->GetActive();
 
+	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+		pn_inventory->Active = !pn_inventory->GetActive();
 
+	if (app->input)
 	Debug = DEBUG;
 
 

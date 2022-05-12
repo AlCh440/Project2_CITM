@@ -9,7 +9,7 @@
 #include "Physics.h"
 #include "Pathfinding.h"
 #include "OpenWorldPlayer.h"
-
+#include "Entities.h"
 #include "Log.h"
 
 
@@ -70,7 +70,7 @@ bool NpcDummy::PreUpdate()
 
 bool NpcDummy::Update(float dt)
 {
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+	OpenWorldPlayer* player = app->entities->openWorld;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
 	int DistanceY = abs(player->GetPosition().y - GetPosition().y);

@@ -195,6 +195,9 @@
     <ClCompile Include="Source\Chest.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InventoryPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -420,6 +423,9 @@
     </ClInclude>
     <ClInclude Include="Source\Chest.h">
       <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InventoryPanel.h">
+      <Filter>GUI\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

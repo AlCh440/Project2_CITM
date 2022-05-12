@@ -725,10 +725,6 @@ bool Map::SetMapColliders()
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn Women villager NPC...");
 				break;
-			case POTION:
-				app->entities->AddEntity(object->data->type, spawnPos);
-				LOG("SETTING POTION COLLIDER...");
-				break;
 			case PORTAL:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING PORTAL COLLIDER...");

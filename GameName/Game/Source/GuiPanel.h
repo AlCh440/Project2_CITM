@@ -20,6 +20,7 @@ enum PanelID {
 	P_PAUSE,
 	P_DIALOG,
 	P_QUEST,
+	P_INVENTORY,
 	P_BATTLE
 };
 
