@@ -1,6 +1,15 @@
 #pragma once
 #include "Entity.h"
 
+enum itemType {
+	NO_TYPE_,
+	CHEST_,
+	POTION_HP_,
+	POTION_MANA_,
+	KEY_01_,
+	KEY_02_,
+	EXIT_
+};
 
 class Item : public Entity
 {
@@ -21,6 +30,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
+	itemType itemType;
 
 protected:
 	int spriteRotation = 0;

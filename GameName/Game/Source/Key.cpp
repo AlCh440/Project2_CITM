@@ -1,7 +1,9 @@
 #include "Key.h"
 
-Key::Key(int id) : Item()
+Key::Key(int id_) : Item()
 {
+	id = id_;
+	itemType = itemType::KEY_01_;
 }
 
 Key::Key(iPoint pos) : Item(pos)

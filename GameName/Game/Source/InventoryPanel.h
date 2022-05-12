@@ -1,5 +1,8 @@
 #pragma once
 #include "GuiPanel.h"
+#include "SDL/include/SDL.h"
+
+
 
 class InventoryPanel : public GuiPanel
 {
@@ -23,6 +26,9 @@ public:
 	
 	SDL_Texture* title;
 	SDL_Texture* texItems;
-	SDL_Rect r_title;
+	
+	SDL_Rect key;
+	SDL_Rect potionHP;
+	SDL_Rect potionMana;
 
 };
