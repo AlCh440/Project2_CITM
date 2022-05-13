@@ -23,6 +23,14 @@ bool FracturedRoad::Awake(pugi::xml_node&)
 
 bool FracturedRoad::Start()
 {
+	music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav", 0);
+
+	app->physics->Start();
+	app->map->Load("level5.tmx");
+	app->entities->Start();
+	app->entities->exitIntance->scene = GameScene::DRAGRON_CLIFF;
+	app->entities->entranceIntance->scene = GameScene::RUINS;
+
 	return true;
 }
 
@@ -38,10 +46,17 @@ bool FracturedRoad::Update(float dt)
 
 bool FracturedRoad::PostUpdate()
 {
+
+	app->map->Draw();
 	return true;
 }
 
 bool FracturedRoad::CleanUp()
 {
+
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	app->physics->CleanUp();
+	app->audio->StopMusic();
 	return true;
 }

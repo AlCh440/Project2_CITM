@@ -69845,7 +69845,7 @@
   <object id="81" name="wall" type="wall" x="2432" y="1536" width="32" height="32"/>
   <object id="82" name="wall" type="wall" x="2464" y="1568" width="32" height="32"/>
   <object id="83" name="wall" type="wall" x="2496" y="1600" width="32" height="32"/>
-  <object id="84" name="wall" type="wall" x="3072" y="1696" width="32" height="128"/>
+  <object id="84" name="wall" type="wall" x="3074" y="1710" width="32" height="128"/>
   <object id="86" name="wall" type="wall" x="736" y="512" width="160" height="128"/>
   <object id="87" name="wall" type="wall" x="768" y="640" width="128" height="32"/>
   <object id="88" name="wall" type="wall" x="800" y="672" width="64" height="32"/>
@@ -69855,10 +69855,10 @@
   <object id="92" name="wall" type="wall" x="704" y="512" width="32" height="64"/>
  </objectgroup>
  <objectgroup id="9" name="entities">
-  <object id="95" name="player" type="player" x="2976" y="1760" width="32" height="32"/>
+  <object id="95" name="player" type="player" x="2844" y="1758" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="sensors">
-  <object id="93" name="entrance" type="entrance" x="3040" y="1728" width="32" height="96"/>
+  <object id="93" name="entrance" type="entrance" x="3038" y="1728" width="32" height="96"/>
   <object id="94" name="exit" type="exit" x="896" y="192" width="160" height="32"/>
  </objectgroup>
 </map>
