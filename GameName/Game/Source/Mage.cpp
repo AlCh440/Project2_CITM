@@ -16,8 +16,8 @@
 bool Mage::Start()
 {
 
-	lifePoints = 50;
-	manaPoints = 100;
+	stats.hp = 50;
+	stats.mana = 100;
 	typeOfPlayer = 3;
 	actionPoints = 10; // To determine
 	isAlive = true;

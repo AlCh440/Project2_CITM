@@ -13,6 +13,7 @@ BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
 	name.Create("Battle_test_scene");
 	toSave = false;
+	saveConfigs = false;
 	
 }
 
@@ -187,8 +188,8 @@ bool BattleTestScene::CheckLoseCondition()
 bool BattleTestScene::CleanUp()
 {
 	app->map->CleanUp();
-	app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->entities->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	app->guiManager->pn_battle->Disable();
 	return true;

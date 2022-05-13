@@ -32,10 +32,7 @@ Player::~Player()
 // Load assets
 bool Player::Start()
 {
-	//Initializing player struct data
-	lifePoints = 1;
-	manaPoints = 1;
-	typeOfPlayer = 0;
+
 	
 	return true;
 }
@@ -84,6 +81,7 @@ void Player::SetPosition(iPoint pos)
 	if (physBody->body != nullptr)
 		physBody->body->SetTransform(newPos, physBody->body->GetAngle());
 }
+
 
 void Player::Spawn(iPoint pos)
 {

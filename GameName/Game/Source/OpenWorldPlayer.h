@@ -6,6 +6,9 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Player.h"
+#include "Item.h"
+
+class Item;
 
 class OpenWorldPlayer : public Player
 {
@@ -13,6 +16,7 @@ public:
 
 	OpenWorldPlayer(iPoint pos);// remember to define the type of player
 	OpenWorldPlayer(Collider_Type type, iPoint pos);
+	OpenWorldPlayer(Collider_Type type, iPoint pos, p2List <Item*> inventory_);
 	~OpenWorldPlayer();
 
 	//bool BasicAttack(); // pass an ennemy
@@ -24,9 +28,11 @@ public:
 	bool PostUpdate() override;
 	bool CleanUp() override;
 
+	void RestartPhysBody(iPoint pos, Collider_Type type);
 
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 
+	void SetPositionFromPixels(iPoint pos);
 	// Load / Save
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
@@ -42,8 +48,11 @@ public:
 
 	float32 velocity = 7;
 
-	uint steps;
-	uint steps2;
+	p2List <Item*> inventory;
+	Item* knightEquiped;
+	Item* MageEquiped;
+
+	bool mapPlayerUpdate = true;
 
 private:
 

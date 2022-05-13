@@ -100,9 +100,12 @@
     <ClCompile Include="Source\BattlePanel.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
+    <ClCompile Include="Source\Chest.cpp" />
+    <ClCompile Include="Source\Consumable.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
-    <ClCompile Include="Source\Collectable.cpp" />
+    <ClCompile Include="Source\InventoryPanel.cpp" />
+    <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Dialog.cpp" />
     <ClCompile Include="Source\DialogFonts.cpp" />
     <ClCompile Include="Source\DialogManager.cpp" />
@@ -121,6 +124,7 @@
     <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\GuiToggle.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
+    <ClCompile Include="Source\Key.cpp" />
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Mage.cpp" />
@@ -157,6 +161,7 @@
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Trigger.cpp" />
     <ClCompile Include="Source\Tweening.cpp" />
+    <ClCompile Include="Source\Weapon.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WorldSpace.cpp" />
     <ClCompile Include="Source\WorldTestScene.cpp" />
@@ -166,7 +171,10 @@
     <ClInclude Include="Source\BattleSpace.h" />
     <ClInclude Include="Source\BattleTestScene.h" />
     <ClInclude Include="Source\CheckPoint.h" />
-    <ClInclude Include="Source\Collectable.h" />
+    <ClInclude Include="Source\Chest.h" />
+    <ClInclude Include="Source\Consumable.h" />
+    <ClInclude Include="Source\InventoryPanel.h" />
+    <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Dialog.h" />
     <ClInclude Include="Source\DialogFonts.h" />
     <ClInclude Include="Source\DialogManager.h" />
@@ -186,6 +194,7 @@
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
+    <ClInclude Include="Source\Key.h" />
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Mage.h" />
@@ -225,6 +234,7 @@
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Trigger.h" />
     <ClInclude Include="Source\Tweening.h" />
+    <ClInclude Include="Source\Weapon.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\Log.h" />

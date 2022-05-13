@@ -11,6 +11,7 @@ TheFall::TheFall(bool isActive) : Module(isActive)
 {
 	name.Create("The_fall");
 	toSave = false;
+	saveConfigs = false;
 }
 
 TheFall::~TheFall()
@@ -60,7 +61,7 @@ bool TheFall::CleanUp()
 {
 	app->map->CleanUp();
 	app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

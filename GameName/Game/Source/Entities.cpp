@@ -21,12 +21,13 @@
 #include "NpcDummy.h"
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
-
+#include "Chest.h"
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
     name.Create("entities");
     toSave = true;
+    saveConfigs = false;
     
 }
 
@@ -48,6 +49,7 @@ bool ModuleEntities::Start()
         aux->data->Start();
     }
 
+    
     return true;
 }
 
@@ -59,6 +61,11 @@ bool ModuleEntities::PreUpdate()
         aux->data->PreUpdate();
     }
 
+    if (openWorld != nullptr)
+    {
+        openWorld->DEBUG = DEBUG;
+        openWorld->PreUpdate();
+    }
     return true;
 }
 
@@ -97,6 +104,9 @@ bool ModuleEntities::Update(float dt)
     //        }
     //    }
     //}
+    if (openWorld != nullptr)
+        openWorld->Update(dt);
+
     return true;
 }
 
@@ -107,30 +117,32 @@ bool ModuleEntities::PostUpdate()
         aux->data->PostUpdate();
     }
   
+    if (openWorld != nullptr)
+        openWorld->PostUpdate();
     return true;
 }
 
 bool ModuleEntities::CleanUp()
 {
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    p2ListItem <Entity*>* aux2 = nullptr;
+    for (p2ListItem<Entity*>* aux1 = entities.getFirst(); aux1 != nullptr; aux1 = aux1->next)
     {
-        aux->data->Cleanup();
-        delete aux->data;
-        aux->data = nullptr;
+        aux1->data->Cleanup();
+        if (aux2 != nullptr) entities.del(aux2);
+        aux2 = aux1;
     }
-
 
     playerInstance = nullptr;
     knightInstance = nullptr;
     dummyInstance = nullptr;
     dummyNpcInstance = nullptr;
+    
     players.clear();
     entities.clear();
-    listOfCombatTriggers.clear();
     return true;
 }
 
-void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
+void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item*> items)
 {
     switch (type)
     {
@@ -144,8 +156,12 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         break;
     case PLAYEROPENWORLD:
     {
-        playerInstance = new OpenWorldPlayer(type, spawnPos);
-        entities.add(playerInstance);
+        if (openWorld == nullptr) 
+        {
+            openWorldInstance = new OpenWorldPlayer(type, spawnPos);
+            //entities.add(openWorldInstance);
+            openWorld = openWorldInstance;
+        }
     } break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
@@ -164,17 +180,12 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         dummyNpcWoVillagerInstance = new NpcWoVillager(type, spawnPos);
         entities.add(dummyNpcWoVillagerInstance);
         break;
+    case CHEST:
+        itemInstance = new Chest(type, spawnPos, items);
+        entities.add(itemInstance);
+        break;
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);
-        break;
-    case GENERAL_ENTRANCE:
-        generalEntrance = new Trigger(type, spawnPos);
-        break;
-    case MAGE_ENTRANCE:
-        mageEntrance = new Trigger(type, spawnPos);
-        break;
-    case SHOP_ENTRANCE:
-        shopEntrance = new Trigger(type, spawnPos);
         break;
     default :
         break;
@@ -190,9 +201,23 @@ void ModuleEntities::RemoveEntity(PhysBody* entity)
             aux->data->physBody->pendingToDelete = true;
             aux->data->Cleanup();
 
+            entities.del(aux);
             delete aux->data;
             aux->data = nullptr;
         }
+    }
+}
+
+void ModuleEntities::RemoveAllEntities()
+{
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        aux->data->physBody->pendingToDelete = true;
+        aux->data->Cleanup();
+
+        entities.del(aux);
+        delete aux->data;
+        aux->data = nullptr;
     }
 }
 
@@ -210,18 +235,6 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             break;
         case ENTRANCE:
             app->levelManagement->gameScene = entranceIntance->scene;
-            break;
-        case GENERAL_ENTRANCE:
-            app->levelManagement->gameScene = generalEntrance->scene;
-            break;
-        case MAGE_ENTRANCE:
-            app->levelManagement->gameScene = mageEntrance->scene;
-            break;
-        case SHOP_ENTRANCE:
-            app->levelManagement->gameScene = shopEntrance->scene;
-            break;
-        case COMBATTRIGGER:
-            app->levelManagement->gameScene = COMBAT; // change when there is multiple batle scenes
             break;
         default:
             break;
@@ -241,6 +254,13 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
     }
     else
     {
+        if (openWorld == nullptr)
+        {
+            AddEntity(PLAYEROPENWORLD, iPoint(0, 0));
+            openWorld->Start();
+        }
+
+
         for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
         {
             aux->data->LoadState(data);
@@ -264,6 +284,8 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
         }
     }
    
+    if (openWorld != nullptr)
+        openWorld->SaveState(data);
     return true;
 }
 
@@ -302,19 +324,6 @@ void ModuleEntities::NextEnemyTurn()
 
         }
     }
-}
-
-Entity* ModuleEntities::GetEntityFromTile(iPoint pos)
-{
-    p2ListItem<Entity*>* ent = entities.start;
-
-    while (ent != nullptr)
-    {
-        if (ent->data->tilePos == pos)
-            return ent->data;
-        ent = ent->next;
-    }
-    return nullptr;
 }
 
 void ModuleEntities::StartPlayerTurn()

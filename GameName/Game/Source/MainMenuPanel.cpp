@@ -78,6 +78,7 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
     else if (control->id == bt_loadGame->id)
     {
         //load Game
+        app->LoadGameRequest();
     }
     else if (control->id == bt_settings->id)
     {

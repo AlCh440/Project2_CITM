@@ -2,15 +2,14 @@
 <saveState>
 	<window />
 	<input />
-	<audio />
 	<Level_manager>
-		<levelManager currentLevel="6" />
+		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="352" y="499" />
+		<player x="512" y="442" />
 	</entities>
 	<renderer>
-		<camera x="-64" y="-634" />
+		<camera x="-384" y="-524" />
 	</renderer>
 	<storyquests>
 		<onceuponatime completed="false" active="false"/>

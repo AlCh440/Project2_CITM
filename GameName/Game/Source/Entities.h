@@ -47,28 +47,30 @@ public:
 	bool CleanUp() override;
 
 	//used to add entities 
-	void AddEntity(Collider_Type type ,iPoint spawnPos);
+	void AddEntity(Collider_Type type ,iPoint spawnPos, p2List <Item*> items = p2List<Item*>());
 
 	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);
+	void RemoveAllEntities();
 
 	// return the closest hitbox
 	PhysBody* GetNearestEnemy(PhysBody* Character);
 	PhysBody* GetNearestPlayer(PhysBody* Character);
 
+	
 
 	//Check all entity collisions here
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	// Load / Save
-	bool LoadState(pugi::xml_node& data);
-	bool SaveState(pugi::xml_node& data) const;
+	bool LoadState(pugi::xml_node& data) override;
+	bool SaveState(pugi::xml_node& data) const override;
 
 	// All spawned enemies in the scene
 	p2List<Entity*> entities;
 	p2List<Enemy*> enemies;
 	p2List<Player*> players;
-
+	OpenWorldPlayer* openWorld;
 	// Check player turn state
 	bool CheckPlayerTurn();
 
@@ -95,10 +97,12 @@ public:
 
 	//Instances 
 	Knight* knightInstance;
+	OpenWorldPlayer* openWorldInstance;
 	EnemyDummy* dummyInstance;
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;
 	NpcWoVillager* dummyNpcWoVillagerInstance;
+	Item* itemInstance;
 
 	// triggers to move room to room
 	Trigger* entranceIntance;

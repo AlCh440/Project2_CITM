@@ -11,6 +11,7 @@ WorldTestScene::WorldTestScene(bool isActive) : Module(isActive)
 {
 	name.Create("World_Test_Scene");
 	toSave = false;
+	saveConfigs = false;
 }
 
 WorldTestScene::~WorldTestScene()
@@ -65,8 +66,8 @@ bool WorldTestScene::PostUpdate()
 bool WorldTestScene::CleanUp()
 {
 	app->map->CleanUp();
-	app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->entities->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

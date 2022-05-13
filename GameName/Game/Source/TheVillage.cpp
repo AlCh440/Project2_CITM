@@ -10,6 +10,7 @@ TheVillage::TheVillage(bool isActive) : Module(isActive)
 {
 	name.Create("The_Village");
 	toSave = false;
+	saveConfigs = false;
 }
 
 TheVillage::~TheVillage()
@@ -57,8 +58,8 @@ bool TheVillage::PostUpdate()
 bool TheVillage::CleanUp()
 {
 	app->map->CleanUp();
-	app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->entities->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

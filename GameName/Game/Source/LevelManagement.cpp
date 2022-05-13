@@ -13,6 +13,7 @@ LevelManagement::LevelManagement(bool isActive) : Module(isActive)
 {
 	name.Create("Level_manager");
 	toSave = true;
+	saveConfigs = false;
 }
 
 LevelManagement::~LevelManagement()
@@ -48,6 +49,12 @@ bool LevelManagement::PreUpdate()
 	{
 		gameScene = START;
 	}
+	//todelete
+	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) && currentScene->active == true)
+	{
+ 		app->entities->AddEntity(Collider_Type::CHEST, iPoint(500, 500));
+	}
+
 	switch (gameScene)
 	{
 	case INTRO:
@@ -277,7 +284,7 @@ void LevelManagement::ReturnToMainMenu()
 
 void LevelManagement::RestartLevel()
 {
-	if (app->entities->playerInstance->lifePoints < 0)
+	if (app->entities->playerInstance->stats.hp < 0)
 	{
 		gameScene = GAME_OVER;
 	

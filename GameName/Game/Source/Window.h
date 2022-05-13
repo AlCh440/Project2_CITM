@@ -39,6 +39,7 @@ public:
 	void SetFullScreen(bool fullScreen);
 	bool GetFullScreen();
 
+	bool SaveConfig(pugi::xml_node& data) const override;
 public:
 	// The window we'll be rendering to
 	SDL_Window* window;

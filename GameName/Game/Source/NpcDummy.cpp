@@ -9,7 +9,7 @@
 #include "Physics.h"
 #include "Pathfinding.h"
 #include "OpenWorldPlayer.h"
-
+#include "Entities.h"
 #include "Log.h"
 
 
@@ -44,50 +44,33 @@ bool NpcDummy::Start()
 
 	tilePos = pos;
 
+	inter_speed = 0.02f;
 
 
-	idle.PushBack({ 259, 50, 26, 42 });
-	idle.PushBack({ 290, 50, 26, 42 });
-	idle.PushBack({ 322, 50, 26, 42 });
-	idle.PushBack({ 355, 50, 26, 42 });
+	idle.PushBack({ 259, 49, 30, 43 });
+	idle.PushBack({ 290, 51, 31, 41 });
+	idle.PushBack({322, 39, 30, 53 });
+	idle.PushBack({ 355, 39, 26, 53 });
+	idle.PushBack({ 258, 93, 29, 47 });
+	idle.PushBack({ 259, 49, 30, 43 });
+	
+	idle.speed = 0.1f;
 
-	idle.PushBack({ 259, 104,26, 42 });
-
-	idle.PushBack({ 355, 50, 26, 42 });
-	idle.PushBack({ 322, 50, 26, 42 });
-	idle.PushBack({ 290, 50, 26, 42 });
-	idle.PushBack({ 259, 50, 26, 42 });
-
-	idle.loop = true;
-	idle.speed = 0.05f;
+	inter_speed = 0.02f;
 
 	currentAnim = &idle;
-
-	bardMusic.PushBack({ 9, 50,		0, 42 });
-	bardMusic.PushBack({ 9 + 26,		0, 26, 42 });
-	bardMusic.PushBack({ 9 + 26 * 2, 0, 26, 42 });
-	bardMusic.PushBack({ 9 + 26 * 3, 0, 26, 42 });
-	bardMusic.PushBack({ 9 + 26 * 4, 0, 26, 42 });
-
-	bardMusic.loop = true;
-	bardMusic.speed = 0.05f;
-
 
 	return true;
 }
 
 bool NpcDummy::PreUpdate()
 {
-	
-
 	return true;
 }
 
 bool NpcDummy::Update(float dt)
 {
-	
-
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+	OpenWorldPlayer* player = app->entities->openWorld;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
 	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
@@ -121,10 +104,7 @@ bool NpcDummy::Update(float dt)
 
 bool NpcDummy::PostUpdate()
 {
-	currentAnim->Update();
-	bardMusic.Update();
-
-
+	
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
 	r.y = position.y - app->map->mapData.tileHeight * .5f;
@@ -133,22 +113,7 @@ bool NpcDummy::PostUpdate()
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	
-	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
-	app->render->DrawTexture(texture, position.x - 15 + 16, position.y - 20 - 6, &bardMusic.GetCurrentFrame());
-
-	SDL_Rect Rask = { 0,0,9,12 };
-
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
-
-	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
-	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
-
-	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
-	{
-		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
-	}
-
-
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
 	return true;
 
@@ -161,7 +126,7 @@ bool NpcDummy::PostUpdate()
 bool NpcDummy::CleanUp()
 {
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	physBody->pendingToDelete = true;
 
 	return true;
 

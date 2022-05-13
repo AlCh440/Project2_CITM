@@ -91,6 +91,7 @@ private:
 	// Load config file
 	// NOTE: It receives config document
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;
+	bool SaveConfig();
 
 	// Call modules before each loop iteration
 	void PrepareUpdate();

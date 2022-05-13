@@ -12,6 +12,7 @@ Textures::Textures(bool isActive) : Module(isActive)
 {
 	name.Create("textures");
 	toSave = false;
+	saveConfigs = false;
 }
 
 // Destructor

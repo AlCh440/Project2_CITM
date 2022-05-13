@@ -172,12 +172,14 @@ public:
 	void ClearColliders();
 
 	// Load / Save
-	bool LoadState(pugi::xml_node& data);
-	bool SaveState(pugi::xml_node& data) const;
+	bool LoadState(pugi::xml_node& data) override;
+	bool SaveState(pugi::xml_node& data) const override;
+	bool SaveConfig(pugi::xml_node& data) const override;
 
 	//Pick the right Tileset based on a tile id
 	TileSet* GetTilesetFromTileId(int id) const;
 
+	p2List<PhysBody*> Colliders;
 private:
 
 	//Methods to load all required map data

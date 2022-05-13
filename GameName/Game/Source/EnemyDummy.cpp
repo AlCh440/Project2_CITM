@@ -37,6 +37,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;
+	Start();
 }
 
 
@@ -286,7 +287,7 @@ bool EnemyDummy::PostUpdate()
 
 bool EnemyDummy::CleanUp()
 {
-
+	physBody->pendingToDelete = true;
 	
 	return true;
 }

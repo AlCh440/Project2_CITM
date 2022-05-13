@@ -16,9 +16,10 @@ Audio::Audio(bool isActive) : Module(isActive)
 {
 	music = NULL;
 	name.Create("audio");
-	fxVolume = 0;
-	musicVolume = 0;
-	toSave = true;
+	fxVolume = 100;
+	musicVolume = 100;
+	toSave = false;
+	saveConfigs = true;
 }
 
 // Destructor
@@ -58,8 +59,8 @@ bool Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
-	SetMusicVolume(musicVolume);
-	SetFxVolume(fxVolume);
+	SetMusicVolume(config.child("volume").attribute("music").as_int());
+	SetFxVolume(config.child("volume").attribute("fx").as_int());
 	return ret;
 }
 
@@ -146,6 +147,27 @@ bool Audio::PlayMusic(const char* path, float fade_time)
 void Audio::StopMusic()
 {
 	Mix_HaltMusic();
+}
+
+bool Audio::LoadState(pugi::xml_node& data)
+{
+
+	return true;
+}
+
+bool Audio::SaveState(pugi::xml_node& data) const
+{
+	return true;
+}
+
+bool Audio::SaveConfig(pugi::xml_node& data) const
+{
+	pugi::xml_node aux = data.append_child("volume");
+
+	aux.append_attribute("music") = musicVolume;
+	aux.append_attribute("fx") = fxVolume;
+
+	return true;
 }
 
 // Load WAV

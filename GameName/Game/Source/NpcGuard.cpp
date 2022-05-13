@@ -101,7 +101,7 @@ bool NpcGuard::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN);
 
 	}*/
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+	OpenWorldPlayer* player = app->entities->openWorld;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
 	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
@@ -167,7 +167,7 @@ bool NpcGuard::PostUpdate()
 bool NpcGuard::CleanUp()
 {
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	physBody->pendingToDelete = true;
 
 	return true;
 

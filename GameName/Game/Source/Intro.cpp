@@ -16,6 +16,7 @@ Intro::Intro(bool isActive) : Module(isActive)
 {
 	name.Create("intro");
 	toSave = false;
+	saveConfigs = false;
 }
 
 // Destructor

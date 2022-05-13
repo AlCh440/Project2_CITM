@@ -10,6 +10,7 @@ DragonCliff::DragonCliff(bool isActive) : Module(isActive)
 {
 	name.Create("Dragon's_cliff");
 	toSave = false;
+	saveConfigs = false;
 }
 
 DragonCliff::~DragonCliff()

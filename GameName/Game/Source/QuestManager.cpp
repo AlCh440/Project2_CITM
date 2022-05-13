@@ -5,6 +5,7 @@ QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
 	name.Create("quest_manager");
 	toSave = false;
+	saveConfigs = false;
 }
 
 QuestManager::~QuestManager()
@@ -115,6 +116,7 @@ void QuestManager::FinishQuest(int questID)
 
 void QuestManager::AddItem()
 {
+
 }
 
 bool QuestManager::GetAvailableQuest(int questID)

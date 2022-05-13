@@ -10,6 +10,8 @@
 #include "Map.h"
 #include "Log.h"
 #include "Player.h"
+#include "Item.h"
+
 
 // Update Code
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
@@ -21,6 +23,19 @@ OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, 
 	physBody->color = { 255,155,255,255 };
 	physBody->type = type;
 	entityTurn = true;
+	Start();
+}
+
+OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos, p2List	<Item*> inventory_) : Player(type, pos)
+{
+	texture = app->tex->Load("Assets/Sprites/characters/charactersSpriteSheet.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
+	physBody->body->SetGravityScale(0);
+	physBody->listener = app->entities;
+	physBody->color = { 255,155,255,255 };
+	physBody->type = type;
+	entityTurn = true;
+	inventory = inventory_;
 }
 
 OpenWorldPlayer::~OpenWorldPlayer()
@@ -247,6 +262,17 @@ bool OpenWorldPlayer::CleanUp()
 	return true;
 }
 
+void OpenWorldPlayer::RestartPhysBody(iPoint pos, Collider_Type type)
+{
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
+	physBody->body->SetGravityScale(0);
+	physBody->listener = app->entities;
+	physBody->color = { 255,155,255,255 };
+	physBody->type = type;
+	physBody->GetPosition(position.x, position.y);
+
+}
+
 
 // OnCollision
 void OpenWorldPlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
@@ -254,13 +280,18 @@ void OpenWorldPlayer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 }
 
+void OpenWorldPlayer::SetPositionFromPixels(iPoint pos)
+{
+	b2Vec2 newPos;
+
+	newPos.x = PIXEL_TO_METERS(pos.x);
+	newPos.y = PIXEL_TO_METERS(pos.y);
+	physBody->body->SetTransform(newPos, 0);
+}
+
 // Load / Save
 bool OpenWorldPlayer::LoadState(pugi::xml_node& data)
 {
-
-
-
-
 	float x_ = data.child("player").attribute("x").as_int();
 	float y_ = data.child("player").attribute("y").as_int();
 
@@ -268,6 +299,7 @@ bool OpenWorldPlayer::LoadState(pugi::xml_node& data)
 	
 	LOG("%i, %i", x_, y_);
 	physBody->body->SetTransform(pos, 0);
+	mapPlayerUpdate = false;
 
 	return true;
 }

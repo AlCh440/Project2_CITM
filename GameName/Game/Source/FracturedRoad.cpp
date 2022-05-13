@@ -10,6 +10,7 @@ FracturedRoad::FracturedRoad(bool isActive) : Module(isActive)
 {
 	name.Create("Fractured_Road");
 	toSave = false;
+	saveConfigs = false;
 }
 
 FracturedRoad::~FracturedRoad()

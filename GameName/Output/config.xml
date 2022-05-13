@@ -1,24 +1,20 @@
-<!-- Config file for the game -->
+<?xml version="1.0"?>
 <config>
-  <app>
-    <title>Game Development Testbed</title>
-    <organization>UPC</organization>
-  </app>
-
-  <renderer>
-    <vsync value="false"/>
-  </renderer>
-
-  <window>
-
-    <resolution width="1280" height="720" scale="2"/> <!-- here you can change the resolution, I don't know what are numbers so feel free to change it!!! -->
-    <fullscreen value="false"/>  <!-- true to fullscreen-->
-
-    <borderless value="false"/>
-    <resizable value="true"/>
-    <fullscreen_window value="false"/>
-  </window>
-  <map>
-    <folder>Assets/maps/</folder>
-  </map>
+	<app>
+		<title value="Game Development Testbed" />
+		<organization value="UPC" />
+	</app>
+	<window>
+		<resolution width="1280" height="720" scale="2" />
+		<fullscreen value="false" />
+	</window>
+	<audio>
+		<volume music="0" fx="46" />
+	</audio>
+	<map>
+		<folder />
+	</map>
+	<renderer>
+		<vsync value="false" />
+	</renderer>
 </config>

@@ -27,6 +27,11 @@ public:
 	bool PlayMusic(const char* path, float fadeTime = DEFAULT_MUSIC_FADE_TIME);
 	void StopMusic();
 
+	// Load / Save
+	bool LoadState(pugi::xml_node& data) override;
+	bool SaveState(pugi::xml_node& data) const override;
+	bool SaveConfig(pugi::xml_node& data) const override;
+
 	// Load a WAV in memory
 	unsigned int LoadFx(const char* path);
 

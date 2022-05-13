@@ -67,6 +67,11 @@ public:
 		return true;
 	}
 
+	virtual bool SaveConfig(pugi::xml_node&) const
+	{
+		return true;
+	}
+
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 	}
@@ -101,7 +106,9 @@ public:
 	bool DEBUG = false;
 	//stops updating the module
 	bool Pause;
+
 	bool toSave = false;
+	bool saveConfigs = false;
 };
 
 #endif // __MODULE_H__

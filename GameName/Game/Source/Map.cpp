@@ -21,6 +21,7 @@ Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
 {
 	name.Create("map");
 	toSave = false;
+	saveConfigs = true;
 
 }
 
@@ -64,8 +65,9 @@ bool Map::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Map Parser");
 	bool ret = true;
-
-	folder.Create(config.child("folder").child_value());
+	
+	//folder.Create(config.child("folder").child_value());
+	folder.Create("Assets/maps/");
 	tx_tileInfo = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	return ret;
 }
@@ -298,6 +300,14 @@ bool Map::CleanUp()
 	}
 
 	mapData.objectLayers.clear();
+
+	p2ListItem <PhysBody*>* item5 = nullptr;
+	for (p2ListItem <PhysBody*>* item4 = Colliders.getFirst(); item4 != nullptr; item4 = item4->next)
+	{
+		item4->data->pendingToDelete = true;
+		if (item5 != nullptr) Colliders.del(item5);
+		item5 = item4;
+	}
 
 	return true;
 }
@@ -720,8 +730,28 @@ bool Map::SetMapColliders()
 			{
 
 			case PLAYEROPENWORLD:
-				if (app->entities->playerInstance == nullptr)
+				if (app->entities->openWorld == nullptr)
+				{
 					app->entities->AddEntity(object->data->type, spawnPos);
+				}
+				else
+				{
+					if (app->entities->openWorld->mapPlayerUpdate == true)
+					{
+						//if (app->entities->openWorld->physBody == NULL)
+						//{
+						//	app->entities->openWorld->RestartPhysBody(spawnPos, object->data->type);
+						//}
+						//else
+
+						app->entities->openWorld->SetPositionFromPixels(spawnPos);
+						//app->entities->openWorld->SetPosition(spawnPos);
+					}
+					else
+					{
+						app->entities->openWorld->mapPlayerUpdate = true;
+					}
+				}
 
 				LOG("spawn world player...");
 				break;
@@ -745,10 +775,6 @@ bool Map::SetMapColliders()
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn Women villager NPC...");
 				break;
-			case POTION:
-				app->entities->AddEntity(object->data->type, spawnPos);
-				LOG("SETTING POTION COLLIDER...");
-				break;
 			case PORTAL:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("SETTING PORTAL COLLIDER...");
@@ -763,6 +789,7 @@ bool Map::SetMapColliders()
 					pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
 					pb->color = { 200,0,0,255 };
 					pb->type = object->data->type;
+					Colliders.add(pb);
 				}
 				break;
 			case EXIT:
@@ -861,4 +888,12 @@ bool Map::SaveState(pugi::xml_node& data) const
 
 	bool ret = true;
 	return ret;
+}
+
+bool Map::SaveConfig(pugi::xml_node& data) const
+{
+	pugi::xml_node aux = data.append_child("folder");
+
+	aux.set_value(folder.GetString());
+	return true;
 }
