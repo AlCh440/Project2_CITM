@@ -27,7 +27,10 @@ public:
 	SDL_Texture* title;
 	SDL_Texture* texItems;
 	
-	SDL_Rect key;
+	SDL_Rect key01;
+	SDL_Rect key02;
+	SDL_Rect key03;
+	SDL_Rect key04;
 	SDL_Rect potionHP;
 	SDL_Rect potionMana;
 

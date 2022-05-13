@@ -22,6 +22,8 @@ Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, p
 	physBody->entityPtr = this;
 	Key* k = new Key(1);
 	item.add(k);
+	k = new Key(2);
+	item.add(k);
 }
 
 bool Chest::Start()

@@ -21,7 +21,10 @@ bool InventoryPanel::Start()
 
 	texItems = app->tex->Load("Assets/Sprites/UI/gameItems.png");
 	
-	key = { 0, 0, 0, 0 };
+	key01 = { 0, 150, 44, 44 };
+	key02 = { 110, 151, 44, 44 };
+	key03 = { 227, 151, 44, 44 };
+	key04 = { 331, 154, 44, 44 };
 	potionHP = { 0, 0, 0, 0 };
 	potionMana = { 0, 0, 0, 0 };
 	
@@ -44,6 +47,7 @@ bool InventoryPanel::Draw()
 void InventoryPanel::DrawItems()
 {
 	int i = 0;
+	iPoint drawPos(position.x + (222), position.y + (170));
 	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next, i++)
 	{
 		switch (aux->data->itemType)
@@ -61,26 +65,28 @@ void InventoryPanel::DrawItems()
 			int idKey = aux->data->GetKeyId();
 			if (idKey == 1)
 			{
-
+				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key01, 0, 0, 0, 0, 0.5f);
 			}
 			else if (idKey == 2)
 			{
-
+				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key02, 0, 0, 0, 0, 0.5f);
 			}
 			else if (idKey == 3)
 			{
-				
+				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key03, 0, 0, 0, 0, 0.5f);
 			}
 			else if (idKey == 4)
 			{
-
+				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key04, 0, 0, 0, 0, 0.5f);
 			}
-			app->render->DrawTexture(texItems, 0, 0, &key);
+			
+			
+			
 		} break;
 		default:
 			break;
 		}
-		
+		drawPos.x += 65;
 	}
 }
 
