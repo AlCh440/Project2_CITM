@@ -81,7 +81,7 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 void BattlePanel::Enable()
 {
 	Active = true;
-	LoadEntityAttacks();
+	//LoadEntityAttacks();
 }
 
 void BattlePanel::LoadEntityAttacks()
