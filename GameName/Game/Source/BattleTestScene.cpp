@@ -56,7 +56,6 @@ bool BattleTestScene::Start()
 
 	app->render->cameraDrag = true;
 
-
 	entityIndex = 0;
 	turnCounter = 0;
 
@@ -104,6 +103,87 @@ bool BattleTestScene::PostUpdate()
 	return true;
 }
 
+void BattleTestScene::NextEntity()
+{
+	//Stop current Entity
+	currentEntity->data->entityTurn = false;
+
+	//next entity
+	currentEntity = currentEntity->next;
+
+	//check that we are not at the end of the list
+	if (currentEntity == nullptr)
+	{
+		//Check all win/lose conditions
+		if (CheckWinCondition())
+		{
+			//all enemies dead, players won the battle
+			//victory screen
+			//exit menu
+			LOG("BATTLE WON!");
+
+		}
+		else if (CheckLoseCondition())
+		{
+			//all players dead
+			//lose screen
+			//exit menu
+			LOG("BATTLE LOST!");
+		}
+
+		// all entitites had their turn
+		// start the list again
+		//increment the turn coutner
+		currentEntity = battleEntities.start;
+		turnCounter++;
+	}
+
+	//skip entities that are dead
+	if (currentEntity->data->battleState == DEATH)
+		NextEntity();
+	else
+		currentEntity->data->StartTurn();
+}
+
+bool BattleTestScene::CheckWinCondition()
+{
+	bool ret = false;
+
+	p2ListItem<Enemy*>* e = app->entities->enemies.start;
+
+	while (e != nullptr)
+	{
+		if (e->data->battleState == DEATH)
+			ret = true;
+		else
+			ret = false;
+
+		e = e->next;
+	}
+
+	return ret;
+}
+
+bool BattleTestScene::CheckLoseCondition()
+{
+	bool ret = false;
+
+	p2ListItem<Player*>* e = app->entities->players.start;
+
+	while (e != nullptr)
+	{
+		if (e->data->battleState == DEATH)
+			ret = true;
+		else
+			ret = false;
+
+		e = e->next;
+	}
+
+	return ret;
+}
+
+
 bool BattleTestScene::CleanUp()
 {
 	app->map->CleanUp();
@@ -114,28 +194,3 @@ bool BattleTestScene::CleanUp()
 	return true;
 }
 
-void BattleTestScene::NextEntity()
-{
-	//Stop current Entity
-	currentEntity->data->entityTurn = false;
-
-	//next entity
-	currentEntity = currentEntity->next;
-
-	//skip entities that are dead
-	//while (currentEntity->data->battleState == DEATH)
-	//	currentEntity = currentEntity->next;
-
-	if (currentEntity == nullptr)
-	{
-		// all entitites had their turn
-		// start the list again
-		//increment the turn coutner
-		currentEntity = battleEntities.start;
-		currentEntity->data->StartTurn();
-		turnCounter++;
-	}
-	else{
-		currentEntity->data->StartTurn();
-	}
-}

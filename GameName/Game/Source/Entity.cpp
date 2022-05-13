@@ -119,6 +119,7 @@ void Entity::takeDamage(int damage)
 	if (stats.hp <= 0)
 	{
 		battleState = DEATH;
+		currentAnim = &dead;
 		LOG("Dead");
 	}
 }

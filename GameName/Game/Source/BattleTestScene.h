@@ -37,6 +37,9 @@ public:
 
 	void NextEntity();
 
+	bool CheckWinCondition();
+	bool CheckLoseCondition();
+
 private:
 	SDL_Texture* entityText;
 	SDL_Rect rect;

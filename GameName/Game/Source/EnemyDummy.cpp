@@ -126,13 +126,11 @@ bool EnemyDummy::PreUpdate()
 		if (entityTurn)
 		{
 
-
 			if (battleState == DEATH)
 				break;
 			if (target == nullptr)
 			{
 				target = app->entities->GetNearestPlayer(physBody)->entityPtr;
-
 			}
 			else {
 				
@@ -154,7 +152,7 @@ bool EnemyDummy::PreUpdate()
 				}
 			}
 		}
-		//if has no attack, move action end turn
+		//if has no attack and no move action end turn
 		if (!HasAttackAction && !HasMoveAction) {
 			entityTurn = false;
 		}
