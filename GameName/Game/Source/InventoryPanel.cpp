@@ -56,8 +56,25 @@ void InventoryPanel::DrawItems()
 		{
 			app->render->DrawTexture(texItems, 0, 0, &potionMana);
 		} break;
-		case KEY_01_:
+		case KEY_:
 		{
+			int idKey = aux->data->GetKeyId();
+			if (idKey == 1)
+			{
+
+			}
+			else if (idKey == 2)
+			{
+
+			}
+			else if (idKey == 3)
+			{
+				
+			}
+			else if (idKey == 4)
+			{
+
+			}
 			app->render->DrawTexture(texItems, 0, 0, &key);
 		} break;
 		default:

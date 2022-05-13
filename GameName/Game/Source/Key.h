@@ -19,10 +19,11 @@ public:
 	// Called from ModuleEntitys' Update
 	virtual bool PostUpdate();
 
+	int GetKeyId() override;
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	int id;
+	int keyId;
 
 protected:
 	int spriteRotation = 0;

@@ -6,8 +6,7 @@ enum itemType {
 	CHEST_,
 	POTION_HP_,
 	POTION_MANA_,
-	KEY_01_,
-	KEY_02_,
+	KEY_,
 	EXIT_
 };
 
@@ -29,7 +28,7 @@ public:
 
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
-
+	virtual int GetKeyId() { return int(); };
 	itemType itemType;
 
 protected:

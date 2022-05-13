@@ -2,8 +2,8 @@
 
 Key::Key(int id_) : Item()
 {
-	id = id_;
-	itemType = itemType::KEY_01_;
+	keyId = id_;
+	itemType = itemType::KEY_;
 }
 
 Key::Key(iPoint pos) : Item(pos)
@@ -37,6 +37,11 @@ bool Key::CleanUp()
 bool Key::PostUpdate()
 {
 	return true;
+}
+
+int Key::GetKeyId()
+{
+	return keyId;
 }
 
 void Key::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
