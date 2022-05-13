@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="75" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="63">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="75" height="55" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="68">
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" width="256" height="256"/>
  </tileset>
@@ -33122,5 +33122,10 @@
   <object id="60" name="wall" type="wall" x="800" y="352" width="160" height="32"/>
   <object id="61" name="wall" type="wall" x="960" y="192" width="32" height="160"/>
   <object id="62" name="wall" type="wall" x="800" y="192" width="160" height="32"/>
+  <object id="63" name="wall" type="wall" x="1984" y="1088" width="32" height="64"/>
+  <object id="64" name="wall" type="wall" x="2112" y="1088" width="32" height="32"/>
+  <object id="65" name="wall" type="wall" x="1984" y="1184" width="160" height="32"/>
+  <object id="66" name="wall" type="wall" x="2144" y="1120" width="32" height="64"/>
+  <object id="67" name="wall" type="wall" x="1952" y="1152" width="32" height="32"/>
  </objectgroup>
 </map>
