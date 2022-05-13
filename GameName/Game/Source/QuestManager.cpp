@@ -65,7 +65,7 @@ void QuestManager::ActivateQuest(int questID)
 	}
 }
 
-void QuestManager::CanelQuest(int questID)
+void QuestManager::CancelQuest(int questID)
 {
 	p2ListItem<Quest*>* currentQuest = questList->start;
 	while (currentQuest != NULL)

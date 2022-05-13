@@ -12,4 +12,14 @@
 	<renderer>
 		<camera x="-64" y="-634" />
 	</renderer>
+	<storyquests>
+		<onceuponatime completed="false" active="false"/>
+		<strangedeepthes completed="false" active="false" />
+		<defeatgomakthegiant completed="false" active="false" />
+		<monsterhaunter completed="false" active="false" />
+		<stargate completed="false" active="false"/>
+	</storyquests>
+	<sidequests>
+		<thefourkeysofapocalypse completed="false" active="false" key1="false" key2="false" key3="false" key4="false"/>
+	</sidequests>
 </saveState>

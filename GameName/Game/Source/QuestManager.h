@@ -26,7 +26,7 @@ public:
 	void ActivateQuest(int questID);
 
 	//Cancel Quest
-	void CanelQuest(int questID);
+	void CancelQuest(int questID);
 
 	//Complete Quest
 	void CompleteQuest(int questID);

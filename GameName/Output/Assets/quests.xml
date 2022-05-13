@@ -1,18 +1,75 @@
 <!-- Quests file for the game -->
 <quests_list>
-	<quest title ="Intro" id="0" progress = "2"> 
+	<quest title ="Once upon a time..." id="0"  complete= "false"> 
 		<description>
-This is the begining of your quests manager.
+			You have just awakened in an unknown cave! I suppose it would be wise to find a way out...
 		</description>
+		<objective>
+			Reach the underground village
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
 	</quest>
-	<quest title ="First" id="1" progress = "0">
-		<description >
-This quest is only available after completing the tutorial.
+	<quest title ="Strange deepthes" id="1"  complete= "false">
+		<description>
+			These villages seem unknown, perhaps seeking answers would be wise
 		</description>
+		<objective>
+			Talk with the villagers
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
 	</quest>
-	<quest title ="Second" id="2" progress = "0">
-		<description >
-This quest is only available after completing the first mission.
+	<quest title ="Defeat Gomak the giant" id="2"  complete= "false">
+		<description>
+			Reach the goblin camp and defeat Gomak
 		</description>
+		<objective>
+			Defeat Gomak
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
+	</quest>
+	<quest title ="Monster haunter" id="3"  complete= "false">
+		<description>
+			You Won!
+		</description>
+		<objective>
+			Report about your victory to the mague
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
+	</quest>
+	<quest title ="Star Gate" id="4"  complete= "false">
+		<description>
+			Cross the portal to reach your destiny, but be ready
+		</description>
+		<objective>
+			Cross the portal
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
+	</quest>
+	<quest title ="The four Keys of the apocalypse" id="5"  complete= "false">
+		<description>
+			You have found one of the four keys, I suppose the other three raided somewhere else, I wonder where…
+		</description>
+		<objective>
+			Find the remaining keys
+		</objective>
+		<rewards>
+			<coins number="200"/>
+			<items item1="none"/>
+		</rewards>
 	</quest>
 </quests_list>
