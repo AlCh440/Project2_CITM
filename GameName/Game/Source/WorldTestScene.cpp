@@ -67,7 +67,7 @@ bool WorldTestScene::CleanUp()
 {
 	app->map->CleanUp();
 	//app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

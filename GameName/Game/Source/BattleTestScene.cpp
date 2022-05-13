@@ -96,7 +96,7 @@ bool BattleTestScene::CleanUp()
 {
 	app->map->CleanUp();
 	//app->entities->CleanUp();
-	app->physics->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	app->guiManager->pn_battle->Disable();
 	return true;

@@ -60,8 +60,8 @@ bool TheFall::PostUpdate()
 bool TheFall::CleanUp()
 {
 	app->map->CleanUp();
-	//app->entities->CleanUp();
-	app->physics->CleanUp();
+	app->entities->CleanUp();
+	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }

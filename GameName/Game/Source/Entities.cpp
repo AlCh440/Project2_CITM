@@ -49,6 +49,7 @@ bool ModuleEntities::Start()
         aux->data->Start();
     }
 
+    
     return true;
 }
 
@@ -60,6 +61,11 @@ bool ModuleEntities::PreUpdate()
         aux->data->PreUpdate();
     }
 
+    if (openWorld != nullptr)
+    {
+        openWorld->DEBUG = DEBUG;
+        openWorld->PreUpdate();
+    }
     return true;
 }
 
@@ -98,6 +104,9 @@ bool ModuleEntities::Update(float dt)
     //        }
     //    }
     //}
+    if (openWorld != nullptr)
+        openWorld->Update(dt);
+
     return true;
 }
 
@@ -108,21 +117,26 @@ bool ModuleEntities::PostUpdate()
         aux->data->PostUpdate();
     }
   
+    if (openWorld != nullptr)
+        openWorld->PostUpdate();
     return true;
 }
 
 bool ModuleEntities::CleanUp()
 {
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    p2ListItem <Entity*>* aux2 = nullptr;
+    for (p2ListItem<Entity*>* aux1 = entities.getFirst(); aux1 != nullptr; aux1 = aux1->next)
     {
-        aux->data->Cleanup();
-        delete aux->data;
-        aux->data = nullptr;
+        aux1->data->Cleanup();
+        if (aux2 != nullptr) entities.del(aux2);
+        aux2 = aux1;
     }
+
     playerInstance = nullptr;
     knightInstance = nullptr;
     dummyInstance = nullptr;
     dummyNpcInstance = nullptr;
+    
     players.clear();
     entities.clear();
     return true;
@@ -145,7 +159,7 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         if (openWorld == nullptr) 
         {
             openWorldInstance = new OpenWorldPlayer(type, spawnPos);
-            entities.add(openWorldInstance);
+            //entities.add(openWorldInstance);
             openWorld = openWorldInstance;
         }
     } break;
@@ -187,9 +201,23 @@ void ModuleEntities::RemoveEntity(PhysBody* entity)
             aux->data->physBody->pendingToDelete = true;
             aux->data->Cleanup();
 
+            entities.del(aux);
             delete aux->data;
             aux->data = nullptr;
         }
+    }
+}
+
+void ModuleEntities::RemoveAllEntities()
+{
+    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+    {
+        aux->data->physBody->pendingToDelete = true;
+        aux->data->Cleanup();
+
+        entities.del(aux);
+        delete aux->data;
+        aux->data = nullptr;
     }
 }
 
@@ -256,6 +284,8 @@ bool ModuleEntities::SaveState(pugi::xml_node& data) const
         }
     }
    
+    if (openWorld != nullptr)
+        openWorld->SaveState(data);
     return true;
 }
 

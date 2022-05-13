@@ -106,7 +106,7 @@ bool NpcGuard::PostUpdate()
 bool NpcGuard::CleanUp()
 {
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	physBody->pendingToDelete = true;
 
 	return true;
 

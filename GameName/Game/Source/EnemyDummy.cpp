@@ -218,7 +218,7 @@ bool EnemyDummy::PostUpdate()
 
 bool EnemyDummy::CleanUp()
 {
-
+	physBody->pendingToDelete = true;
 	
 	return true;
 }

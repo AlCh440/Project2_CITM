@@ -6,9 +6,9 @@
 		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="641" y="680" />
+		<player x="512" y="348" />
 	</entities>
 	<renderer>
-		<camera x="-638" y="-996" />
+		<camera x="-384" y="-336" />
 	</renderer>
 </saveState>

@@ -51,11 +51,13 @@ public:
 
 	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);
+	void RemoveAllEntities();
 
 	// return the closest hitbox
 	PhysBody* GetNearestEnemy(PhysBody* Character);
 	PhysBody* GetNearestPlayer(PhysBody* Character);
 
+	
 
 	//Check all entity collisions here
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);

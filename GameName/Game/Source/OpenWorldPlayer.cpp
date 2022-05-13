@@ -23,6 +23,7 @@ OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, 
 	physBody->color = { 255,155,255,255 };
 	physBody->type = type;
 	entityTurn = true;
+	Start();
 }
 
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos, p2List	<Item*> inventory_) : Player(type, pos)

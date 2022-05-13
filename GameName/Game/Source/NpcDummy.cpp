@@ -126,7 +126,7 @@ bool NpcDummy::PostUpdate()
 bool NpcDummy::CleanUp()
 {
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	physBody->pendingToDelete = true;
 
 	return true;
 

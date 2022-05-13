@@ -301,6 +301,14 @@ bool Map::CleanUp()
 
 	mapData.objectLayers.clear();
 
+	p2ListItem <PhysBody*>* item5 = nullptr;
+	for (p2ListItem <PhysBody*>* item4 = Colliders.getFirst(); item4 != nullptr; item4 = item4->next)
+	{
+		item4->data->pendingToDelete = true;
+		if (item5 != nullptr) Colliders.del(item5);
+		item5 = item4;
+	}
+
 	return true;
 }
 
@@ -761,6 +769,7 @@ bool Map::SetMapColliders()
 					pb = app->physics->CreateRectangle(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2_staticBody);
 					pb->color = { 200,0,0,255 };
 					pb->type = object->data->type;
+					Colliders.add(pb);
 				}
 				break;
 			case EXIT:

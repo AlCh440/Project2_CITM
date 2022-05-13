@@ -179,6 +179,7 @@ public:
 	//Pick the right Tileset based on a tile id
 	TileSet* GetTilesetFromTileId(int id) const;
 
+	p2List<PhysBody*> Colliders;
 private:
 
 	//Methods to load all required map data

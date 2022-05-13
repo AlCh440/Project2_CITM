@@ -106,7 +106,7 @@ bool NpcWoVillager::PostUpdate()
 bool NpcWoVillager::CleanUp()
 {
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	physBody->pendingToDelete = true;
 
 	return true;
 
