@@ -61,8 +61,8 @@ public:
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	// Load / Save
-	bool LoadState(pugi::xml_node& data);
-	bool SaveState(pugi::xml_node& data) const;
+	bool LoadState(pugi::xml_node& data) override;
+	bool SaveState(pugi::xml_node& data) const override;
 
 	// All spawned enemies in the scene
 	p2List<Entity*> entities;

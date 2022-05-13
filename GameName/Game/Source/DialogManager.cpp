@@ -56,8 +56,7 @@ bool DialogManager::Update(float dt)
 bool DialogManager::PostUpdate()
 {
 
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
-
+	OpenWorldPlayer* player = app->entities->openWorld;
 	
 	
 	if (app->theFall->active)

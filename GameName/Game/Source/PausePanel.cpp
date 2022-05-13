@@ -97,6 +97,7 @@ bool PausePanel::OnGuiMouseClickEvent(GuiControl* control)
 	}else if(control->id == bt_saveGame->id)
 	{
 		//save game
+		app->SaveGameRequest();
 	}
 	else if (control->id == bt_settings->id)
 	{

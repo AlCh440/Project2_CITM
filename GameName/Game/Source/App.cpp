@@ -210,10 +210,10 @@ bool App::Update()
 	if(ret == true)
 		ret = PreUpdate();
 
-	if (input->GetKey(SDL_SCANCODE_6))
+	if (input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 		saveGameRequested = true;
 
-	if (input->GetKey(SDL_SCANCODE_7))
+	if (input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
 		loadGameRequested = true;
 
 	if(ret == true)
@@ -306,8 +306,14 @@ void App::FinishUpdate()
 	
 
 	// L02: DONE 1: This is a good place to call Load / Save methods
-	if (loadGameRequested == true) LoadGame();
-	if (saveGameRequested == true) SaveGame();
+	if (loadGameRequested == true)
+	{
+		LoadGame();
+	}
+	if (saveGameRequested == true)
+	{
+		SaveGame();
+	}
 
 	float secondsSinceStartup = startupTime.ReadSec();
 
@@ -571,7 +577,7 @@ bool App::SaveGame() const
 
 	while (item != NULL)
 	{
-		if (item->data->saveConfigs == true)
+		if (item->data->toSave == true)
 		{
 			if (ret != item->data->SaveState(saveStateNode.append_child(item->data->name.GetString())))
 				LOG("could not save status of %s", item->data->name.GetString());

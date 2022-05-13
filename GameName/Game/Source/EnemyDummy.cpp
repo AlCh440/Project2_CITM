@@ -34,6 +34,7 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;
+	Start();
 }
 
 //void EnemyDummy::Move(float dt)

@@ -106,6 +106,7 @@ public:
 	bool DEBUG = false;
 	//stops updating the module
 	bool Pause;
+
 	bool toSave = false;
 	bool saveConfigs = false;
 };

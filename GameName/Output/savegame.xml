@@ -2,14 +2,13 @@
 <saveState>
 	<window />
 	<input />
-	<audio />
 	<Level_manager>
-		<levelManager currentLevel="6" />
+		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="358" y="429" />
+		<player x="641" y="680" />
 	</entities>
 	<renderer>
-		<camera x="-76" y="-498" />
+		<camera x="-638" y="-996" />
 	</renderer>
 </saveState>

@@ -708,7 +708,21 @@ bool Map::SetMapColliders()
 				}
 				else
 				{
-					app->entities->openWorld->SetPosition(spawnPos);
+					if (app->entities->openWorld->mapPlayerUpdate == true)
+					{
+						//if (app->entities->openWorld->physBody == NULL)
+						//{
+						//	app->entities->openWorld->RestartPhysBody(spawnPos, object->data->type);
+						//}
+						//else
+
+						app->entities->openWorld->SetPositionFromPixels(spawnPos);
+						//app->entities->openWorld->SetPosition(spawnPos);
+					}
+					else
+					{
+						app->entities->openWorld->mapPlayerUpdate = true;
+					}
 				}
 
 				LOG("spawn world player...");

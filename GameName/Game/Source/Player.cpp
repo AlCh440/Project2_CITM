@@ -82,6 +82,7 @@ void Player::SetPosition(iPoint pos)
 		physBody->body->SetTransform(newPos, physBody->body->GetAngle());
 }
 
+
 void Player::Spawn(iPoint pos)
 {
 	SetPosition(pos);

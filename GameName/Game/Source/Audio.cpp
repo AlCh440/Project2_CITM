@@ -18,7 +18,7 @@ Audio::Audio(bool isActive) : Module(isActive)
 	name.Create("audio");
 	fxVolume = 100;
 	musicVolume = 100;
-	toSave = true;
+	toSave = false;
 	saveConfigs = true;
 }
 
@@ -59,8 +59,8 @@ bool Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
-	SetMusicVolume(100);
-	SetFxVolume(100);
+	SetMusicVolume(config.child("volume").attribute("music").as_int());
+	SetFxVolume(config.child("volume").attribute("fx").as_int());
 	return ret;
 }
 
