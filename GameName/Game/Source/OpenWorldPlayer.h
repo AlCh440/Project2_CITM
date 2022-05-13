@@ -53,6 +53,8 @@ public:
 	Item* MageEquiped;
 
 	bool mapPlayerUpdate = true;
+	uint steps;
+	uint steps2;
 
 private:
 
