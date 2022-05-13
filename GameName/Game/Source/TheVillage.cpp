@@ -28,7 +28,7 @@ bool TheVillage::Start()
 	app->physics->Start();
 	app->map->Load("level3.tmx");
 	app->entities->Start();
-	app->entities->exitIntance->scene = GameScene::START;
+	app->entities->exitIntance->scene = GameScene::RUINS;
 	app->entities->entranceIntance->scene = GameScene::GREEN_PATH;
 
 	app->entities->generalEntrance->scene= GameScene::GENERAL_ROOM;
