@@ -141,7 +141,7 @@ bool QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (control->id == cancelButton->id)
 	{
-		app->questManager->CanelQuest(currentQuest->data->id);
+		app->questManager->CancelQuest(currentQuest->data->id);
 	}
 	else if (control->id == completeButton->id)
 	{

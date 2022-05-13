@@ -14,17 +14,22 @@ public:
 	QuestProgress progress;			//State of the current quest 
 	int nextQuest;					//next quest, if there is any (chain quest)
 
-	int objective;					//Posible quest objectives
+	int progression;					//Posible quest objectives
 	int reward;						//Posible quest rewards
 	int amount;
 
 	SString title;					//Title for the quest
 	SString description;			//What player has to know about the quest
+	SString objective;				// Clear objective for the player
 
 	SDL_Texture* titleTex;
 	SDL_Texture* descriptionTex;
+	SDL_Texture* objectiveTex;
 
-	SDL_Rect rTitle, rDescription;
+	int coinsReward;
+	// add item reward?
+
+	SDL_Rect rTitle, rDescription, rObjective;
 
 	//// Load / Save
 	//virtual bool LoadState(pugi::xml_node&);

@@ -188,10 +188,13 @@ bool QuestManager::Load(const char* path)
 			quest->progress = Quest::NOT_AVAILABLE;
 			quest->title = currentQuest.attribute("title").as_string();
 			quest->description = currentQuest.child("description").child_value();
+			quest->objective = currentQuest.child("objective").child_value();
+			quest->coinsReward = currentQuest.child("rewards").child("coins").attribute("number").as_int();
 			
 			//generate text textures
 			quest->titleTex = app->fonts->LoadRenderedText(quest->rTitle, app->fonts->titles,quest->title.GetString(), SDL_Color{ 32,27,46 });
 			quest->descriptionTex = app->fonts->LoadRenderedParagraph(quest->rDescription, 0, quest->description.GetString(), SDL_Color{ 32,27,46 },500);
+			quest->objectiveTex = app->fonts->LoadRenderedParagraph(quest->rObjective, 0, quest->objective.GetString(), SDL_Color{ 32,27,46 }, 500);
 
 			questList->add(quest);
 
