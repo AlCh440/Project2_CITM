@@ -115,7 +115,7 @@ bool NpcWoVillager::PostUpdate()
 
 	SDL_Rect Rask = { 0,0,9,12 };
 
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->playerInstance;
+	OpenWorldPlayer* player = app->entities->openWorld;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
 	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
