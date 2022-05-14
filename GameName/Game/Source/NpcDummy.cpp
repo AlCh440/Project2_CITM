@@ -82,37 +82,27 @@ bool NpcDummy::Update(float dt)
 {
 	currentAnim->Update();
 	bardMusic.Update();
-
-	OpenWorldPlayer* player = app->entities->openWorld;
-
-	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
-	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
-
-	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	if (app->entities->openWorld != nullptr)
 	{
-		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+
+		OpenWorldPlayer* player = app->entities->openWorld;
+
+		int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+		int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+		if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
 		{
-			app->dialogManager->dialogActive_NoName = true;
-			app->dialogManager->FillDialog_Test(app->dialogManager->dialog_Test);
-			app->dialogManager->dialog_Test.Restart();
+			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+			{
+				app->dialogManager->dialogActive_NoName = true;
+				app->dialogManager->FillDialog_Test(app->dialogManager->dialog_Test);
+				app->dialogManager->dialog_Test.Restart();
 
-			//it keeps adding to memory the more times you talk -> fix!!
+			}
+
 		}
-
 	}
 
-
-	switch (actualStates)
-	{
-	case NORMAL:
-	{
-		return true;
-	}
-	case TALK:
-	{
-		//Activar dialogo
-	}
-	}
 	return true;
 }
 
@@ -132,19 +122,23 @@ bool NpcDummy::PostUpdate()
 	SDL_Rect Rask = { 0,0,9,12 };
 
 
-	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->openWorld;
-
-	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
-	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
-
-	
-
-	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
-	app->render->DrawTexture(texture, position.x - 15 + 16, position.y - 20 - 6, &bardMusic.GetCurrentFrame());
-
-	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	if (app->entities->openWorld != nullptr)
 	{
-		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
+		OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->openWorld;
+
+
+		int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+		int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+		if (currentAnim == nullptr) currentAnim = &idle;
+
+		app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+		app->render->DrawTexture(texture, position.x - 15 + 16, position.y - 20 - 6, &bardMusic.GetCurrentFrame());
+
+		if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+		{
+			app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
+		}
 	}
 	return true;
 
