@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Knight.h"
+#include "Ranger.h"
 
 #include "Enemy.h"
 #include "EnemyDummy.h"
@@ -97,6 +98,7 @@ public:
 
 	//Instances 
 	Knight* knightInstance;
+	Ranger* rangerInstance;
 	OpenWorldPlayer* openWorldInstance;
 	EnemyDummy* dummyInstance;
 	NpcDummy* dummyNpcInstance;

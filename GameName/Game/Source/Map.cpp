@@ -614,6 +614,11 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::PLAYERKNIGHT;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "ranger") == 0) {
+
+			obj->type = Collider_Type::PLAYERRANGER;
+
+		}
 		else if (strcmp(object.attribute("type").as_string(), "dummy") == 0) {
 
 			obj->type = Collider_Type::DUMMY;
@@ -758,6 +763,10 @@ bool Map::SetMapColliders()
 			case PLAYERKNIGHT:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn knight...");
+				break;
+			case PLAYERRANGER:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn ranger...");
 				break;
 			case DUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);

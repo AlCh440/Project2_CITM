@@ -154,6 +154,11 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         entities.add(knightInstance);
         players.add(knightInstance);
         break;
+    case PLAYERRANGER:
+        rangerInstance = new Ranger(type, spawnPos);
+        entities.add(rangerInstance);
+        players.add(rangerInstance);
+        break;
     case PLAYEROPENWORLD:
     {
         if (openWorld == nullptr) 
@@ -237,6 +242,18 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             app->levelManagement->gameScene = entranceIntance->scene;
             break;
         default:
+            break;
+        case GENERAL_ENTRANCE:
+            app->levelManagement->gameScene = generalEntrance->scene;
+            break;
+        case MAGE_ENTRANCE:
+            app->levelManagement->gameScene = mageEntrance->scene;
+            break;
+        case SHOP_ENTRANCE:
+            app->levelManagement->gameScene = shopEntrance->scene;
+            break;
+        case COMBATTRIGGER:
+            app->levelManagement->gameScene = COMBAT; // change when there is multiple batle scenes
             break;
         }
 

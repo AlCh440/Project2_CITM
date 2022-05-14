@@ -7,11 +7,20 @@
 #include "Render.h"
 #include "Player.h"
 
+enum rangerAttacks
+{
+	BASIC_ATTACK_,
+	TAUNT_,
+	BIND_,
+	CONCUSSION_
+};
+
 class Ranger : public Player
 {
 public:
 
 	Ranger(iPoint pos);// remember to define the type of player
+	Ranger(Collider_Type type, iPoint pos);
 	~Ranger();
 
 	bool BasicAttack(); // pass an ennemy
@@ -34,9 +43,6 @@ public:
 
 private:
 
-
-
-
-
-
+	Animation basicHit;
+	rangerAttacks attackChoosed;
 };
