@@ -11,7 +11,7 @@
 #include "GuiSlider.h"
 #include "p2List.h"
 #include "App.h"
-//#include "Easing.h"
+#include "Easing.h"
 
 enum PanelID {
 	P_START_MENU,
@@ -61,7 +61,7 @@ public:
 	PanelID id;
 
 	//pointer to the easing function
-	//easingFunction easingFunction;
+	easingFunction easingFunction;
 };
 
 #endif // __GUIPANEL_H__

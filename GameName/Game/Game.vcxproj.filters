@@ -200,6 +200,9 @@
     <ClCompile Include="Source\Goblin.cpp">
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Easing.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -430,6 +433,9 @@
     <ClInclude Include="Source\ManaPotion.h" />
     <ClInclude Include="Source\Goblin.h">
       <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Easing.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

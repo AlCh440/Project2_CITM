@@ -40,4 +40,4 @@ easingFunction getEasingFunction(easing_functions function);
 
 bool Ease(float dt,int finalPos, easingFunction easingFunction);
 bool Easing;
-//Timer time;
+Timer time;

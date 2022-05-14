@@ -4,7 +4,7 @@
 #include "GuiManager.h"
 #include "LevelManagement.h"
 #include "Audio.h"
-//#include "Easing.h"
+#include "Easing.h"
 
 MainMenuPanel::MainMenuPanel(bool active) : GuiPanel(active) 
 {
@@ -54,9 +54,9 @@ bool MainMenuPanel::Start()
 
 bool MainMenuPanel::Update(float dt, bool doLogic)
 {
-    //easingFunction = getEasingFunction(EaseInBounce);
-    //double progress = easingFunction(app->GetTime());
- /*   LOG("Progress: %f", progress);
+    easingFunction = getEasingFunction(EaseInBounce);
+    double progress = easingFunction(app->GetTime());
+    LOG("Progress: %f", progress);
     
     if (position.y >= 0)
     {
@@ -65,7 +65,7 @@ bool MainMenuPanel::Update(float dt, bool doLogic)
     else {
         position.y += progress;
     }
-    */
+    
 
 
 
