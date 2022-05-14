@@ -25,8 +25,8 @@ bool InventoryPanel::Start()
 	key02 = { 110, 151, 44, 44 };
 	key03 = { 227, 151, 44, 44 };
 	key04 = { 331, 154, 44, 44 };
-	potionHP = { 0, 0, 0, 0 };
-	potionMana = { 0, 0, 0, 0 };
+	potionHP = { 75, -2, 44, 44 };
+	potionMana = { 255, -2, 44, 44 };
 	
 	return true;
 }
@@ -47,6 +47,7 @@ bool InventoryPanel::Draw()
 void InventoryPanel::DrawItems()
 {
 	int i = 0;
+	int j = 0;
 	iPoint drawPos(position.x + (222), position.y + (170));
 	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next, i++)
 	{
@@ -54,11 +55,11 @@ void InventoryPanel::DrawItems()
 		{
 		case POTION_HP_:
 		{
-			app->render->DrawTexture(texItems, 0, 0, &potionHP);
+			app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &potionHP, 0, 0, 0, 0, 0.5f);
 		} break;
 		case POTION_MANA_:
 		{
-			app->render->DrawTexture(texItems, 0, 0, &potionMana);
+			app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &potionMana, 0, 0, 0, 0, 0.5f);
 		} break;
 		case KEY_:
 		{
@@ -87,6 +88,13 @@ void InventoryPanel::DrawItems()
 			break;
 		}
 		drawPos.x += 65;
+		if (i == 4)
+		{
+			i = 0;
+			j++;
+			drawPos.x = position.x + (222);
+			drawPos.y = position.y + (170) + (65 * j);
+		}
 	}
 }
 

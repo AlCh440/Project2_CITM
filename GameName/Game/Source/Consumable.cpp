@@ -11,6 +11,10 @@ Consumable::Consumable(Collider_Type type, iPoint pos) : Item(type, pos)
 
 }
 
+Consumable::Consumable(Consumable_Type id) : Item()
+{
+}
+
 bool Consumable::Start()
 {
 	return true;

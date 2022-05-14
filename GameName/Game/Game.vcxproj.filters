@@ -15,9 +15,6 @@
     <ClCompile Include="Source\Enemy.cpp">
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collectable.cpp">
-      <Filter>Entities\Collectable</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LevelManagement.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -192,6 +189,30 @@
     <ClCompile Include="Source\ShopRoom.cpp">
       <Filter>Scenes\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Key.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Consumable.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Weapon.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Chest.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InventoryPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HPPotion.cpp">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManaPotion.cpp">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -221,9 +242,6 @@
     </ClInclude>
     <ClInclude Include="Source\Enemy.h">
       <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Collectable.h">
-      <Filter>Entities\Collectable</Filter>
     </ClInclude>
     <ClInclude Include="Source\LevelManagement.h">
       <Filter>Scenes</Filter>
@@ -415,6 +433,30 @@
     <ClInclude Include="Source\ShopRoom.h">
       <Filter>Scenes\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Key.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Consumable.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Weapon.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Chest.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InventoryPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HPPotion.h">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ManaPotion.h">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -473,6 +515,12 @@
     </Filter>
     <Filter Include="Entities\Spaces">
       <UniqueIdentifier>{15baa1cf-7f86-4962-83ee-9787be276a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Items">
+      <UniqueIdentifier>{04157ca5-52d7-42d2-bb12-bdd58d5b18cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Items\Potions">
+      <UniqueIdentifier>{b548daa0-02fa-414c-81f2-504cd71968b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

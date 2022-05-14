@@ -1,20 +1,15 @@
 #pragma once
 #include "Entity.h"
 #include "Item.h"
+#include "Consumable.h"
 
-enum Consumable_Type
-{
-	HP_POTION,
-	MANA_POTION
-};
-
-class Consumable : public Item
+class ManaPotion : public Consumable
 {
 public:
 
-	Consumable(iPoint pos);
-	Consumable(Collider_Type type, iPoint pos);
-	Consumable(Consumable_Type id);
+	ManaPotion(iPoint pos);
+	ManaPotion(Collider_Type type, iPoint pos);
+	ManaPotion(Consumable_Type id);
 
 	virtual bool Start();
 	virtual bool PreUpdate();
@@ -27,9 +22,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	virtual void Consume(Player* user) { };
-
-	Consumable_Type consumableId;
+	void Consume(Player* user) override;
 
 protected:
 	int spriteRotation = 0;
@@ -38,4 +31,3 @@ protected:
 	int quantity;
 
 };
-

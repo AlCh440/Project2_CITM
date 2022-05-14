@@ -3,6 +3,8 @@
 #include "Entities.h"
 
 #include "Key.h"
+#include "HPPotion.h"
+#include "ManaPotion.h"
 
 Chest::Chest(iPoint pos) : Item(pos)
 {
@@ -24,6 +26,14 @@ Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, p
 	item.add(k);
 	k = new Key(2);
 	item.add(k);
+	k = new Key(3);
+	item.add(k);
+	k = new Key(4);
+	item.add(k);
+	HPPotion* Hp = new HPPotion(HP_POTION);
+	item.add(Hp);
+	ManaPotion* Mp = new ManaPotion(MANA_POTION);
+	item.add(Mp);
 }
 
 bool Chest::Start()

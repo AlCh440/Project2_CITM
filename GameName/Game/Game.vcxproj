@@ -104,6 +104,7 @@
     <ClCompile Include="Source\Consumable.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
+    <ClCompile Include="Source\HPPotion.cpp" />
     <ClCompile Include="Source\InventoryPanel.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Dialog.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\MainMenuPanel.cpp" />
+    <ClCompile Include="Source\ManaPotion.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Entities.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
@@ -173,6 +175,7 @@
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Chest.h" />
     <ClInclude Include="Source\Consumable.h" />
+    <ClInclude Include="Source\HPPotion.h" />
     <ClInclude Include="Source\InventoryPanel.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Dialog.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="Source\Mage.h" />
     <ClInclude Include="Source\MageRoom.h" />
     <ClInclude Include="Source\MainMenuPanel.h" />
+    <ClInclude Include="Source\ManaPotion.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
