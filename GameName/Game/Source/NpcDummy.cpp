@@ -44,21 +44,31 @@ bool NpcDummy::Start()
 
 	tilePos = pos;
 
-	inter_speed = 0.02f;
 
+	idle.PushBack({ 259, 50, 26, 42 });
+	idle.PushBack({ 290, 50, 26, 42 });
+	idle.PushBack({ 322, 50, 26, 42 });
+	idle.PushBack({ 355, 50, 26, 42 });
 
-	idle.PushBack({ 259, 49, 30, 43 });
-	idle.PushBack({ 290, 51, 31, 41 });
-	idle.PushBack({322, 39, 30, 53 });
-	idle.PushBack({ 355, 39, 26, 53 });
-	idle.PushBack({ 258, 93, 29, 47 });
-	idle.PushBack({ 259, 49, 30, 43 });
+	idle.PushBack({ 259, 104,26, 42 });
 	
-	idle.speed = 0.1f;
+	idle.PushBack({ 355, 50, 26, 42 });
+	idle.PushBack({ 322, 50, 26, 42 });
+	idle.PushBack({ 290, 50, 26, 42 });
 
-	inter_speed = 0.02f;
+
+	idle.loop = true;
+	idle.speed = 0.05f;
 
 	currentAnim = &idle;
+
+	bardMusic.PushBack({ 9 + 26,		0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 2, 0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 3, 0, 26, 42 });
+	bardMusic.PushBack({ 9 + 26 * 4, 0, 26, 42 });
+
+	bardMusic.loop = true;
+	bardMusic.speed = 0.02f;
 
 	return true;
 }
@@ -70,6 +80,9 @@ bool NpcDummy::PreUpdate()
 
 bool NpcDummy::Update(float dt)
 {
+	currentAnim->Update();
+	bardMusic.Update();
+
 	OpenWorldPlayer* player = app->entities->openWorld;
 
 	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
@@ -87,6 +100,7 @@ bool NpcDummy::Update(float dt)
 		}
 
 	}
+
 
 	switch (actualStates)
 	{
@@ -111,10 +125,27 @@ bool NpcDummy::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
-	
-	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
+	if (app->physics->debug)
+	{
+		app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	}
+	SDL_Rect Rask = { 0,0,9,12 };
 
+
+	OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->openWorld;
+
+	int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+	int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+	
+
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15 + 16, position.y - 20 - 6, &bardMusic.GetCurrentFrame());
+
+	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+	{
+		app->render->DrawTexture(texture, position.x - 15 + 26, position.y - 20, &Rask);
+	}
 	return true;
 
 	

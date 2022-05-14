@@ -40,15 +40,19 @@ bool TheVillage::Start()
 	{
 		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
 	}
-
+	//entrance
 	uncheckableTiles[0] = { 14, 8 };
 	uncheckableTiles[1] = { 14, 9 };
 	uncheckableTiles[2] = { 14, 10 };
-
+	//exit
 	uncheckableTiles[3] = { 90, 36 };
 	uncheckableTiles[4] = { 90, 37 };
 	uncheckableTiles[5] = { 90, 33 };
 	uncheckableTiles[6] = { 90, 39 };
+	//rooms
+	uncheckableTiles[7] = { 59, 15 };
+	uncheckableTiles[8] = { 73, 36 };
+	uncheckableTiles[9] = { 79, 36 };
 
 
 	return true;
@@ -64,7 +68,7 @@ bool TheVillage::Update(float dt)
 	if (app->entities->openWorld != nullptr)
 	{
 		bool ret = true;
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			iPoint toCheck[9] = {
 				app->entities->openWorld->GetPositionTiles(),
