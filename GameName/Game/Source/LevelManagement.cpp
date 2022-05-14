@@ -31,6 +31,17 @@ bool LevelManagement::Start()
 	gameScene = GameScene::INTRO;
 	lastOpenWorldScene = gameScene;
 	currentScene = nullptr;
+
+	playerLastPos_TheFall		 = {16 * 32 + 16, 10 * 32 + 16};
+	playerLastPos_GreenPath		 = {11 * 32 + 16, 13 * 32 + 16};
+	playerLastPos_Village		 = {17 * 32 + 16, 9  * 32 + 16};
+	playerLastPos_GeneralRoom	 = {5  * 32 + 16, 8  * 32 + 16};
+	playerLastPos_MageRoom		 = {5  * 32 + 16, 8  * 32 + 16};
+	playerLastPos_ShopRoom		 = {5  * 32 + 16, 8  * 32 + 16};
+	playerLastPos_TheRuins		 = {72 * 32 + 16, 36 * 32 + 16};
+	playerLastPos_FracturedRoad	 = {93 * 32 + 16, 55 * 32 + 16};
+	playerLastPos_DragonCliff	 = {24 * 32 + 16, 41 * 32 + 16};
+
 	return true;
 }
 
@@ -183,7 +194,7 @@ bool LevelManagement::Update(float dt)
 			}
 		}
 		break;
-	case DRAGRON_CLIFF:
+	case DRAGON_CLIFF:
 		if (currentScene != (Module*)app->dragonCliff) {
 
 			if (app->fade->Fade(currentScene, (Module*)app->dragonCliff, 30))
