@@ -11,7 +11,7 @@
 #include "GuiSlider.h"
 #include "p2List.h"
 #include "App.h"
-
+#include "Easing.h"
 
 enum PanelID {
 	P_START_MENU,
@@ -59,6 +59,9 @@ public:
 	SDL_Texture* texture;
 	bool Active;
 	PanelID id;
+
+	//pointer to the easing function
+	easingFunction easingFunction;
 };
 
 #endif // __GUIPANEL_H__

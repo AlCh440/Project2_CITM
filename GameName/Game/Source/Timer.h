@@ -13,7 +13,7 @@ public:
 	void Start();
 	uint32 Read() const;
 	float ReadSec() const;
-
+	float ReadMilisec() const;
 private:
 	uint32 startTime;
 };

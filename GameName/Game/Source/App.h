@@ -113,6 +113,8 @@ private:
 	bool LoadGame();
 	bool SaveGame() const;
 
+
+
 public:
 
 	// Modules
@@ -168,6 +170,10 @@ public:
 		return gamePaused;
 	}
 
+	double GetTime()
+	{ 
+		return startupTime.ReadSec();
+	}
 
 	void FPScap60(bool state)
 	{

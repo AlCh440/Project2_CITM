@@ -5,7 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2List.h"
 #include "GuiPanel.h"
-
+#include "Easing.h"
 
 enum GuiType {
 	MAIN_MENU,

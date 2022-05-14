@@ -27,3 +27,8 @@ float Timer::ReadSec() const
 {
 	return float(SDL_GetTicks() - startTime) / 1000.0f;
 }
+
+float Timer::ReadMilisec() const
+{
+	return float(SDL_GetTicks() - startTime);
+}
