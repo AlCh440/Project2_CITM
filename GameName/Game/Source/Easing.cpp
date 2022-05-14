@@ -223,23 +223,25 @@ easingFunction getEasingFunction(easing_functions function)
 
 bool Ease(float dt, int finalPos, easingFunction easingFunction)
 {
-    if (!Easing)
-    {
-        time.Start();
-        Easing = true;
-    }
-    else {
-        easingFunction = getEasingFunction(EaseInSine);
-        double progress = easingFunction(dt);
-        if (progress >= 1)
-        {
-            Easing = false;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    //if (!Easing)
+    //{
+    //    time.Start();
+    //    Easing = true;
+    //}
+    //else {
+    //    easingFunction = getEasingFunction(EaseInSine);
+    //    double progress = easingFunction(dt);
+    //    if (progress >= 1)
+    //    {
+    //        Easing = false;
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
 
-    }
+    //}
+
+    return false;
 }
