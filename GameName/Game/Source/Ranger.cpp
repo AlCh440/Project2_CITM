@@ -17,6 +17,7 @@ Ranger::Ranger(Collider_Type type, iPoint pos) : Player(type, pos)
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
+	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
 }
 
 Ranger::~Ranger()

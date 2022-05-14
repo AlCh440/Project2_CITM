@@ -544,6 +544,5 @@
  <objectgroup id="3" name="entities">
   <object id="1" name="player" type="knight" x="96" y="160" width="32" height="32"/>
   <object id="2" name="enemy" type="dummy" x="256" y="160" width="32" height="32"/>
-  <object id="5" name="player" type="ranger" x="96" y="223" width="32" height="32"/>
  </objectgroup>
 </map>
