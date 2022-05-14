@@ -3,7 +3,7 @@
 #include "p2List.h"
 #include "Defs.h"
 #include "Animation.h"
-
+#include "Point.h"
 
 
 struct SDL_Texture;
@@ -34,6 +34,9 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+
+	iPoint uncheckableTiles[3];
 
 private:
 	SDL_Texture* img;

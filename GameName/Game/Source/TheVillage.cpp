@@ -36,6 +36,21 @@ bool TheVillage::Start()
 	app->entities->mageEntrance->scene = GameScene::MAGE_ROOM;
 	app->entities->shopEntrance->scene = GameScene::SHOP_ROOM;
 
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
+	}
+
+	uncheckableTiles[0] = { 14, 8 };
+	uncheckableTiles[1] = { 14, 9 };
+	uncheckableTiles[2] = { 14, 10 };
+
+	uncheckableTiles[3] = { 90, 36 };
+	uncheckableTiles[4] = { 90, 37 };
+	uncheckableTiles[5] = { 90, 33 };
+	uncheckableTiles[6] = { 90, 39 };
+
+
 	return true;
 }
 
@@ -46,6 +61,39 @@ bool TheVillage::PreUpdate()
 
 bool TheVillage::Update(float dt)
 {
+	if (app->entities->openWorld != nullptr)
+	{
+		bool ret = true;
+		for (int i = 0; i < 3; i++)
+		{
+			iPoint toCheck[9] = {
+				app->entities->openWorld->GetPositionTiles(),
+				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y - 1},
+				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y - 1},
+				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y},
+				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y + 1},
+				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y + 1},
+				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y + 1},
+				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y},
+				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y - 1}
+			};
+
+			for (size_t j = 0; j < 9; j++)
+			{
+				if (toCheck[j] == uncheckableTiles[i])
+				{
+					ret = false;
+					break;
+				}
+			}
+		}
+
+		if (ret == true)
+			app->levelManagement->playerLastPos_Village = { app->entities->openWorld->GetPosition().x + 16,app->entities->openWorld->GetPosition().y + 16 };
+			
+		
+	
+	}
 	return true;
 }
 
