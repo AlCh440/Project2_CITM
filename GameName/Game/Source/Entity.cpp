@@ -107,11 +107,7 @@ b2Vec2 Entity::GetPositionTileToMeters(iPoint pos)
 
 iPoint Entity::GetPositionTiles()
 {
-	iPoint pos;
-	physBody->GetPosition(pos.x, pos.y);
-
-	iPoint ret = app->map->WorldToMap(pos.x + physBody->width, pos.y + physBody->height);
-	return ret;
+	return iPoint();
 }
 
 void Entity::takeDamage(int damage)

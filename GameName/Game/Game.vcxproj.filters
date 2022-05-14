@@ -189,16 +189,29 @@
     <ClCompile Include="Source\ShopRoom.cpp">
       <Filter>Scenes\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Chest.cpp" />
-    <ClCompile Include="Source\Consumable.cpp" />
-    <ClCompile Include="Source\InventoryPanel.cpp" />
-    <ClCompile Include="Source\Item.cpp" />
-    <ClCompile Include="Source\Key.cpp" />
-    <ClCompile Include="Source\Weapon.cpp" />
-    <ClCompile Include="Source\HPPotion.cpp" />
-    <ClCompile Include="Source\ManaPotion.cpp" />
-    <ClCompile Include="Source\Goblin.cpp">
-      <Filter>Entities\Enemy</Filter>
+    <ClCompile Include="Source\Key.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Consumable.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Weapon.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Chest.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InventoryPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HPPotion.cpp">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ManaPotion.cpp">
+      <Filter>Entities\Items\Potions</Filter>
     </ClCompile>
     <ClCompile Include="Source\Easing.cpp">
       <Filter>Utils</Filter>
@@ -423,16 +436,29 @@
     <ClInclude Include="Source\ShopRoom.h">
       <Filter>Scenes\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Chest.h" />
-    <ClInclude Include="Source\Consumable.h" />
-    <ClInclude Include="Source\InventoryPanel.h" />
-    <ClInclude Include="Source\Item.h" />
-    <ClInclude Include="Source\Key.h" />
-    <ClInclude Include="Source\Weapon.h" />
-    <ClInclude Include="Source\HPPotion.h" />
-    <ClInclude Include="Source\ManaPotion.h" />
-    <ClInclude Include="Source\Goblin.h">
-      <Filter>Entities\Enemy</Filter>
+    <ClInclude Include="Source\Key.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Consumable.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Weapon.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Chest.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InventoryPanel.h">
+      <Filter>GUI\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HPPotion.h">
+      <Filter>Entities\Items\Potions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ManaPotion.h">
+      <Filter>Entities\Items\Potions</Filter>
     </ClInclude>
     <ClInclude Include="Source\Easing.h">
       <Filter>Utils</Filter>

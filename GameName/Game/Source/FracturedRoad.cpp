@@ -29,7 +29,7 @@ bool FracturedRoad::Start()
 	app->physics->Start();
 	app->map->Load("level5.tmx");
 	app->entities->Start();
-	app->entities->exitIntance->scene = GameScene::DRAGON_CLIFF;
+	app->entities->exitIntance->scene = GameScene::DRAGRON_CLIFF;
 	app->entities->entranceIntance->scene = GameScene::RUINS;
 
 	return true;

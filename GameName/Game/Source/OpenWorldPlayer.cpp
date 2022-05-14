@@ -17,7 +17,7 @@
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpriteSheet.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.4f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
 	physBody->listener = app->entities;
 	physBody->color = { 255,155,255,255 };
@@ -29,7 +29,7 @@ OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, 
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos, p2List	<Item*> inventory_) : Player(type, pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpriteSheet.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.4f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
 	physBody->listener = app->entities;
 	physBody->color = { 255,155,255,255 };
@@ -187,6 +187,7 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection->speed = walkSpeed;
 			goingLeft = false;
 			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 		}
 		else if (movement.x < 0)
 		{
@@ -195,6 +196,7 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection->speed = walkSpeed;
 			goingLeft = true;
 			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 		}
 		else if (movement.y < 0)
 		{
@@ -202,6 +204,7 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection = &walkUp;
 			lastDirection->speed = walkSpeed;
 			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 			//app->audio->Pause = true;
 		}
 		else if (movement.y > 0)
@@ -210,6 +213,7 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection = &walkDown;
 			lastDirection->speed = walkSpeed;
 			app->audio->PlayFx(steps);
+			app->audio->PlayFx(steps2);
 			//app->audio->PlayFx(steps);
 		}
 		else

@@ -8,7 +8,6 @@
 #include "Defs.h"
 #include "Entity.h"
 #include "LevelManagement.h"
-#include "Window.h"
 //#ifdef _DEBUG
 //#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
 //#else
@@ -285,7 +284,7 @@ void ModulePhysics::DrawColliders()
 
 				b2CircleShape* shape = (b2CircleShape*)f->GetShape();
 				b2Vec2 pos = f->GetBody()->GetPosition();
-				app->render->DrawCircle((METERS_TO_PIXELS(pos.x) + app->render->camera.x/2) * app->win->GetScale(), (METERS_TO_PIXELS(pos.y) + app->render->camera.y/2) * app->win->GetScale(), METERS_TO_PIXELS(shape->m_radius) * app->win->GetScale(), pb->data->color.r, pb->data->color.g, pb->data->color.b, pb->data->color.a);
+				app->render->DrawCircle(METERS_TO_PIXELS(pos.x), METERS_TO_PIXELS(pos.y), METERS_TO_PIXELS(shape->m_radius), pb->data->color.r, pb->data->color.g, pb->data->color.b, pb->data->color.a);
 
 			}
 			break;

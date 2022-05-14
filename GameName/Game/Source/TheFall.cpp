@@ -33,18 +33,7 @@ bool TheFall::Start()
 	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
 
-	uncheckableTiles[0] = { 15, 37 };
-	uncheckableTiles[1] = { 16, 37 };
-	uncheckableTiles[2] = { 17, 37 };
-
-
-	if (app->entities->openWorld != nullptr)
-	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
-	}
 	
-
-
 	return true;
 }
 
@@ -55,37 +44,7 @@ bool TheFall::PreUpdate()
 
 bool TheFall::Update(float dt)
 {
-	if (app->entities->openWorld != nullptr)
-	{
-		bool ret = true;
-		for (int i = 0; i < 3; i++)
-		{
-			iPoint toCheck[9] = {
-				app->entities->openWorld->GetPositionTiles(),
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y - 1},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y - 1},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y - 1}
-			};
 
-			for (size_t j = 0; j < 9; j++)
-			{
-				if (toCheck[j] == uncheckableTiles[i])
-				{
-					ret = false;
-					break;
-				}
-			}
-		}
-
-		if (ret == true)
-			app->levelManagement->playerLastPos_TheFall = { app->entities->openWorld->GetPosition().x + 16,app->entities->openWorld->GetPosition().y + 16};
-	}
-		
 	
 
 	return true;
@@ -94,27 +53,7 @@ bool TheFall::Update(float dt)
 bool TheFall::PostUpdate()
 {
 	app->map->Draw();
-
-	iPoint toCheck[9] = {
-				app->entities->openWorld->GetPositionTiles(),
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y - 1},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y - 1},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y},
-				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y},
-				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y - 1}
-	};
-
-	for (size_t i = 1; i < 9; i++)
-	{
-		SDL_Rect r = { toCheck[i].x * 32 ,toCheck[i].y * 32,32,32 };
-		app->render->DrawRectangle(r, 255, 0, 0, 100, true);
-		
-	}
-	SDL_Rect r = { toCheck[0].x * 32 ,toCheck[0].y * 32,32,32 };
-	app->render->DrawRectangle(r, 128, 0, 0, 100, true);
+	
 	return true;
 }
 
