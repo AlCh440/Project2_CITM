@@ -195,6 +195,11 @@
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Key.cpp" />
     <ClCompile Include="Source\Weapon.cpp" />
+    <ClCompile Include="Source\HPPotion.cpp" />
+    <ClCompile Include="Source\ManaPotion.cpp" />
+    <ClCompile Include="Source\Goblin.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -421,6 +426,11 @@
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Key.h" />
     <ClInclude Include="Source\Weapon.h" />
+    <ClInclude Include="Source\HPPotion.h" />
+    <ClInclude Include="Source\ManaPotion.h" />
+    <ClInclude Include="Source\Goblin.h">
+      <Filter>Entities\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

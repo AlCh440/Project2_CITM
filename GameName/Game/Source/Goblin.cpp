@@ -13,7 +13,7 @@
 
 Goblin::Goblin(iPoint pos) : Enemy(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");
+	texture = app->tex->Load("Assets/Sprites/characters/goblins1.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -26,7 +26,7 @@ Goblin::Goblin(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
 
 	name.Create("Goblin");
-	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");
+	texture = app->tex->Load("Assets/Sprites/characters/goblins1.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
