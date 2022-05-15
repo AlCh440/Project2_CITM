@@ -42,6 +42,8 @@ protected:
 	int timerRef = 40;
 
 	uint tileMove;
+	uint mummyDeath;
+	uint mummyAttack;
 private:
 };
 
