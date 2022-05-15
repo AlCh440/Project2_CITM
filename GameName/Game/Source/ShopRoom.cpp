@@ -23,10 +23,13 @@ bool ShopRoom::Awake(pugi::xml_node&)
 
 bool ShopRoom::Start()
 {
+	doorOpen = app->audio->LoadFx("Assets/audio/fx/doorOpening.wav");
+	app->audio->PlayFx(doorOpen);
 	app->physics->Start();
 	app->map->Load("Shop.tmx");
 	app->entities->Start();
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
+	
 	return true;
 }
 
@@ -37,6 +40,8 @@ bool ShopRoom::PreUpdate()
 
 bool ShopRoom::Update(float dt)
 {
+	
+
 	return true;
 }
 

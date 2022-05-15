@@ -26,6 +26,7 @@ Ranger::~Ranger()
 
 bool Ranger::Start()
 {
+	attack = app->audio->LoadFx("Assets/audio/fx/swoosh.wav");
 
 	stats.hp = 75;
 	stats.mana = 75;
@@ -187,7 +188,7 @@ bool Ranger::PreUpdate()
 				battleState = IDLE;
 				pathfinding->ResetBFSPath();
 			}
-
+			app->audio->PlayFx(attack);
 		}
 		break;
 	case DEATH:
