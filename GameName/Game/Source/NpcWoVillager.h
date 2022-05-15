@@ -36,6 +36,7 @@ protected:
 
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
+	uint villagerSound;
 
 	fPoint lastPosition;
 

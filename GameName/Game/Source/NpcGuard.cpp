@@ -32,6 +32,8 @@ NpcGuard::NpcGuard(Collider_Type type, iPoint pos) : Npc(type, pos)
 
 bool NpcGuard::Start()
 {
+	villagerSound = app->audio->LoadFx("Assets/audio/fx/villager.wav");
+
 	actualStates = NORMAL;
 
 	rect = { 2, 55, 26, 38 };
@@ -113,7 +115,7 @@ bool NpcGuard::Update(float dt)
 			app->dialogManager->dialogActive_Guard = true;
 			app->dialogManager->FillDialog_Guard(app->dialogManager->dialog_Guard);
 			app->dialogManager->dialog_Guard.Restart();
-
+			app->audio->PlayFx(villagerSound);
 			//it keeps adding to memory the more times you talk -> fix!!
 		}
 
