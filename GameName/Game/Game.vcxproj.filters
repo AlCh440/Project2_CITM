@@ -213,6 +213,9 @@
     <ClCompile Include="Source\ManaPotion.cpp">
       <Filter>Entities\Items\Potions</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Ease.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -456,6 +459,9 @@
     </ClInclude>
     <ClInclude Include="Source\ManaPotion.h">
       <Filter>Entities\Items\Potions</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Ease.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

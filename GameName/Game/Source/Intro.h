@@ -36,7 +36,7 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
-
+	float UpdateProgress(float value, int AMin, int AMax, int  BMin, int BMax);
 
 	uint intro;
 private:
@@ -46,6 +46,10 @@ private:
 	bool playintro = true;
 
 	int waitTime;
+
+	int logoXpos;
+	float easingTime = 500; //millisec
+	float counter = 0;
 };
 
 #endif // __INTRO_H__
