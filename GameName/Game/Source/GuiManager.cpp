@@ -43,6 +43,7 @@ bool GuiManager::Start()
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
+	inventorySound = app->audio->LoadFx("Assets/audio/fx/openInventory.wav");
 
 	Debug = false;
 
@@ -81,7 +82,11 @@ bool GuiManager::PreUpdate()
 		pn_quest->Active = !pn_quest->GetActive();
 
 	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+	{
 		pn_inventory->Active = !pn_inventory->GetActive();
+		app->audio->PlayFx(inventorySound);
+	}
+	    
 
 	if (app->input)
 	Debug = DEBUG;
