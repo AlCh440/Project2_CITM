@@ -2,6 +2,7 @@
 #include "GuiManager.h"
 #include "Entity.h"
 #include "BattleTestScene.h"
+#include "App.h"
 
 
 BattlePanel::BattlePanel(bool active) : GuiPanel(active)
@@ -19,6 +20,8 @@ bool BattlePanel::Start()
 	texture = app->tex->Load("Assets/Sprites/UI/BattleUIBackground.png");
 	bounds = { 0,0,1080,720 };
 	position = { 0,0 };
+
+	
 
 	bt_attack = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { this->position.x ,this->position.y,56,56 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
 	bt_attack->texture = app->guiManager->UItexture2;

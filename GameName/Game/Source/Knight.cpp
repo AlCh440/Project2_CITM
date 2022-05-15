@@ -14,6 +14,7 @@
 // Update Code
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
+	attack = app->audio->LoadFx("Assets/audio/fx/swordAttack.wav");
 
 	name.Create("Knight");
 
@@ -241,7 +242,7 @@ bool Knight::Update(float dt)
 
 		break;
 	case ATTACK:
-
+		
 		break;
 	case DEATH:
 		break;
@@ -298,6 +299,7 @@ bool Knight::PostUpdate()
 	case ATTACK:
 		//draw movement
 		pathfinding->DrawBFSPath();
+		
 		break;
 	case DEATH:
 		break;

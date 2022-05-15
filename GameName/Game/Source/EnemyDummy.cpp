@@ -47,6 +47,7 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::Start()
 {
+	tileMove = app->audio->LoadFx("Assets/audio/fx/battleTileMovement.wav");
 
 	stepCounter = 0;
 	moveRange = 5;
@@ -190,6 +191,14 @@ bool EnemyDummy::Update(float dt)
 		}
 		break;
 	case MOVE:
+		if (timer > 0) timer--;
+		else
+		{
+			timer = timerRef;
+			app->audio->PlayFx(tileMove,0 );
+		};
+	
+		
 		if (!Move) {
 
 			//Set available movement tiles
@@ -208,6 +217,7 @@ bool EnemyDummy::Update(float dt)
 				if (InitPath(aux->tilePos)) {
 					NewTarget = true;
 				}
+				
 			}
 		}
 

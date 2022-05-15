@@ -37,6 +37,11 @@ public:
 protected:
 	int scorePoints = 0;	
 	bool NewTarget = false;
+
+	int timer = 0;
+	int timerRef = 40;
+
+	uint tileMove;
 private:
 };
 
