@@ -21,7 +21,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -104,6 +104,7 @@
     <ClCompile Include="Source\Consumable.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
+    <ClCompile Include="Source\Ease.cpp" />
     <ClCompile Include="Source\HPPotion.cpp" />
     <ClCompile Include="Source\InventoryPanel.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Chest.h" />
     <ClInclude Include="Source\Consumable.h" />
+    <ClInclude Include="Source\Ease.h" />
     <ClInclude Include="Source\HPPotion.h" />
     <ClInclude Include="Source\InventoryPanel.h" />
     <ClInclude Include="Source\Item.h" />

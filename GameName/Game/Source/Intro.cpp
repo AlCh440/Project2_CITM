@@ -6,7 +6,7 @@
 #include "Window.h"
 #include "Intro.h"
 #include "LevelManagement.h"
-
+#include "Ease.h"
 
 
 #include "Defs.h"
@@ -41,7 +41,7 @@ bool Intro::Start()
 	waitTime = 200;
 	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");
 	rect = { 0, 0, 1280, 720 };
-
+	logoXpos = - 100;
 	return true;
 }
 
@@ -55,6 +55,17 @@ bool Intro::PreUpdate()
 bool Intro::Update(float dt)
 {
 	
+	if (counter < easingTime)
+	{
+
+		auto easingFunction = getEasingFunction(EaseOutBounce);
+		//LOG("Progress: %f", UpdateProgress(counter, 0, 100, 0, 1));
+		double progress = easingFunction(UpdateProgress(counter, 0, 100, 0, 1));	// 0.058
+		//LOG("Progress: %f", progress);
+		logoXpos =(int) UpdateProgress(progress, 0, 1, -100, 0);
+		counter++;
+	}
+
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		waitTime = 0;
@@ -74,7 +85,7 @@ bool Intro::Update(float dt)
 bool Intro::PostUpdate()
 {
 
-	app->render->DrawTexture(img, 0, 0, &rect, 0, 0, 0, 0, 0.5f);
+	app->render->DrawTexture(img, logoXpos, 0, &rect, 0, 0, 0, 0, 0.5f);
 
 	return true;
 }
@@ -86,4 +97,15 @@ bool Intro::CleanUp()
 	active = false;
 	img = nullptr;
 	return true;
+}
+
+//Map A value To B
+float Intro::UpdateProgress(float value, int AMin, int AMax, int  BMin, int BMax)
+{
+	int Aspan = AMax - AMin;
+	int Bspan = BMax - BMin;
+
+	float valueScaled = float(value - AMin) / float(Aspan);
+
+	return BMin + (valueScaled * Bspan);
 }
