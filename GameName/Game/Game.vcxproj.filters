@@ -216,6 +216,12 @@
     <ClCompile Include="Source\Ease.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Goblin.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\KingGoblin.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -462,6 +468,12 @@
     </ClInclude>
     <ClInclude Include="Source\Ease.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Goblin.h">
+      <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\KingGoblin.h">
+      <Filter>Entities\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
