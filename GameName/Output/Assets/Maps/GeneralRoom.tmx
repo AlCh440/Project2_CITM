@@ -518,7 +518,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="4" name="Walls" visible="0">
+ <objectgroup id="4" name="Walls">
   <object id="1" name="wall" type="wall" x="0" y="64" width="32" height="256"/>
   <object id="2" name="wall" type="wall" x="320" y="64" width="32" height="256"/>
   <object id="3" name="wall" type="wall" x="96" y="32" width="160" height="32"/>

@@ -7465,9 +7465,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="129"/>
+   <tile gid="130"/>
+   <tile gid="131"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8483,10 +8483,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="167"/>
-   <tile/>
-   <tile gid="167"/>
-   <tile gid="167"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8526,16 +8522,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="167"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="167"/>
-   <tile gid="167"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8546,6 +8532,20 @@
    <tile gid="167"/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="167"/>
+   <tile gid="167"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="167"/>
+   <tile/>
+   <tile/>
    <tile gid="167"/>
    <tile/>
    <tile/>
@@ -8555,7 +8555,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="81"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8593,11 +8593,11 @@
    <tile/>
    <tile/>
    <tile gid="169"/>
-   <tile gid="167"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="167"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -8666,7 +8666,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="105"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8703,9 +8703,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="167"/>
-   <tile gid="167"/>
    <tile/>
    <tile gid="169"/>
    <tile/>
@@ -8755,6 +8752,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="168"/>
    <tile/>
    <tile/>
@@ -8777,6 +8777,7 @@
    <tile gid="167"/>
    <tile/>
    <tile/>
+   <tile gid="129"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8814,8 +8815,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="167"/>
-   <tile/>
+   <tile gid="169"/>
    <tile gid="167"/>
    <tile/>
    <tile/>
@@ -9038,7 +9038,7 @@
    <tile gid="166"/>
    <tile gid="166"/>
    <tile gid="141"/>
-   <tile/>
+   <tile gid="169"/>
    <tile/>
    <tile/>
    <tile/>
@@ -13933,7 +13933,7 @@
    <tile gid="213"/>
    <tile gid="213"/>
    <tile gid="213"/>
-   <tile/>
+   <tile gid="213"/>
    <tile/>
    <tile/>
    <tile/>
@@ -14045,7 +14045,7 @@
    <tile gid="237"/>
    <tile gid="237"/>
    <tile gid="259"/>
-   <tile/>
+   <tile gid="213"/>
    <tile/>
    <tile/>
    <tile/>
@@ -14266,8 +14266,8 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="236"/>
-   <tile gid="259"/>
+   <tile gid="212"/>
+   <tile gid="213"/>
    <tile/>
    <tile/>
    <tile/>
@@ -14377,8 +14377,8 @@
    <tile gid="234"/>
    <tile gid="234"/>
    <tile gid="234"/>
-   <tile gid="185"/>
    <tile gid="212"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
    <tile/>
@@ -14488,8 +14488,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="209"/>
    <tile gid="212"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
    <tile/>
@@ -14599,8 +14599,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="233"/>
    <tile gid="212"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
    <tile/>
@@ -14710,8 +14710,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
    <tile gid="212"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
    <tile/>
@@ -14821,8 +14821,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
    <tile gid="212"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
@@ -14932,8 +14932,8 @@
    <tile/>
    <tile/>
    <tile gid="188"/>
-   <tile gid="189"/>
    <tile gid="307"/>
+   <tile gid="213"/>
    <tile gid="213"/>
    <tile gid="213"/>
    <tile/>
@@ -37352,8 +37352,7 @@
   <object id="15" name="wall" type="wall" x="768" y="640" width="64" height="32"/>
   <object id="17" name="wall" type="wall" x="800" y="576" width="32" height="64"/>
   <object id="18" name="wall" type="wall" x="832" y="544" width="224" height="32"/>
-  <object id="19" name="wall" type="wall" x="1056" y="576" width="32" height="64"/>
-  <object id="21" name="wall" type="wall" x="1088" y="640" width="32" height="64"/>
+  <object id="19" name="wall" type="wall" x="1056" y="576" width="32" height="128"/>
   <object id="22" name="wall" type="wall" x="1024" y="704" width="64" height="32"/>
   <object id="23" name="wall" type="wall" x="992" y="736" width="32" height="128"/>
   <object id="24" name="wall" type="wall" x="800" y="736" width="32" height="96"/>
