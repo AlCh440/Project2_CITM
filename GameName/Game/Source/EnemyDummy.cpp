@@ -32,8 +32,8 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	physBody->body->SetGravityScale(0);
 	
 	stats.hp = 10;
-	stats.movement = 10;
-	stats.baseDamage = 4;
+	stats.movement = 4;
+	stats.baseDamage = 5;
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;
@@ -201,7 +201,7 @@ bool EnemyDummy::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
-				pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
+				pathfinding->GenerateWalkeableArea(tilePos, 10);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);

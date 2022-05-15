@@ -477,31 +477,6 @@ void PathFinding::GenerateWalkeableArea(iPoint center, int range)
 		}
 	}
 
-
-	lastPath.Clear();
-
-	//ResetBFSPath();
-	//InitBFS(center);
-
-	//for (int x = center.x - range; x < center.x + range; x++)
-	//{
-	//	for (int y = center.y - range; y < center.y + range; y++)
-	//	{
-	//		iPoint next;
-	//		next.x = x;
-	//		next.y = y;
-
-	//		if (!visited.find(next) && IsWalkable(next)
-	//			&& IsTileEmpty(next) && CreatePath(center, next) <= range)
-	//		{
-	//			frontier.Push(next);
-	//			visited.add(next);
-	//		}
-	//	}
-	//}
-	//if(visited.start != nullptr)
-	//	LOG("Walkeable area created");
-
 	lastPath.Clear();
 }
 

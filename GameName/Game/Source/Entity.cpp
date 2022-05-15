@@ -209,8 +209,16 @@ bool Entity::MovePath()
 		{
 			nextStep = false;
 
+			//For AI:
+			//if enemy has moved more than he can 
+			//clear the path to stop the movement
+			if (stats.movement <= stepCounter)
+				pathfinding->ClearPath();
+
+
 			currentP = pathfinding->GetLastPath()->At(stepCounter);
 			nextP = pathfinding->GetLastPath()->At(stepCounter + 1);
+
 
 
 			//end movement

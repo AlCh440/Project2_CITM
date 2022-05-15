@@ -26,3 +26,4 @@ bool Enemy::PostUpdate() { return true; }
 
 // Collision response
 void Enemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB) {}
+
