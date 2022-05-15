@@ -44,6 +44,7 @@ private:
 
 	uint music;
 
+	bool hasBeenCreated;
 
 
 

@@ -32,8 +32,7 @@ bool TheFall::Start()
 	app->entities->Start();
 	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
-	app->guiManager->OpenPanel(P_QUEST);
-
+	
 	uncheckableTiles[0] = { 15, 37 };
 	uncheckableTiles[1] = { 16, 37 };
 	uncheckableTiles[2] = { 17, 37 };
@@ -44,7 +43,7 @@ bool TheFall::Start()
 		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
 	}
 
-
+	hasBeenCreated = false;
 
 	
 	return true;
@@ -88,6 +87,15 @@ bool TheFall::Update(float dt)
 			app->levelManagement->playerLastPos_TheFall = { app->entities->openWorld->GetPosition().x + 16,app->entities->openWorld->GetPosition().y + 16 };
 	}
 	
+	if (app->dialogManager->dialog_intro.Finished())
+	{
+		if (hasBeenCreated == false)
+		{
+			app->guiManager->OpenPanel(P_QUEST);
+			hasBeenCreated = true;
+		}
+		
+	}
 
 	return true;
 }
