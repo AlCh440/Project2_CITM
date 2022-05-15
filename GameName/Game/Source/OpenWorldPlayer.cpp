@@ -45,8 +45,9 @@ OpenWorldPlayer::~OpenWorldPlayer()
 
 bool OpenWorldPlayer::Start()
 {
-	steps = app->audio->LoadFx("Assets/audio/fx/footSteps2.wav");
-	steps2 = app->audio->LoadFx("Assets/audio/fx/footSteps3.wav");
+	fxStepsDef = app->audio->LoadFx("Assets/audio/fx/fxStepDef.wav");
+	fxStepsDirt = app->audio->LoadFx("Assets/audio/fx/fxDirtStep.wav");
+	fxStepsGrass = app->audio->LoadFx("Assets/audio/fx/fxGrassStep.wav");
 
 	stats.hp = 100;
 	stats.mana = 50;
@@ -176,17 +177,77 @@ bool OpenWorldPlayer::Update(float dt)
 
 	physBody->GetPosition(position.x, position.y);
 
+
+	LOG("%i", currentSteps);
+
+	if (app->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN)
+	{
+		app->audio->PlayFx(currentSteps);
+
+	}
+
+	bool cont = true;
+	for (p2ListItem<MapLayer*>* layer = app->map->mapData.layers.getFirst(); layer && cont == true; layer = layer->next)
+	{
+		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
+		
+		int tileID = layer->data->Get(pos.x,pos.y);
+		LOG("%s: %i", layer->data->name.GetString(), tileID);
+		switch (tileID)
+		{
+		case 118:
+		{
+			currentSteps = fxStepsGrass;
+			cont = false;
+		}
+		break;
+		case 197:
+		{
+			currentSteps = fxStepsDirt;
+			cont = false;
+		}
+		break;
+		case 219:
+		{
+			currentSteps = fxStepsDirt;
+			cont = false;
+		}
+		break;
+		default:
+		{
+			currentSteps = fxStepsDef;
+
+
+		}
+			break;
+		}
+	}
+
+
+
 	Animation* lastDirection = currentAnim;
 
 	if (CanMove())
 	{
+		if (movement.x != 0 || movement.y != 0)
+		{
+			if (stepsTimer > 0) stepsTimer--;
+			else
+			{
+				app->audio->PlayFx(currentSteps);
+				stepsTimer = stepsTimerRef;
+			}
+		}
+
+
+
 		if (movement.x > 0)
 		{
 			currentAnim = &walkSide;
 			lastDirection = &walkSide;
 			lastDirection->speed = walkSpeed;
 			goingLeft = false;
-			app->audio->PlayFx(steps);
+			/*app->audio->PlayFx(currentSteps);*/
 			
 		}
 		else if (movement.x < 0)
@@ -195,7 +256,7 @@ bool OpenWorldPlayer::Update(float dt)
 			lastDirection = &walkSide;
 			lastDirection->speed = walkSpeed;
 			goingLeft = true;
-			app->audio->PlayFx(steps);
+			//app->audio->PlayFx(currentSteps);
 			
 		}
 		else if (movement.y < 0)
@@ -203,7 +264,7 @@ bool OpenWorldPlayer::Update(float dt)
 			currentAnim = &walkUp;
 			lastDirection = &walkUp;
 			lastDirection->speed = walkSpeed;
-			app->audio->PlayFx(steps);
+			//app->audio->PlayFx(currentSteps);
 			
 			//app->audio->Pause = true;
 		}
@@ -212,7 +273,7 @@ bool OpenWorldPlayer::Update(float dt)
 			currentAnim = &walkDown;
 			lastDirection = &walkDown;
 			lastDirection->speed = walkSpeed;
-			app->audio->PlayFx(steps);
+			//app->audio->PlayFx(currentSteps);
 			
 			//app->audio->PlayFx(steps);
 		}
