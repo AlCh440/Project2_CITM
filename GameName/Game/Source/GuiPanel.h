@@ -34,6 +34,7 @@ public:
 	virtual bool Start();
 	virtual bool Update(float dt, bool doLogic);
 	virtual bool Draw();
+	virtual void DrawItems() { };
 	virtual void Enable();
 	virtual void Disable();
 	// Called before quitting
