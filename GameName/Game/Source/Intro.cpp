@@ -59,9 +59,7 @@ bool Intro::Update(float dt)
 	{
 
 		auto easingFunction = getEasingFunction(EaseOutBounce);
-		//LOG("Progress: %f", UpdateProgress(counter, 0, 100, 0, 1));
-		double progress = easingFunction(UpdateProgress(counter, 0, 100, 0, 1));	// 0.058
-		//LOG("Progress: %f", progress);
+		double progress = easingFunction(UpdateProgress(counter, 0, 100, 0, 1));
 		logoXpos =(int) UpdateProgress(progress, 0, 1, -100, 0);
 		counter++;
 	}

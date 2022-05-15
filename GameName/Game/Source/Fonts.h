@@ -63,6 +63,8 @@ public:
 
 	int titles;
 
+	int battleMenu;
+
 	SDL_Color c_Menus = {38,31,56};
 
 private:

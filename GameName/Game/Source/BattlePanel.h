@@ -1,6 +1,8 @@
 #pragma once
 #include "GuiPanel.h"
 
+class Entity;
+
 class BattlePanel :  public GuiPanel
 {
 public:
@@ -14,8 +16,10 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
 	void Enable() override;
-	void LoadEntityAttacks();
+	void LoadEntityUi();
 
+	void UpdateStats(Entity* ent);
+	void RenderStats();
 
 	GuiButton* bt_attack;
 	GuiButton* bt_move;
@@ -23,5 +27,14 @@ public:
 
 
 	GuiButton* bt_test;
+
+	SDL_Rect entityFace;
+
+
+	SDL_Texture* tex_hptext;
+	SDL_Texture* tex_dmgtext;
+	SDL_Texture* tex_mvmtext;
+
+	SDL_Rect r_hp, r_dmg, r_mvm;
 };
 

@@ -2,6 +2,9 @@
 #include "GuiManager.h"
 #include "Entity.h"
 #include "BattleTestScene.h"
+#include "App.h"
+#include "Window.h"
+#include <string> 
 
 
 BattlePanel::BattlePanel(bool active) : GuiPanel(active)
@@ -20,30 +23,33 @@ bool BattlePanel::Start()
 	bounds = { 0,0,1080,720 };
 	position = { 0,0 };
 
-	bt_attack = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { this->position.x ,this->position.y,56,56 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
-	bt_attack->texture = app->guiManager->UItexture2;
-	bt_attack->normalRec = { 0,557,56,56 };
-	bt_attack->focusedRec = { 0,502,56,56 };
-	bt_attack->pressedRec = { 0,557,56,56 };
+	texBattleElements = app->tex->Load("Assets/Sprites/UI/battleUi.png");
 
+	bt_attack = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { this->position.x +301,this->position.y + 664,40,40 });
+	bt_attack->texture = texBattleElements;
+	bt_attack->normalRec = { 0,73,40,40 };
+	bt_attack->focusedRec = { 80,73,40,40 };
+	bt_attack->pressedRec = { 40,73,40,40 };
 
-	bt_move = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { this->position.x ,this->position.y + 56,56,56 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
-	bt_move->texture = app->guiManager->UItexture2;
-	bt_move->normalRec = { 0,347,56,56 };
-	bt_move->focusedRec = { 0,297,56,56 };
-	bt_move->pressedRec = { 0,347,56,56 };
+	bt_move = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { this->position.x +364 ,this->position.y + 664,40,40 });
+	bt_move->texture = texBattleElements;
+	bt_move->normalRec = { 0,73,40,40 };
+	bt_move->focusedRec = { 80,73,40,40 };
+	bt_move->pressedRec = { 40,73,40,40 };
 
-	bt_endTurn = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { this->position.x ,this->position.y+112,56,56 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
-	bt_endTurn->texture = app->guiManager->UItexture2;
-	bt_endTurn->normalRec = { 0,663,56,56 };
-	bt_endTurn->focusedRec = { 0,610,56,56 };
-	bt_endTurn->pressedRec = { 0,663,56,56 };
+	bt_endTurn = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { this->position.x +428,this->position.y + 664,104,40 }, "End Turn", app->fonts->battleMenu, app->fonts->c_Menus);
+	bt_endTurn->texture = texBattleElements;
+	bt_endTurn->normalRec = { 120,73,104,40 };
+	bt_endTurn->focusedRec = { 120,113,104,40 };
+	bt_endTurn->pressedRec = { 280,73,104,40 };
+
 
 	return true;
 }
 
 bool BattlePanel::Update(float dt, bool doLogic)
 {
+
 	bounds.x = app->render->camera.x;
 	bounds.y = app->render->camera.y;
 	GuiPanel::Update(dt,doLogic);
@@ -53,6 +59,35 @@ bool BattlePanel::Update(float dt, bool doLogic)
 bool BattlePanel::Draw()
 {
 	GuiPanel::Draw();
+
+	if (app->battleTest->currentEntity != nullptr)
+	{
+		switch (app->battleTest->currentEntity->data->type)
+		{
+		case PLAYERKNIGHT:
+			
+			break;
+		case PLAYERRANGER:
+			
+			break;
+		case DUMMY:
+			
+			break;
+		default:
+			break;
+		}
+		app->render->DrawTexture(texBattleElements, 114 / app->win->GetScale(), 619 / app->win->GetScale(), &entityFace, 0, 0, 0, 0, 0.5f);
+		
+		RenderStats();
+	}
+
+	SDL_Rect r;
+	r = { 0,113,40,40 };
+	app->render->DrawTexture(texBattleElements, 301 / app->win->GetScale(), 664 / app->win->GetScale(), &r, 0, 0, 0, 0, 0.5f);
+	r = { 40,113,40,40 };
+	app->render->DrawTexture(texBattleElements, 364 / app->win->GetScale(), 664 / app->win->GetScale(), &r, 0, 0, 0, 0, 0.5f);
+
+
 	return true;
 }
 
@@ -74,6 +109,7 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (bt_endTurn->id == control->id){
 		app->battleTest->NextEntity();
+		LoadEntityUi();
 	}
 	return true;
 }
@@ -81,25 +117,68 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 void BattlePanel::Enable()
 {
 	Active = true;
-	//LoadEntityAttacks();
+	LoadEntityUi();
 }
 
-void BattlePanel::LoadEntityAttacks()
+void BattlePanel::LoadEntityUi()
 {
 	if (app->battleTest->currentEntity != nullptr)
 	{
-		p2ListItem<Attack*>* a = app->battleTest->currentEntity->data->attackList->start;
-		int i = 0;
 
-		while (a != nullptr)
+		UpdateStats(app->battleTest->currentEntity->data);
+
+
+		switch (app->battleTest->currentEntity->data->type)
 		{
-			bt_test = (GuiButton*)CreateGuiButton(a->data->id, app->guiManager, this, { this->position.x + 538 + (i * 63),this->position.y + 664,40,40 });
-			bt_test->texture = app->guiManager->UItexture2;
-			bt_test->normalRec = { 113,302,40,40 };
+		case PLAYERKNIGHT:
+		{
 
-			i++;
-			a = a->next;
+			entityFace = { 0,0,48,48 };
+
 		}
+			break;
+		case PLAYERRANGER:
+		{
+
+			entityFace = {48,0,48,48 };
+		}
+			break;
+		case DUMMY:
+			entityFace = { 144,0,48,48 };
+			break;
+		default:
+			break;
+		}
+
 	}
+}
+
+void BattlePanel::UpdateStats(Entity* ent)
+{
+	
+	tex_hptext = app->fonts->LoadRenderedText(r_hp, app->fonts->battleMenu, std::to_string(ent->stats.hp).c_str(), app->fonts->c_Menus);
+	tex_dmgtext = app->fonts->LoadRenderedText(r_dmg, app->fonts->battleMenu, std::to_string(ent->stats.baseDamage).c_str(), app->fonts->c_Menus);
+	tex_mvmtext = app->fonts->LoadRenderedText(r_mvm, app->fonts->battleMenu, std::to_string(ent->stats.movement).c_str(), app->fonts->c_Menus);
+
+}
+
+void BattlePanel::RenderStats()
+{
+	SDL_Rect r;
+
+	//hp
+	r = {0,48,25,25};
+	app->render->DrawTexture(texBattleElements, 179 / app->win->GetScale(), 619 / app->win->GetScale(), &r, 0, 0, 0, 0, 0.5f);
+	app->render->DrawTexture(tex_hptext, 210 / app->win->GetScale(), 619 / app->win->GetScale(), &r_hp, 0, 0, 0, 0, 0.5f);
+
+	//dmg
+	r = { 50,48,25,25 };
+	app->render->DrawTexture(texBattleElements, 179 / app->win->GetScale(), 649 / app->win->GetScale(), &r, 0, 0, 0, 0, 0.5f);
+	app->render->DrawTexture(tex_dmgtext, 210 / app->win->GetScale(), 649 / app->win->GetScale(), &r_dmg, 0, 0, 0, 0, 0.5f);
+	
+	//movement
+	r = { 25,48,25,25 };
+	app->render->DrawTexture(texBattleElements, 179 / app->win->GetScale(), 679 / app->win->GetScale(), &r, 0, 0, 0, 0, 0.5f);
+	app->render->DrawTexture(tex_mvmtext, 210 / app->win->GetScale(), 679 / app->win->GetScale(), &r_mvm, 0, 0, 0, 0, 0.5f);
 }
 

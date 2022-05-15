@@ -39,6 +39,7 @@ bool BattleTestScene::Start()
 	//Start UI
 	app->guiManager->OpenPanel(P_BATTLE);
 
+	app->render->ResetCameraPosition();
 
 	battleEntities = app->entities->entities;
 	currentEntity = app->entities->entities.start;

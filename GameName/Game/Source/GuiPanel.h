@@ -57,6 +57,7 @@ public:
 	SDL_Rect bounds;
 	iPoint position;
 	SDL_Texture* texture;
+	SDL_Texture* texBattleElements;
 	bool Active;
 	PanelID id;
 };
