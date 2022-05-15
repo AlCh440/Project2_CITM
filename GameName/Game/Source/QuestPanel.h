@@ -22,13 +22,24 @@ public:
 	GuiButton* completeButton;
 	GuiButton* dialogueButton;
 	GuiButton* finishButton;
-	GuiButton* cancelButton;
+	GuiButton* offQuestPanel;
 
 	p2ListItem<Quest*>* currentQuest;
+
 	SDL_Texture* notAvailableTex;
 	SDL_Rect notavailable;
 
 	SDL_Texture* availableTex;
 	SDL_Rect rAvailable;
+
+	SDL_Texture* activeTex;
+	SDL_Rect rActive;
+
+	SDL_Texture* completedTex;
+	SDL_Rect rCompleted;
+
+	SDL_Rect test = {0,0,200,200};
+
+	int windowScale;
 };
 

@@ -19,43 +19,43 @@ QuestPanel::~QuestPanel()
 bool QuestPanel::Start()
 {
 	//TODO add title
-
+	windowScale = app->win->GetScale();
 	texture = app->guiManager->UItexture2;
 	bounds = { 81,414,558,266 };
 	position = { 300,200 };
 
-	notAvailableTex = app->fonts->LoadRenderedText(notavailable, 0, "Not available", {255,255,255});
-	availableTex = app->fonts->LoadRenderedText(rAvailable,0, "There is something new!", { 255,255,255 });
+	notAvailableTex = app->fonts->LoadRenderedText(notavailable, 0, "Locked", {255,255,255});
+	availableTex = app->fonts->LoadRenderedText(rAvailable,0, "Unlocked", { 255,255,255 });
+	activeTex = app->fonts->LoadRenderedText(rActive, 0, "Active", { 255,255,255 });
+	completedTex = app->fonts->LoadRenderedText(rCompleted, 0, "Completed", { 255,255,255 });
 
 	currentQuest = app->questManager->questList->start;
 
-	nextButton = (GuiButton*)CreateGuiButton(0,app->guiManager,this, { 332, 610,52,56 });
 
+	nextButton = (GuiButton*)CreateGuiButton(0,app->guiManager,this, { 0 / windowScale, 610 / windowScale,52,56 });
+	
 	nextButton->texture = app->guiManager->UItexture2;
 	nextButton->normalRec = { 0,297,56,52 };
 	nextButton->focusedRec = { 0,349,56,52 };
 	nextButton->pressedRec = { 0,349,56,52 };
 
-	cancelButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 270, 610,52,56 });
-
-	cancelButton->texture = app->guiManager->UItexture2;
-	cancelButton->normalRec = {0,399,56,52};
-	cancelButton->focusedRec = {0,451,56,52};
-	cancelButton->pressedRec = {0,451,56,52};
-
-	completeButton = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { 210, 610,52,56 });
+	completeButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 200 / windowScale, 610 / windowScale,52,56 });
 
 	completeButton->texture = app->guiManager->UItexture2;
 	completeButton->normalRec = { 0,613,56,52 };
 	completeButton->focusedRec = { 0,664,56,52 };
 	completeButton->pressedRec = { 0,664,56,52 };
+	
+	offQuestPanel = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { 100 / windowScale, 610 / windowScale,52,56 });
+	
+	offQuestPanel->texture = app->guiManager->UItexture2;
+	offQuestPanel->normalRec = {0,399,56,52};
+	offQuestPanel->focusedRec = {0,451,56,52};
+	offQuestPanel->pressedRec = {0,451,56,52};
+	
+	
 
-	dialogueButton = (GuiButton*)CreateGuiButton(3, app->guiManager, this, { 396, 610,52,56 });
-
-	dialogueButton->texture = app->guiManager->UItexture2;
-	dialogueButton->normalRec = { 57,349,56,52 };
-	dialogueButton->focusedRec = { 57,297,56,52 };
-	dialogueButton->pressedRec = { 57,297,56,52 };
+	
 	
 
     return true;
@@ -64,26 +64,27 @@ bool QuestPanel::Start()
 bool QuestPanel::Update(float dt, bool doLogic)
 {
 	GuiPanel::Update(dt,doLogic);
-	//
-	dialogueButton->position.x = 320 / app->win->GetScale();
-	dialogueButton->position.y = 210 / app->win->GetScale();
-	//
+	app->gamePaused = true;
+	
 	return true;
 }
 
 bool QuestPanel::Draw()
 {
+	app->gamePaused = true;
+	//app->guiManager->OnPause(true);
 
 	GuiPanel::Draw();
 
 	if (currentQuest != nullptr && currentQuest->data->titleTex != NULL)
 		app->render->DrawTexture(currentQuest->data->titleTex, 320 / app->win->GetScale(), 210 / app->win->GetScale(), &currentQuest->data->rTitle, 0, 0, 0, 0, 0.5f);
 	
-	if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
-		app->render->DrawTexture(currentQuest->data->descriptionTex, 320 / app->win->GetScale(), 260 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
-
-	if (currentQuest != nullptr && currentQuest->data->objectiveTex != NULL)
-		app->render->DrawTexture(currentQuest->data->objectiveTex, 320 / app->win->GetScale(), 340 / app->win->GetScale(), &currentQuest->data->rObjective, 0, 0, 0, 0, 0.5f);
+	
+	//if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
+	//	app->render->DrawTexture(currentQuest->data->descriptionTex, 320 / app->win->GetScale(), 260 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
+	//
+	//if (currentQuest != nullptr && currentQuest->data->objectiveTex != NULL)
+	//	app->render->DrawTexture(currentQuest->data->objectiveTex, 320 / app->win->GetScale(), 340 / app->win->GetScale(), &currentQuest->data->rObjective, 0, 0, 0, 0, 0.5f);
 
 	if (currentQuest != nullptr)
 	{
@@ -103,17 +104,32 @@ bool QuestPanel::Draw()
 			break;
 		case Quest::ACTIVE:
 
+			//if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
+			//	app->render->DrawTexture(currentQuest->data->descriptionTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
+
 			if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
-				app->render->DrawTexture(currentQuest->data->descriptionTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
+				app->render->DrawTexture(currentQuest->data->descriptionTex, 320 / app->win->GetScale(), 260 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
+
+			if (currentQuest != nullptr && currentQuest->data->objectiveTex != NULL)
+				app->render->DrawTexture(currentQuest->data->objectiveTex, 320 / app->win->GetScale(), 340 / app->win->GetScale(), &currentQuest->data->rObjective, 0, 0, 0, 0, 0.5f);
+
+			if (availableTex != nullptr)
+				app->render->DrawTexture(activeTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &rActive, 0, 0, 0, 0, 0.5f);
 
 			break;
 		case Quest::COMPLETE:
 
-			break;
-		case Quest::DONE:
+			if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
+				app->render->DrawTexture(currentQuest->data->descriptionTex, 320 / app->win->GetScale(), 260 / app->win->GetScale(), &currentQuest->data->rDescription, 0, 0, 0, 0, 0.5f);
+
+			if (currentQuest != nullptr && currentQuest->data->objectiveTex != NULL)
+				app->render->DrawTexture(currentQuest->data->objectiveTex, 320 / app->win->GetScale(), 340 / app->win->GetScale(), &currentQuest->data->rObjective, 0, 0, 0, 0, 0.5f);
+
+			if (availableTex != nullptr)
+				app->render->DrawTexture(completedTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &rCompleted, 0, 0, 0, 0, 0.5f);
 
 			break;
-
+		
 		default:
 			break;
 		}
@@ -152,18 +168,21 @@ bool QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
 			currentQuest = app->questManager->questList->start;
 		}
 	}
-	else if (control->id == cancelButton->id)
-	{
-		app->questManager->CancelQuest(currentQuest->data->id);
-	}
 	else if (control->id == completeButton->id)
 	{
 		app->questManager->CompleteQuest(currentQuest->data->id);
+		//app->questManager->CancelQuest(currentQuest->data->id);
 	}
-	else if (control->id == dialogueButton->id)
+	else if (control->id == offQuestPanel->id)
 	{
-		app->questManager->ActivateQuest(currentQuest->data->id);
+		//app->gamePaused = false;
+		//app->guiManager->OnPause(false);
+		//app->questManager->CompleteQuest(currentQuest->data->id);
+		//app->questManager->CancelQuest(currentQuest->data->id);
+		this->Disable();
 	}
+	
+	
 
 	return true;
 }

@@ -5,6 +5,7 @@
 #include "Entities.h"
 #include "Audio.h"
 #include "Physics.h"
+#include "GuiManager.h"
 
 GreenPath::GreenPath(bool isActive) : Module(isActive)
 {
@@ -43,6 +44,8 @@ bool GreenPath::Start()
 	uncheckableTiles[3] = { 100, 20 };
 	uncheckableTiles[4] = { 100, 21 };
 	uncheckableTiles[5] = { 100, 22 };
+
+	//app->guiManager->OpenPanel(P_QUEST);
 
 	return true;
 }
