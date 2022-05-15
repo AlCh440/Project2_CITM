@@ -18,8 +18,10 @@ Chest::Chest(Collider_Type type, iPoint pos) : Item(type, pos)
 Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, pos)
 {
 	item = items;
-	texture = app->tex->Load("Assets/Sprites/dummySprite.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
+	alreadyOpen = false;
+	texture = app->tex->Load("Assets/Maps/tileset.png");
+	attention = app->tex->Load("Assets/Sprites/characters/NPC.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
 	Key* k = new Key(1);
@@ -38,6 +40,8 @@ Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, p
 
 bool Chest::Start()
 {
+	fxOpen = app->audio->LoadFx("Assets/audio/fx/chestOpen.wav");
+	fxClose = app->audio->LoadFx("Assets/audio/fx/chestClosing.wav");
 	return true;
 }
 
@@ -55,10 +59,12 @@ bool Chest::Update(float dt)
 
 	if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
 	{
-		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && !alreadyOpen)
 		{
 			Open(player);
 			CleanUp();
+			alreadyOpen = true;
+			app->audio->PlayFx(fxOpen, false);
 		}
 
 	}
@@ -74,8 +80,33 @@ bool Chest::CleanUp()
 
 bool Chest::PostUpdate()
 {
-	app->render->DrawTexture(texture, position.x, position.y);
+	SDL_Rect rClosed = { 0,448,32,32 };
+	SDL_Rect rOpen = { 32,448,32,32 };
+	
+	if (app->entities->openWorld != nullptr)
+	{
+		OpenWorldPlayer* player = (OpenWorldPlayer*)app->entities->openWorld;
 
+		int DistanceX = abs(player->GetPosition().x - GetPosition().x);
+		int DistanceY = abs(player->GetPosition().y - GetPosition().y);
+
+		SDL_Rect Rask = { 0,0,9,12 };
+
+		if (!alreadyOpen)
+		{
+			app->render->DrawTexture(texture, position.x - 16, position.y - 16, &rClosed);
+
+			if (DistanceX <= detectionDistance && DistanceY <= detectionDistance)
+			{
+				app->render->DrawTexture(attention, position.x - 15 + 26, position.y - 20, &Rask);
+			}
+		}
+		else
+		{
+			app->render->DrawTexture(texture, position.x - 16, position.y -16, &rOpen);
+		} 
+		
+	}
 	return true;
 }
 
