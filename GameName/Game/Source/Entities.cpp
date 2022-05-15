@@ -44,10 +44,10 @@ bool ModuleEntities::Awake()
 
 bool ModuleEntities::Start()
 {
-    for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
+   /* for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
         aux->data->Start();
-    }
+    }*/
 
     
     return true;
@@ -153,11 +153,13 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         knightInstance = new Knight(type, spawnPos);
         entities.add(knightInstance);
         players.add(knightInstance);
+        knightInstance->Start();
         break;
     case PLAYERRANGER:
         rangerInstance = new Ranger(type, spawnPos);
         entities.add(rangerInstance);
         players.add(rangerInstance);
+        rangerInstance->Start();
         break;
     case PLAYEROPENWORLD:
     {
@@ -166,31 +168,38 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
             openWorldInstance = new OpenWorldPlayer(type, spawnPos);
             //entities.add(openWorldInstance);
             openWorld = openWorldInstance;
+            openWorld->Start();
         }
     } break;
     case DUMMY:
         dummyInstance = new EnemyDummy(type, spawnPos);
         entities.add(dummyInstance);
         enemies.add(dummyInstance);
+        dummyInstance->Start();
         break;
     case NPCDUMMY:
         dummyNpcInstance = new NpcDummy(type, spawnPos);
         entities.add(dummyNpcInstance);
+        dummyNpcInstance->Start();
         break;
     case NPCGUARD:
         dummyNpcGuardInstance = new NpcGuard(type, spawnPos);
         entities.add(dummyNpcGuardInstance);
+        dummyNpcGuardInstance->Start();
         break;
     case NPCWOVILLAGER:
         dummyNpcWoVillagerInstance = new NpcWoVillager(type, spawnPos);
         entities.add(dummyNpcWoVillagerInstance);
+        dummyNpcWoVillagerInstance->Start();
         break;
     case CHEST:
         itemInstance = new Chest(type, spawnPos, items);
         entities.add(itemInstance);
+        itemInstance->Start();
         break;
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);
+        exitIntance->Start();
         break;
     default :
         break;

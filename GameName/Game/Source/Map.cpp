@@ -9,7 +9,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include<iostream>
-
+#include "GreenPath.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -748,8 +748,64 @@ bool Map::SetMapColliders()
 						//	app->entities->openWorld->RestartPhysBody(spawnPos, object->data->type);
 						//}
 						//else
+						//app->entities->openWorld->SetPositionFromPixels(spawnPos);
 
-						app->entities->openWorld->SetPositionFromPixels(spawnPos);
+						if (app->entities->openWorld != nullptr)
+						{
+							switch (app->levelManagement->gameScene)
+							{
+							case THE_FALL:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
+							}
+							break;
+							case GREEN_PATH:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GreenPath);
+							}
+							break;
+							case VILLAGE:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
+							}
+							break;
+							case GENERAL_ROOM:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GeneralRoom);
+							}
+							break;
+							case MAGE_ROOM:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_MageRoom);
+							}
+							break;
+							case SHOP_ROOM:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_ShopRoom);
+							}
+							break;
+							case RUINS:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheRuins);
+							}
+							break;
+							case FRACTURED_ROAD:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_FracturedRoad);
+							}
+							break;
+							case DRAGON_CLIFF:
+							{
+								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_DragonCliff);
+							}
+							break;
+
+							default:
+								break;
+							}
+						}
+
+						
 						//app->entities->openWorld->SetPosition(spawnPos);
 					}
 					else

@@ -23,7 +23,7 @@ enum GameScene {
 	RUINS = 7,
 	VILLAGE = 8,
 	FRACTURED_ROAD = 9,
-	DRAGRON_CLIFF = 10,
+	DRAGON_CLIFF = 10,
 	COMBAT = 11,
 	WORLD_TEST = 12,
 	MAGE_ROOM,
@@ -71,6 +71,16 @@ public:
 	int delayTime = 100;
 	int levelsPassed = 0;
 	bool loadLevel = false;
+
+	iPoint playerLastPos_TheFall;
+	iPoint playerLastPos_GreenPath;
+	iPoint playerLastPos_Village;
+	iPoint playerLastPos_GeneralRoom;
+	iPoint playerLastPos_MageRoom;
+	iPoint playerLastPos_ShopRoom;
+	iPoint playerLastPos_TheRuins;
+	iPoint playerLastPos_FracturedRoad;
+	iPoint playerLastPos_DragonCliff;
 
 	uint music;
 	bool playMusic = true;
