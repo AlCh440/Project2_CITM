@@ -87,7 +87,6 @@ bool GreenPath::Update(float dt)
 		if (ret == true)
 			app->levelManagement->playerLastPos_GreenPath = { app->entities->openWorld->GetPosition().x, app->entities->openWorld->GetPosition().y };
 
-		LOG("greenpath %i, %i", app->levelManagement->playerLastPos_GreenPath.x, app->levelManagement->playerLastPos_GreenPath.y);
 	}
 
 
