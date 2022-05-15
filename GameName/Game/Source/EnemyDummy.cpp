@@ -212,7 +212,7 @@ bool EnemyDummy::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
-				pathfinding->GenerateWalkeableArea(tilePos, 10);
+				pathfinding->GenerateWalkeableArea(tilePos, app->map->mapData.width / app->map->mapData.tileWidth);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);

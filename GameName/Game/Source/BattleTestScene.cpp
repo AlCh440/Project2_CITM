@@ -36,8 +36,7 @@ bool BattleTestScene::Start()
 	app->map->Load("BattleGroundTest.tmx");
 	//start etities
 	app->entities->Start();
-	//Start UI
-	app->guiManager->OpenPanel(P_BATTLE);
+
 
 	app->render->ResetCameraPosition();
 
@@ -60,6 +59,10 @@ bool BattleTestScene::Start()
 
 	entityIndex = 0;
 	turnCounter = 0;
+
+	//Start UI when everything is loaded
+	app->guiManager->OpenPanel(P_BATTLE);
+
 
 	return true;
 }
