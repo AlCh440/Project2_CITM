@@ -121,7 +121,7 @@ bool ModuleEntities::CleanUp()
     return true;
 }
 
-Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item*> items)
+Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
 {
     switch (type)
     {
@@ -187,7 +187,7 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <I
         dummyNpcWoVillagerInstance->Start();
         break;
     case CHEST:
-        itemInstance = new Chest(type, spawnPos, items);
+        itemInstance = new Chest(type, spawnPos);
         entities.add(itemInstance);
         itemInstance->Start();
         return itemInstance;

@@ -847,6 +847,26 @@ bool Map::SetMapColliders()
 					ManaPotion* mp = new ManaPotion(MANA_POTION);
 					chestIns->AddItem(mp);
 				}
+				if (object->data->properties.GetProperty("key", 1))
+				{
+					Key* k = new Key(1);
+					chestIns->AddItem(k);
+				}
+				if (object->data->properties.GetProperty("key", 2))
+				{
+					Key* k = new Key(2);
+					chestIns->AddItem(k);
+				}
+				if (object->data->properties.GetProperty("key", 3))
+				{
+					Key* k = new Key(3);
+					chestIns->AddItem(k);
+				}
+				if (object->data->properties.GetProperty("key", 4))
+				{
+					Key* k = new Key(4);
+					chestIns->AddItem(k);
+				}
 				LOG("spawn chest...");
 				break;
 			case PLAYERKNIGHT:
