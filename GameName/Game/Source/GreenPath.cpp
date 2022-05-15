@@ -100,7 +100,7 @@ bool GreenPath::PostUpdate()
 bool GreenPath::CleanUp()
 {
 	app->map->CleanUp();
-	//app->entities->CleanUp();
+	app->entities->CleanUp();
 	//app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;

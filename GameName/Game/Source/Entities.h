@@ -12,6 +12,8 @@
 
 #include "Enemy.h"
 #include "EnemyDummy.h"
+#include "Goblin.h"
+#include "KingGoblin.h"
 #include "Npc.h"
 #include "NpcDummy.h"
 #include "NpcGuard.h"
@@ -101,6 +103,8 @@ public:
 	Ranger* rangerInstance;
 	OpenWorldPlayer* openWorldInstance;
 	EnemyDummy* dummyInstance;
+	Goblin* goblinInstance;
+	KingGoblin* kingGoblinInstance;
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;
 	NpcWoVillager* dummyNpcWoVillagerInstance;

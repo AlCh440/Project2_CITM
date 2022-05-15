@@ -105,6 +105,7 @@
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
     <ClCompile Include="Source\Ease.cpp" />
+    <ClCompile Include="Source\Goblin.cpp" />
     <ClCompile Include="Source\HPPotion.cpp" />
     <ClCompile Include="Source\InventoryPanel.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="Source\GuiToggle.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
     <ClCompile Include="Source\Key.cpp" />
+    <ClCompile Include="Source\KingGoblin.cpp" />
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Mage.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="Source\Chest.h" />
     <ClInclude Include="Source\Consumable.h" />
     <ClInclude Include="Source\Ease.h" />
+    <ClInclude Include="Source\Goblin.h" />
     <ClInclude Include="Source\HPPotion.h" />
     <ClInclude Include="Source\InventoryPanel.h" />
     <ClInclude Include="Source\Item.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="Source\GuiToggle.h" />
     <ClInclude Include="Source\Intro.h" />
     <ClInclude Include="Source\Key.h" />
+    <ClInclude Include="Source\KingGoblin.h" />
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Mage.h" />

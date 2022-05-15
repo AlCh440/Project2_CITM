@@ -19,6 +19,8 @@
 
 #include "Npc.h"
 #include "NpcDummy.h"
+#include "Goblin.h"
+#include "KingGoblin.h"
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
 #include "Chest.h"
@@ -111,6 +113,8 @@ bool ModuleEntities::CleanUp()
     knightInstance = nullptr;
     dummyInstance = nullptr;
     dummyNpcInstance = nullptr;
+    goblinInstance = nullptr;
+    kingGoblinInstance = nullptr;
     
     players.clear();
     entities.clear();
@@ -152,11 +156,26 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         enemies.add(dummyInstance);
         dummyInstance->Start();
         break;
+    
+    case GOBLIN:
+        goblinInstance = new Goblin(type, spawnPos);
+        entities.add(goblinInstance);
+        enemies.add(goblinInstance);
+        goblinInstance->Start();
+        break;
+    case KINGGOBLIN:
+        kingGoblinInstance = new KingGoblin(type, spawnPos);
+        entities.add(kingGoblinInstance);
+        enemies.add(kingGoblinInstance);
+        kingGoblinInstance->Start();
+        break;
+
     case NPCDUMMY:
         dummyNpcInstance = new NpcDummy(type, spawnPos);
         entities.add(dummyNpcInstance);
         dummyNpcInstance->Start();
         break;
+
     case NPCGUARD:
         dummyNpcGuardInstance = new NpcGuard(type, spawnPos);
         entities.add(dummyNpcGuardInstance);
