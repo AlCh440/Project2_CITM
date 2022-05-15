@@ -188,7 +188,7 @@ bool Goblin::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
-				pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
+				pathfinding->GenerateWalkeableArea(tilePos, 10);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);
@@ -219,6 +219,7 @@ bool Goblin::Update(float dt)
 		break;
 	}
 
+	
 	currentAnim->Update();
 	return true;
 }

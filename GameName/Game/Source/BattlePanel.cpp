@@ -7,6 +7,7 @@
 #include <string> 
 
 
+
 BattlePanel::BattlePanel(bool active) : GuiPanel(active)
 {
 	Active = active;
@@ -22,6 +23,7 @@ bool BattlePanel::Start()
 	texture = app->tex->Load("Assets/Sprites/UI/BattleUIBackground.png");
 	bounds = { 0,0,1080,720 };
 	position = { 0,0 };
+
 
 	texBattleElements = app->tex->Load("Assets/Sprites/UI/battleUi.png");
 

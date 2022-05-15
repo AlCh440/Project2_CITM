@@ -14,6 +14,7 @@
 // Update Code
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
+	attack = app->audio->LoadFx("Assets/audio/fx/swordAttack.wav");
 
 	name.Create("Knight");
 
@@ -34,6 +35,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 
 bool Knight::Start()
 {
+	attack = app->audio->LoadFx("Assets/audio/fx/swoosh.wav");
 
 	stats.hp = 100;
 	stats.mana = 50;
@@ -179,6 +181,7 @@ bool Knight::PreUpdate()
 			p.y = y;
 			p = app->map->WorldToMap(p.x, p.y);
 
+
 			if (pathfinding->IsVisited(p))
 			{
 				target = app->entities->GetEntityFromTile(p);
@@ -200,7 +203,7 @@ bool Knight::PreUpdate()
 				battleState = IDLE;
 				pathfinding->ResetBFSPath();
 			}
-
+			app->audio->PlayFx(attack);
 		}
 		break;
 	case DEATH:
@@ -241,7 +244,8 @@ bool Knight::Update(float dt)
 
 		break;
 	case ATTACK:
-
+		
+		
 		break;
 	case DEATH:
 		break;
@@ -298,6 +302,8 @@ bool Knight::PostUpdate()
 	case ATTACK:
 		//draw movement
 		pathfinding->DrawBFSPath();
+		
+		
 		break;
 	case DEATH:
 		break;

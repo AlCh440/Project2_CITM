@@ -32,6 +32,9 @@ NpcWoVillager::NpcWoVillager(Collider_Type type, iPoint pos) : Npc(type, pos)
 
 bool NpcWoVillager::Start()
 {
+
+	villagerSound = app->audio->LoadFx("Assets/audio/fx/femaleVillager.wav");
+
 	actualStates = NORMAL;
 
 	rect = { 132, 55, 25, 37 };
@@ -89,6 +92,8 @@ bool NpcWoVillager::Update(float dt)
 			app->dialogManager->dialogActive_Villager = true;
 			app->dialogManager->FillDialog_Villager(app->dialogManager->dialog_Villager);
 			app->dialogManager->dialog_Villager.Restart();
+
+			app->audio->PlayFx(villagerSound);
 
 			//it keeps adding to memory the more times you talk -> fix!!
 		}

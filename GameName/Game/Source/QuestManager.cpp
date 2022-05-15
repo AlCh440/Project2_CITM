@@ -41,6 +41,13 @@ bool QuestManager::Start()
 	return true;
 }
 
+bool QuestManager::Update(float dt)
+{
+	
+		
+	return true;
+}
+
 bool QuestManager::CleanUp()
 {
 	questList->clear();
@@ -56,7 +63,7 @@ void QuestManager::ActivateQuest(int questID)
 	while (currentQuest != NULL)
 	{
 
-		if (currentQuest->data->id == questID && currentQuest->data->progress == Quest::AVAILABLE)
+		if (currentQuest->data->id == questID ) //&& currentQuest->data->progress == Quest::AVAILABLE
 		{
 			currentQuestList->add(currentQuest->data);
 			currentQuest->data->progress = Quest::ACTIVE;

@@ -23,6 +23,8 @@ bool MageRoom::Awake(pugi::xml_node&)
 
 bool MageRoom::Start()
 {
+	doorOpen = app->audio->LoadFx("Assets/audio/fx/doorOpening.wav");
+	app->audio->PlayFx(doorOpen);
 	app->physics->Start();
 	app->map->Load("ArchmageRoom.tmx");
 	app->entities->Start();

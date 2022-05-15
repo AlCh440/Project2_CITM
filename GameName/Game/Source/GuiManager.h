@@ -60,7 +60,10 @@ public:
 	SDL_Texture* tex_smallPanel = nullptr;
 	SDL_Texture* tex_mediumPanel = nullptr;
 	SDL_Texture* tex_bigPanel = nullptr;
-	SDL_Texture* tex_invetory = nullptr;
+	SDL_Texture* tex_inventory = nullptr;
+	SDL_Texture* tex_inventory_tabs = nullptr;
+	SDL_Texture* tex_inventory_Items = nullptr;
+
 
 	int mainFont;
 	int numberFont;

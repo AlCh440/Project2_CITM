@@ -33,7 +33,10 @@ public:
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
 
+	
+
 protected:
+	uint villagerSound;
 
 	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;

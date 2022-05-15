@@ -53,8 +53,10 @@ public:
 	Item* MageEquiped;
 
 	bool mapPlayerUpdate = true;
-	uint steps;
-	uint steps2;
+	uint currentSteps;
+	uint fxStepsDef;
+	uint fxStepsDirt;
+	uint fxStepsGrass;
 
 private:
 
@@ -67,5 +69,9 @@ private:
 	bool goingLeft;
 	bool AdminMode;
 	bool canMove;
+
+
+	int stepsTimer = 0;
+	int stepsTimerRef = 20;
 
 };

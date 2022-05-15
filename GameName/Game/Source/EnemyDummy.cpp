@@ -47,6 +47,9 @@ void EnemyDummy::UpdatePath()
 
 bool EnemyDummy::Start()
 {
+	tileMove = app->audio->LoadFx("Assets/audio/fx/battleTileMovement.wav");
+	mummyDeath = app->audio->LoadFx("Assets/audio/fx/mummyDeath.wav");
+	mummyAttack = app->audio->LoadFx("Assets/audio/fx/mummySound.wav");
 
 	stepCounter = 0;
 	moveRange = 5;
@@ -190,6 +193,14 @@ bool EnemyDummy::Update(float dt)
 		}
 		break;
 	case MOVE:
+		if (timer > 0) timer--;
+		else
+		{
+			timer = timerRef;
+			app->audio->PlayFx(tileMove,0 );
+		};
+	
+		
 		if (!Move) {
 
 			//Set available movement tiles
@@ -208,6 +219,7 @@ bool EnemyDummy::Update(float dt)
 				if (InitPath(aux->tilePos)) {
 					NewTarget = true;
 				}
+				
 			}
 		}
 
@@ -218,15 +230,19 @@ bool EnemyDummy::Update(float dt)
 		break;
 	case ATTACK:
 		//Search for target
+		
 		if (target != nullptr && currentAnim->HasFinished())
 		{
 			target->takeDamage(stats.baseDamage);
 			HasAttackAction = false;
 			currentAnim = &idle;
 			battleState = IDLE;
+
+			app->audio->PlayFx(mummyDeath);
 		}
 		break;
 	case DEATH:
+		
 		break;
 	default:
 		break;

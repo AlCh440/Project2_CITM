@@ -33,6 +33,8 @@ NpcDummy::NpcDummy(Collider_Type type, iPoint pos) : Npc(type, pos)
 
 bool NpcDummy::Start()
 {
+	villagerSound = app->audio->LoadFx("Assets/audio/fx/villager.wav");
+
 	actualStates = NORMAL;
 
 	rect = { 259, 49, 30, 43 };
@@ -99,9 +101,14 @@ bool NpcDummy::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 			{
-			app->dialogManager->dialogActive_NoName = true;
-			app->dialogManager->FillDialog_Test(app->dialogManager->dialog_Test);
-			app->dialogManager->dialog_Test.Restart();
+				app->dialogManager->dialogActive_NoName = true;
+				app->dialogManager->FillDialog_Test(app->dialogManager->dialog_Test);
+				app->dialogManager->dialog_Test.Restart();
+
+				app->audio->PlayFx(villagerSound);
+
+				
+				
 			}
 		}
 

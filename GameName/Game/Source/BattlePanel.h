@@ -25,6 +25,7 @@ public:
 	GuiButton* bt_move;
 	GuiButton* bt_endTurn;
 
+	
 
 	GuiButton* bt_test;
 

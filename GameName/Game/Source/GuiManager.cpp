@@ -39,7 +39,8 @@ bool GuiManager::Start()
 	tex_smallPanel = app->tex->Load("Assets/Sprites/UI/smallPanel.png");
 	tex_mediumPanel = app->tex->Load("Assets/Sprites/UI/mediumPanel.png");
 	tex_bigPanel = app->tex->Load("Assets/Sprites/UI/bigPanel.png");
-	tex_invetory = app->tex->Load("Assets/Sprites/UI/inventory.png");
+	tex_inventory = app->tex->Load("Assets/Sprites/UI/inventory.png");
+	tex_inventory_tabs = app->tex->Load("Assets/Sprites/UI/inventoryTabs.png");
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");

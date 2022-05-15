@@ -2,7 +2,11 @@
 #include "GuiPanel.h"
 #include "SDL/include/SDL.h"
 
-
+enum statsPlayer
+{
+	KNIGHT,
+	RANGER
+};
 
 class InventoryPanel : public GuiPanel
 {
@@ -14,7 +18,7 @@ public:
 	bool Start() override;
 	bool Update(float dt, bool doLogic) override;
 	bool Draw() override;
-	void DrawItems();
+	void DrawItems() override;
 	bool CleanUp();
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
@@ -24,7 +28,7 @@ public:
 	GuiButton* bt_menu;
 	GuiButton* bt_quit;
 	
-	SDL_Texture* title;
+	SDL_Texture* texTabs;
 	SDL_Texture* texItems;
 	
 	SDL_Rect key01;
@@ -34,4 +38,15 @@ public:
 	SDL_Rect potionHP;
 	SDL_Rect potionMana;
 
+	SDL_Rect spriteKnight;
+	SDL_Rect spriteRanger;
+	SDL_Rect spriteMage;
+	SDL_Rect spriteTab;
+
+	GuiButton* bt_to_knight;
+	GuiButton* bt_to_ranger;
+
+
+
+	statsPlayer statsShowing;
 };

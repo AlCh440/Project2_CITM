@@ -42,6 +42,7 @@ public:
 	bool SaveState(pugi::xml_node& data) const override;
 
 private:
+	uint attack;
 
 	Animation basicHit;
 	rangerAttacks attackChoosed;

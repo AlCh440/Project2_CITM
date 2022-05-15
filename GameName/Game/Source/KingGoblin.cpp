@@ -174,7 +174,7 @@ bool KingGoblin::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
-				pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
+				pathfinding->GenerateWalkeableArea(tilePos, 10);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);
