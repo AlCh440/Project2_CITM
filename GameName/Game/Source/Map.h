@@ -207,7 +207,7 @@ private:
 
     SString folder;
     bool mapLoaded;
-
+	Entity* chestIns;
 	
 };
 

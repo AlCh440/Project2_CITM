@@ -12,30 +12,24 @@ Chest::Chest(iPoint pos) : Item(pos)
 
 Chest::Chest(Collider_Type type, iPoint pos) : Item(type, pos)
 {
-
-}
-
-Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, pos)
-{
-	item = items;
 	alreadyOpen = false;
 	texture = app->tex->Load("Assets/Maps/tileset.png");
 	attention = app->tex->Load("Assets/Sprites/characters/NPC.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
-	Key* k = new Key(1);
-	item.add(k);
-	k = new Key(2);
-	item.add(k);
-	k = new Key(3);
-	item.add(k);
-	k = new Key(4);
-	item.add(k);
-	HPPotion* Hp = new HPPotion(HP_POTION);
-	item.add(Hp);
-	ManaPotion* Mp = new ManaPotion(MANA_POTION);
-	item.add(Mp);
+}
+
+Chest::Chest(Collider_Type type, iPoint pos, p2List<Item*> items) : Item(type, pos)
+{
+
+	alreadyOpen = false;
+	texture = app->tex->Load("Assets/Maps/tileset.png");
+	attention = app->tex->Load("Assets/Sprites/characters/NPC.png");
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
+	physBody->body->SetGravityScale(0);
+	physBody->entityPtr = this;
+	
 }
 
 bool Chest::Start()
@@ -116,10 +110,15 @@ void Chest::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 void Chest::Open(OpenWorldPlayer* player)
 {
-	while (item.getFirst() != nullptr)
+	while (itemList.getFirst() != nullptr)
 	{
-		p2ListItem<Item*>* aux = item.getFirst();
+		p2ListItem<Item*>* aux = itemList.getFirst();
 		player->inventory.add(aux->data);
-		item.del(aux);
+		itemList.del(aux);
 	}
+}
+
+void Chest::AddItem(Item* item)
+{
+	itemList.add(item);
 }

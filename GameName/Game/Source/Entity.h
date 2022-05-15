@@ -13,6 +13,7 @@
 
 struct SDL_Texture;
 struct PhysicBody;
+class Item;
 
 struct Statistics
 {
@@ -103,6 +104,7 @@ public:
 	iPoint GetPositionTiles();
 	void SetPositionPixels();
 
+	virtual void AddItem(Item* item) { };
 
 
 

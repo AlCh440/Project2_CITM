@@ -84,5 +84,6 @@ public:
 
 	uint music;
 	bool playMusic = true;
+	bool inCombat = false;
 };
 #endif // __LEVELMANAGEMENT_H__

@@ -63,7 +63,7 @@ bool ModuleEntities::PreUpdate()
         aux->data->PreUpdate();
     }
 
-    if (openWorld != nullptr)
+    if (openWorld != nullptr && app->levelManagement->inCombat == false)
     {
         openWorld->DEBUG = DEBUG;
         openWorld->PreUpdate();
@@ -81,7 +81,7 @@ bool ModuleEntities::Update(float dt)
         
     }
 
-    if (openWorld != nullptr)
+    if (openWorld != nullptr && app->levelManagement->inCombat == false)
         openWorld->Update(dt);
 
     return true;
@@ -94,7 +94,7 @@ bool ModuleEntities::PostUpdate()
         aux->data->PostUpdate();
     }
   
-    if (openWorld != nullptr)
+    if (openWorld != nullptr && app->levelManagement->inCombat == false)
         openWorld->PostUpdate();
     return true;
 }
@@ -121,7 +121,7 @@ bool ModuleEntities::CleanUp()
     return true;
 }
 
-void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item*> items)
+Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
 {
     switch (type)
     {
@@ -187,9 +187,10 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
         dummyNpcWoVillagerInstance->Start();
         break;
     case CHEST:
-        itemInstance = new Chest(type, spawnPos, items);
+        itemInstance = new Chest(type, spawnPos);
         entities.add(itemInstance);
         itemInstance->Start();
+        return itemInstance;
         break;
     case EXIT:
         exitIntance = new Trigger(type, spawnPos);
@@ -198,6 +199,8 @@ void ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos, p2List <Item
     default :
         break;
     }
+
+    return nullptr;
 }
 
 void ModuleEntities::RemoveEntity(PhysBody* entity)

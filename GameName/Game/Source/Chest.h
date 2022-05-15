@@ -25,11 +25,12 @@ public:
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 	void Open(OpenWorldPlayer* player);
+	void AddItem(Item* item) override;
 
 protected:
 	SDL_RendererFlip spriteDir;
 
-	p2List<Item*> item;
+	p2List<Item*> itemList;
 	bool alreadyOpen;
 	
 	float detectionDistance = 40;

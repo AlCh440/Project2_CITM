@@ -39,6 +39,7 @@ bool BattleTestScene::Start()
 	app->entities->Start();
 
 
+	app->levelManagement->inCombat = true;
 	app->render->ResetCameraPosition();
 
 	battleEntities = app->entities->entities;
@@ -57,7 +58,6 @@ bool BattleTestScene::Start()
 	currentEntity->data->entityTurn = true;
 
 	app->render->cameraDrag = true;
-
 	entityIndex = 0;
 	turnCounter = 0;
 
