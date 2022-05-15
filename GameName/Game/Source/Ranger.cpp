@@ -29,6 +29,8 @@ bool Ranger::Start()
 
 	stats.hp = 75;
 	stats.mana = 75;
+	stats.movement = 5;
+	stats.attackRange = 3;
 	typeOfPlayer = 2;
 	actionPoints = 10; // To determine
 	isAlive = true;
@@ -38,6 +40,7 @@ bool Ranger::Start()
 	isAlive = true;
 	stepCounter = 0;
 	moveRange = 2;
+	counter = moveTime;
 
 	HasMoveAction = true;
 	HasAttackAction = true;
@@ -149,7 +152,7 @@ bool Ranger::PreUpdate()
 			default:
 				break;
 			}
-			pathfinding->GenerateInteractionArea(tilePos, 1);
+			pathfinding->GenerateInteractionArea(tilePos, stats.attackRange);
 
 
 			ExpandedBFS = true;

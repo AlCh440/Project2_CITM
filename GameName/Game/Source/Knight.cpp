@@ -38,11 +38,13 @@ bool Knight::Start()
 	stats.hp = 100;
 	stats.mana = 50;
 	stats.movement = 5;
+	stats.attackRange = 1;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
 	stepCounter = 0;
 	moveRange = 2;
+	counter = moveTime;
 
 	HasMoveAction = true;
 	HasAttackAction = true;
@@ -163,7 +165,7 @@ bool Knight::PreUpdate()
 			default:
 				break;
 			}
-			pathfinding->GenerateInteractionArea(tilePos, 1);
+			pathfinding->GenerateInteractionArea(tilePos, stats.attackRange);
 
 
 			ExpandedBFS = true;

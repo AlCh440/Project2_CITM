@@ -27,15 +27,17 @@ bool SettingsPanel::Start()
 
 	tg_fixedFps->texture = app->guiManager->UItexture2;
 	tg_fixedFps->textTex = app->fonts->LoadRenderedText(tg_fixedFps->textRect, 0,"60 FPS", {0,0,0});
-	tg_fixedFps->textPosition.x = tg_fixedFps->position.x;
+	tg_fixedFps->textPosition.x = tg_fixedFps->position.x + tg_fixedFps->textRect.w + 100;
 	tg_fixedFps->textPosition.y = tg_fixedFps->position.y + 25;
 
 
-	tg_fullScreen = (GuiToggle*)CreateGuiCheckBox(1, app->guiManager, this, { this->position.x + 550,this->position.y + 350,22,22 });
+	tg_fullScreen = (GuiToggle*)CreateGuiCheckBox(1, app->guiManager, this, { this->position.x + 650,this->position.y + 350,22,22 });
 	tg_fullScreen->texture = app->guiManager->UItexture2;
 	tg_fullScreen->textTex = app->fonts->LoadRenderedText(tg_fullScreen->textRect, 0, "Full Screen", { 0,0,0 });
-	tg_fullScreen->textPosition.x = tg_fullScreen->position.x;
+	tg_fullScreen->textPosition.x = tg_fullScreen->position.x + tg_fullScreen->textRect.w + 100;
 	tg_fullScreen->textPosition.y = tg_fullScreen->position.y + 25;
+
+
 
 	sl_fx = (GuiSlider*)CreateGuiSlider(2, app->guiManager, this, { this->position.x + 450, this->position.y + 300, 150 ,50 }, { this->position.x + 450 + 150, this->position.y + 290, 50 ,50 });
 	sl_fx->texture =  app->guiManager->UItexture2;

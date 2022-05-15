@@ -20,6 +20,7 @@ struct Statistics
 	int mana;
 	int baseDamage;
 	int movement;
+	int attackRange;
 };
 
 struct HitEffect {
@@ -194,7 +195,7 @@ protected:
 	int attackRange;
 	bool Move;
 	bool nextStep = true;
-	float moveTime ;
+	float moveTime = 32;
 	float counter = 0;
 
 	float iSpeed;

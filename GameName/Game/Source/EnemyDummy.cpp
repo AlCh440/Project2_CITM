@@ -131,7 +131,7 @@ bool EnemyDummy::PreUpdate()
 				break;
 			if (target == nullptr)
 			{
-				target = app->entities->GetNearestPlayer(physBody)->entityPtr;
+				target = app->entities->GetNearestPlayer(this);
 			}
 			else {
 				
@@ -204,8 +204,8 @@ bool EnemyDummy::Update(float dt)
 				pathfinding->GenerateWalkeableArea(tilePos, stats.movement);
 
 
-				PhysBody* aux = app->entities->GetNearestPlayer(physBody);
-				if (InitPath(aux->entityPtr->tilePos)) {
+				Entity* aux = app->entities->GetNearestPlayer(this);
+				if (InitPath(aux->tilePos)) {
 					NewTarget = true;
 				}
 			}

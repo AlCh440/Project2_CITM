@@ -73,37 +73,12 @@ bool ModuleEntities::Update(float dt)
 {
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
-        //if (app->levelManagement->gameScene == 11)
-        //{
-        //    if (aux->data->entityTurn)
-        //    {
-        //        aux->data->Update(dt);
-        //    }
-        //}
-        //else 
-        //{
+
             aux->data->Update(dt);
-        //}
+
         
     }
-   
-    //if (app->levelManagement->gameScene == 11)
-    //{
-    //    if (app->levelManagement->combatState == PLAYERTURN)
-    //    {
-    //        if (!CheckPlayerTurn())
-    //        {
-    //            StartEnemiesTurn();
-    //        }
-    //    }
-    //    else if (app->levelManagement->combatState == ENEMYTURN)
-    //    {
-    //        if (enemiesAlive <= 0)
-    //        {
-    //            StartPlayerTurn();
-    //        }
-    //    }
-    //}
+
     if (openWorld != nullptr)
         openWorld->Update(dt);
 
@@ -406,27 +381,31 @@ PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)
 
 }
 
-PhysBody* ModuleEntities::GetNearestPlayer(PhysBody* Character)
+Entity* ModuleEntities::GetNearestPlayer(Entity* Character)
 {
+    Entity* ret = nullptr;
     p2ListItem<Player*>* player = players.getFirst();
+
     if (player != NULL)
     {
-        int temp = player->data->CheckDistanceToPhysBody(Character);
-
-        PhysBody* nearEnemy = player->data->GetCollider();
-        for (int i = 0; player; player = player->next)
+        int closest = Character->pathfinding->CreatePath(Character->tilePos,player->data->tilePos);
+        ret = player->data;
+        while(player != nullptr)
         {
-
-
-            int j = player->data->CheckDistanceToPhysBody(Character);
-            if (j < temp)
+            int temp = Character->pathfinding->CreatePath(Character->tilePos, player->data->tilePos);
+            
+            if (temp < closest)
             {
-                temp = j;
-                nearEnemy = player->data->GetCollider();
+                closest = temp;
+                ret = player->data;
             }
+
+            player = player->next;
         }
-        return nearEnemy;
+        Character->pathfinding->ClearPath();
+        return ret;
+
     }
-    else return NULL;
+    else return ret;
 
 }
