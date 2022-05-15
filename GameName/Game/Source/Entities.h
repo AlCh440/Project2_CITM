@@ -50,7 +50,7 @@ public:
 	bool CleanUp() override;
 
 	//used to add entities 
-	void AddEntity(Collider_Type type ,iPoint spawnPos, p2List <Item*> items = p2List<Item*>());
+	Entity* AddEntity(Collider_Type type ,iPoint spawnPos, p2List <Item*> items = p2List<Item*>());
 
 	//remove entity with the physBody reference
 	void RemoveEntity(PhysBody* entity);

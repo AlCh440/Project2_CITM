@@ -15,6 +15,11 @@
 #include "Log.h"
 #include <math.h>
 
+#include "Chest.h"
+#include "Consumable.h"
+#include "HPPotion.h"
+#include "ManaPotion.h"
+#include "Key.h"
 using namespace std;
 
 Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
@@ -686,7 +691,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			obj->type = Collider_Type::COMBATTRIGGER;
 		}
-
+		else if (strcmp(object.attribute("type").as_string(), "chest") == 0)
+		{
+			obj->type = Collider_Type::CHEST;
+		}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
@@ -825,6 +833,21 @@ bool Map::SetMapColliders()
 				}
 
 				LOG("spawn world player...");
+				break;
+			case CHEST:
+				chestIns = app->entities->AddEntity(object->data->type, spawnPos);
+
+				if (object->data->properties.GetProperty("hp_potion", 1))
+				{
+					HPPotion* hp = new HPPotion(HP_POTION);
+					chestIns->AddItem(hp);
+				}
+				if (object->data->properties.GetProperty("mana_potion", 1))
+				{
+					ManaPotion* mp = new ManaPotion(MANA_POTION);
+					chestIns->AddItem(mp);
+				}
+				LOG("spawn chest...");
 				break;
 			case PLAYERKNIGHT:
 				app->entities->AddEntity(object->data->type, spawnPos);
