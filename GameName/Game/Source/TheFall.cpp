@@ -32,7 +32,7 @@ bool TheFall::Start()
 	app->entities->Start();
 	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
-	//app->guiManager->OpenPanel(P_QUEST);
+	app->guiManager->OpenPanel(P_QUEST);
 
 	uncheckableTiles[0] = { 15, 37 };
 	uncheckableTiles[1] = { 16, 37 };

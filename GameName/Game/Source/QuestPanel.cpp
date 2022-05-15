@@ -32,21 +32,21 @@ bool QuestPanel::Start()
 	currentQuest = app->questManager->questList->start;
 
 
-	nextButton = (GuiButton*)CreateGuiButton(0,app->guiManager,this, { 0 / windowScale, 610 / windowScale,52,56 });
+	nextButton = (GuiButton*)CreateGuiButton(0,app->guiManager,this, { 0 / windowScale, 535 / windowScale,52,56 });
 	
 	nextButton->texture = app->guiManager->UItexture2;
 	nextButton->normalRec = { 0,297,56,52 };
 	nextButton->focusedRec = { 0,349,56,52 };
 	nextButton->pressedRec = { 0,349,56,52 };
 
-	completeButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 200 / windowScale, 610 / windowScale,52,56 });
+	completeButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 200 / windowScale, 535 / windowScale,52,56 });
 
 	completeButton->texture = app->guiManager->UItexture2;
 	completeButton->normalRec = { 0,613,56,52 };
 	completeButton->focusedRec = { 0,664,56,52 };
 	completeButton->pressedRec = { 0,664,56,52 };
 	
-	offQuestPanel = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { 100 / windowScale, 610 / windowScale,52,56 });
+	offQuestPanel = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { 1000 / windowScale, 535 / windowScale,52,56 });
 	
 	offQuestPanel->texture = app->guiManager->UItexture2;
 	offQuestPanel->normalRec = {0,399,56,52};
