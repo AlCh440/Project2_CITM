@@ -27,10 +27,14 @@ public:
 	void Open(OpenWorldPlayer* player);
 
 protected:
-	int spriteRotation = 0;
 	SDL_RendererFlip spriteDir;
 
 	p2List<Item*> item;
+	bool alreadyOpen;
 	
-	float detectionDistance = 45;
+	float detectionDistance = 40;
+
+	SDL_Texture* attention;
+	uint fxOpen;
+	uint fxClose;
 };

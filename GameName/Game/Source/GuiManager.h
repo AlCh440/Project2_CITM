@@ -43,6 +43,8 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
+	uint inventorySound;
+
 public:
 
 

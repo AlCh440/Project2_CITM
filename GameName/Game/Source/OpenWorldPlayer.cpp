@@ -232,6 +232,11 @@ bool OpenWorldPlayer::Update(float dt)
 		//app->audio->Pause = true;
 	}
 
+	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN))
+	{
+		app->entities->AddEntity(Collider_Type::CHEST, { GetPositionTiles().x * 32,GetPositionTiles().y * 32 });
+	}
+
 	return true;
 }
 
@@ -251,6 +256,8 @@ bool OpenWorldPlayer::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		AdminMode = !AdminMode;
+
+	
 
 	return true;
 }
