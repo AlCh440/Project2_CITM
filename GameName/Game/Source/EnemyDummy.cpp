@@ -198,7 +198,7 @@ bool EnemyDummy::Update(float dt)
 		{
 			timer = timerRef;
 			app->audio->PlayFx(tileMove,0 );
-		};
+		}
 	
 		
 		if (!Move) {
@@ -212,7 +212,7 @@ bool EnemyDummy::Update(float dt)
 					pathfinding->PropagateBFS();
 				}
 
-				pathfinding->GenerateWalkeableArea(tilePos, app->map->mapData.width / app->map->mapData.tileWidth);
+				pathfinding->GenerateWalkeableArea(tilePos, 10);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);

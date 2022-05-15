@@ -9,6 +9,7 @@
 #include "Audio.h"
 #include "GuiManager.h"
 
+
 BattleTestScene::BattleTestScene(bool isActive) : Module(isActive)
 {
 	name.Create("Battle_test_scene");
@@ -62,8 +63,6 @@ bool BattleTestScene::Start()
 
 	//Start UI when everything is loaded
 	app->guiManager->OpenPanel(P_BATTLE);
-
-
 	return true;
 }
 
@@ -142,7 +141,6 @@ void BattleTestScene::NextEntity()
 		currentEntity = battleEntities.start;
 		turnCounter++;
 	}
-
 	//skip entities that are dead
 	if (currentEntity->data->battleState == DEATH)
 		NextEntity();
@@ -192,8 +190,8 @@ bool BattleTestScene::CheckLoseCondition()
 bool BattleTestScene::CleanUp()
 {
 	app->map->CleanUp();
-	//app->entities->CleanUp();
-	//app->physics->CleanUp();
+	app->entities->CleanUp();
+	app->physics->CleanUp();
 	app->audio->StopMusic();
 	app->guiManager->pn_battle->Disable();
 	return true;

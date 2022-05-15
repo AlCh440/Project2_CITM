@@ -5,7 +5,7 @@
 #include "Physics.h"
 #include "Animation.h"
 #include "Fonts.h"
-
+#include "BattlePanel.h"
 struct SDL_Texture;
 
 class BattleTestScene : public Module
@@ -46,6 +46,7 @@ private:
 
 	int entityIndex = 0;
 	p2List<Entity*> battleEntities;
+
 public:
 	p2ListItem<Entity*>* currentEntity;
 	int turnCounter = 0;
