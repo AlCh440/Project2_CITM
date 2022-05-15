@@ -11,9 +11,11 @@ public:
 	//virtual void Move(float dt);
 	virtual void UpdatePath();
 
+
 	//int hitPoints;
 	//int score;
 	float detectionDistance = 10; // in pixels
+	float detectionDistance2 = 45; // in pixels
 
 	bool PreUpdate() override;
 	bool Update(float dt) override;
@@ -34,8 +36,12 @@ public:
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
 
+	uint goblinSound;
+
 protected:
 	int scorePoints = 0;
 	bool NewTarget = false;
 private:
+	SDL_Rect rect;
+	Animation idleAnim;
 };

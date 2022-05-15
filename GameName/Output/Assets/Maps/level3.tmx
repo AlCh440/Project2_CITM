@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="108" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="201">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="108" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="206">
  <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -129837,6 +129837,11 @@
   <object id="173" name="GeneralRoom" type="GeneralRoom" x="2336" y="1152" width="32" height="32"/>
   <object id="174" name="ArchmageRoom" type="ArchmageRoom" x="2528" y="1152" width="32" height="32"/>
   <object id="176" name="Shop" type="Shop" x="1888" y="480" width="32" height="32"/>
+  <object id="201" name="Enemy" type="goblin" x="736.364" y="2684.85" width="30.303" height="33.3333"/>
+  <object id="202" x="812.121" y="2781.82"/>
+  <object id="203" name="Enemy" type="goblin" x="676" y="2756" width="26" height="26"/>
+  <object id="204" name="Enemy" type="goblin" x="608" y="2596" width="30" height="28"/>
+  <object id="205" x="406" y="2482"/>
  </objectgroup>
  <objectgroup id="12" name="entities">
   <object id="166" name="player" type="player" x="544" y="288" width="32" height="32"/>

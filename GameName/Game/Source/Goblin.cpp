@@ -14,7 +14,7 @@
 Goblin::Goblin(iPoint pos) : Enemy(pos)
 {
 	texture = app->tex->Load("Assets/Sprites/characters/goblins1.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_staticBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 
@@ -27,7 +27,7 @@ Goblin::Goblin(Collider_Type type, iPoint pos) : Enemy(type, pos)
 
 	name.Create("Goblin");
 	texture = app->tex->Load("Assets/Sprites/characters/goblins1.png");
-	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
+	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 
@@ -47,6 +47,7 @@ void Goblin::UpdatePath()
 
 bool Goblin::Start()
 {
+	goblinSound = app->audio->LoadFx("Assets/audio/fx/goblinSound.wav");
 
 	stepCounter = 0;
 	moveRange = 5;
@@ -59,6 +60,8 @@ bool Goblin::Start()
 	RELEASE_ARRAY(data);
 
 	//store the entity position in tiles
+	rect = { 3, 58, 27, 34 };
+
 	iPoint pos;
 	pos.x = position.x;
 	pos.y = position.y;
@@ -67,11 +70,21 @@ bool Goblin::Start()
 	tilePos = pos;
 
 
-	inter_speed = 0.02f;
+	//inter_speed = 0.02f;
+
+	idle.PushBack({ 3,58,27, 34});
+	idle.PushBack({ 3,58,27, 34});
+	idle.PushBack({ 35,58,27, 34});
+	idle.PushBack({ 35,58,27, 34 });
+	idle.PushBack({ 67,58,27, 34 });
+	idle.PushBack({ 67,58,27, 34 });
+	idle.PushBack({ 99,58,27, 34 });
+	idle.PushBack({ 99,58,27, 34 });
 
 
-
-	inter_speed = 0.02f;
+	idle.loop = true;
+	//inter_speed = 0.01f;
+	idle.speed = 0.05f;
 
 	currentAnim = &idle;
 
@@ -149,6 +162,7 @@ bool Goblin::PreUpdate()
 
 bool Goblin::Update(float dt)
 {
+	
 	switch (battleState)
 	{
 	case IDLE:
@@ -211,6 +225,7 @@ bool Goblin::Update(float dt)
 
 bool Goblin::PostUpdate()
 {
+	currentAnim->Update();
 	//render current tile pos
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
@@ -252,8 +267,10 @@ bool Goblin::PostUpdate()
 		break;
 	}
 
+	
+
 	//render entity
-	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
 
 	return true;
 }
