@@ -54,7 +54,7 @@ bool GuiManager::Start()
 	pn_start = new MainMenuPanel(false);
 	pn_pause = new PausePanel(false);
 	pn_settings = new SettingsPanel(false);
-	pn_battle = new BattlePanel(false);
+	pn_battle = battlePanelInstance = new BattlePanel(false);
 	pn_inventory = new InventoryPanel(false);
 
 	panels.add(pn_quest);

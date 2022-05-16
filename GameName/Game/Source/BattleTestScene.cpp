@@ -133,6 +133,9 @@ void BattleTestScene::NextEntity()
 			//lose screen
 			//exit menu
 			LOG("BATTLE LOST!");
+
+
+
 		}
 
 		// all entitites had their turn
@@ -141,6 +144,9 @@ void BattleTestScene::NextEntity()
 		currentEntity = battleEntities.start;
 		turnCounter++;
 	}
+
+	app->guiManager->battlePanelInstance->LoadEntityUi();
+
 	//skip entities that are dead
 	if (currentEntity->data->battleState == DEATH)
 		NextEntity();

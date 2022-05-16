@@ -5,6 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2List.h"
 #include "GuiPanel.h"
+#include "BattlePanel.h"
 
 
 enum GuiType {
@@ -82,6 +83,8 @@ public:
 	p2List<PanelID>* panelTrace;
 	PanelID lastPanel;
 	int currentPanel;
+
+	BattlePanel* battlePanelInstance;
 };
 
 #endif // __GUIMANAGER_H__
