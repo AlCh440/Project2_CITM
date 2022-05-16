@@ -31,9 +31,9 @@ EnemyDummy::EnemyDummy(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 	
-	stats.hp = 10;
+	stats.hp = 35;
 	stats.movement = 4;
-	stats.baseDamage = 5;
+	stats.baseDamage = 11;
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;

@@ -32,6 +32,7 @@ bool Ranger::Start()
 	stats.mana = 75;
 	stats.movement = 5;
 	stats.attackRange = 3;
+	stats.baseDamage = 15;
 	typeOfPlayer = 2;
 	actionPoints = 10; // To determine
 	isAlive = true;

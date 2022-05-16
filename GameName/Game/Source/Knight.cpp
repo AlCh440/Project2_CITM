@@ -41,6 +41,7 @@ bool Knight::Start()
 	stats.mana = 50;
 	stats.movement = 5;
 	stats.attackRange = 1;
+	stats.baseDamage = 25;
 	typeOfPlayer = 1;
 	actionPoints = 10; // To determine
 	isAlive = true;
