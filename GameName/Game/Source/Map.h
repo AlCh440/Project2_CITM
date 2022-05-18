@@ -68,6 +68,8 @@ struct Properties
 	// L06: TODO 7: Method to ask for the value of a custom property
 	int GetProperty(const char* name, int default_value = 0) const;
 	bool SetProperty(const char* name, int set_value);
+	void CreateProperty(const char* name, int createValue);
+	int GetProperty_(const char* name);
 
 	p2List<Property*> list;
 };

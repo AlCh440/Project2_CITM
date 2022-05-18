@@ -25,6 +25,7 @@ bool TheFall::Awake(pugi::xml_node&)
 
 bool TheFall::Start()
 {
+	app->levelManagement->inCombat = false;
 	music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav", 0);
 
 	app->physics->Start();

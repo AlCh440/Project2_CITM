@@ -48,9 +48,8 @@ int Properties::GetProperty(const char* value, int defaultValue) const
 	return defaultValue;
 }
 
-bool Properties::SetProperty(const char* name, int set_value) {
-
-
+bool Properties::SetProperty(const char* name, int set_value) 
+{
 	p2ListItem<Property*>* item = list.start;
 
 	while (item)
@@ -63,6 +62,29 @@ bool Properties::SetProperty(const char* name, int set_value) {
 		item = item->next;
 	}
 	return false;
+}
+
+void Properties::CreateProperty(const char* name, int createValue)
+{
+	Property aux;
+	aux.name = name;
+	aux.value = createValue;
+
+	list.add(&aux);
+
+}
+
+int Properties::GetProperty_(const char* name)
+{
+	for (p2ListItem<Properties::Property*>* propList = list.getFirst(); propList != nullptr; propList = propList->next)
+	{
+		if (propList->data->name == name)
+		{
+			return propList->data->value;
+		}
+	}
+
+	return 0;
 }
 
 // Called before render is available
@@ -487,6 +509,7 @@ bool Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 
 // Iterate all layers and load each of them
 bool Map::LoadAllLayers(pugi::xml_node mapNode) {
+
 	bool ret = true;
 	for (pugi::xml_node layerNode = mapNode.child("layer"); layerNode && ret; layerNode = layerNode.next_sibling("layer"))
 	{
@@ -694,6 +717,23 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		else if (strcmp(object.attribute("type").as_string(), "chest") == 0)
 		{
 			obj->type = Collider_Type::CHEST;
+			if (object.first_child().name() == "properties");
+			{
+				pugi::xml_node prop;
+				prop = object.first_child().first_child();
+				while (prop != nullptr)
+				{
+					
+					if (prop.attribute("name").as_string() == string("hp_potion"))
+					{
+						obj->properties.CreateProperty("hp_potion", 1);
+						int i = 0;
+					}
+					prop = prop.next_sibling();
+				}
+				
+			}
+			
 		}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
@@ -837,10 +877,9 @@ bool Map::SetMapColliders()
 			case CHEST:
 				chestIns = app->entities->AddEntity(object->data->type, spawnPos);
 
-				if (object->data->properties.GetProperty("hp_potion", 1))
+				if (object->data->properties.GetProperty_("hp_potion") == 1)
 				{
 					HPPotion* hp = new HPPotion(HP_POTION);
-					chestIns->AddItem(hp);
 				}
 				if (object->data->properties.GetProperty("mana_potion", 1))
 				{
@@ -889,7 +928,6 @@ bool Map::SetMapColliders()
 				LOG("spawn King goblin");
 			case NPCDUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);
-				LOG("spawn dummy NPC...");
 				break;
 			case NPCGUARD:
 				app->entities->AddEntity(object->data->type, spawnPos);
