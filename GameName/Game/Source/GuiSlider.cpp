@@ -7,12 +7,10 @@
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(GuiControlType::SLIDER, id)
 {
 	this->bounds = bounds;
-	position.x = bounds.x;
-	position.y = bounds.y;
 	this->text = text;
 	this->thumbBounds = Thumb;
-	this->thumbBounds.x = position.x;
-	this->thumbBounds.y = position.y - Thumb.h / 5;
+	this->thumbBounds.x = bounds.x;
+	this->thumbBounds.y = bounds.y - Thumb.h / 5;
 	texture = app->guiManager->UItexture;
 	canClick = true;
 	drawBasic = false;

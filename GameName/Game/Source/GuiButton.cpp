@@ -9,8 +9,9 @@
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor) : GuiControl(GuiControlType::BUTTON, id)
 {
 	this->bounds = bounds;
-	position.x = bounds.x;
-	position.y = bounds.y;
+	offset.x = bounds.x;
+	offset.y = bounds.y;
+
 	this->text = text;
 	font = fontid;
 	fontPosX = bounds.x;
@@ -75,7 +76,11 @@ bool GuiButton::Update(float dt)
 		
 	}
 
-	return false;
+	bounds.x = parent->position.x + offset.x;
+	bounds.y = parent->position.y + offset.y;
+	CenterText(bounds);
+
+	return true;
 }
 
 bool GuiButton::Draw(Render* render)
@@ -157,7 +162,7 @@ bool GuiButton::Draw(Render* render)
 		break;
 	}
 
-	return false;
+	return true;
 }
 
 bool GuiButton::CleanUp()

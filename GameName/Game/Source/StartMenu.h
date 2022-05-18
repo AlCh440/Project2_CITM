@@ -47,24 +47,9 @@ public:
 private:
 	SDL_Texture* img;
 	SDL_Rect rect;
-
-	GuiPanel* menuPanel;
-	GuiButton* startButton;
-	GuiButton* settingsButton;
-	GuiButton* loadButton;
-	GuiButton* exitButton;
-
-	GuiSlider* sliderTest;
-
-	GuiPanel*  settingsPanel;
-	GuiSlider* volumeSlider;
-	GuiSlider* fxSlider;
-	GuiToggle* vsyncCheckbox;
-	GuiToggle* fullScreenCheckbox;
-	GuiButton* closePanelBttn;
-
 	uint music;
 	bool playMusic = true;
+
 
 };
 #endif // __STARTMENU_H__

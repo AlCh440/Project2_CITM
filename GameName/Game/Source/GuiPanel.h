@@ -11,7 +11,7 @@
 #include "GuiSlider.h"
 #include "p2List.h"
 #include "App.h"
-
+#include "Ease.h"
 
 enum PanelID {
 	P_START_MENU,
@@ -61,6 +61,12 @@ public:
 	SDL_Texture* texBattleElements;
 	bool Active;
 	PanelID id;
+
+
+	//for easing the panel
+	int easePosY, easePosX;
+	float easingTime = 500; //millisec
+	float counter = 0;
 };
 
 #endif // __GUIPANEL_H__

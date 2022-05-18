@@ -38,6 +38,8 @@ bool BattleTestScene::Start()
 	//start etities
 	app->entities->Start();
 
+	app->audio->PlayMusic("assets/audio/music/CombatEnAmakna.wav", 0.5f);
+
 
 	app->levelManagement->inCombat = true;
 	app->render->ResetCameraPosition();
@@ -111,6 +113,9 @@ void BattleTestScene::NextEntity()
 {
 	//Stop current Entity
 	currentEntity->data->entityTurn = false;
+
+	if(currentEntity->data->battleState != DEATH)
+		currentEntity->data->battleState = IDLE;
 
 	//next entity
 	currentEntity = currentEntity->next;

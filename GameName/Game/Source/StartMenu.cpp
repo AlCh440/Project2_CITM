@@ -71,6 +71,7 @@ bool StartMenu::CleanUp()
 	LOG("Freeing scene main menu ");
 	img = nullptr;
 	app->guiManager->pn_start->Disable();
+	app->audio->StopMusic();
 	return true;
 	
 }

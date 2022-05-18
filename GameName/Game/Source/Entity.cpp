@@ -130,6 +130,7 @@ void Entity::takeDamage(int damage)
 
 void Entity::StartTurn()
 {
+	battleState = IDLE;
 	HasAttackAction = true;
 	HasMoveAction = true;
 	entityTurn = true;
@@ -189,7 +190,7 @@ bool Entity::InitPath(iPoint destiantion)
 {
 	bool ret = true;
 	// Todo confirm choice 
-	if (pathfinding->CreateVisitedPath(tilePos, destiantion) != -1)
+	if (pathfinding->CreateVisitedPath(tilePos, destiantion) >= -1)
 	{
 		Move = true;
 	}

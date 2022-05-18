@@ -79,6 +79,15 @@ bool EnemyDummy::Start()
 			idle.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			idle.speed = 0.1f;
 			idle.loop = true;
+			walkSide.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			walkSide.speed = 0.1f;
+			walkSide.loop = true;
+			walkDown.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			walkDown.speed = 0.1f;
+			walkDown.loop = true;
+			walkUp.PushBack({ 48 * i, 48 * 3, 48, 48 });
+			walkUp.speed = 0.1f;
+			walkUp.loop = true;
 		}
 		else if (i >= 8 && i <= 13)
 		{
@@ -206,18 +215,21 @@ bool EnemyDummy::Update(float dt)
 			//Set available movement tiles
 			if (!NewTarget)
 			{
-				pathfinding->InitBFS(tilePos);
-				for (int i = 0; i < stats.movement * moveRange; i++)
-				{
-					pathfinding->PropagateBFS();
-				}
+				//pathfinding->InitBFS(tilePos);
+				//for (int i = 0; i < stats.movement * moveRange; i++)
+				//{
+				//	pathfinding->PropagateBFS();
+				//}
 
-				pathfinding->GenerateWalkeableArea(tilePos, 10);
+				pathfinding->GenerateWalkeableArea(tilePos, 50);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);
 				if (InitPath(aux->tilePos)) {
 					NewTarget = true;
+				}
+				else {
+					entityTurn = false;
 				}
 				
 			}

@@ -64,13 +64,16 @@ void GuiPanel::Enable()
 {
 	Active = true;
 
+	//reset ease timer
+	counter = 0;
+
 	p2ListItem<GuiControl*>* control = controls.start;
 
 	while (control != nullptr)
 	{
 		//TODO fix position when enable
-		control->data->bounds.x =  position.x + control->data->position.x;
-		control->data->bounds.y =  position.y + control->data->position.y;
+		control->data->bounds.x =  position.x + control->data->bounds.x;
+		control->data->bounds.y =  position.y + control->data->bounds.y;
 		control->data->CenterText(control->data->bounds);
 		control = control->next;
 	}

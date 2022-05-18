@@ -239,7 +239,33 @@ uint PathNode::FindVisitedAdjacents(PathList& listToFill, PathFinding* path) con
 
 	return listToFill.list.count();
 }
+uint PathNode::FindAdjacents(PathList& listToFill, PathFinding* path) const
+{
+	iPoint cell;
+	uint before = listToFill.list.count();
 
+	// north
+	cell.Create(pos.x, pos.y + 1);
+	if (path->IsWalkable(cell) && path->IsTileEmpty(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// south
+	cell.Create(pos.x, pos.y - 1);
+	if (path->IsWalkable(cell) && path->IsTileEmpty(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// east
+	cell.Create(pos.x + 1, pos.y);
+	if (path->IsWalkable(cell) && path->IsTileEmpty(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	// west
+	cell.Create(pos.x - 1, pos.y);
+	if (path->IsWalkable(cell) && path->IsTileEmpty(cell))
+		listToFill.list.add(PathNode(-1, -1, cell, this));
+
+	return listToFill.list.count();
+}
 // PathNode -------------------------------------------------------------------------
 // Calculates this tile score
 // ----------------------------------------------------------------------------------
@@ -418,6 +444,87 @@ int PathFinding::CreateVisitedPath(const iPoint& origin, const iPoint& destinati
 	return ret;
 }
 
+int PathFinding::CreateCompletePath(const iPoint& origin, const iPoint& destination)
+{
+	int ret = -1;
+
+	PathList open;
+	PathList close;
+	PathList adjacents;
+
+	PathNode nodeStart(0, 0, origin, nullptr);
+
+	open.list.add(nodeStart);
+
+	p2ListItem<PathNode>* current = open.list.start;
+	p2ListItem<PathNode>* lowest;
+	lastPath.Clear();
+
+	if (IsWalkable(origin) && IsWalkable(destination))
+	{
+		while (open.list.count() > 0)
+		{
+
+			lowest = open.GetNodeLowestScore();
+			current = close.list.add(lowest->data);
+			open.list.del(lowest);
+
+			if (current->data.pos == destination)
+			{
+				lastPath.Clear();
+				// backtrack the path
+				const PathNode* lastItem = &current->data;
+
+				//check that the last node is empty,
+				//if not last item is parent item
+				if (!IsTileEmpty(lastItem->pos))
+					lastItem = lastItem->parent;
+
+				while (lastItem)
+				{
+					lastPath.PushBack(lastItem->pos);
+
+					lastItem = lastItem->parent;
+				}
+
+				lastPath.Flip();
+				ret = lastPath.Count();
+				break;
+			}
+
+			current->data.FindAdjacents(adjacents, this);
+
+			p2ListItem<PathNode>* adj = adjacents.list.start;
+			while (adj != NULL)
+			{
+				if (close.Find(adj->data.pos) != NULL)
+				{
+					adj = adj->next;
+					continue;
+				}
+
+				p2ListItem<PathNode>* adjacentInOpen = open.Find(adj->data.pos);
+
+				if (adjacentInOpen == NULL)
+				{
+					adj->data.CalculateF(destination);
+					open.list.add(adj->data);
+				}
+				else {
+
+					if (adjacentInOpen->data.g > (adj->data.g + 1))
+					{
+						adjacentInOpen->data.parent = adj->data.parent;
+						adjacentInOpen->data.CalculateF(destination);
+					}
+				}
+				adj = adj->next;
+			}
+		}
+	}
+	return ret;
+}
+
 // ----------------------------------------------------------------------------------
 // Actual BFS algorithm: return number of steps in the creation of the path or -1 ----
 // ----------------------------------------------------------------------------------
@@ -493,7 +600,7 @@ void PathFinding::GenerateInteractionArea(iPoint center, int range)
 			next.x = x;
 			next.y = y;
 
-			if (!visited.find(next) && IsWalkable(next)) //&& CreatePath(center, next) <= range
+			if (!visited.find(next) && IsWalkable(next))
 			{
 				visited.add(next);
 			}

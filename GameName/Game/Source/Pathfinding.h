@@ -9,7 +9,7 @@
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
-#define MAX_AREA_EXPANSION 25
+#define MAX_AREA_EXPANSION 100
 
 enum AttackShape {
 	SQUARE,
@@ -41,6 +41,8 @@ public:
 	int CreatePath(const iPoint& origin, const iPoint& destination);
 	// Function to request path from A to B but visited tiles only
 	int CreateVisitedPath(const iPoint& origin, const iPoint& destination);
+	// Function to request path from A to B but visited, walkeable and empty tiles only
+	int CreateCompletePath(const iPoint& origin, const iPoint& destination);
 	//Generate BFS expansion of walkeable tiles
 	void PropagateBFS();
 
@@ -120,6 +122,7 @@ struct PathNode
 	// Fills a list (PathList) of all valid adjacent pathnodes
 	uint FindWalkableAdjacents(PathList& list_to_fill,PathFinding* path) const;
 	uint FindVisitedAdjacents(PathList& list_to_fill,PathFinding* path) const;
+	uint FindAdjacents(PathList& list_to_fill,PathFinding* path) const;
 	// Calculates this tile score
 	int Score() const;
 	// Calculate the F for a specific destination tile

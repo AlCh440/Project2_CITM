@@ -36,7 +36,6 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
-	float UpdateProgress(float value, int AMin, int AMax, int  BMin, int BMax);
 
 	uint intro;
 private:

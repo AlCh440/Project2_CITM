@@ -32,18 +32,21 @@ bool BattlePanel::Start()
 	bt_attack->normalRec = { 0,73,40,40 };
 	bt_attack->focusedRec = { 80,73,40,40 };
 	bt_attack->pressedRec = { 40,73,40,40 };
+	bt_attack->disabledRec = { 40,73,40,40 };
 
 	bt_move = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { this->position.x +364 ,this->position.y + 664,40,40 });
 	bt_move->texture = texBattleElements;
 	bt_move->normalRec = { 0,73,40,40 };
 	bt_move->focusedRec = { 80,73,40,40 };
 	bt_move->pressedRec = { 40,73,40,40 };
+	bt_move->disabledRec = { 40,73,40,40 };
 
 	bt_endTurn = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { this->position.x +428,this->position.y + 664,104,40 }, "End Turn", app->fonts->battleMenu, app->fonts->c_Menus);
 	bt_endTurn->texture = texBattleElements;
 	bt_endTurn->normalRec = { 120,73,104,40 };
 	bt_endTurn->focusedRec = { 120,113,104,40 };
 	bt_endTurn->pressedRec = { 280,73,104,40 };
+	bt_endTurn->disabledRec = { 280,73,104,40 };
 
 
 	return true;
@@ -51,9 +54,18 @@ bool BattlePanel::Start()
 
 bool BattlePanel::Update(float dt, bool doLogic)
 {
+	if (app->battleTest->currentEntity != nullptr)
+	{
+		if (app->battleTest->currentEntity->data->HasAttackAction == false)
+			bt_attack->state = GuiControlState::DISABLED;
 
-	bounds.x = app->render->camera.x;
-	bounds.y = app->render->camera.y;
+
+
+		if (app->battleTest->currentEntity->data->HasMoveAction == false)
+			bt_move->state = GuiControlState::DISABLED;
+
+	}
+
 	GuiPanel::Update(dt,doLogic);
 	return true;
 }
@@ -102,16 +114,21 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 {
 	if (bt_attack->id == control->id)
 	{
-		if(app->battleTest->currentEntity->data->HasAttackAction)
+		if (app->battleTest->currentEntity->data->HasAttackAction)
 			app->battleTest->currentEntity->data->ChangeBattleSate(ATTACK);
+
 	}
 	else if (bt_move->id == control->id) {
 		if (app->battleTest->currentEntity->data->HasMoveAction)
 			app->battleTest->currentEntity->data->ChangeBattleSate(MOVE);
 	}
 	else if (bt_endTurn->id == control->id){
-		app->battleTest->NextEntity();
-		LoadEntityUi();
+		
+		if (app->battleTest->currentEntity->data->battleState == IDLE)
+		{
+			app->battleTest->NextEntity();
+			LoadEntityUi();
+		}
 	}
 	return true;
 }
@@ -126,6 +143,9 @@ void BattlePanel::LoadEntityUi()
 {
 	if (app->battleTest->currentEntity != nullptr)
 	{
+
+		bt_attack->state = GuiControlState::NORMAL;
+		bt_move->state = GuiControlState::NORMAL;
 
 		UpdateStats(app->battleTest->currentEntity->data);
 

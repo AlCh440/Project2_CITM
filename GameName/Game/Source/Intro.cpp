@@ -96,14 +96,3 @@ bool Intro::CleanUp()
 	img = nullptr;
 	return true;
 }
-
-//Map A value To B
-float Intro::UpdateProgress(float value, int AMin, int AMax, int  BMin, int BMax)
-{
-	int Aspan = AMax - AMin;
-	int Bspan = BMax - BMin;
-
-	float valueScaled = float(value - AMin) / float(Aspan);
-
-	return BMin + (valueScaled * Bspan);
-}

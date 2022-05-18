@@ -9,8 +9,6 @@
 GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TOGGLE, id)
 {
 	this->bounds = bounds;
-	position.x = bounds.x;
-	position.y = bounds.y;
 	texture = app->guiManager->UItexture;
 	canClick = true;
 	drawBasic = false;

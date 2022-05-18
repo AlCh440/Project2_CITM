@@ -37,3 +37,6 @@ enum easing_functions
 typedef double(*easingFunction)(double);
 
 easingFunction getEasingFunction(easing_functions function);
+
+float UpdateProgress(float value, int AMin, int AMax, int  BMin, int BMax);
+

@@ -27,23 +27,23 @@ bool SettingsPanel::Start()
 
 	tg_fixedFps->texture = app->guiManager->UItexture2;
 	tg_fixedFps->textTex = app->fonts->LoadRenderedText(tg_fixedFps->textRect, 0,"60 FPS", {0,0,0});
-	tg_fixedFps->textPosition.x = tg_fixedFps->position.x + tg_fixedFps->textRect.w + 100;
-	tg_fixedFps->textPosition.y = tg_fixedFps->position.y + 25;
+	tg_fixedFps->textPosition.x = tg_fixedFps->bounds.x + tg_fixedFps->textRect.w + 100;
+	tg_fixedFps->textPosition.y = tg_fixedFps->bounds.y + 25;
 
 
 	tg_fullScreen = (GuiToggle*)CreateGuiCheckBox(1, app->guiManager, this, { this->position.x + 650,this->position.y + 350,22,22 });
 	tg_fullScreen->texture = app->guiManager->UItexture2;
 	tg_fullScreen->textTex = app->fonts->LoadRenderedText(tg_fullScreen->textRect, 0, "Full Screen", { 0,0,0 });
-	tg_fullScreen->textPosition.x = tg_fullScreen->position.x + tg_fullScreen->textRect.w + 100;
-	tg_fullScreen->textPosition.y = tg_fullScreen->position.y + 25;
+	tg_fullScreen->textPosition.x = tg_fullScreen->bounds.x + tg_fullScreen->textRect.w + 100;
+	tg_fullScreen->textPosition.y = tg_fullScreen->bounds.y + 25;
 
 
 
 	sl_fx = (GuiSlider*)CreateGuiSlider(2, app->guiManager, this, { this->position.x + 450, this->position.y + 300, 150 ,50 }, { this->position.x + 450 + 150, this->position.y + 290, 50 ,50 });
 	sl_fx->texture =  app->guiManager->UItexture2;
 	sl_fx->textTex = app->fonts->LoadRenderedText(sl_fx->textRect, 0, "Fx Volume", { 0,0,0 });
-	sl_fx->textPosition.x = sl_fx->position.x;
-	sl_fx->textPosition.y = sl_fx->position.y + 10;
+	sl_fx->textPosition.x = sl_fx->bounds.x;
+	sl_fx->textPosition.y = sl_fx->bounds.y + 10;
 	sl_fx->backgroundRect = { 8,56,154,7 };
 	sl_fx->thumbRect = { 22,240,22,22};
 	sl_fx->UpdateThumbPos(app->audio->GetFxVolume());
@@ -51,8 +51,8 @@ bool SettingsPanel::Start()
 	sl_music = (GuiSlider*)CreateGuiSlider(3, app->guiManager, this, { this->position.x + 650, this->position.y + 300, 150 ,50 }, { this->position.x + 650 + 150, this->position.y + 290, 50 ,50 });
 	sl_music->texture = app->guiManager->UItexture2;
 	sl_music->textTex = app->fonts->LoadRenderedText(sl_music->textRect, 0, "Music Volume", { 0,0,0 });
-	sl_music->textPosition.x = sl_music->position.x;
-	sl_music->textPosition.y = sl_music->position.y + 10;
+	sl_music->textPosition.x = sl_music->bounds.x;
+	sl_music->textPosition.y = sl_music->bounds.y + 10;
 	sl_music->backgroundRect = { 8,56,154,7 };
 	sl_music->thumbRect = { 22,240,22,22 };
 	sl_music->UpdateThumbPos(app->audio->GetMusicVolume());

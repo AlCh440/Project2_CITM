@@ -219,3 +219,13 @@ easingFunction getEasingFunction(easing_functions function)
     auto it = easingFunctions.find(function);
     return it == easingFunctions.end() ? nullptr : it->second;
 }
+
+float UpdateProgress(float value, int AMin, int AMax, int BMin, int BMax)
+{
+    int Aspan = AMax - AMin;
+    int Bspan = BMax - BMin;
+
+    float valueScaled = float(value - AMin) / float(Aspan);
+
+    return BMin + (valueScaled * Bspan);
+}

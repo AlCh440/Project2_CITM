@@ -129,7 +129,7 @@ public:
 
 	SString name;
 
-	iPoint position;
+	iPoint offset;
 	int fontPosX, fontPosY; // font texture position
 };
 

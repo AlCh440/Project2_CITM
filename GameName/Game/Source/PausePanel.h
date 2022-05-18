@@ -22,5 +22,7 @@ public:
 	SDL_Texture* title;
 	SDL_Rect r_title;
 
+
+
 };
 

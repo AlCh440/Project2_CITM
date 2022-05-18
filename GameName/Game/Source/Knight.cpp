@@ -280,7 +280,7 @@ bool Knight::PostUpdate()
 		break;
 	case MOVE:
 	{
-		//draw movement
+		//draw movement area
 		pathfinding->DrawBFSPath();
 
 		//Draw path
