@@ -21,7 +21,8 @@ enum PanelID {
 	P_DIALOG,
 	P_QUEST,
 	P_INVENTORY,
-	P_BATTLE
+	P_BATTLE,
+	P_MATCH_RESULT
 };
 
 class GuiPanel

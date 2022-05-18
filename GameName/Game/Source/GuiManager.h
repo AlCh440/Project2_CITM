@@ -79,6 +79,7 @@ public:
 	GuiPanel* pn_gameOver;
 	GuiPanel* pn_battle;
 	GuiPanel* pn_inventory;
+	GuiPanel* pn_matchResult;
 
 	p2List<PanelID>* panelTrace;
 	PanelID lastPanel;

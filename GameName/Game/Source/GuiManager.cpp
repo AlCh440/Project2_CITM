@@ -14,6 +14,7 @@
 #include "SettingsPanel.h"
 #include "BattlePanel.h"
 #include "InventoryPanel.h"
+#include "MatchResultPanel.h"
 
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
@@ -39,6 +40,7 @@ bool GuiManager::Start()
 	tex_smallPanel = app->tex->Load("Assets/Sprites/UI/smallPanel.png");
 	tex_mediumPanel = app->tex->Load("Assets/Sprites/UI/mediumPanel.png");
 	tex_bigPanel = app->tex->Load("Assets/Sprites/UI/bigPanel.png");
+
 	tex_inventory = app->tex->Load("Assets/Sprites/UI/inventory.png");
 	tex_inventory_tabs = app->tex->Load("Assets/Sprites/UI/inventoryTabs.png");
 
@@ -56,6 +58,7 @@ bool GuiManager::Start()
 	pn_settings = new SettingsPanel(false);
 	pn_battle = battlePanelInstance = new BattlePanel(false);
 	pn_inventory = new InventoryPanel(false);
+	pn_matchResult = new MatchResultPanel(false);
 
 	panels.add(pn_quest);
 	panels.add(pn_start);
@@ -63,6 +66,7 @@ bool GuiManager::Start()
 	panels.add(pn_settings);
 	panels.add(pn_battle);
 	panels.add(pn_inventory);
+	panels.add(pn_matchResult);
 
 	//init panels
 	p2ListItem<GuiPanel*>* panel = panels.start;
@@ -88,6 +92,11 @@ bool GuiManager::PreUpdate()
 		app->audio->PlayFx(inventorySound);
 	}
 	    
+	if (app->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN)
+	{
+		OpenPanel(P_MATCH_RESULT);
+		app->audio->PlayFx(inventorySound);
+	}
 
 	if (app->input)
 	Debug = DEBUG;

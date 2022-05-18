@@ -222,6 +222,9 @@
     <ClCompile Include="Source\KingGoblin.cpp">
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MatchResultPanel.cpp">
+      <Filter>GUI\Panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -474,6 +477,9 @@
     </ClInclude>
     <ClInclude Include="Source\KingGoblin.h">
       <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MatchResultPanel.h">
+      <Filter>GUI\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
