@@ -34,7 +34,7 @@ bool WorldTestScene::Start()
 	app->map->Load("WorldMapTest.tmx");
 	app->entities->Start();
 
-	
+	app->levelManagement->inCombat = false;
 
 	//test dialog
 

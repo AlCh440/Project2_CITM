@@ -23,6 +23,7 @@ bool MageRoom::Awake(pugi::xml_node&)
 
 bool MageRoom::Start()
 {
+	app->levelManagement->inCombat = false;
 	doorOpen = app->audio->LoadFx("Assets/audio/fx/doorOpening.wav");
 	app->audio->PlayFx(doorOpen);
 	app->physics->Start();

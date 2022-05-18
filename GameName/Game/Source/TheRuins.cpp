@@ -24,6 +24,7 @@ bool TheRuins::Awake(pugi::xml_node&)
 
 bool TheRuins::Start()
 {
+	app->levelManagement->inCombat = false;
 	music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav", 0);
 
 	app->physics->Start();

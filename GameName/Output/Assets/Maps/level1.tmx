@@ -11189,7 +11189,11 @@
  <objectgroup id="10" name="entities">
   <object id="78" name="player" type="player" x="512" y="320" width="32" height="32"/>
   <object id="83" name="NPC" type="dummyNPC" x="512" y="704" width="32" height="32"/>
-  <object id="97" name="chest" type="chest" x="416" y="896" width="32" height="32"/>
+  <object id="97" name="chest" type="chest" x="416" y="896" width="32" height="32">
+   <properties>
+    <property name="hp_potion" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="11" name="sensors" visible="0">
   <object id="80" name="exit" type="exit" x="480" y="1216" width="96" height="32"/>

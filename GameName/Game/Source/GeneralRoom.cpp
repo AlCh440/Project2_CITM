@@ -23,6 +23,7 @@ bool GeneralRoom::Awake(pugi::xml_node&)
 
 bool GeneralRoom::Start()
 {
+	app->levelManagement->inCombat = false;
 	doorOpen = app->audio->LoadFx("Assets/audio/fx/doorOpening.wav");
 	app->audio->PlayFx(doorOpen);
 	app->physics->Start();
