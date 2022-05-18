@@ -206,6 +206,15 @@ bool Entity::MovePath()
 {
 	if (Move)
 	{
+
+		if (pathfinding->GetLastPath()->Count() <= 0)
+		{
+			HasMoveAction = false;
+			battleState = IDLE;
+			return  false;
+		}
+
+
 		for (stepCounter; stepCounter < pathfinding->GetLastPath()->Count() && nextStep; )
 		{
 			nextStep = false;

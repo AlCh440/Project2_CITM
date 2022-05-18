@@ -215,13 +215,13 @@ bool EnemyDummy::Update(float dt)
 			//Set available movement tiles
 			if (!NewTarget)
 			{
-				//pathfinding->InitBFS(tilePos);
-				//for (int i = 0; i < stats.movement * moveRange; i++)
-				//{
-				//	pathfinding->PropagateBFS();
-				//}
-
-				pathfinding->GenerateWalkeableArea(tilePos, 50);
+				pathfinding->InitBFS(tilePos);
+				for (int i = 0; i < 50; i++)
+				{
+					pathfinding->PropagateBFS();
+				}
+				
+				//pathfinding->GenerateWalkeableArea(tilePos, 100);
 
 
 				Entity* aux = app->entities->GetNearestPlayer(this);
@@ -281,6 +281,8 @@ bool EnemyDummy::PostUpdate()
 		break;
 	case MOVE:
 	{
+		//draw movement area
+		pathfinding->DrawBFSPath();
 		//Search for new pos//Draw path
 		const DynArray<iPoint>* path = pathfinding->GetLastPath();
 		if (path != nullptr)
