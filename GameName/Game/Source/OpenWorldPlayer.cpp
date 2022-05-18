@@ -192,7 +192,6 @@ bool OpenWorldPlayer::Update(float dt)
 		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
 		
 		int tileID = layer->data->Get(pos.x,pos.y);
-		LOG("%s: %i", layer->data->name.GetString(), tileID);
 		switch (tileID)
 		{
 		case 118:
@@ -307,11 +306,11 @@ bool OpenWorldPlayer::PostUpdate()
 
 	if (goingLeft)
 	{
-		app->render->DrawTexture(texture, position.x - 0, position.y - 16, &currentAnim->GetCurrentFrame());
+		app->render->DrawTexture(texture, position.x - 3, position.y - 16, &currentAnim->GetCurrentFrame());
 	}
 	else
 	{
-		app->render->DrawTexture(texture, position.x - 0, position.y - 16, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
+		app->render->DrawTexture(texture, position.x - 4, position.y - 16, &currentAnim->GetCurrentFrame(), 1.0f, 0.0f, 2147483647, 2147483647, 1.0f, SDL_FLIP_HORIZONTAL);
 	}
 
 

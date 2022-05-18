@@ -34,6 +34,11 @@ public:
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
 
+	Animation GetAnimIdle()
+	{
+		return idle;
+	}
+
 protected:
 	int scorePoints = 0;	
 	bool NewTarget = false;

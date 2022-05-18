@@ -10,6 +10,7 @@ public:
 	Trigger();
 	Trigger(Collider_Type type, iPoint pos);
 	bool PostUpdate() override;
+	bool Start();
 	~Trigger();
 
 	GameScene scene;

@@ -1019,6 +1019,7 @@ bool Map::SetMapColliders()
 				t->id = 0; // Use when there is multiple battle scenes
 				app->entities->listOfCombatTriggers.add(t);
 				app->entities->entities.add(t);
+				t->Start();
 			}break;
 			default:
 				break;
