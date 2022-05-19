@@ -41,6 +41,8 @@ bool BattleTestScene::Start()
 
 	app->audio->PlayMusic("assets/audio/music/CombatEnAmakna.wav", 0.5f);
 
+	pointer = app->tex->Load("Assets/Sprites/UI/pathFinigTiles.png");
+	rect = { 0,0,32,32 };
 
 	app->levelManagement->inCombat = true;
 	app->render->ResetCameraPosition();
@@ -90,7 +92,6 @@ bool BattleTestScene::PostUpdate()
 	app->map->Draw();
 
 	int x, y;
-	SDL_Rect r;
 
 	app->input->GetMouseWorldPosition(x, y);
 	iPoint p;
@@ -99,13 +100,7 @@ bool BattleTestScene::PostUpdate()
 	p = app->map->WorldToMap(p.x, p.y);
 	p = app->map->MapToWorld(p.x, p.y);
 
-	r.x = p.x;
-	r.y = p.y;
-	r.w = app->map->mapData.tileWidth;
-	r.h = app->map->mapData.tileHeight;
-
-	app->render->DrawRectangle(r, 125, 255, 255, 150, true);
-
+	app->render->DrawTexture(pointer,p.x,p.y,&rect);
 
 	return true;
 }

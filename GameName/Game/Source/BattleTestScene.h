@@ -41,7 +41,7 @@ public:
 	bool CheckLoseCondition();
 
 private:
-	SDL_Texture* entityText;
+	SDL_Texture* pointer;
 	SDL_Rect rect;
 
 	int entityIndex = 0;
