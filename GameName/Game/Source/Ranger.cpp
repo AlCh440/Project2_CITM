@@ -140,7 +140,11 @@ bool Ranger::PreUpdate()
 			p.y = y;
 			p = app->map->WorldToMap(p.x, p.y);
 
-			InitPath(p);
+			if (!InitPath(p)) {
+				ExpandedBFS = false;
+				pathfinding->ResetBFSPath();
+				battleState = IDLE;
+			}
 		}
 		break;
 	case ATTACK:

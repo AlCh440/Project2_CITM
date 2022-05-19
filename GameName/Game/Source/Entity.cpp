@@ -134,6 +134,7 @@ void Entity::StartTurn()
 	HasAttackAction = true;
 	HasMoveAction = true;
 	entityTurn = true;
+	Move = false;
 }
 
 int Entity::CheckDistanceToPhysBody(PhysBody* PhysPos)
@@ -190,7 +191,7 @@ bool Entity::InitPath(iPoint destiantion)
 {
 	bool ret = true;
 	// Todo confirm choice 
-	if (pathfinding->CreateVisitedPath(tilePos, destiantion) >= -1)
+	if (pathfinding->CreateVisitedPath(tilePos, destiantion) > -1)
 	{
 		Move = true;
 	}
@@ -209,7 +210,7 @@ bool Entity::MovePath()
 
 		if (pathfinding->GetLastPath()->Count() <= 0)
 		{
-			HasMoveAction = false;
+			//HasMoveAction = false;
 			battleState = IDLE;
 			return  false;
 		}

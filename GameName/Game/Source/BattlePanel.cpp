@@ -46,7 +46,7 @@ bool BattlePanel::Start()
 	bt_endTurn->normalRec = { 120,73,104,40 };
 	bt_endTurn->focusedRec = { 120,113,104,40 };
 	bt_endTurn->pressedRec = { 280,73,104,40 };
-	bt_endTurn->disabledRec = { 280,73,104,40 };
+	bt_endTurn->disabledRec = { 224,73,104,40 };
 
 
 	return true;
@@ -114,12 +114,13 @@ bool BattlePanel::OnGuiMouseClickEvent(GuiControl* control)
 {
 	if (bt_attack->id == control->id)
 	{
-		if (app->battleTest->currentEntity->data->HasAttackAction)
+		if (app->battleTest->currentEntity->data->battleState == IDLE && app->battleTest->currentEntity->data->HasAttackAction)
 			app->battleTest->currentEntity->data->ChangeBattleSate(ATTACK);
 
 	}
 	else if (bt_move->id == control->id) {
-		if (app->battleTest->currentEntity->data->HasMoveAction)
+
+		if (app->battleTest->currentEntity->data->battleState == IDLE && app->battleTest->currentEntity->data->HasMoveAction)
 			app->battleTest->currentEntity->data->ChangeBattleSate(MOVE);
 	}
 	else if (bt_endTurn->id == control->id){
@@ -146,6 +147,7 @@ void BattlePanel::LoadEntityUi()
 
 		bt_attack->state = GuiControlState::NORMAL;
 		bt_move->state = GuiControlState::NORMAL;
+		bt_endTurn->state = GuiControlState::NORMAL;
 
 		UpdateStats(app->battleTest->currentEntity->data);
 
@@ -167,6 +169,10 @@ void BattlePanel::LoadEntityUi()
 			break;
 		case DUMMY:
 			entityFace = { 144,0,48,48 };
+			bt_attack->state = GuiControlState::DISABLED;
+			bt_move->state = GuiControlState::DISABLED;
+			bt_endTurn->state = GuiControlState::DISABLED;
+
 			break;
 		default:
 			break;
