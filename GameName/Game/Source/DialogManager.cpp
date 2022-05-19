@@ -82,6 +82,8 @@ bool DialogManager::PostUpdate()
 			else {
 				blackSquareAlpha = 0;
 			}
+
+			
 		}
 
 

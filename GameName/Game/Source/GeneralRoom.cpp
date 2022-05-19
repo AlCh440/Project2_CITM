@@ -30,6 +30,11 @@ bool GeneralRoom::Start()
 	app->map->Load("GeneralRoom.tmx");
 	app->entities->Start();
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GeneralRoom);
+	}
+
 	return true;
 }
 
@@ -51,5 +56,9 @@ bool GeneralRoom::PostUpdate()
 
 bool GeneralRoom::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	//app->physics->CleanUp();
+	app->audio->StopMusic();
 	return true;
 }

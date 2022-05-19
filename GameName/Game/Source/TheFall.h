@@ -37,6 +37,7 @@ public:
 	bool CleanUp();
 
 	iPoint uncheckableTiles[3];
+	bool hasBeenCreated;
 
 private:
 	SDL_Texture* img;
@@ -44,7 +45,6 @@ private:
 
 	uint music;
 
-	bool hasBeenCreated;
 
 
 

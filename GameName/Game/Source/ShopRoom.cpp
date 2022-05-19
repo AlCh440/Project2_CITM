@@ -32,6 +32,11 @@ bool ShopRoom::Start()
 	app->entities->Start();
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
 	
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_ShopRoom);
+	}
+
 	return true;
 }
 

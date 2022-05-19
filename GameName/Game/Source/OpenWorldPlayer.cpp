@@ -183,7 +183,12 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
 		
-		int tileID = layer->data->Get(pos.x,pos.y);
+		int tileID = 0;
+		if (layer)
+		{
+			layer->data->Get(pos.x, pos.y);
+		}
+		LOG("tileID %i", tileID);
 		switch (tileID)
 		{
 		case 118:

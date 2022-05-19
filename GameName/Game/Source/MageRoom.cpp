@@ -30,6 +30,11 @@ bool MageRoom::Start()
 	app->map->Load("ArchmageRoom.tmx");
 	app->entities->Start();
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
+
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_MageRoom);
+	}
 	return true;
 }
 
@@ -51,5 +56,9 @@ bool MageRoom::PostUpdate()
 
 bool MageRoom::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	//app->physics->CleanUp();
+	app->audio->StopMusic();
 	return true;
 }

@@ -98,6 +98,11 @@ bool TheFall::Update(float dt)
 		
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	{
+		hasBeenCreated = !hasBeenCreated;
+	}
+
 	return true;
 }
 
