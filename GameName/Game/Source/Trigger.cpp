@@ -51,7 +51,7 @@ bool Trigger::PostUpdate()
 {
 	
 
-	if (physBody->type == COMBATTRIGGER) LOG("combat");
+	
 	//texture
 
 	switch (physBody->type)

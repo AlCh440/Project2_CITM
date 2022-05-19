@@ -67,7 +67,7 @@ bool GreenPath::Update(float dt)
 	if (app->entities->openWorld != nullptr)
 	{
 		bool ret = true;
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 9; i++)
 		{
 			iPoint toCheck[9] = {
 				app->entities->openWorld->GetPositionTiles(),

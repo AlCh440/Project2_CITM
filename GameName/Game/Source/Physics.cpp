@@ -372,7 +372,7 @@ void ModulePhysics::CheckPendingToDelete()
 		current = current->next;
 		if (removeItem && itemToRemove->data->body != NULL)
 		{
-			LOG("Removing item ");
+			/*LOG("Removing item ");*/
 
 			RemoveBodyFromWorld(itemToRemove->data->body);
 			itemToRemove->data = NULL;

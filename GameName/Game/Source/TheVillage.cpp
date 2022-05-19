@@ -82,7 +82,7 @@ bool TheVillage::Update(float dt)
 	if (app->entities->openWorld != nullptr)
 	{
 		bool ret = true;
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 19; i++)
 		{
 			iPoint toCheck[9] = {
 				app->entities->openWorld->GetPositionTiles(),

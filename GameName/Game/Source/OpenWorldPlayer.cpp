@@ -156,8 +156,8 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		{
-			movement.x *= 5;
-			movement.y *= 5;
+			movement.x *= 10;
+			movement.y *= 10;
 		}
 
 		physBody->body->SetLinearVelocity(movement);
@@ -177,14 +177,6 @@ bool OpenWorldPlayer::Update(float dt)
 
 	physBody->GetPosition(position.x, position.y);
 
-
-	LOG("%i", currentSteps);
-
-	if (app->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN)
-	{
-		app->audio->PlayFx(currentSteps);
-
-	}
 
 	bool cont = true;
 	for (p2ListItem<MapLayer*>* layer = app->map->mapData.layers.getFirst(); layer && cont == true; layer = layer->next)

@@ -8,7 +8,7 @@
 
 ShopRoom::ShopRoom(bool isActive) : Module(isActive)
 {
-	name.Create("Mage_Room");
+	name.Create("Shop_Room");
 	toSave = false;
 }
 
@@ -27,7 +27,8 @@ bool ShopRoom::Start()
 	doorOpen = app->audio->LoadFx("Assets/audio/fx/doorOpening.wav");
 	app->audio->PlayFx(doorOpen);
 	app->physics->Start();
-	app->map->Load("Shop.tmx");
+	bool a = app->map->Load("Shop.tmx");
+	LOG("%i", a);
 	app->entities->Start();
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
 	
@@ -49,10 +50,15 @@ bool ShopRoom::Update(float dt)
 bool ShopRoom::PostUpdate()
 {
 	app->map->Draw();
+	
 	return true;
 }
 
 bool ShopRoom::CleanUp()
 {
+	app->map->CleanUp();
+	app->entities->CleanUp();
+	//app->physics->CleanUp();
+	app->audio->StopMusic();
 	return true;
 }
