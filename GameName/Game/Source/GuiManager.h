@@ -6,6 +6,7 @@
 #include "p2List.h"
 #include "GuiPanel.h"
 #include "BattlePanel.h"
+#include "MatchResultPanel.h"
 
 
 enum GuiType {
@@ -86,6 +87,7 @@ public:
 	int currentPanel;
 
 	BattlePanel* battlePanelInstance;
+	MatchResultPanel* matchResultInstance;
 };
 
 #endif // __GUIMANAGER_H__

@@ -403,15 +403,15 @@ PhysBody* ModuleEntities::GetNearestEnemy(PhysBody* Character)
 
 }
 
-Entity* ModuleEntities::GetNearestPlayer(Entity* Character)
+p2ListItem<Player*>* ModuleEntities::GetNearestPlayer(Entity* Character)
 {
-    Entity* ret = nullptr;
+    p2ListItem<Player*>* ret = nullptr;
     p2ListItem<Player*>* player = players.getFirst();
 
     if (player != NULL)
     {
         int closest = Character->pathfinding->CreatePath(Character->tilePos,player->data->tilePos);
-        ret = player->data;
+        ret = player;
         while(player != nullptr)
         {
             int temp = Character->pathfinding->CreatePath(Character->tilePos, player->data->tilePos);
@@ -419,7 +419,7 @@ Entity* ModuleEntities::GetNearestPlayer(Entity* Character)
             if (temp < closest)
             {
                 closest = temp;
-                ret = player->data;
+                ret = player;
             }
 
             player = player->next;

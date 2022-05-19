@@ -143,7 +143,21 @@ bool EnemyDummy::PreUpdate()
 				break;
 			if (target == nullptr)
 			{
-				target = app->entities->GetNearestPlayer(this);
+
+				p2ListItem<Player*>* p = app->entities->GetNearestPlayer(this);
+				while(p != nullptr)
+				{
+					if (p->data->battleState == DEATH)
+					{
+						target = nullptr;
+					}
+					else {
+						target = p->data;
+						break;
+					}
+
+					p = p->next;
+				}
 			}
 			else {
 				
@@ -224,8 +238,8 @@ bool EnemyDummy::Update(float dt)
 				//pathfinding->GenerateWalkeableArea(tilePos, 100);
 
 
-				Entity* aux = app->entities->GetNearestPlayer(this);
-				if (InitPath(aux->tilePos)) {
+				
+				if (InitPath(target->tilePos)) {
 					NewTarget = true;
 				}
 				else {
@@ -237,6 +251,7 @@ bool EnemyDummy::Update(float dt)
 
 		if (MovePath()) {
 			NewTarget = false;
+			target = nullptr;
 			currentAnim = &idle;
 		}
 		break;

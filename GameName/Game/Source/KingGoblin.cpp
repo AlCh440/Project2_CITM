@@ -104,7 +104,19 @@ bool KingGoblin::PreUpdate()
 				break;
 			if (target == nullptr)
 			{
-				target = app->entities->GetNearestPlayer(this);
+				p2ListItem<Player*>* p = app->entities->GetNearestPlayer(this);
+				while (p != nullptr || target != nullptr)
+				{
+					if (p->data->battleState == DEATH)
+					{
+						target = nullptr;
+					}
+					else {
+						target = p->data;
+					}
+
+					p = p->next;
+				}
 			}
 			else {
 
@@ -177,8 +189,7 @@ bool KingGoblin::Update(float dt)
 				pathfinding->GenerateWalkeableArea(tilePos, 10);
 
 
-				Entity* aux = app->entities->GetNearestPlayer(this);
-				if (InitPath(aux->tilePos)) {
+				if (InitPath(target->tilePos)) {
 					NewTarget = true;
 				}
 			}

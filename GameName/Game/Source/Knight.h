@@ -43,7 +43,7 @@ public:
 	bool LoadState(pugi::xml_node& data) override;
 	bool SaveState(pugi::xml_node& data) const override;
 
-	uint attack;
+	uint attackfx;
 
 private:
 	Animation basicHit;

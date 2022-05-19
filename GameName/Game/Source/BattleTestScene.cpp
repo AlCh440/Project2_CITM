@@ -34,6 +34,7 @@ bool BattleTestScene::Start()
 	//activate physiscs
 	app->physics->Start();
 	//load map tiles, entities, colliders
+	//app->map->Load("BattleGroundTest.tmx");
 	app->map->Load("BattleGroundTest.tmx");
 	//start etities
 	app->entities->Start();
@@ -130,7 +131,8 @@ void BattleTestScene::NextEntity()
 			//victory screen
 			//exit menu
 			LOG("BATTLE WON!");
-
+			app->guiManager->matchResultInstance->LoadTitle(true);
+			app->guiManager->OpenPanel(P_MATCH_RESULT);
 		}
 		else if (CheckLoseCondition())
 		{
@@ -138,9 +140,8 @@ void BattleTestScene::NextEntity()
 			//lose screen
 			//exit menu
 			LOG("BATTLE LOST!");
-
-
-
+			app->guiManager->matchResultInstance->LoadTitle(false);
+			app->guiManager->OpenPanel(P_MATCH_RESULT);
 		}
 
 		// all entitites had their turn

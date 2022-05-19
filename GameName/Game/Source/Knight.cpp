@@ -14,10 +14,10 @@
 // Update Code
 Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 {
-	attack = app->audio->LoadFx("Assets/audio/fx/swordAttack.wav");
+
 
 	name.Create("Knight");
-
+	attackfx = app->audio->LoadFx("Assets/audio/fx/swordAttack.wav");
 	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->body->SetGravityScale(0);
@@ -35,7 +35,7 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 
 bool Knight::Start()
 {
-	attack = app->audio->LoadFx("Assets/audio/fx/swoosh.wav");
+	attackfx = app->audio->LoadFx("Assets/audio/fx/swoosh.wav");
 
 	stats.hp = 100;
 	stats.mana = 50;
@@ -77,9 +77,14 @@ bool Knight::Start()
 	walkUp.loop = true;
 	walkUp.speed = 0.1f;
 
-	dead.PushBack({});
+	dead.PushBack({64,144,32,48});
 	dead.loop = false;
 	dead.speed = 0.1;
+
+	attack.PushBack({ 11,144,41,48 });
+	dead.loop = false;
+	dead.speed = 0.1;
+
 	
 	hit.PushBack({ 0, 96, 32, 48 });
 	hit.PushBack({ 32, 96, 32, 48 });
@@ -87,6 +92,8 @@ bool Knight::Start()
 	hit.PushBack({ 96, 96, 32, 48 });
 	hit.loop = false;
 	hit.speed = 0.1f;
+
+	idle = walkDown;
 
 	currentAnim = &walkDown;
 
@@ -141,6 +148,8 @@ bool Knight::PreUpdate()
 		pos = app->map->WorldToMap(pos.x, pos.y);
 		tilePos = pos; 
 
+		currentAnim = &idle;
+
 		ExpandedBFS = false;
 	}
 		break;
@@ -193,7 +202,7 @@ bool Knight::PreUpdate()
 				}
 				else
 				{
-					target->takeDamage(stats.baseDamage);
+					target->takeDamage(stats.baseDamage);			
 					basicHit.Reset();
 					currentHitAnim = &basicHit;
 					battleState = IDLE;
@@ -204,7 +213,8 @@ bool Knight::PreUpdate()
 				battleState = IDLE;
 				pathfinding->ResetBFSPath();
 			}
-			app->audio->PlayFx(attack);
+			currentAnim = &attack;
+			app->audio->PlayFx(attackfx);
 		}
 		break;
 	case DEATH:

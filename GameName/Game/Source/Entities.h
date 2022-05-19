@@ -58,7 +58,7 @@ public:
 
 	// return the closest hitbox
 	PhysBody* GetNearestEnemy(PhysBody* Character);
-	Entity* GetNearestPlayer(Entity* Character);
+	p2ListItem<Player*>* GetNearestPlayer(Entity* Character);
 
 	
 
