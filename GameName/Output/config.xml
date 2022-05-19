@@ -9,7 +9,7 @@
 		<fullscreen value="false" />
 	</window>
 	<audio>
-		<volume music="26" fx="41" />
+		<volume music="73" fx="41" />
 	</audio>
 	<map>
 		<folder />

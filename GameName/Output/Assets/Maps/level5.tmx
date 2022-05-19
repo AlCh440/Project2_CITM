@@ -79836,7 +79836,7 @@
   <object id="91" name="wall" type="wall" x="768" y="448" width="64" height="32"/>
   <object id="92" name="wall" type="wall" x="704" y="512" width="32" height="64"/>
  </objectgroup>
- <objectgroup id="9" name="entities" visible="0">
+ <objectgroup id="9" name="entities">
   <object id="95" name="player" type="player" x="2848" y="1760" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="sensors" visible="0">

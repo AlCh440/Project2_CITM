@@ -50,14 +50,17 @@ bool LevelManagement::PreUpdate()
 
 	if ((app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) && currentScene->active == true)
 	{
+		app->levelManagement->inCombat = false;
 		gameScene = lastOpenWorldScene;
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) && currentScene->active == true)
 	{
+		app->levelManagement->inCombat = true;
 		gameScene = COMBAT;
 	}
 	if ((app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) && currentScene->active == true)
 	{
+		app->levelManagement->inCombat = false;
 		gameScene = START;
 	}
 	

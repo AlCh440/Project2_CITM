@@ -46,6 +46,12 @@ bool GreenPath::Start()
 	uncheckableTiles[4] = { 100, 21 };
 	uncheckableTiles[5] = { 100, 22 };
 
+	//enemy triggers
+	uncheckableTiles[6] = { 28, 20 };
+	uncheckableTiles[7] = { 48, 34 };
+	uncheckableTiles[8] = { 90, 19 };
+
+
 	//app->guiManager->OpenPanel(P_QUEST);
 
 	return true;

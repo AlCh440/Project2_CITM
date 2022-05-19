@@ -36,7 +36,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	iPoint uncheckableTiles[10];
+	iPoint uncheckableTiles[19];
 
 private:
 	SDL_Texture* img;

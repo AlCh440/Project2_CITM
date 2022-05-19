@@ -55,6 +55,18 @@ bool TheVillage::Start()
 	uncheckableTiles[7] = { 59, 15 };
 	uncheckableTiles[8] = { 73, 36 };
 	uncheckableTiles[9] = { 79, 36 };
+
+	//enemy triggers
+	uncheckableTiles[10] = { 27, 38 };
+	uncheckableTiles[11] = { 32, 36 };
+	uncheckableTiles[12] = { 35, 42 };
+	uncheckableTiles[13] = { 19, 80 };
+	uncheckableTiles[14] = { 24, 81 };
+	uncheckableTiles[15] = { 18, 84 };
+	uncheckableTiles[16] = { 21, 89 };
+	uncheckableTiles[17] = { 24, 89 };
+	uncheckableTiles[18] = { 27, 84 };
+
 	return true;
 }
 

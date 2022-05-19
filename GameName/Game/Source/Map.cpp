@@ -717,22 +717,21 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		else if (strcmp(object.attribute("type").as_string(), "chest") == 0)
 		{
 			obj->type = Collider_Type::CHEST;
-			if (object.first_child().name() == "properties");
+			/*if (object.first_child().name() == "properties");
 			{
 				pugi::xml_node prop;
 				prop = object.first_child().first_child();
 				while (prop != nullptr)
 				{
-					
-					if (prop.attribute("name").as_string() == string("hp_potion"))
+					pugi::xml_attribute att = prop.attribute("name");
+					if (att.value() == string("hpPotion"))
 					{
 						obj->properties.CreateProperty("hp_potion", 1);
-						int i = 0;
 					}
 					prop = prop.next_sibling();
 				}
 				
-			}
+			}*/
 			
 		}
 		layer->objects.add(obj);
@@ -808,60 +807,7 @@ bool Map::SetMapColliders()
 						//else
 						//app->entities->openWorld->SetPositionFromPixels(spawnPos);
 
-						if (app->entities->openWorld != nullptr)
-						{
-							switch (app->levelManagement->gameScene)
-							{
-							case THE_FALL:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
-							}
-							break;
-							case GREEN_PATH:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GreenPath);
-							}
-							break;
-							case VILLAGE:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
-							}
-							break;
-							case GENERAL_ROOM:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GeneralRoom);
-							}
-							break;
-							case MAGE_ROOM:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_MageRoom);
-							}
-							break;
-							case SHOP_ROOM:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_ShopRoom);
-							}
-							break;
-							case RUINS:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheRuins);
-							}
-							break;
-							case FRACTURED_ROAD:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_FracturedRoad);
-							}
-							break;
-							case DRAGON_CLIFF:
-							{
-								app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_DragonCliff);
-							}
-							break;
-
-							default:
-								break;
-							}
-						}
+						
 
 						
 						//app->entities->openWorld->SetPosition(spawnPos);

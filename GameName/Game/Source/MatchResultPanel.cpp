@@ -65,6 +65,7 @@ bool MatchResultPanel::OnGuiMouseClickEvent(GuiControl* control)
 
 	if (control->id == bt_finish->id)
 	{
+		app->levelManagement->inCombat = false;
 		app->levelManagement->gameScene = app->levelManagement->lastOpenWorldScene;
 		Disable();
 	}
