@@ -142,6 +142,7 @@
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Entities.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\MatchResultPanel.cpp" />
     <ClCompile Include="Source\Npc.cpp" />
     <ClCompile Include="Source\NpcDummy.cpp" />
     <ClCompile Include="Source\NpcGuard.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Entities.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\MatchResultPanel.h" />
     <ClInclude Include="Source\Npc.h" />
     <ClInclude Include="Source\NpcDummy.h" />
     <ClInclude Include="Source\NpcGuard.h" />
