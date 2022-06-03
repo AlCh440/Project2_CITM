@@ -1,6 +1,7 @@
 # Intro
-## MATUCANA STUDIOS – PROJECT II
 
+
+## MATUCANA STUDIOS – PROJECT II
 <img src="https://github.com/AlCh440/Project2_CITM/blob/2c236729e694ab5536cbaf249024cda024a52ce2/wiki_media/teamlogo1.png" width=275 align=left>
 
 Matucana Studios is a group of seven students coursing the second year Bachelor's degree in Video Game Design and Development at UPC university. In this subject, Project II, we will create an RPG turn based videogame using all the concepts and resources leaned until now.
@@ -14,14 +15,12 @@ Matucana Studios is a group of seven students coursing the second year Bachelor'
 
 
 ## Team Members
-
 <img src="https://github.com/AlCh440/Project2_CITM/blob/e58f98a68d8a7e3b14f8ffc887b81826ba2106f8/wiki_media/teamphoto.jpg" width=500 align=middle>
 
 <p>&nbsp;</p>
 
 
 ## Team Roles
-
 - Team Lead: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
   - Main Responsible set clear goals and deal with team cohesion.
 
@@ -76,3 +75,26 @@ Enter combat mode -> 2
 Debug mode -> F9
 
 Main menu -> 3
+
+## License
+MIT License
+
+Copyright (c) 2021 allenbateman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
