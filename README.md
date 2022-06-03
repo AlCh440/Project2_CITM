@@ -49,6 +49,8 @@ Matucana Studios is a group of seven students coursing the second year Bachelor'
 IN ORDER OF APPERANCE
 ~~~~~~~~~~~~~~~
 
+<p>&nbsp;</p>
+
 
 ## The ever told quest
 In a desolate world, sinked by a powerful archmage who openly defies anyone who wants to restore the world to its old glory, a party of heroes decides to face him, these heroes proved to be worthy opponents, but not enough to end the archmage’s tale, the mague, please by their worthiness markes the with a special sell, sending the party to the past and making them forget their stories.
