@@ -145,7 +145,6 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         if (openWorld == nullptr) 
         {
             openWorldInstance = new OpenWorldPlayer(type, spawnPos);
-            //entities.add(openWorldInstance);
             openWorld = openWorldInstance;
             openWorld->Start();
         }

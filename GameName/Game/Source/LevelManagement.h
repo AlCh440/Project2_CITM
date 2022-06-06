@@ -29,17 +29,11 @@ enum GameScene {
 	MAGE_ROOM,
 	GENERAL_ROOM,
 	SHOP_ROOM
-
-
-
 };
 
-//enum CombatState {
-//	NOCOMBAT = 0,
-//	PLAYERTURN = 1,
-//	ENEMYTURN = 2,
-//	ANIMATION = 3
-//};
+enum CombatScene {
+
+};
 
 class LevelManagement : public Module
 {

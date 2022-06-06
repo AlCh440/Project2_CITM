@@ -16,8 +16,6 @@ void Enemy::UpdatePath()
 {
 }
 
-
-
 bool Enemy::Start() { return true; }
 bool Enemy::PreUpdate() { return true; }
 bool Enemy::Update(float dt) { return true; }

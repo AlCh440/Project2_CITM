@@ -6,7 +6,7 @@
  <tileset firstgid="65" name="tileset" tilewidth="32" tileheight="32" tilecount="504" columns="24">
   <image source="tileset.png" trans="ff00ff" width="793" height="672"/>
  </tileset>
- <layer id="4" name="background" width="20" height="12" locked="1">
+ <layer id="4" name="background" width="20" height="12">
   <properties>
    <property name="Draw" type="int" value="1"/>
   </properties>
@@ -259,61 +259,36 @@
    <property name="Navigation" type="int" value="1"/>
   </properties>
   <data>
+   <tile gid="233"/>
+   <tile gid="234"/>
+   <tile gid="235"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="224"/>
+   <tile gid="164"/>
+   <tile gid="164"/>
+   <tile gid="164"/>
+   <tile gid="164"/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="233"/>
+   <tile gid="234"/>
+   <tile gid="235"/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="198"/>
+   <tile gid="200"/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile gid="164"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="164"/>
-   <tile gid="164"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="164"/>
-   <tile gid="164"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile/>
@@ -327,11 +302,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="364"/>
-   <tile gid="365"/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="246"/>
+   <tile gid="248"/>
    <tile/>
    <tile/>
    <tile gid="164"/>
@@ -350,6 +324,8 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="318"/>
+   <tile gid="320"/>
    <tile/>
    <tile/>
    <tile/>
@@ -385,8 +361,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="364"/>
-   <tile gid="365"/>
    <tile/>
    <tile/>
    <tile/>
@@ -405,13 +379,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="388"/>
-   <tile gid="391"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="198"/>
+   <tile gid="200"/>
    <tile/>
    <tile/>
    <tile/>
@@ -430,28 +404,11 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="246"/>
+   <tile gid="248"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile/>
@@ -459,6 +416,16 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="318"/>
+   <tile gid="224"/>
    <tile/>
    <tile/>
    <tile gid="164"/>
@@ -478,15 +445,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="248"/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile gid="164"/>
    <tile/>
    <tile/>
+   <tile gid="164"/>
    <tile/>
    <tile/>
    <tile/>
@@ -499,6 +464,41 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile gid="270"/>
+   <tile gid="164"/>
+   <tile/>
+   <tile gid="164"/>
+   <tile/>
+   <tile/>
+   <tile gid="164"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="188"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="189"/>
+   <tile gid="190"/>
   </data>
  </layer>
  <layer id="12" name="details" width="20" height="12">
@@ -527,15 +527,15 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
    <tile gid="115"/>
    <tile gid="115"/>
    <tile gid="115"/>
+   <tile gid="115"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="164"/>
    <tile/>
    <tile/>
    <tile/>
@@ -633,7 +633,7 @@
    <tile gid="168"/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="66"/>
    <tile/>
    <tile/>
    <tile/>
@@ -652,12 +652,12 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="248"/>
+   <tile gid="66"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
    <tile/>
    <tile/>
    <tile/>
@@ -677,6 +677,10 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="164"/>
+   <tile gid="164"/>
+   <tile/>
+   <tile gid="115"/>
    <tile/>
    <tile/>
    <tile/>
@@ -684,21 +688,17 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="115"/>
+   <tile gid="115"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
+   <tile gid="164"/>
+   <tile gid="164"/>
    <tile gid="118"/>
    <tile/>
-   <tile/>
+   <tile gid="164"/>
    <tile/>
    <tile/>
    <tile/>
@@ -708,17 +708,17 @@
    <tile/>
    <tile gid="115"/>
    <tile gid="115"/>
+   <tile gid="115"/>
+   <tile gid="115"/>
+   <tile gid="115"/>
+   <tile gid="115"/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
    <tile gid="118"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="164"/>
+   <tile gid="118"/>
+   <tile gid="118"/>
+   <tile gid="164"/>
    <tile gid="115"/>
    <tile gid="115"/>
    <tile gid="115"/>
@@ -751,8 +751,8 @@
  <objectgroup id="13" name="entities">
   <object id="98" name="knight" type="knight" x="96" y="128" width="32" height="32"/>
   <object id="99" name="ranger" type="ranger" x="64" y="192" width="32" height="32"/>
-  <object id="100" name="dummy" type="dummy" x="384" y="128" width="32" height="32"/>
+  <object id="100" name="dummy" type="dummy" x="416" y="64" width="32" height="32"/>
   <object id="101" name="dummy" type="dummy" x="320" y="160" width="32" height="32"/>
-  <object id="103" name="dummy" type="dummy" x="320" y="288" width="32" height="32"/>
+  <object id="103" name="dummy" type="dummy" x="512" y="192" width="32" height="32"/>
  </objectgroup>
 </map>

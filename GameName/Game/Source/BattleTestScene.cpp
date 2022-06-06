@@ -34,7 +34,10 @@ bool BattleTestScene::Start()
 	//activate physiscs
 	app->physics->Start();
 	//load map tiles, entities, colliders
-	//app->map->Load("BattleGroundTest.tmx");
+
+	//Load map depending on the zone
+
+
 	app->map->Load("BattleGroundTest.tmx");
 	//start etities
 	app->entities->Start();
