@@ -753,12 +753,15 @@ bool Map::LoadObject(pugi::xml_node& node, Object* object)
 	for (objProperty = node.child("properties").child("property"); objProperty && ret; objProperty = objProperty.next_sibling("property"))
 	{
 		Properties::Property* p = new Properties::Property();
-
-		//if any other attribute
-
-		//p->name = objProperty.attribute("name").as_string();
-		//p->value = objProperty.attribute("value").as_int();
-
+		switch (object->type)
+		{
+		case COMBATTRIGGER:
+			p->name = objProperty.attribute("name").as_string();
+			p->value = objProperty.attribute("value").as_int();
+			break;
+		default:
+			break;
+		}
 		object->properties.list.add(p);
 	}
 
@@ -960,6 +963,15 @@ bool Map::SetMapColliders()
 				Trigger* t = new Trigger();
 				t->physBody = app->physics->CreateRectangleSensor(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2BodyType::b2_staticBody, { 154,38,154,155 });
 				t->type = object->data->type;
+				switch (object->data->properties.GetProperty("scene"))
+				{
+				case 1:
+					t->scene = 
+					break;
+
+				default:
+					break;
+				}
 				t->physBody->listener = app->entities;
 				t->physBody->type = object->data->type;
 				t->id = 0; // Use when there is multiple battle scenes

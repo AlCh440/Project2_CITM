@@ -225,6 +225,15 @@
     <ClCompile Include="Source\MatchResultPanel.cpp">
       <Filter>GUI\Panels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Interactable.cpp">
+      <Filter>Entities\Interactable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DoorButton.cpp">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Door.cpp">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -481,6 +490,15 @@
     <ClInclude Include="Source\MatchResultPanel.h">
       <Filter>GUI\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Interactable.h">
+      <Filter>Entities\Interactable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DoorButton.h">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Door.h">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -545,6 +563,12 @@
     </Filter>
     <Filter Include="Entities\Items\Potions">
       <UniqueIdentifier>{b548daa0-02fa-414c-81f2-504cd71968b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Interactable">
+      <UniqueIdentifier>{7e528158-d843-4fb7-a664-f0a16a9848b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Interactable\Interactables">
+      <UniqueIdentifier>{cecfccd4-ad56-4bcc-bbd6-73f0bd8c62b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

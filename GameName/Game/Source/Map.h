@@ -49,7 +49,7 @@ struct Properties
 	{
 		SString name;
 		int value;
-	};
+	};	
 	
 	~Properties()
 	{

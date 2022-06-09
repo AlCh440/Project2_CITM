@@ -28,11 +28,16 @@ enum GameScene {
 	WORLD_TEST = 12,
 	MAGE_ROOM,
 	GENERAL_ROOM,
-	SHOP_ROOM
+	SHOP_ROOM,
+	PLAIN,
+	CASTLE,
+	CAVES
 };
 
 enum CombatScene {
-
+	PLAIN2,
+	CASTLE2,
+	CAVES2
 };
 
 class LevelManagement : public Module
@@ -75,6 +80,8 @@ public:
 	iPoint playerLastPos_TheRuins;
 	iPoint playerLastPos_FracturedRoad;
 	iPoint playerLastPos_DragonCliff;
+
+	CombatScene combatScene = PLAIN;
 
 	uint music;
 	bool playMusic = true;

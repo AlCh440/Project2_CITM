@@ -104,9 +104,12 @@
     <ClCompile Include="Source\Consumable.cpp" />
     <ClCompile Include="Source\DialogButton.cpp" />
     <ClCompile Include="Source\CheckPoint.cpp" />
+    <ClCompile Include="Source\Door.cpp" />
+    <ClCompile Include="Source\DoorButton.cpp" />
     <ClCompile Include="Source\Ease.cpp" />
     <ClCompile Include="Source\Goblin.cpp" />
     <ClCompile Include="Source\HPPotion.cpp" />
+    <ClCompile Include="Source\Interactable.cpp" />
     <ClCompile Include="Source\InventoryPanel.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Dialog.cpp" />
@@ -179,9 +182,12 @@
     <ClInclude Include="Source\CheckPoint.h" />
     <ClInclude Include="Source\Chest.h" />
     <ClInclude Include="Source\Consumable.h" />
+    <ClInclude Include="Source\Door.h" />
+    <ClInclude Include="Source\DoorButton.h" />
     <ClInclude Include="Source\Ease.h" />
     <ClInclude Include="Source\Goblin.h" />
     <ClInclude Include="Source\HPPotion.h" />
+    <ClInclude Include="Source\Interactable.h" />
     <ClInclude Include="Source\InventoryPanel.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Dialog.h" />

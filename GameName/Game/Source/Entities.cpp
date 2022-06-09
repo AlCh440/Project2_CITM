@@ -258,7 +258,9 @@ void ModuleEntities::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
             app->levelManagement->gameScene = shopEntrance->scene;
             break;
         case COMBATTRIGGER:
-            app->levelManagement->gameScene = COMBAT; // change when there is multiple batle scenes
+            // change when there is multiple batle scenes
+            Trigger* t = (Trigger*)&bodyB->entityPtr;
+            app->levelManagement->gameScene = t->scene;
             break;
         }
 

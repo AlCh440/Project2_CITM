@@ -31,14 +31,29 @@ bool BattleTestScene::Awake(pugi::xml_node&)
 bool BattleTestScene::Start()
 {
 	LOG("Loading Battle Test");
-	//activate physiscs
-	app->physics->Start();
+
 	//load map tiles, entities, colliders
 
+	//activate physiscs
+	app->physics->Start();
+
 	//Load map depending on the zone
+	switch (app->levelManagement->combatScene)
+	{
+	case PLAIN:
+		app->map->Load("BattleGroundTest.tmx");
+		break;
+	case CASTLE:
+		app->map->Load("combat_castle.tmx");
+		break;
+	case CAVES:
+		app->map->Load("combat_caves.tmx");
+		break;
+	default:
+		app->map->Load("BattleGroundTest.tmx");
+		break;
+	}
 
-
-	app->map->Load("BattleGroundTest.tmx");
 	//start etities
 	app->entities->Start();
 

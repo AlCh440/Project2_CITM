@@ -106,9 +106,6 @@ bool NpcDummy::Update(float dt)
 				app->dialogManager->dialog_Test.Restart();
 
 				app->audio->PlayFx(villagerSound);
-
-				
-				
 			}
 		}
 
