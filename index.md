@@ -2,7 +2,7 @@
 
 
 ## MATUCANA STUDIOS – PROJECT II
-<img src="https://github.com/AlCh440/Project2_CITM/blob/2c236729e694ab5536cbaf249024cda024a52ce2/wiki_media/teamlogo1.png" width=275 align=left>
+![](CI-CD1.png)
 
 Matucana Studios is a group of seven students coursing the second year Bachelor's degree in Video Game Design and Development at UPC university. In this subject, Project II, we will create an RPG turn based videogame using all the concepts and resources leaned until now.
 
@@ -15,7 +15,7 @@ Matucana Studios is a group of seven students coursing the second year Bachelor'
 
 
 ## Team Members
-<img src="https://github.com/AlCh440/Project2_CITM/blob/e58f98a68d8a7e3b14f8ffc887b81826ba2106f8/wiki_media/teamphoto.jpg" width=500 align=middle>
+![](teamphoto.jpg)
 
 <p>&nbsp;</p>
 
@@ -58,7 +58,7 @@ After such encounter, the party awakes in a cave, without remembering who they a
 
 <p>&nbsp;</p>
 
-<img src="https://github.com/AlCh440/Project2_CITM/blob/1bd056de51c7dd5d3554163667f7f8be5a347090/wiki_media/screen_title.jpg" width=500 align=middle>
+![](screen_title.jpg)
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
