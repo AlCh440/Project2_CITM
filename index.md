@@ -7,11 +7,6 @@
 Matucana Studios is a group of seven students coursing the second year Bachelor's degree in Video Game Design and Development at UPC university. In this subject, Project II, we will create an RPG turn based videogame using all the concepts and resources leaned until now.
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 
 ## Team Members
@@ -56,12 +51,10 @@ In a desolate world, sinked by a powerful archmage who openly defies anyone who 
 
 After such encounter, the party awakes in a cave, without remembering who they are, decided to move forth, encountering a village, where after some time they recover their abilities, a local mague talks with them, reminding the who they are and offering to send them back to the future and fulfil their duty of ending the evil archmage.
 
-<p>&nbsp;</p>
-
 ![](screen_title.jpg)
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+
 
 ## Game Features
 
