@@ -2,7 +2,7 @@
 
 
 ## MATUCANA STUDIOS – PROJECT II
-![](CI-CD1.png)
+![](teamlogo1.png)
 
 Matucana Studios is a group of seven students coursing the second year Bachelor's degree in Video Game Design and Development at UPC university. In this subject, Project II, we will create an RPG turn based videogame using all the concepts and resources leaned until now.
 
