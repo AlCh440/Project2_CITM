@@ -51,13 +51,17 @@ IN ORDER OF APPERANCE
 <p>&nbsp;</p>
 
 
-## The ever told quest
+## The Ever Told Quest
 In a desolate world, sinked by a powerful archmage who openly defies anyone who wants to restore the world to its old glory, a party of heroes decides to face him, these heroes proved to be worthy opponents, but not enough to end the archmage’s tale, the mague, please by their worthiness markes the with a special sell, sending the party to the past and making them forget their stories.
 
 After such encounter, the party awakes in a cave, without remembering who they are, decided to move forth, encountering a village, where after some time they recover their abilities, a local mague talks with them, reminding the who they are and offering to send them back to the future and fulfil their duty of ending the evil archmage.
 
 <p>&nbsp;</p>
 
+<img src="https://github.com/AlCh440/Project2_CITM/blob/1bd056de51c7dd5d3554163667f7f8be5a347090/wiki_media/screen_title.jpg" width=500 align=middle>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ## Game Features
 
