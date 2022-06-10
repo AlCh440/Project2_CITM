@@ -59,6 +59,11 @@ After such encounter, the party awakes in a cave, without remembering who they a
 <p>&nbsp;</p>
 
 
+## Game Features
+
+<p>&nbsp;</p>
+
+
 ## Controls
 ### Player movement:   
 
@@ -75,6 +80,14 @@ Enter combat mode -> 2
 Debug mode -> F9
 
 Main menu -> 3
+
+<p>&nbsp;</p>
+
+
+## Other Relevance Information
+
+<p>&nbsp;</p>
+
 
 ## License
 MIT License
