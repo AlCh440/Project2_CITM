@@ -63,9 +63,10 @@ bool QuestPanel::Start()
 
 bool QuestPanel::Update(float dt, bool doLogic)
 {
-	GuiPanel::Update(dt,doLogic);
-	app->gamePaused = true;
 	
+	app->gamePaused = true;
+
+	GuiPanel::Update(dt,doLogic);
 	return true;
 }
 
@@ -175,8 +176,8 @@ bool QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	else if (control->id == offQuestPanel->id)
 	{
-		//app->gamePaused = false;
-		//app->guiManager->OnPause(false);
+		app->gamePaused = false;
+		app->guiManager->OnPause(false);
 		//app->questManager->CompleteQuest(currentQuest->data->id);
 		//app->questManager->CancelQuest(currentQuest->data->id);
 		this->Disable();

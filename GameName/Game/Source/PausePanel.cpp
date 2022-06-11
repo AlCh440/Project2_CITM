@@ -98,6 +98,8 @@ bool PausePanel::OnGuiMouseClickEvent(GuiControl* control)
 	else if (control->id == bt_menu->id)
 	{
 		app->levelManagement->gameScene = START;
+		app->gamePaused = false;
+		app->guiManager->OnPause(false);
 	}
 	else if (control->id == bt_quit->id)
 	{

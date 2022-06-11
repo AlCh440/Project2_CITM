@@ -81,7 +81,7 @@ public:
 	iPoint playerLastPos_FracturedRoad;
 	iPoint playerLastPos_DragonCliff;
 
-	CombatScene combatScene = PLAIN;
+	CombatScene combatScene = PLAIN2;
 
 	uint music;
 	bool playMusic = true;

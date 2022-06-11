@@ -6,19 +6,9 @@
 		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="512" y="442" />
+		<player x="530" y="426" />
 	</entities>
 	<renderer>
-		<camera x="-384" y="-524" />
+		<camera x="-420" y="-492" />
 	</renderer>
-	<storyquests>
-		<onceuponatime completed="false" active="false"/>
-		<strangedeepthes completed="false" active="false" />
-		<defeatgomakthegiant completed="false" active="false" />
-		<monsterhaunter completed="false" active="false" />
-		<stargate completed="false" active="false"/>
-	</storyquests>
-	<sidequests>
-		<thefourkeysofapocalypse completed="false" active="false" key1="false" key2="false" key3="false" key4="false"/>
-	</sidequests>
 </saveState>

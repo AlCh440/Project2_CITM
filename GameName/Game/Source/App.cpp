@@ -512,21 +512,7 @@ bool App::SaveGameRequest() const
 {
 	bool ret = false;
 
-	pugi::xml_document* saveDoc = new pugi::xml_document();
-	pugi::xml_node saveStateNode = saveDoc->append_child("saveState");
-
-	p2ListItem<Module*>* item;
-	item = modules.start;
-
-	while (item != NULL)
-	{
-		ret = item->data->SaveState(saveStateNode.append_child(item->data->name.GetString()));
-		item = item->next;
-	}
-
-	ret = saveDoc->save_file("save_game.xml");
-
-	saveGameRequested = false;
+	saveGameRequested = true;
 
 
 	return ret;
@@ -550,7 +536,7 @@ bool App::LoadGame()
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;
-	pugi::xml_parse_result result = gameStateFile.load_file("saveGame.xml");
+	pugi::xml_parse_result result = gameStateFile.load_file(SAVE_STATE_FILENAME);
 	//pugi::xml_parse_result result = gameStateFile.load_file("config.xml");
 	if (result == NULL)
 	{
@@ -570,6 +556,7 @@ bool App::LoadGame()
 	}
 
 	loadGameRequested = false;
+
 
 	return ret;
 }

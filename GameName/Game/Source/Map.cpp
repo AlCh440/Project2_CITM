@@ -966,7 +966,7 @@ bool Map::SetMapColliders()
 				switch (object->data->properties.GetProperty("scene"))
 				{
 				case 1:
-					t->scene = 
+					//t->scene = 
 					break;
 
 				default:
@@ -980,7 +980,7 @@ bool Map::SetMapColliders()
 				t->Start();
 			}break;
 			default:
-				break;
+				break; 
 			}
 
 			object = object->next;

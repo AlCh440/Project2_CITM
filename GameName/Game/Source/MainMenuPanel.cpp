@@ -86,11 +86,15 @@ bool MainMenuPanel::OnGuiMouseClickEvent(GuiControl* control)
         app->audio->StopMusic();
         app->levelManagement->gameScene = GameScene::THE_FALL;
         app->questManager->ActivateQuest(0);
+        app->gamePaused = false;
+        app->guiManager->OnPause(false);
     }
     else if (control->id == bt_loadGame->id)
     {
         //load Game
         app->LoadGameRequest();
+        app->gamePaused = false;
+        app->guiManager->OnPause(false); 
     }
     else if (control->id == bt_settings->id)
     {
