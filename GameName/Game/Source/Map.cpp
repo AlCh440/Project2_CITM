@@ -963,17 +963,12 @@ bool Map::SetMapColliders()
 				Trigger* t = new Trigger();
 				t->physBody = app->physics->CreateRectangleSensor(spawnPos.x, spawnPos.y, object->data->width, object->data->height, b2BodyType::b2_staticBody, { 154,38,154,155 });
 				t->type = object->data->type;
-				switch (object->data->properties.GetProperty("scene"))
-				{
-				case 1:
-					//t->scene = 
-					break;
-
-				default:
-					break;
-				}
+				t->physBody->entityPtr = t;
 				t->physBody->listener = app->entities;
 				t->physBody->type = object->data->type;
+
+				t->scene = (GameScene) object->data->properties.GetProperty_("scene");
+
 				t->id = 0; // Use when there is multiple battle scenes
 				app->entities->listOfCombatTriggers.add(t);
 				app->entities->entities.add(t);
