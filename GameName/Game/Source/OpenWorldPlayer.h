@@ -73,7 +73,7 @@ private:
 	bool canMove;
 
 
-	int stepsTimer = 0;
-	int stepsTimerRef = 20;
+	float stepsTimer = 0;
+	float stepsTimerRef = 20;
 
 };

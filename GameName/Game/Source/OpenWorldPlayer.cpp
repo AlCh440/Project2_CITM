@@ -12,7 +12,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "Interactable.h"
-
+#include "ModuleParticles.h"
 
 // Update Code
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
@@ -148,8 +148,8 @@ bool OpenWorldPlayer::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 			{
-				movement.x *= 2;
-				movement.y *= 2;
+				movement.x *= 1.6f;
+				movement.y *= 1.6f;
 			}
 			physBody->body->SetLinearVelocity(movement);
 		}
@@ -163,55 +163,7 @@ bool OpenWorldPlayer::Update(float dt)
 	physBody->GetPosition(position.x, position.y);
 
 
-	bool cont = true;
-	for (p2ListItem<MapLayer*>* layer = app->map->mapData.layers.getFirst(); layer && cont == true; layer = layer->next)
-	{
-		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
-		
-		int tileID = -4;
-
-		if (layer)
-		{
-			tileID = layer->data->Get(pos.x, pos.y);
-		}
-
-		//LOG("tileID %i", tileID);
-
-		switch (tileID)
-		{
-		case 118:
-		{
-			currentSteps = fxStepsGrass;
-			cont = false;
-			//LOG("step grass");
-		}
-		break;
-		case 197:
-		{
-			currentSteps = fxStepsDirt;
-			cont = false;
-			//LOG("step dirt");
-
-		}
-		break;
-		case 219:
-		{
-			currentSteps = fxStepsDirt;
-			cont = false;
-			//LOG("step dirt");
-
-		}
-		break;
-		default:
-		{
-			currentSteps = fxStepsDef;
-			//LOG("step default");
-
-		}
-			break;
-		}
-
-	}
+	
 
 
 
@@ -221,7 +173,16 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		if (movement.x != 0 || movement.y != 0)
 		{
-			if (stepsTimer > 0) stepsTimer--;
+			if (stepsTimer > 0)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+				{
+					stepsTimer -= 1.3f;
+				}
+				else {
+					stepsTimer--;
+				}
+			}
 			else
 			{
 				app->audio->PlayFx(currentSteps);
@@ -283,10 +244,93 @@ bool OpenWorldPlayer::Update(float dt)
 		//app->audio->Pause = true;
 	}
 
-	if ((app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN))
+	bool cont = true;
+	for (p2ListItem<MapLayer*>* layer = app->map->mapData.layers.getFirst(); layer && cont == true; layer = layer->next)
 	{
-		app->entities->AddEntity(Collider_Type::CHEST, { GetPositionTiles().x * 32,GetPositionTiles().y * 32 });
+		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
+
+		int tileID = -4;
+
+		if (layer)
+		{
+			tileID = layer->data->Get(pos.x, pos.y);
+		}
+
+		//LOG("tileID %i", tileID);
+
+		switch (tileID)
+		{
+		case 118:
+		{
+			currentSteps = fxStepsGrass;
+			cont = false;
+			//LOG("step grass");
+		}
+		break;
+		case 197:
+		{
+			currentSteps = fxStepsDirt;
+			cont = false;
+			//LOG("step dirt");
+
+		}
+		break;
+		case 219:
+		{
+			currentSteps = fxStepsDirt;
+			cont = false;
+			//LOG("step dirt");
+
+		}
+		break;
+		default:
+		{
+			currentSteps = fxStepsDef;
+			//LOG("step default");
+
+		}
+		break;
+		}
+
+		if ((movement.x != 0 || movement.y != 0) && (tileID == 219 || tileID == 197))
+		{
+			if (app->RandomRange(0, 3) == 3)
+			{
+
+				Particle* p = app->particles->AddParticle(app->particles->dust,
+					app->RandomRange(position.x + 18, position.x - 10), app->RandomRange(position.y + 15, position.y + 19));
+
+				/*p->speed = fPoint(app->RandomRange(0.01f, -0.01f), app->RandomRange(0.1f, .3f));
+				p->accel = fPoint(app->RandomRange(0.02f, -0.02f), app->RandomRange(0.f, 0.03f));*/
+				p->anim.speed = app->RandomRange(0.05f, 0.1f);
+
+				int rnd_leaf = app->RandomRange(0, 3);
+				switch (rnd_leaf)
+				{
+				case 1:
+					p->anim.Update();
+					break;
+				case 2:
+				{
+					p->anim.Update();
+					p->anim.Update();
+				}
+				break;
+				case 3:
+				{
+					p->anim.Update();
+					p->anim.Update();
+					p->anim.Update();
+				}
+				break;
+				default:
+					break;
+				}
+			}
+		}
+
 	}
+	
 
 	return true;
 }
