@@ -10,6 +10,7 @@ DoorButton::DoorButton(Collider_Type type, iPoint pos):Interactable(type,pos)
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
 	message = "Door button!";
+	time = 64;
 }
 
 DoorButton::~DoorButton()
@@ -25,6 +26,20 @@ bool DoorButton::Start()
 bool DoorButton::Update(float dt)
 {
 	Interactable::Update(dt);
+
+	if (Pressed)
+	{
+		counter--;
+		if(counter <= 0)
+		{
+			Pressed = false;
+			counter = time;
+			if (door != nullptr)
+			{
+				//door->OpenDoor();
+			}
+		}
+	}
 
 	return true;
 }

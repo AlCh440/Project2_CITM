@@ -1036,15 +1036,23 @@ bool Map::SetMapColliders()
 			{
 				DoorButton* d = new DoorButton(object->data->type, spawnPos);
 				d->id = object->data->properties.GetProperty("id");
+				app->entities->listButtonDoor.add(d);
 				app->entities->entities.add(d);
 			}
 				break;
 			case DOOR:
 				{
-					Door* d = new Door(object->data->type, spawnPos);
+					bool vertical =false;
+					if (object->data->properties.GetProperty_("vertical") == 1)
+					{
+						vertical = true;
+					}
+
+					Door* d = new Door(object->data->type, spawnPos,object->data->width,object->data->height, vertical);
 					d->id = object->data->properties.GetProperty("id");
 					d->width = object->data->width;
 					d->height = object->data->height;
+					app->entities->listDoors.add(d);
 					app->entities->entities.add(d); 
 				}
 				break;

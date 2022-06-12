@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="101">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="102">
  <properties>
   <property name="id" type="int" value="0"/>
  </properties>
@@ -11205,6 +11205,7 @@
   <object id="99" name="door" type="door" x="416" y="832" width="160" height="32">
    <properties>
     <property name="id" type="int" value="1"/>
+    <property name="vertical" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>

@@ -15,5 +15,8 @@ public:
 	int id;
 	SDL_Rect r;
 	SDL_Texture* buttonTex;
+
+	int counter;
+	int time = 32;
 };
 

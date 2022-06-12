@@ -20,7 +20,7 @@ private:
 	bool needKey = true;
 	bool moving = false;
 	bool isVertical = true;
-	float velocity = 0.1f;
+	float velocity = 10;
 
 	b2Vec2 direction;
 	
