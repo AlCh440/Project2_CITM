@@ -146,6 +146,11 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		if (CanMove())
 		{
+			if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+			{
+				movement.x *= 2;
+				movement.y *= 2;
+			}
 			physBody->body->SetLinearVelocity(movement);
 		}
 		else 
@@ -163,40 +168,49 @@ bool OpenWorldPlayer::Update(float dt)
 	{
 		iPoint pos = { GetPositionTiles().x, GetPositionTiles().y };
 		
-		int tileID = 0;
+		int tileID = -4;
+
 		if (layer)
 		{
-			layer->data->Get(pos.x, pos.y);
+			tileID = layer->data->Get(pos.x, pos.y);
 		}
+
 		//LOG("tileID %i", tileID);
+
 		switch (tileID)
 		{
 		case 118:
 		{
 			currentSteps = fxStepsGrass;
 			cont = false;
+			//LOG("step grass");
 		}
 		break;
 		case 197:
 		{
 			currentSteps = fxStepsDirt;
 			cont = false;
+			//LOG("step dirt");
+
 		}
 		break;
 		case 219:
 		{
 			currentSteps = fxStepsDirt;
 			cont = false;
+			//LOG("step dirt");
+
 		}
 		break;
 		default:
 		{
 			currentSteps = fxStepsDef;
-
+			//LOG("step default");
 
 		}
 			break;
 		}
+
 	}
 
 

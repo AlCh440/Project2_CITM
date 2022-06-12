@@ -6,6 +6,7 @@
 #include "Audio.h"
 #include "Physics.h"
 #include "GuiManager.h"
+#include "ModuleParticles.h"
 
 TheFall::TheFall(bool isActive) : Module(isActive)
 {
@@ -103,6 +104,20 @@ bool TheFall::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
 	{
 		hasBeenCreated = !hasBeenCreated;
+	}
+
+
+	if (app->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	{
+		app->particles->AddParticle(app->particles->leaf_0, 560, 330, 0);
+
+	}
+
+	// TODO 5: Make an explosion when the player hits 2
+
+	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	{
+		app->particles->AddParticle(app->particles->dust, 560, 330, 0);
 	}
 
 	return true;

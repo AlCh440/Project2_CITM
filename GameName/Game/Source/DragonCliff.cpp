@@ -32,6 +32,10 @@ bool DragonCliff::Start()
 	app->entities->exitIntance->scene = GameScene::START;
 	app->entities->entranceIntance->scene = GameScene::FRACTURED_ROAD;
 
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_DragonCliff);
+	}
 	return true;
 }
 

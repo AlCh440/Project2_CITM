@@ -11,7 +11,7 @@
 //#pragma comment(lib, "../Game/Source/External/SDL/libx86/SDL2main.lib")
 
 #include <stdlib.h>
-
+#include <time.h>
 enum MainState
 {
 	CREATE = 1,
@@ -32,6 +32,7 @@ int main(int argc, char* args[])
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
 
+	srand(time(0));
 	while(state != EXIT)
 	{
 		switch(state)

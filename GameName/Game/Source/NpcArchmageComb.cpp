@@ -95,7 +95,7 @@ bool NpcArchmageComb::Update(float dt)
 
 			app->audio->PlayFx(villagerSound);
 
-			//it keeps adding to memory the more times you talk -> fix!!
+
 		}
 
 	}

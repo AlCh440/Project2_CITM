@@ -116,7 +116,7 @@ bool NpcGeneral::Update(float dt)
 			app->dialogManager->FillDialog_General(app->dialogManager->dialog_General);
 			app->dialogManager->dialog_General.Restart();
 			app->audio->PlayFx(villagerSound);
-			//it keeps adding to memory the more times you talk -> fix!!
+
 		}
 
 	}

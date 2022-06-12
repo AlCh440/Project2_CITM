@@ -33,6 +33,10 @@ bool TheRuins::Start()
 	app->entities->exitIntance->scene = GameScene::FRACTURED_ROAD;
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
 	
+	if (app->entities->openWorld != nullptr)
+	{
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheRuins);
+	}
 	
 	return true;
 }

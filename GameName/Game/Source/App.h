@@ -28,6 +28,7 @@ class DialogManager;
 class LevelManagement;
 class QuestManager;
 class PathFinding;
+class ModuleParticles;
 
 class Intro;
 class StartMenu;
@@ -130,6 +131,7 @@ public:
 	DialogFonts* dialogFonts;
 	QuestManager* questManager;
 	PathFinding* pathFinding;
+	ModuleParticles* particles;
 
 	//scenes
 	LevelManagement* levelManagement;

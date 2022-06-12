@@ -16,6 +16,7 @@
 #include "FadeToBlack.h"
 #include "QuestManager.h"
 #include "Pathfinding.h"
+#include "ModuleParticles.h"
 //Scenes 
 #include "Intro.h"
 #include "StartMenu.h"
@@ -65,6 +66,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	levelManagement = new LevelManagement(true);
 	guiManager = new GuiManager(true);
 	dialogManager = new DialogManager(true);
+	particles = new ModuleParticles(true);
 
 	//Scenes
 	intro = new Intro(false);
@@ -100,6 +102,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(questManager);
 	
+
 	AddModule(intro);
 	AddModule(start);
 	AddModule(gameOver);
@@ -117,7 +120,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(worldTest);
 
 	AddModule(entities);
-	
+	AddModule(particles);
+
 	AddModule(dialogManager);
 	AddModule(guiManager);
 	AddModule(fade);

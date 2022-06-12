@@ -95,7 +95,7 @@ bool NpcRanger::Update(float dt)
 
 			app->audio->PlayFx(villagerSound);
 
-			//it keeps adding to memory the more times you talk -> fix!!
+
 		}
 
 	}
@@ -118,7 +118,7 @@ bool NpcRanger::PostUpdate()
 
 	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
-	SDL_Rect Rask = { 0,0,9,12 };
+	SDL_Rect Rask = { 0,180,9,12 };
 
 	OpenWorldPlayer* player = app->entities->openWorld;
 

@@ -86,11 +86,11 @@ bool TheVillage::Update(float dt)
 		{
 			iPoint toCheck[9] = {
 				app->entities->openWorld->GetPositionTiles(),
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y - 1},
+				{app->entities->openWorld->GetPositionTiles().x, app->entities->openWorld->GetPositionTiles().y - 1},
 				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y - 1},
 				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y},
 				{app->entities->openWorld->GetPositionTiles().x + 1,app->entities->openWorld->GetPositionTiles().y + 1},
-				{app->entities->openWorld->GetPositionTiles().x,app->entities->openWorld->GetPositionTiles().y + 1},
+				{app->entities->openWorld->GetPositionTiles().x, app->entities->openWorld->GetPositionTiles().y + 1},
 				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y + 1},
 				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y},
 				{app->entities->openWorld->GetPositionTiles().x - 1,app->entities->openWorld->GetPositionTiles().y - 1}

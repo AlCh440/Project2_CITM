@@ -95,7 +95,7 @@ bool NpcArchmage::Update(float dt)
 
 			app->audio->PlayFx(villagerSound);
 
-			//it keeps adding to memory the more times you talk -> fix!!
+
 		}
 
 	}
@@ -118,6 +118,7 @@ bool NpcArchmage::PostUpdate()
 
 	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
+	//search the coordinates in archmage spritesheet
 	SDL_Rect Rask = { 0,0,9,12 };
 
 	OpenWorldPlayer* player = app->entities->openWorld;
