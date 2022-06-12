@@ -979,6 +979,7 @@ void DialogManager::FillDialog_Ranger(Dialog& dialog)
 
 	
 	node.text = "Aniways, seen the pointy hat anywhere Buckethead?";
+	id = dialog.AddNode(node);
 
 	node.nodes.push_back(id_2_);
 	node.options.push_back("You are?");
@@ -994,6 +995,7 @@ void DialogManager::FillDialog_Ranger(Dialog& dialog)
 
 	id_1_ = dialog.AddNode(node);
 
+	id = dialog.AddNode(node);
 
 	node.text = "Wow,  thought you where dead!";
 
