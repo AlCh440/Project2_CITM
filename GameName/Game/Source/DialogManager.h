@@ -13,6 +13,9 @@
 #include "TheFall.h"
 #include "Entities.h"
 #include "TheVillage.h"
+#include "GeneralRoom.h"
+#include "MageRoom.h"
+#include "DragonCliff.h"
 
 struct DialogGroup
 {

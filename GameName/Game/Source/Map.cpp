@@ -679,6 +679,36 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::NPCWOVILLAGER;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "rangerNPC") == 0) {
+
+			obj->type = Collider_Type::NPCRANGER;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "rangerVillNPC") == 0) {
+
+			obj->type = Collider_Type::NPCRANGERVILL;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "wizardNPC") == 0) {
+
+			obj->type = Collider_Type::NPCWIZARD;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "generalNPC") == 0) {
+
+			obj->type = Collider_Type::NPCGENERAL;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "archmageNPC") == 0) {
+
+			obj->type = Collider_Type::NPCARCHMAGE;
+
+		}
+		else if (strcmp(object.attribute("type").as_string(), "archmageCombNPC") == 0) {
+
+			obj->type = Collider_Type::NPCARCHMAGECOMB;
+
+		}
 		else if (strcmp(object.attribute("type").as_string(), "Checkpoint") == 0) {
 
 			obj->type = Collider_Type::CHECK_POINT;
@@ -890,6 +920,30 @@ bool Map::SetMapColliders()
 			case NPCWOVILLAGER:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn Women villager NPC...");
+				break;
+			case NPCRANGER:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn ranger NPC...");
+				break;
+			case NPCRANGERVILL:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn ranger vill NPC...");
+				break;
+			case NPCGENERAL:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn GENERAL NPC...");
+				break;
+			case NPCWIZARD:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn Wizard NPC...");
+				break;
+			case NPCARCHMAGE:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn archmage NPC...");
+				break;
+			case NPCARCHMAGECOMB:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn archmage comb NPC...");
 				break;
 			case PORTAL:
 				app->entities->AddEntity(object->data->type, spawnPos);

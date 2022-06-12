@@ -18,6 +18,12 @@
 #include "NpcDummy.h"
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
+#include "NpcArchmage.h"
+#include "NpcArchmageComb.h"
+#include "NpcGeneral.h"
+#include "NpcRanger.h"
+#include "NpcRangerVill.h"
+#include "NpcWizard.h"
 #include "CheckPoint.h"
 #include "Trigger.h"
 
@@ -30,8 +36,18 @@ class DialogManager;
 class NpcDummy;
 class NpcGuard;
 class NpcWoVillager;
+
 class DoorButton;
 class Door;
+
+class NpcArchmage;
+class NpcArchmageComb;
+class NpcWizard;
+class NpcGeneral;
+class NpcRanger;
+class NpcRangerVill;
+
+
 //class Entity;
 // this will be deleted
 //class EnemyDummy;
@@ -112,6 +128,12 @@ public:
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;
 	NpcWoVillager* dummyNpcWoVillagerInstance;
+	NpcRanger* dummyNpcRangerInstance;
+	NpcRangerVill* dummyNpcRangerVillInstance;
+	NpcWizard* dummyNpcWizardInstance;
+	NpcGeneral* dummyNpcGeneralInstance;
+	NpcArchmage* dummyNpcArchmageInstance;
+	NpcArchmageComb* dummyNpcArchmageCombInstance;
 	Item* itemInstance;
 
 	// triggers to move room to room
