@@ -16,6 +16,7 @@
 #include "GeneralRoom.h"
 #include "MageRoom.h"
 #include "DragonCliff.h"
+#include "GreenPath.h"
 
 struct DialogGroup
 {

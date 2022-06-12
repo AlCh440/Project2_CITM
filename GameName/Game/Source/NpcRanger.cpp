@@ -37,7 +37,7 @@ bool NpcRanger::Start()
 
 	actualStates = NORMAL;
 
-	rect = { 128, 48, 32, 48 };
+	//rect = { 134, 54, 24, 38 };
 
 	iPoint pos;
 	pos.x = position.x;
@@ -106,7 +106,7 @@ bool NpcRanger::Update(float dt)
 bool NpcRanger::PostUpdate()
 {
 	//currentAnim->Update();
-
+	rect = { 134, 54, 24, 38 };
 
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
@@ -116,7 +116,7 @@ bool NpcRanger::PostUpdate()
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
-	//app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
 	SDL_Rect Rask = { 0,0,9,12 };
 

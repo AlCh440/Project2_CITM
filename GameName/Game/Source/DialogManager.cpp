@@ -96,6 +96,13 @@ bool DialogManager::PostUpdate()
 
 		
 
+		
+
+		
+		}
+	
+	if (app->greenPath->active)
+	{
 		if (dialogActive_Ranger)
 		{
 			if ((!dialog_Ranger.Finished()))
@@ -109,10 +116,8 @@ bool DialogManager::PostUpdate()
 				dialogActive_Ranger = false;
 			}
 		}
+	}
 
-		
-		}
-	
 	if (app->village->active)
 	{
 		if (app->dialogManager->dialogActive_Guard)

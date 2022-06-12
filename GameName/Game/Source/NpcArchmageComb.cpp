@@ -107,6 +107,7 @@ bool NpcArchmageComb::PostUpdate()
 {
 	//currentAnim->Update();
 
+	rect = { 0, 256, 40, 40 };
 
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
@@ -116,7 +117,7 @@ bool NpcArchmageComb::PostUpdate()
 
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
-	//app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
 	SDL_Rect Rask = { 0,0,9,12 };
 
