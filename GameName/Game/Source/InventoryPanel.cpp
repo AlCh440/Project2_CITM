@@ -36,18 +36,19 @@ bool InventoryPanel::Start()
 
 
 
-		bt_to_knight = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { (this->position.x + 375)*2,(this->position.y + 46)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
+		bt_to_knight = (GuiButton*)CreateGuiButton(10, app->guiManager, this, { (this->position.x + 375)*2,(this->position.y + 46)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
 		bt_to_knight->texture = app->guiManager->tex_inventory_tabs;
 		bt_to_knight->normalRec = { 12, 135, 50, 57 };
 		bt_to_knight->focusedRec = { 12, 135, 50, 57 };
 		bt_to_knight->pressedRec = { 12, 135, 50, 57 };
 
-	bt_to_ranger = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { (this->position.x + 433)*2,(this->position.y + 45)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
+	bt_to_ranger = (GuiButton*)CreateGuiButton(11, app->guiManager, this, { (this->position.x + 433)*2,(this->position.y + 45)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
 	bt_to_ranger->texture = app->guiManager->tex_inventory_tabs;
 	bt_to_ranger->normalRec = { 73, 135, 50, 57 };
 	bt_to_ranger->focusedRec = { 73, 135, 50, 57 };
 	bt_to_ranger->pressedRec = { 73, 135, 50, 57 };
 
+	
 	return true;
 
 }
@@ -79,7 +80,7 @@ void InventoryPanel::DrawItems()
 	
 	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
 	{
-		aux->data->button->Draw(app->render);
+  		aux->data->button->Draw(app->render);
 	}
 
 	// Drawing tab
@@ -113,6 +114,26 @@ bool InventoryPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	
 	return true;
+}
+
+iPoint InventoryPanel::InitializeItemPos()
+{
+	iPoint ret(position.x + 444, position.y + 340);
+
+	if (rowCounter == 5)
+	{
+		rowCounter = 0;
+		columnCounter++;
+		ret.x = position.x + (444);
+		ret.y = position.y + (340) + (131 * columnCounter);
+	}
+
+	ret.x += 131 * rowCounter;
+	ret.x /= app->win->GetScale();
+	ret.y /= app->win->GetScale();
+
+	rowCounter++;
+	return ret;
 }
 
 void InventoryPanel::SetItemPosition()

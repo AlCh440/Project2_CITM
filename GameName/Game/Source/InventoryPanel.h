@@ -1,6 +1,7 @@
 #pragma once
 #include "GuiPanel.h"
 #include "SDL/include/SDL.h"
+#include "Defs.h"
 
 enum statsPlayer
 {
@@ -24,6 +25,7 @@ public:
 
 	int GetNumberOfButtons() override;
 
+	iPoint InitializeItemPos();
 	void SetItemPosition() override;
 
 	GuiButton* bt_resume;
@@ -51,6 +53,8 @@ public:
 	GuiButton* bt_to_ranger;
 
 	int numberButtons = 0;
+	int rowCounter = 0;
+	int columnCounter = 0;
 
 	statsPlayer statsShowing;
 };

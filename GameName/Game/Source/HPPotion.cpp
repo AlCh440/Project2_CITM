@@ -8,6 +8,7 @@ HPPotion::HPPotion(Consumable_Type id) : Consumable(id)
 {
 	consumableId = id;
 	itemType = POTION_HP_;
+	texItems = app->tex->Load("Assets/Sprites/UI/gameitems.png");
 }
 
 bool HPPotion::Start()
@@ -41,11 +42,12 @@ void HPPotion::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 void HPPotion::CreateButton()
 {
-	button = (GuiButton*)app->guiManager->pn_inventory->CreateGuiButton(app->guiManager->pn_inventory->GetNumberOfButtons(), app->guiManager, app->guiManager->pn_inventory, { 0, 0, 44, 44 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
+	iPoint pos = app->guiManager->pn_inventory->InitializeItemPos();
+	button = (GuiButton*)app->guiManager->pn_inventory->CreateGuiButton(app->guiManager->pn_inventory->GetNumberOfButtons(), app->guiManager, app->guiManager->pn_inventory, { pos.x, pos.y, 44, 44 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
 	button->texture = texItems;
-	button->normalRec = { 0, 150, 44, 44 };
-	button->focusedRec = { 0, 150, 44, 44 };
-	button->pressedRec = { 0, 150, 44, 44 };
+	button->normalRec = { 75, -2, 44, 44 };
+	button->focusedRec = { 75, -2, 44, 44 };
+	button->pressedRec = { 75, -2, 44, 44 };
 }
 
 void HPPotion::Consume(Player* user)

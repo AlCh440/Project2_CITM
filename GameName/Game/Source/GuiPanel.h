@@ -52,6 +52,7 @@ public:
 
 	bool GetActive() { return Active; };
 
+	virtual iPoint InitializeItemPos() { return iPoint(); };
 	virtual int GetNumberOfButtons() { return 0; };
 	virtual void SetItemPosition() { };
 

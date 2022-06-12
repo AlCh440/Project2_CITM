@@ -860,7 +860,7 @@ bool Map::SetMapColliders()
 			case CHEST:
 				chestIns = app->entities->AddEntity(object->data->type, spawnPos);
 
-				if (object->data->properties.GetProperty_("hp_potion") == 1)
+				if (object->data->properties.GetProperty_("hp_potion"), 1)
 				{
 					HPPotion* hp = new HPPotion(HP_POTION);
 					chestIns->AddItem(hp);
