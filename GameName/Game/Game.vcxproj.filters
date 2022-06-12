@@ -234,6 +234,9 @@
     <ClCompile Include="Source\Door.cpp">
       <Filter>Entities\Interactable\Interactables</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NpcGeneral.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -498,6 +501,9 @@
     </ClInclude>
     <ClInclude Include="Source\Door.h">
       <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcGeneral.h">
+      <Filter>Entities\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

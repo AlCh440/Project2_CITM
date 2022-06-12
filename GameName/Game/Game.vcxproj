@@ -148,6 +148,7 @@
     <ClCompile Include="Source\MatchResultPanel.cpp" />
     <ClCompile Include="Source\Npc.cpp" />
     <ClCompile Include="Source\NpcDummy.cpp" />
+    <ClCompile Include="Source\NpcGeneral.cpp" />
     <ClCompile Include="Source\NpcGuard.cpp" />
     <ClCompile Include="Source\NpcWoVillager.cpp" />
     <ClCompile Include="Source\OpenWorldPlayer.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Source\MatchResultPanel.h" />
     <ClInclude Include="Source\Npc.h" />
     <ClInclude Include="Source\NpcDummy.h" />
+    <ClInclude Include="Source\NpcGeneral.h" />
     <ClInclude Include="Source\NpcGuard.h" />
     <ClInclude Include="Source\NpcWoVillager.h" />
     <ClInclude Include="Source\OpenWorldPlayer.h" />
