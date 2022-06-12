@@ -984,8 +984,9 @@ bool Map::SetMapColliders()
 				app->entities->AddEntity(object->data->type, spawnPos);
 				break;
 			case DOOR:
-				Door* d = new Door(object->data->type,spawnPos);
-			
+			{
+				Door* d = new Door(object->data->type, spawnPos);
+			}
 				break;
 			default:
 				break; 

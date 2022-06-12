@@ -20,7 +20,7 @@ bool DoorButton::Start()
 {
 	for (int i = 0; i < app->entities->entities.count(); i++)
 	{
-		if
+	
 	}
 	return true;
 }
