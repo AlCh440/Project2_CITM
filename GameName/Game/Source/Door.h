@@ -11,6 +11,7 @@ public:
 	bool PostUpdate() override;
 	bool Cleanup() override;
 	bool OpenDoor();
+	int id;
 private:
 
 	bool Open;

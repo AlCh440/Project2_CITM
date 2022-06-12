@@ -1,4 +1,5 @@
 #include "DoorButton.h"
+#include"Log.h"
 
 DoorButton::DoorButton(Collider_Type type, iPoint pos):Interactable(type,pos)
 {
@@ -8,6 +9,7 @@ DoorButton::DoorButton(Collider_Type type, iPoint pos):Interactable(type,pos)
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
+	message = "Door button!";
 }
 
 DoorButton::~DoorButton()
@@ -16,7 +18,10 @@ DoorButton::~DoorButton()
 
 bool DoorButton::Start()
 {
-
+	for (int i = 0; i < app->entities->entities.count(); i++)
+	{
+		if
+	}
 	return true;
 }
 
@@ -45,8 +50,9 @@ bool DoorButton::PostUpdate()
 
 void DoorButton::Interact()
 {
+	LOG(message.GetString());
 	if (door != nullptr)
-	{
+	{		
 		door->OpenDoor();
 		Pressed = true;
 	}

@@ -983,6 +983,10 @@ bool Map::SetMapColliders()
 			case DOOR_BUTTON:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				break;
+			case DOOR:
+				Door* d = new Door(object->data->type,spawnPos);
+			
+				break;
 			default:
 				break; 
 			}

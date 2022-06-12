@@ -168,7 +168,7 @@ bool OpenWorldPlayer::Update(float dt)
 		{
 			layer->data->Get(pos.x, pos.y);
 		}
-		LOG("tileID %i", tileID);
+		//LOG("tileID %i", tileID);
 		switch (tileID)
 		{
 		case 118:
