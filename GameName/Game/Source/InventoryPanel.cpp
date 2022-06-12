@@ -36,11 +36,11 @@ bool InventoryPanel::Start()
 
 
 
-	bt_to_knight = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { (this->position.x + 375)*2,(this->position.y + 46)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
-	bt_to_knight->texture = app->guiManager->tex_inventory_tabs;
-	bt_to_knight->normalRec = { 12, 135, 50, 57 };
-	bt_to_knight->focusedRec = { 12, 135, 50, 57 };
-	bt_to_knight->pressedRec = { 12, 135, 50, 57 };
+		bt_to_knight = (GuiButton*)CreateGuiButton(0, app->guiManager, this, { (this->position.x + 375)*2,(this->position.y + 46)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
+		bt_to_knight->texture = app->guiManager->tex_inventory_tabs;
+		bt_to_knight->normalRec = { 12, 135, 50, 57 };
+		bt_to_knight->focusedRec = { 12, 135, 50, 57 };
+		bt_to_knight->pressedRec = { 12, 135, 50, 57 };
 
 	bt_to_ranger = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { (this->position.x + 433)*2,(this->position.y + 45)*2, 50, 57 }, "", app->fonts->menuButtonFont, app->fonts->c_Menus);
 	bt_to_ranger->texture = app->guiManager->tex_inventory_tabs;
@@ -56,6 +56,14 @@ bool InventoryPanel::Update(float dt, bool doLogic)
 {
 	GuiPanel::Update(dt, doLogic);
 
+	if (app->entities->openWorld->inventory.getFirst() != NULL)
+	{
+		for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next)
+		{
+			if (aux->data->button != NULL)
+			aux->data->button->Update(dt);
+		}
+	}
 	return true;
 }
 
@@ -68,55 +76,10 @@ bool InventoryPanel::Draw()
 
 void InventoryPanel::DrawItems()
 {
-	int i = 0;
-	int j = 0;
-	iPoint drawPos(position.x + (222), position.y + (170));
-	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next, i++)
+	
+	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
 	{
-		switch (aux->data->itemType)
-		{
-		case POTION_HP_:
-		{
-			app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &potionHP, 0, 0, 0, 0, 0.5f);
-		} break;
-		case POTION_MANA_:
-		{
-			app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &potionMana, 0, 0, 0, 0, 0.5f);
-		} break;
-		case KEY_:
-		{
-			int idKey = aux->data->GetKeyId();
-			if (idKey == 1)
-			{
-				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key01, 0, 0, 0, 0, 0.5f);
-			}
-			else if (idKey == 2)
-			{
-				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key02, 0, 0, 0, 0, 0.5f);
-			}
-			else if (idKey == 3)
-			{
-				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key03, 0, 0, 0, 0, 0.5f);
-			}
-			else if (idKey == 4)
-			{
-				app->render->DrawTexture(texItems, drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale(), &key04, 0, 0, 0, 0, 0.5f);
-			}
-			
-			
-			
-		} break;
-		default:
-			break;
-		}
-		drawPos.x += 65;
-		if (i == 4)
-		{
-			i = 0;
-			j++;
-			drawPos.x = position.x + (222);
-			drawPos.y = position.y + (170) + (65 * j);
-		}
+		aux->data->button->Draw(app->render);
 	}
 
 	// Drawing tab
@@ -150,4 +113,35 @@ bool InventoryPanel::OnGuiMouseClickEvent(GuiControl* control)
 	}
 	
 	return true;
+}
+
+void InventoryPanel::SetItemPosition()
+{
+	int i = 0;
+	int j = 0;
+	iPoint drawPos(position.x + (222), position.y + (170));
+	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next, i++)
+	{
+		if (aux->data->button != NULL)
+		{
+			aux->data->button->SetPosition(drawPos.x / app->win->GetScale(), drawPos.y / app->win->GetScale());
+
+
+			drawPos.x += 65;
+			if (i == 4)
+			{
+				i = 0;
+				j++;
+				drawPos.x = position.x + (222);
+				drawPos.y = position.y + (170) + (65 * j);
+			}
+		}
+	}
+}
+
+int InventoryPanel::GetNumberOfButtons()
+{
+	int ret = numberButtons;
+	numberButtons++;
+	return ret;
 }

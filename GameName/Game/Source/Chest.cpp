@@ -5,6 +5,7 @@
 #include "Key.h"
 #include "HPPotion.h"
 #include "ManaPotion.h"
+#include "GuiManager.h"
 
 Chest::Chest(iPoint pos) : Item(pos)
 {
@@ -113,9 +114,12 @@ void Chest::Open(OpenWorldPlayer* player)
 	while (itemList.getFirst() != nullptr)
 	{
 		p2ListItem<Item*>* aux = itemList.getFirst();
+		aux->data->CreateButton();
 		player->inventory.add(aux->data);
 		itemList.del(aux);
+		
 	}
+	app->guiManager->pn_inventory->SetItemPosition();
 }
 
 void Chest::AddItem(Item* item)

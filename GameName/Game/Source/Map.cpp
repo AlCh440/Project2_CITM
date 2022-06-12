@@ -833,6 +833,7 @@ bool Map::SetMapColliders()
 				if (object->data->properties.GetProperty_("hp_potion") == 1)
 				{
 					HPPotion* hp = new HPPotion(HP_POTION);
+					chestIns->AddItem(hp);
 				}
 				if (object->data->properties.GetProperty("mana_potion", 1))
 				{

@@ -19,6 +19,8 @@ public:
 	// Called from ModuleEntitys' Update
 	virtual bool PostUpdate();
 
+	void CreateButton() override;
+
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
