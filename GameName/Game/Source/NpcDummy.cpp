@@ -101,9 +101,9 @@ bool NpcDummy::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 			{
-				app->dialogManager->dialogActive_ArchmageCombat = true;
-				app->dialogManager->FillDialog_ArchmageCombat(app->dialogManager->dialog_ArchmageCombat);
-				app->dialogManager->dialog_ArchmageCombat.Restart();
+				app->dialogManager->dialogActive_NoName = true;
+				app->dialogManager->FillDialog_NoName(app->dialogManager->dialog_NoName);
+				app->dialogManager->dialog_NoName.Restart();
 
 				app->audio->PlayFx(villagerSound);
 			}

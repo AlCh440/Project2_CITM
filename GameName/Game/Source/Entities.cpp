@@ -23,6 +23,12 @@
 #include "KingGoblin.h"
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
+#include "NpcArchmage.h"
+#include "NpcArchmageComb.h"
+#include "NpcGeneral.h"
+#include "NpcRanger.h"
+#include "NpcRangerVill.h"
+#include "NpcWizard.h"
 #include "Chest.h"
 #include "DoorButton.h"
 
@@ -184,6 +190,37 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         entities.add(dummyNpcWoVillagerInstance);
         dummyNpcWoVillagerInstance->Start();
         break;
+    case NPCRANGER:
+        dummyNpcRangerInstance = new NpcRanger(type, spawnPos);
+        entities.add(dummyNpcRangerInstance);
+        dummyNpcRangerInstance->Start();
+        break;
+    case NPCRANGERVILL:
+        dummyNpcRangerVillInstance = new NpcRangerVill(type, spawnPos);
+        entities.add(dummyNpcRangerVillInstance);
+        dummyNpcRangerVillInstance->Start();
+        break;
+    case NPCWIZARD:
+        dummyNpcWizardInstance = new NpcWizard(type, spawnPos);
+        entities.add(dummyNpcWizardInstance);
+        dummyNpcWizardInstance->Start();
+        break;
+    case NPCGENERAL:
+        dummyNpcGeneralInstance = new NpcGeneral(type, spawnPos);
+        entities.add(dummyNpcGeneralInstance);
+        dummyNpcGeneralInstance->Start();
+        break;
+    case NPCARCHMAGE:
+        dummyNpcArchmageInstance = new NpcArchmage(type, spawnPos);
+        entities.add(dummyNpcArchmageInstance);
+        dummyNpcArchmageInstance->Start();
+        break;
+    case NPCARCHMAGECOMB:
+        dummyNpcArchmageCombInstance = new NpcArchmageComb(type, spawnPos);
+        entities.add(dummyNpcArchmageCombInstance);
+        dummyNpcArchmageCombInstance->Start();
+        break;
+
     case CHEST:
         itemInstance = new Chest(type, spawnPos);
         entities.add(itemInstance);

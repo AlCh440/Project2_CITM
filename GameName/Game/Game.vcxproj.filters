@@ -237,6 +237,21 @@
     <ClCompile Include="Source\NpcGeneral.cpp">
       <Filter>Entities\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NpcRanger.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NpcRangerVill.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NpcWizard.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NpcArchmage.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NpcArchmageComb.cpp">
+      <Filter>Entities\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -503,6 +518,21 @@
       <Filter>Entities\Interactable\Interactables</Filter>
     </ClInclude>
     <ClInclude Include="Source\NpcGeneral.h">
+      <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcRanger.h">
+      <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcRangerVill.h">
+      <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcWizard.h">
+      <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcArchmage.h">
+      <Filter>Entities\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NpcArchmageComb.h">
       <Filter>Entities\NPC</Filter>
     </ClInclude>
   </ItemGroup>

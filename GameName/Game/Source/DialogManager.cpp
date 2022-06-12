@@ -92,62 +92,9 @@ bool DialogManager::PostUpdate()
 
 			
 		}
+
+
 		
-		if (dialogActive_ArchmageCombat)
-		{
-			if ((!dialog_ArchmageCombat.Finished()))
-			{
-				if (player != nullptr) player->SetMotion(false);
-				dialog_ArchmageCombat.Update();
-			}
-			else
-			{
-				if (player != nullptr) player->SetMotion(true);
-				dialogActive_ArchmageCombat = false;
-			}
-		}
-
-		if (dialogActive_ArchmageRoom)
-		{
-			if ((!dialog_ArchmageRoom.Finished()))
-			{
-				if (player != nullptr) player->SetMotion(false);
-				dialog_ArchmageRoom.Update();
-			}
-			else
-			{
-				if (player != nullptr) player->SetMotion(true);
-				dialogActive_ArchmageRoom = false;
-			}
-		}
-
-		if (dialogActive_General)
-		{
-			if ((!dialog_General.Finished()))
-			{
-				if (player != nullptr) player->SetMotion(false);
-				dialog_General.Update();
-			}
-			else
-			{
-				if (player != nullptr) player->SetMotion(true);
-				dialogActive_General = false;
-			}
-		}
-
-		if (dialogActive_Wizard)
-		{
-			if ((!dialog_Wizard.Finished()))
-			{
-				if (player != nullptr) player->SetMotion(false);
-				dialog_Wizard.Update();
-			}
-			else
-			{
-				if (player != nullptr) player->SetMotion(true);
-				dialogActive_Wizard = false;
-			}
-		}
 
 		if (dialogActive_Ranger)
 		{
@@ -182,6 +129,34 @@ bool DialogManager::PostUpdate()
 			}
 		}
 
+		if (dialogActive_RangerText)
+		{
+			if ((!dialog_RangerText.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_RangerText.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_RangerText = false;
+			}
+		}
+
+		if (dialogActive_Wizard)
+		{
+			if ((!dialog_Wizard.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_Wizard.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_Wizard = false;
+			}
+		}
+
 		if (app->dialogManager->dialogActive_Villager)
 		{
 			if ((!dialog_Villager.Finished()))
@@ -193,6 +168,57 @@ bool DialogManager::PostUpdate()
 			{
 				if (player != nullptr) player->SetMotion(true);
 				dialogActive_Villager = false;
+			}
+		}
+	}
+
+	if (app->generalRoom->active)
+	{
+		if (dialogActive_General)
+		{
+			if ((!dialog_General.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_General.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_General = false;
+			}
+		}
+	}
+
+	if (app->dragonCliff->active)
+	{
+		if (dialogActive_ArchmageCombat)
+		{
+			if ((!dialog_ArchmageCombat.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_ArchmageCombat.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_ArchmageCombat = false;
+			}
+		}
+	}
+
+	if (app->mageRoom->active)
+	{
+		if (dialogActive_ArchmageRoom)
+		{
+			if ((!dialog_ArchmageRoom.Finished()))
+			{
+				if (player != nullptr) player->SetMotion(false);
+				dialog_ArchmageRoom.Update();
+			}
+			else
+			{
+				if (player != nullptr) player->SetMotion(true);
+				dialogActive_ArchmageRoom = false;
 			}
 		}
 	}
