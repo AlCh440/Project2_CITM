@@ -14,7 +14,7 @@
 
 NpcArchmage::NpcArchmage(iPoint pos) : Npc(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
+	texture = app->tex->Load("Assets/Sprites/characters/archmage spritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_staticBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -23,7 +23,7 @@ NpcArchmage::NpcArchmage(iPoint pos) : Npc(pos)
 
 NpcArchmage::NpcArchmage(Collider_Type type, iPoint pos) : Npc(type, pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/charactersSpritesheet.png");
+	texture = app->tex->Load("Assets/Sprites/characters/archmage spritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -106,7 +106,7 @@ bool NpcArchmage::Update(float dt)
 bool NpcArchmage::PostUpdate()
 {
 	//currentAnim->Update();
-	rect = { 0, 256, 40, 40 };
+	rect = { 1, 257, 38, 39 };
 
 	SDL_Rect r;
 	r.x = position.x - app->map->mapData.tileWidth * .5f;
