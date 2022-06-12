@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="99">
+<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="101">
+ <properties>
+  <property name="id" type="int" value="0"/>
+ </properties>
  <tileset firstgid="1" name="temp" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="temp.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
@@ -11194,10 +11197,14 @@
     <property name="hp_potion" type="int" value="1"/>
    </properties>
   </object>
-  <object id="98" name="door_button" type="door_button" x="416" y="640" width="32" height="32">
+  <object id="98" name="door_button" type="door_button" x="416" y="768" width="32" height="32">
    <properties>
-    <property name="button_id" type="int" value="0"/>
-    <property name="door_id" type="int" value="0"/>
+    <property name="id" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="99" name="door" type="door" x="416" y="832" width="160" height="32">
+   <properties>
+    <property name="id" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

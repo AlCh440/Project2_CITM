@@ -32,6 +32,8 @@ bool TheFall::Start()
 	app->map->Load("level1.tmx");
 	app->entities->Start();
 	
+	app->entities->LinkDoors();
+	
 	app->entities->exitIntance->scene = GameScene::GREEN_PATH;
 	
 	uncheckableTiles[0] = { 15, 37 };

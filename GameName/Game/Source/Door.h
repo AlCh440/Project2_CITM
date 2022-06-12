@@ -12,15 +12,14 @@ public:
 	bool Cleanup() override;
 	bool OpenDoor();
 	int id;
+	int size;
+	int x, y, width, height;
 private:
 
 	bool Open;
 	bool needKey = true;
 	bool moving = false;
 	bool isVertical = true;
-
-	int size;
-	int x,y,width, height;
 	float velocity = 0.1f;
 
 	b2Vec2 direction;

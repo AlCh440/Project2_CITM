@@ -12,6 +12,7 @@ public:
 	void Interact() override;
 	Door* door;
 	bool Pressed;
+	int id;
 	SDL_Rect r;
 	SDL_Texture* buttonTex;
 };

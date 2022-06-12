@@ -740,6 +740,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			obj->type = Collider_Type::DOOR_BUTTON;
 		}
+		else if (strcmp(object.attribute("type").as_string(), "door") == 0)
+		{
+			obj->type = Collider_Type::DOOR;
+		}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
@@ -759,15 +763,9 @@ bool Map::LoadObject(pugi::xml_node& node, Object* object)
 	for (objProperty = node.child("properties").child("property"); objProperty && ret; objProperty = objProperty.next_sibling("property"))
 	{
 		Properties::Property* p = new Properties::Property();
-		switch (object->type)
-		{
-		case COMBATTRIGGER:
-			p->name = objProperty.attribute("name").as_string();
-			p->value = objProperty.attribute("value").as_int();
-			break;
-		default:
-			break;
-		}
+		p->name = objProperty.attribute("name").as_string();
+		p->value = objProperty.attribute("value").as_int();
+
 		object->properties.list.add(p);
 	}
 
@@ -981,11 +979,20 @@ bool Map::SetMapColliders()
 				t->Start();
 			}break;
 			case DOOR_BUTTON:
-				app->entities->AddEntity(object->data->type, spawnPos);
+			{
+				DoorButton* d = new DoorButton(object->data->type, spawnPos);
+				d->id = object->data->properties.GetProperty("id");
+				app->entities->entities.add(d);
+			}
 				break;
 			case DOOR:
-				Door* d = new Door(object->data->type,spawnPos);
-			
+				{
+					Door* d = new Door(object->data->type, spawnPos);
+					d->id = object->data->properties.GetProperty("id");
+					d->width = object->data->width;
+					d->height = object->data->height;
+					app->entities->entities.add(d); 
+				}
 				break;
 			default:
 				break; 

@@ -9,6 +9,9 @@ Door::Door(Collider_Type type, iPoint pos, int width, int height, bool vertical,
     Open = open;
     this->width = width;
     this->height = height;
+    x = position.x;
+    y = position.y;
+    physBody = app->physics->CreateRectangle(x, y, width, height, b2_kinematicBody, b2Color{ 255,125,125,255 });
 }
 
 Door::~Door()
@@ -40,6 +43,9 @@ bool Door::Update(float dt)
 bool Door::PostUpdate()
 {
     //draw texture
+    physBody->GetPosition(position.x, position.y);
+    SDL_Rect r = { position.x,position.y,width,height };
+    app->render->DrawRectangle(r, 255, 255, 125, 255, true);
 
     return true;
 }

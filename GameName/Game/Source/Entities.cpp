@@ -52,7 +52,7 @@ bool ModuleEntities::Start()
         aux->data->Start();
     }*/
 
-    
+   
     return true;
 }
 
@@ -77,9 +77,7 @@ bool ModuleEntities::Update(float dt)
     for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
     {
 
-            aux->data->Update(dt);
-
-        
+            aux->data->Update(dt);        
     }
 
     if (openWorld != nullptr && app->levelManagement->inCombat == false)
@@ -356,6 +354,34 @@ void ModuleEntities::NextEnemyTurn()
 
         }
     }
+}
+
+void ModuleEntities::LinkDoors()
+{
+    //link button doors with doors
+    p2ListItem<Door*>* doorItem;
+    p2ListItem<DoorButton*>* doorButtonItem;
+
+    doorButtonItem = listButtonDoor.start;
+    doorItem = listDoors.start;
+
+    while (doorButtonItem != nullptr)
+    {
+        while (doorItem != nullptr)
+        {
+            if (doorButtonItem->data->id == doorItem->data->id)
+            {
+
+                doorButtonItem->data->door = doorItem->data;
+                doorItem = listDoors.getFirst();
+                break;
+            }
+            doorItem = doorItem->next;
+        }
+        doorButtonItem = doorButtonItem->next;
+    }
+
+
 }
 
 Entity* ModuleEntities::GetEntityFromTile(iPoint pos)

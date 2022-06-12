@@ -30,7 +30,8 @@ class DialogManager;
 class NpcDummy;
 class NpcGuard;
 class NpcWoVillager;
-
+class DoorButton;
+class Door;
 //class Entity;
 // this will be deleted
 //class EnemyDummy;
@@ -85,6 +86,9 @@ public:
 
 	//
 	void NextEnemyTurn();
+	
+	void LinkDoors();
+
 
 	//returns entity in a tile
 	Entity* GetEntityFromTile(iPoint pos);
@@ -118,7 +122,8 @@ public:
 	Trigger* mageEntrance;
 	Trigger* shopEntrance;
 	p2List<Trigger*> listOfCombatTriggers;
-
+	p2List<Door*> listDoors;
+	p2List<DoorButton*> listButtonDoor;
 	//triggers to enter locations
 
 
