@@ -72,6 +72,30 @@ public:
 	Dialog dialog_Villager;
 	void FillDialog_Villager(Dialog& dialog);
 	bool dialogActive_Villager = false;
+
+	Dialog dialog_Ranger;
+	void FillDialog_Ranger(Dialog& dialog);
+	bool dialogActive_Ranger = false;
+
+	Dialog dialog_RangerText;
+	void FillDialog_RangerText(Dialog& dialog);
+	bool dialogActive_RangerText = false;
+
+	Dialog dialog_Wizard;
+	void FillDialog_Wizard(Dialog& dialog);
+	bool dialogActive_Wizard = false;
+
+	Dialog dialog_General;
+	void FillDialog_General(Dialog& dialog);
+	bool dialogActive_General = false;
+
+	Dialog dialog_ArchmageRoom;
+	void FillDialog_ArchmageRoom(Dialog& dialog);
+	bool dialogActive_ArchmageRoom = false;
+
+	Dialog dialog_ArchmageCombat;
+	void FillDialog_ArchmageCombat(Dialog& dialog);
+	bool dialogActive_ArchmageCombat = false;
 	
 
 
