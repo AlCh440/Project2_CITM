@@ -121,6 +121,9 @@ bool ModuleEntities::CleanUp()
     goblinInstance = nullptr;
     kingGoblinInstance = nullptr;
     
+    listButtonDoor.clear();
+    listDoors.clear();
+
     players.clear();
     entities.clear();
     return true;

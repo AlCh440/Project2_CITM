@@ -35,7 +35,7 @@ bool TheVillage::Start()
 	app->entities->generalEntrance->scene= GameScene::GENERAL_ROOM;
 	app->entities->mageEntrance->scene = GameScene::MAGE_ROOM;
 	app->entities->shopEntrance->scene = GameScene::SHOP_ROOM;
-
+	app->entities->LinkDoors();
 	if (app->entities->openWorld != nullptr)
 	{
 		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);

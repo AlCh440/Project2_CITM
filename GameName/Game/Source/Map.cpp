@@ -1043,13 +1043,7 @@ bool Map::SetMapColliders()
 				break;
 			case DOOR:
 				{
-					bool vertical =false;
-					if (object->data->properties.GetProperty_("vertical") == 1)
-					{
-						vertical = true;
-					}
-
-					Door* d = new Door(object->data->type, spawnPos,object->data->width,object->data->height, vertical);
+					Door* d = new Door(object->data->type, spawnPos,object->data->width,object->data->height);
 					d->id = object->data->properties.GetProperty("id");
 					d->width = object->data->width;
 					d->height = object->data->height;

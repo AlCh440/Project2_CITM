@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="door_button" type="door_button" width="32" height="32">
+  <properties>
+   <property name="id" type="int" value="1"/>
+  </properties>
+ </object>
+</template>

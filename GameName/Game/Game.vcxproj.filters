@@ -252,6 +252,12 @@
     <ClCompile Include="Source\NpcArchmageComb.cpp">
       <Filter>Entities\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ModuleParticles.cpp" />
+    <ClCompile Include="Source\Particle.cpp" />
+    <ClCompile Include="Source\Lever.cpp">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="LeverSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -535,6 +541,12 @@
     <ClInclude Include="Source\NpcArchmageComb.h">
       <Filter>Entities\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ModuleParticles.h" />
+    <ClInclude Include="Source\Particle.h" />
+    <ClInclude Include="Source\Lever.h">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="LeverSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

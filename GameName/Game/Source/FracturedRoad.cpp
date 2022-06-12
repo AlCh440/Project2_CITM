@@ -31,7 +31,7 @@ bool FracturedRoad::Start()
 	app->entities->Start();
 	app->entities->exitIntance->scene = GameScene::DRAGON_CLIFF;
 	app->entities->entranceIntance->scene = GameScene::RUINS;
-
+	app->entities->LinkDoors();
 	if (app->entities->openWorld != nullptr)
 	{
 		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_FracturedRoad);

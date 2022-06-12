@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="door" type="door" width="160" height="32">
+  <properties>
+   <property name="id" type="int" value="1"/>
+   <property name="vertical" type="int" value="0"/>
+  </properties>
+ </object>
+</template>
