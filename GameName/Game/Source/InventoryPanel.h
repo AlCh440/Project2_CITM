@@ -22,6 +22,10 @@ public:
 	bool CleanUp();
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
+	int GetNumberOfButtons() override;
+
+	void SetItemPosition() override;
+
 	GuiButton* bt_resume;
 	GuiButton* bt_settings;
 	GuiButton* bt_saveGame;
@@ -46,7 +50,7 @@ public:
 	GuiButton* bt_to_knight;
 	GuiButton* bt_to_ranger;
 
-
+	int numberButtons = 0;
 
 	statsPlayer statsShowing;
 };

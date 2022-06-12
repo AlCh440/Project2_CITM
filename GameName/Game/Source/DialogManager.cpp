@@ -96,6 +96,13 @@ bool DialogManager::PostUpdate()
 
 		
 
+		
+
+		
+		}
+	
+	if (app->greenPath->active)
+	{
 		if (dialogActive_Ranger)
 		{
 			if ((!dialog_Ranger.Finished()))
@@ -109,10 +116,8 @@ bool DialogManager::PostUpdate()
 				dialogActive_Ranger = false;
 			}
 		}
+	}
 
-		
-		}
-	
 	if (app->village->active)
 	{
 		if (app->dialogManager->dialogActive_Guard)
@@ -974,6 +979,7 @@ void DialogManager::FillDialog_Ranger(Dialog& dialog)
 
 	
 	node.text = "Aniways, seen the pointy hat anywhere Buckethead?";
+	id = dialog.AddNode(node);
 
 	node.nodes.push_back(id_2_);
 	node.options.push_back("You are?");
@@ -989,6 +995,7 @@ void DialogManager::FillDialog_Ranger(Dialog& dialog)
 
 	id_1_ = dialog.AddNode(node);
 
+	id = dialog.AddNode(node);
 
 	node.text = "Wow,  thought you where dead!";
 

@@ -37,7 +37,7 @@ bool NpcRangerVill::Start()
 
 	actualStates = NORMAL;
 
-	rect = { 128, 48, 32, 48 };
+	//rect = { 134, 54, 24, 38 };
 
 	iPoint pos;
 	pos.x = position.x;
@@ -114,9 +114,11 @@ bool NpcRangerVill::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
+	rect = { 134, 54, 24, 38 };
+
 	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
-	//app->render->DrawTexture(texture, position.x - 15, position.y - 20, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 
 	SDL_Rect Rask = { 0,0,9,12 };
 

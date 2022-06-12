@@ -91,7 +91,12 @@ public:
 	{
 		parent = panel;
 	}
-
+	
+	void SetPosition(int x, int y)
+	{
+		bounds.x = x;
+		bounds.y = y;
+	}
 	void NotifyObserver()
 	{
 		observer->OnGuiMouseClickEvent(this);

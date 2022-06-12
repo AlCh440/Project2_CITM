@@ -52,7 +52,8 @@ public:
 
 	bool GetActive() { return Active; };
 
-
+	virtual int GetNumberOfButtons() { return 0; };
+	virtual void SetItemPosition() { };
 
 public:
 	p2List<GuiControl*> controls;

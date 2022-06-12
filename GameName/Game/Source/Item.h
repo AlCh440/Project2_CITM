@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "GuiButton.h"
 
 enum itemType {
 	NO_TYPE_,
@@ -26,10 +27,16 @@ public:
 	// Called from ModuleEntitys' Update
 	virtual bool PostUpdate();
 
+	virtual void CreateButton() { };
+
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 	virtual int GetKeyId() { return int(); };
 	itemType itemType;
+
+	GuiButton* button;
+
+	SDL_Texture* texItems;
 
 protected:
 	int spriteRotation = 0;

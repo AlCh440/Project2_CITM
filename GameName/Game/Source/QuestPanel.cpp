@@ -64,7 +64,7 @@ bool QuestPanel::Start()
 bool QuestPanel::Update(float dt, bool doLogic)
 {
 	
-	app->gamePaused = true;
+ 	app->gamePaused = true;
 
 	GuiPanel::Update(dt,doLogic);
 	return true;
