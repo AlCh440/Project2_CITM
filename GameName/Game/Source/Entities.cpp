@@ -24,6 +24,7 @@
 #include "NpcGuard.h"
 #include "NpcWoVillager.h"
 #include "Chest.h"
+#include "DoorButton.h"
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
@@ -195,6 +196,12 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         exitIntance = new Trigger(type, spawnPos);
         exitIntance->Start();
         break;
+    case DOOR_BUTTON:
+    { 
+        DoorButton* d = new DoorButton(type, spawnPos);
+        d->Start();
+        entities.add(d); 
+    }
     default :
         break;
     }

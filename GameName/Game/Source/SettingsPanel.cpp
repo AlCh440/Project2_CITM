@@ -70,6 +70,15 @@ bool SettingsPanel::Start()
 
 bool SettingsPanel::Update(float dt, bool doLogic)
 {
+	if (counter < easingTime)
+	{
+
+		auto easingFunction = getEasingFunction(EaseOutBounce);
+		double progress = easingFunction(UpdateProgress(counter, 0, 100, 0, 1));
+		easePosY = (int)UpdateProgress(progress, 0, 1, -100, 0);
+		position.y = easePosY;
+		counter++;
+	}
 	GuiPanel::Update(dt, doLogic);
 	return true;
 }

@@ -11,6 +11,7 @@
 #include "Log.h"
 #include "Player.h"
 #include "Item.h"
+#include "Interactable.h"
 
 
 // Update Code
@@ -113,7 +114,7 @@ bool OpenWorldPlayer::PreUpdate()
 
 bool OpenWorldPlayer::Update(float dt)
 {
-	
+
 	app->render->CameraFocus(position);
 
 	bool goLeft = (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT);
@@ -124,33 +125,12 @@ bool OpenWorldPlayer::Update(float dt)
 	
 	bool goDown = (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT);
 	
-	/*if (goLeft = true)
-	{
-		app->audio->PlayFx(steps);
-	}
-	else if (goRight = true)
-	{
-		app->audio->PlayFx(steps);
-	}
-	else if (goUp = true)
-	{
-		app->audio->PlayFx(steps);
-	}
-	else if (goDown = true)
-	{
-		app->audio->PlayFx(steps);
-	}*/
-	
-	
-
 	b2Vec2 movement = { (float)(goRight - goLeft), (float)(goDown - goUp) };
 	movement.Normalize();
 
 	movement.x *= velocity;
 	movement.y *= velocity;
 
-
-	
 
 	if (AdminMode)
 	{
@@ -324,6 +304,14 @@ bool OpenWorldPlayer::CleanUp()
 	// destroy the physbody
 
 	return true;
+}
+
+void OpenWorldPlayer::Interact(Interactable* interactable)
+{
+	if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+	{
+		interactable->BaseInteract();
+	}
 }
 
 void OpenWorldPlayer::RestartPhysBody(iPoint pos, Collider_Type type)

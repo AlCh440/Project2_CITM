@@ -7,9 +7,9 @@
 #include "Render.h"
 #include "Player.h"
 #include "Item.h"
-
+//#include "Interactable.h"
 class Item;
-
+class Interactable;
 class OpenWorldPlayer : public Player
 {
 public:
@@ -27,6 +27,8 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 	bool CleanUp() override;
+
+	void Interact(Interactable* interactable);
 
 	void RestartPhysBody(iPoint pos, Collider_Type type);
 

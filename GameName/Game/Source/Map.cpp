@@ -1,4 +1,7 @@
-
+#include "Defs.h"
+#include "Log.h"
+#include <math.h>
+#include<iostream>
 #include "App.h"
 #include "Render.h"
 #include "Textures.h"
@@ -8,18 +11,17 @@
 #include "Entities.h"
 #include "Entity.h"
 #include "Player.h"
-#include<iostream>
 #include "GreenPath.h"
 
-#include "Defs.h"
-#include "Log.h"
-#include <math.h>
+
 
 #include "Chest.h"
 #include "Consumable.h"
 #include "HPPotion.h"
 #include "ManaPotion.h"
 #include "Key.h"
+
+#include "DoorButton.h"
 using namespace std;
 
 Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
@@ -734,6 +736,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			}*/
 			
 		}
+		else if (strcmp(object.attribute("type").as_string(), "door_button") == 0)
+		{
+			obj->type = Collider_Type::DOOR_BUTTON;
+		}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
@@ -974,6 +980,9 @@ bool Map::SetMapColliders()
 				app->entities->entities.add(t);
 				t->Start();
 			}break;
+			case DOOR_BUTTON:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				break;
 			default:
 				break; 
 			}

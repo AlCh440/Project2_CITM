@@ -51,7 +51,8 @@ enum Collider_Type {
 	GENERAL_ENTRANCE,
 	MAGE_ENTRANCE,
 	SHOP_ENTRANCE,
-
+	DOOR_BUTTON,
+	DOOR,
 	EXIT
 };
 
