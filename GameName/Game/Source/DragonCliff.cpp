@@ -59,7 +59,7 @@ bool DragonCliff::Update(float dt)
 bool DragonCliff::PostUpdate()
 {
 	SDL_Rect r = { 0,0,1600,670 };
-	app->render->DrawTexture(img, 0, 0, &r);
+	app->render->DrawTexture(img, 0, 0, &r, 0.8f);
 	app->map->Draw();
 	return true;
 }
