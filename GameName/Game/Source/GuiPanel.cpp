@@ -29,11 +29,7 @@ bool GuiPanel::Update(float dt, bool doLogic)
 
 		while (control != nullptr)
 		{
-			if (control->data->updateControl == true)
-			{
-				control->data->Update(dt);
-				
-			}
+			control->data->Update(dt);
 			control = control->next;
 		}
 
@@ -58,11 +54,7 @@ bool GuiPanel::Draw()
 	
 	while (control != nullptr)
 	{
-		if (control->data->updateControl == true)
-		{
-			control->data->Draw(app->render);
-
-		}
+		control->data->Draw(app->render);
 		control = control->next;
 	}
 	return true;

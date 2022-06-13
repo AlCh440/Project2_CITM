@@ -32,14 +32,7 @@ bool GeneralRoom::Start()
 	app->entities->entranceIntance->scene = GameScene::VILLAGE;
 	if (app->entities->openWorld != nullptr)
 	{
-		if (app->loadingScreen == false)
-		{
-			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GeneralRoom);
-		}
-		else
-		{
-			app->loadingScreen = false;
-		}
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GeneralRoom);
 	}
 
 	return true;

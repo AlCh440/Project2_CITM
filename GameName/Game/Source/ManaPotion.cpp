@@ -28,9 +28,6 @@ bool ManaPotion::Update(float dt)
 
 bool ManaPotion::CleanUp()
 {
-	button->CleanUp();
-	app->entities->openWorld->RemoveFromInventory(this);
-
 	return true;
 }
 
@@ -54,9 +51,8 @@ void ManaPotion::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 }
 
-void ManaPotion::UseItem(Player* user)
+void ManaPotion::Consume(Player* user)
 {
 	user->stats.mana += 50;
 	//HAS TO DELETE ITSELF
-	pendingToDelete = true;
 }

@@ -29,7 +29,6 @@ bool Ranger::Start()
 	attack = app->audio->LoadFx("Assets/audio/fx/swoosh.wav");
 	tex_hitfx = app->tex->Load("Assets/Sprites/HitFx/hitEffect1.png");
 	stats.hp = 75;
-	stats.maxHp = 75;
 	stats.mana = 75;
 	stats.movement = 5;
 	stats.attackRange = 3;

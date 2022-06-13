@@ -110,9 +110,6 @@ public:
 
 public:
 
-	bool pendingToDelete = false;
-	bool updateControl = true;
-
 	uint32 id;
 	GuiControlType type;
 	GuiControlState state;

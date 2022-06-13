@@ -3,12 +3,12 @@
 	<window />
 	<input />
 	<Level_manager>
-		<levelManager currentLevel="8" />
+		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="699" y="192" />
+		<player x="530" y="426" />
 	</entities>
 	<renderer>
-		<camera x="-758" y="-24" />
+		<camera x="-420" y="-492" />
 	</renderer>
 </saveState>

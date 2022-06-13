@@ -93,8 +93,6 @@ public:
 	p2List<Entity*> entities;
 	p2List<Enemy*> enemies;
 	p2List<Player*> players;
-	Knight* knightPointer;
-	Ranger* rangerPointer;
 	OpenWorldPlayer* openWorld;
 	// Check player turn state
 	bool CheckPlayerTurn();

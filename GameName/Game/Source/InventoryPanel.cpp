@@ -80,7 +80,7 @@ void InventoryPanel::DrawItems()
 	
 	for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
 	{
-  		//aux->data->button->Draw(app->render);
+  		aux->data->button->Draw(app->render);
 	}
 
 	// Drawing tab
@@ -112,46 +112,7 @@ bool InventoryPanel::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		statsShowing = RANGER;
 	}
-	else
-	{
-		for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next)
-		{
-			if (aux->data->button != NULL)
-			{
-				if (control->id == aux->data->button->id)
-				{
-					if (statsShowing == KNIGHT)
-					{
-						aux->data->UseItem(app->entities->knightPointer);
-					}
-					else if (statsShowing == RANGER)
-					{
-						aux->data->UseItem(app->entities->rangerPointer);
-					}
-				}
-			}
-		}
-		for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
-		{
-			if (aux->data->pendingToDelete == true)
-			{
-				for (p2ListItem<GuiControl*>* btnDel = controls.getFirst(); btnDel != NULL; btnDel = btnDel->next)
-				{
- 					if (btnDel->data == (GuiControl*)aux->data->button)
-					{
-						aux->data->button->updateControl = false;
-						//controls.del(btnDel);
-						//break;
-					}
-					
-				}
-				
-				app->entities->openWorld->RemoveFromInventory(aux->data);
-				break;
-			}
-		}
-	}
-
+	
 	return true;
 }
 

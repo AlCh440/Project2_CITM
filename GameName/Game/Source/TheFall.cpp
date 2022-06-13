@@ -44,14 +44,7 @@ bool TheFall::Start()
 
 	if (app->entities->openWorld != nullptr)
 	{
-		if (app->loadingScreen == false)
-		{
-			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
-		}
-		else
-		{
-			app->loadingScreen = false;
-		}
+		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
 	}
 
 	hasBeenCreated = false;
@@ -113,41 +106,19 @@ bool TheFall::Update(float dt)
 		hasBeenCreated = !hasBeenCreated;
 	}
 
-	//leaf particles
-	if (app->RandomRange(0, 3) == 3)
+
+	if (app->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
 	{
-
-		Particle* p = app->particles->AddParticle(app->particles->leaf,
-			app->RandomRange(
-				-app->render->camera.x - app->win->GetWidth() / 2,
-				-app->render->camera.x + app->win->GetWidth() / 2),
-			-app->render->camera.y / app->win->GetScale() - 10);
-
-		p->speed = fPoint(app->RandomRange(0.01f, -0.01f), app->RandomRange(0.1f, .3f));
-		p->accel = fPoint(app->RandomRange(0.02f, -0.02f), app->RandomRange(0.f, 0.03f));
-		p->anim.speed = app->RandomRange(0.01f, 0.1f);
+		app->particles->AddParticle(app->particles->leaf_0, 560, 330, 0);
 
 	}
 
-	//spark particles
-	if (app->RandomRange(0, 20) == 1)
+	// TODO 5: Make an explosion when the player hits 2
+
+	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 	{
-		fPoint p_pos = { (float)app->entities->exitIntance->GetPosition().x, (float)app->entities->exitIntance->GetPosition().y };
-		float p_offset_x = app->entities->exitIntance->physBody->width;
-		float p_offset_y = app->entities->exitIntance->physBody->height;
-
-		Particle* p = app->particles->AddParticle(app->particles->spark,
-			64 + 32 + app->RandomRange(p_pos.x + p_offset_x/2, p_pos.x - p_offset_x/2),
-			16 + app->RandomRange(p_pos.y + p_offset_y/2, p_pos.y - p_offset_y/2));
-
-		p->speed = fPoint(app->RandomRange(0.01f, -0.01f), app->RandomRange(0.01f, -0.01f));
-		p->anim.speed = app->RandomRange(0.1f, 0.17f);
+		app->particles->AddParticle(app->particles->dust, 560, 330, 0);
 	}
-
-	
-	
-
-	
 
 	return true;
 }

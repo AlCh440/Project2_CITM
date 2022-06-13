@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="108">
-=======
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="33" height="48" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="102">
->>>>>>> c3b50b63474000739c34adb8a362fe7a14efa740
  <properties>
   <property name="id" type="int" value="0"/>
  </properties>
@@ -11200,19 +11196,18 @@
     <property name="hp_potion" type="int" value="1"/>
    </properties>
   </object>
-  <object id="98" name="door_button" type="door_button" x="416" y="768" width="32" height="32">
+  <object id="102" name="door_button" type="door_button" x="416" y="768" width="32" height="32">
    <properties>
-    <property name="id" type="int" value="1"/>
+    <property name="id" type="int" value="0"/>
    </properties>
   </object>
-  <object id="99" name="door" type="door" x="416" y="832" width="160" height="32">
+  <object id="105" name="door" type="door" x="416" y="832" width="160" height="32">
    <properties>
-    <property name="id" type="int" value="1"/>
-    <property name="vertical" type="int" value="0"/>
+    <property name="id" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="sensors">
+ <objectgroup id="11" name="sensors" visible="0">
   <object id="80" name="exit" type="exit" x="480" y="1216" width="96" height="32"/>
  </objectgroup>
 </map>

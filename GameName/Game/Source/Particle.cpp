@@ -16,6 +16,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 bool Particle::Update()
 {
+	LOG("particle update");
 	bool ret = true;
 	frameCount++;
 

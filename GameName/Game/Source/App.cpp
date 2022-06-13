@@ -339,7 +339,7 @@ void App::FinishUpdate()
 		averageFps = (averageFps + framesPerSecond) / 2;
 	}
 
-	LOG("FPS: %f", (float)framesPerSecond);
+	//LOG("FPS: %f", (float)framesPerSecond);
 
 	static char title[256];
 	//sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",
@@ -537,7 +537,6 @@ bool App::IsASavedGame()
 // call all the modules to load themselves
 bool App::LoadGame()
 {
-	loadingScreen = true;
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;

@@ -23,7 +23,6 @@ Knight::Knight(Collider_Type type, iPoint pos) : Player(type, pos)
 	physBody->body->SetGravityScale(0);
 	physBody->entityPtr = this;
 	stats.hp = 100;
-	stats.maxHp = 100;
 	stats.mana = 50;
 	stats.movement = 10;
 	stats.baseDamage = 2;
