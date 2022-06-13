@@ -431,7 +431,7 @@ void ModuleEntities::LinkDoors()
     p2ListItem<Lever*>* leverItem = listLever.start;
     p2ListItem<LeverSystem*>* leverSystemItem = listLeverSystem.start;
 
-    while (leverSystemItem != nullptr)
+     while (leverSystemItem != nullptr)
     {
 
         while (leverItem != nullptr)

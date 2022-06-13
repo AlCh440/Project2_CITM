@@ -12,7 +12,7 @@ public :
 	bool Start() override;
 	bool PreUpdate()override;
 	bool Update(float dt)override;
-
+	bool Cleanup() override;
 	p2List<Lever*> levers;
 	bool Open;
 	bool t1,t2,t3;

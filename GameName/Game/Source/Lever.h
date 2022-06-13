@@ -12,6 +12,7 @@ public:
 	bool Start() override;
 	bool Update(float dt) override;
 	bool PostUpdate() override;
+	bool Cleanup() override;
 	void Interact() override;
 	bool active;
 	int id;
