@@ -28,6 +28,9 @@ bool HPPotion::Update(float dt)
 
 bool HPPotion::CleanUp()
 {
+	button->pendingToDelete = true;
+	app->entities->openWorld->RemoveFromInventory(this);
+
 	return true;
 }
 
@@ -50,8 +53,12 @@ void HPPotion::CreateButton()
 	button->pressedRec = { 75, -2, 44, 44 };
 }
 
-void HPPotion::Consume(Player* user)
+void HPPotion::UseItem(Player* user)   
 {
 	user->stats.hp += 50;
+
+	if (user->stats.hp > user->stats.maxHp) user->stats.hp = user->stats.maxHp;
 	//HAS TO DELETE ITSELF
+	pendingToDelete = true;
+
 }

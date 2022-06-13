@@ -48,6 +48,8 @@ public:
 		return canMove;
 	}
 
+	void RemoveFromInventory(Item* item);
+
 	float32 velocity = 7;
 
 	p2List <Item*> inventory;
@@ -73,7 +75,7 @@ private:
 	bool canMove;
 
 
-	int stepsTimer = 0;
-	int stepsTimerRef = 20;
+	float stepsTimer = 0;
+	float stepsTimerRef = 20;
 
 };
