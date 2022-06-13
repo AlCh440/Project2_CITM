@@ -43,6 +43,12 @@ bool Lever::PostUpdate()
 	return true;
 }
 
+bool Lever::Cleanup()
+{
+	buttonTex = nullptr;
+	return true;
+}
+
 void Lever::Interact()
 {
 	LOG(message.GetString());

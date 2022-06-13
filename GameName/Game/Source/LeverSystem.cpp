@@ -77,3 +77,10 @@ bool LeverSystem::Update(float dt)
 
 	return true;
 }
+
+bool LeverSystem::Cleanup()
+{
+	door = nullptr;
+	levers.clear();
+	return true;
+}
