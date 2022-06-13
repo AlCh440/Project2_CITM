@@ -42,10 +42,15 @@ bool LeverSystem::Update(float dt)
 	switch (state)
 	{
 	case NONE:
-		if (lever1->active && !lever2->active && !lever3->active)
-			state = T1;
+
+		if ((lever1 != nullptr) && (lever2 != nullptr) && (lever3 != nullptr))
+		{
+			if (lever1->active && !lever2->active && !lever3->active)
+				state = T1;
+
+			Open = false;
+		}
 		
-		Open = false;
 		break;
 
 	case LeverSystem::T1:
