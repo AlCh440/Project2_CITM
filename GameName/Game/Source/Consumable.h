@@ -27,7 +27,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	virtual void Consume(Player* user) { };
+	
 
 	Consumable_Type consumableId;
 
@@ -36,6 +36,6 @@ protected:
 	SDL_RendererFlip spriteDir;
 
 	int quantity;
-
+	
 };
 

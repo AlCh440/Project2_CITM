@@ -24,7 +24,7 @@ public:
 	// Collision response
 	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
-	void Consume(Player* user) override;
+	void UseItem(Player* user) override;
 
 protected:
 	int spriteRotation = 0;

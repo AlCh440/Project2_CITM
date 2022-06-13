@@ -141,12 +141,14 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         entities.add(knightInstance);
         players.add(knightInstance);
         knightInstance->Start();
+        knightPointer = knightInstance;
         break;
     case PLAYERRANGER:
         rangerInstance = new Ranger(type, spawnPos);
         entities.add(rangerInstance);
         players.add(rangerInstance);
         rangerInstance->Start();
+        rangerPointer = rangerInstance;
         break;
     case PLAYEROPENWORLD:
     {
@@ -330,6 +332,7 @@ bool ModuleEntities::LoadState(pugi::xml_node& data)
             openWorld->Start();
         }
 
+        openWorld->LoadState(data);
 
         for (p2ListItem<Entity*>* aux = entities.getFirst(); aux != nullptr; aux = aux->next)
         {

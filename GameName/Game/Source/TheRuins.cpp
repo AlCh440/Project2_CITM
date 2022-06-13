@@ -35,7 +35,14 @@ bool TheRuins::Start()
 	app->entities->LinkDoors();
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheRuins);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheRuins);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 	
 	return true;

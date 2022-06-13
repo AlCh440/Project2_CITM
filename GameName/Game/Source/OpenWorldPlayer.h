@@ -48,6 +48,8 @@ public:
 		return canMove;
 	}
 
+	void RemoveFromInventory(Item* item);
+
 	float32 velocity = 7;
 
 	p2List <Item*> inventory;

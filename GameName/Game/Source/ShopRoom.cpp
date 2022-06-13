@@ -34,7 +34,14 @@ bool ShopRoom::Start()
 	
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_ShopRoom);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_ShopRoom);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 
 	return true;

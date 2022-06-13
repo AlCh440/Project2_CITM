@@ -425,3 +425,18 @@ bool OpenWorldPlayer::SaveState(pugi::xml_node& data) const
 
 	return true;
 }
+
+void OpenWorldPlayer::RemoveFromInventory(Item* item)
+{
+	for (p2ListItem<Item*>* aux = inventory.getFirst(); aux != nullptr; aux = aux->next)
+	{
+		if (item == aux->data)
+		{
+
+			inventory.del(aux);
+			
+			aux->data = nullptr;
+			break;
+		}
+	}
+}

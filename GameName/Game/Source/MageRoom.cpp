@@ -33,7 +33,14 @@ bool MageRoom::Start()
 
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_MageRoom);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_MageRoom);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 	return true;
 }

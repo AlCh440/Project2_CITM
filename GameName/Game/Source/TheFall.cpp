@@ -44,7 +44,14 @@ bool TheFall::Start()
 
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_TheFall);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 
 	hasBeenCreated = false;

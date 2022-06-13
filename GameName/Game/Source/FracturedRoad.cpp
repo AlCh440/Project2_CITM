@@ -35,7 +35,14 @@ bool FracturedRoad::Start()
 	app->entities->LinkDoors();
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_FracturedRoad);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_FracturedRoad);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 	return true;
 }

@@ -39,7 +39,14 @@ bool TheVillage::Start()
 	app->entities->LinkDoors();
 	if (app->entities->openWorld != nullptr)
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_Village);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 
 	//entrance

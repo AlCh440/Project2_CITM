@@ -177,6 +177,7 @@ public:
 		FPSCapTo30 = state;
 	}
 
+
 	int RandomRange(int value01, int value02) {
 
 		if (value01 > value02) {
@@ -202,6 +203,9 @@ public:
 		return(rand() / (RAND_MAX / (value02 - value01)) + value01);
 
 	}
+
+
+	bool loadingScreen = false;
 
 private:
 

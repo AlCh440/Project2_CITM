@@ -537,6 +537,7 @@ bool App::IsASavedGame()
 // call all the modules to load themselves
 bool App::LoadGame()
 {
+	loadingScreen = true;
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;

@@ -17,6 +17,7 @@ class Item;
 
 struct Statistics
 {
+	int maxHp;
 	int hp;
 	int mana;
 	int baseDamage;

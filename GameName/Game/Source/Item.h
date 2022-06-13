@@ -34,9 +34,12 @@ public:
 	virtual int GetKeyId() { return int(); };
 	itemType itemType;
 
+	virtual void UseItem(Player* User) { };
 	GuiButton* button;
 
 	SDL_Texture* texItems;
+
+	bool pendingToDelete = false;
 
 protected:
 	int spriteRotation = 0;

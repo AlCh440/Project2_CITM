@@ -33,10 +33,19 @@ bool GreenPath::Start()
 	//app->entities->Start();
 	app->entities->exitIntance->scene = GameScene::VILLAGE;
 	app->entities->entranceIntance->scene = GameScene::THE_FALL;
+
 	app->entities->LinkDoors();
-	if (app->entities->openWorld != nullptr)
+
+	if (app->entities->openWorld != nullptr )
 	{
-		app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GreenPath);
+		if (app->loadingScreen == false)
+		{
+			app->entities->openWorld->SetPositionFromPixels(app->levelManagement->playerLastPos_GreenPath);
+		}
+		else
+		{
+			app->loadingScreen = false;
+		}
 	}
 	//entrances
 	uncheckableTiles[0] = { 10, 11 };
