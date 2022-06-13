@@ -24,7 +24,7 @@ bool DragonCliff::Awake(pugi::xml_node&)
 
 bool DragonCliff::Start()
 {
-	music = app->audio->PlayMusic("assets/audio/music/song_1_2.wav", 0);
+	img = app->tex->Load("Assets/Maps/dragoncliff_bg.png");
 	app->levelManagement->inCombat = false;
 	app->physics->Start();
 	app->map->Load("level6.tmx");
@@ -58,6 +58,8 @@ bool DragonCliff::Update(float dt)
 
 bool DragonCliff::PostUpdate()
 {
+	SDL_Rect r = { 0,0,1600,670 };
+	app->render->DrawTexture(img, 0, 0, &r);
 	app->map->Draw();
 	return true;
 }
