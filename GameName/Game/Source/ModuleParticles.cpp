@@ -12,23 +12,40 @@ ModuleParticles::ModuleParticles(bool isActive) : Module(isActive)
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		particles[i] = nullptr;
 
-	// Explosion Particle
-	leaf_0.anim.PushBack({ 0, 0, 8, 8 });
-	leaf_0.anim.PushBack({ 0, 0, 8, 8 });
-	dust.speed = fPoint(0, 0);
-	dust.accel = fPoint(0.01f, 0);
-	dust.lifetime = 100;
-	dust.anim.loop = true;
-	leaf_0.anim.speed = 0.1f;
+	// leaf Particle
+	leaf.anim.PushBack({ 0, 0, 8, 8 });
+	leaf.anim.PushBack({ 1 * 8, 0, 8, 8 });
+	leaf.anim.PushBack({ 2 * 8, 0, 8, 8 });
+	leaf.anim.PushBack({ 3 * 8, 0, 8, 8 });
 
-	// Laser Particle
+	leaf.speed = fPoint(0,0);
+	leaf.accel = fPoint(0,0);
+
+	leaf.lifetime = 500;
+	leaf.anim.loop = true;
+	leaf.anim.speed = 0.1f;
+
+	// dust Particle
+	dust.anim.PushBack({ 8 * 4, 0, 8, 8 });
 	dust.anim.PushBack({ 8 * 5, 0, 8, 8 });
-	dust.anim.PushBack({ 8 * 5, 0, 8, 8 });
+	dust.anim.PushBack({ 8 * 6, 0, 8, 8 });
+	dust.anim.PushBack({ 8 * 7, 0, 8, 8 });
 	dust.speed = fPoint(0, 0);
-	dust.accel = fPoint(0.01f, 0);
-	dust.lifetime = 100;
+	dust.accel = fPoint(0, 0);
+	dust.lifetime = 50;
 	dust.anim.loop = true;
 	dust.anim.speed = 0.1f;
+
+	spark.anim.PushBack({ 8 * 0, 8, 8, 8 });
+	spark.anim.PushBack({ 8 * 1, 8, 8, 8 });
+	spark.anim.PushBack({ 8 * 2, 8, 8, 8 });
+	spark.anim.PushBack({ 8 * 3, 8, 8, 8 });
+	spark.anim.PushBack({ 8 * 4, 8, 8, 8 });
+	spark.speed = fPoint(0, 0);
+	spark.accel = fPoint(0, 0);
+	spark.lifetime = 0;
+	spark.anim.loop = false;
+	spark.anim.speed = 0.1f;
 }
 
 ModuleParticles::~ModuleParticles()
@@ -99,7 +116,7 @@ bool ModuleParticles::PostUpdate()
 	return true;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, uint delay)
+Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y, uint delay)
 {
 	Particle* p = new Particle(particle);
 	
@@ -110,4 +127,6 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, uint d
 
 	particles[lastParticle++] = p;
 	lastParticle %= MAX_ACTIVE_PARTICLES;
+
+	return p;
 }

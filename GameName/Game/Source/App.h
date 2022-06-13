@@ -5,6 +5,7 @@
 #include "p2List.h"
 #include "PerfTimer.h"
 #include "Timer.h"
+
 #include "PugiXml/src/pugixml.hpp"
 
 #define CONFIG_FILENAME		"config.xml"
@@ -175,6 +176,36 @@ public:
 	{
 		FPSCapTo30 = state;
 	}
+
+
+	int RandomRange(int value01, int value02) {
+
+		if (value01 > value02) {
+
+			int i = value01;
+			value01 = value02;
+			value02 = i;
+
+		}
+		return(rand() % (value02 - value01 + 1) + value01);
+
+	}
+
+	float RandomRange(float value01, float value02) {
+
+		if (value01 > value02) {
+
+			float i = value01;
+			value01 = value02;
+			value02 = i;
+
+		}
+		return(rand() / (RAND_MAX / (value02 - value01)) + value01);
+
+	}
+
+
+	bool loadingScreen = false;
 
 private:
 
