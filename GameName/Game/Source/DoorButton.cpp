@@ -34,10 +34,6 @@ bool DoorButton::Update(float dt)
 		{
 			Pressed = false;
 			counter = time;
-			if (door != nullptr)
-			{
-				//door->OpenDoor();
-			}
 		}
 	}
 
@@ -65,7 +61,7 @@ void DoorButton::Interact()
 	LOG(message.GetString());
 	if (door != nullptr)
 	{		
-		door->OpenDoor();
+		door->InvertDoorState();
 		Pressed = true;
 	}
 }

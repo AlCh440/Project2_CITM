@@ -1,3 +1,6 @@
+#ifndef __INTERACTABLE_H__
+#define __INTERACTABLE_H__
+
 #include "SString.h"
 #include "Entity.h"
 #include "Entities.h"
@@ -21,4 +24,4 @@ public:
 	SDL_Texture* interactTex;
 	OpenWorldPlayer* player;
 };
-
+#endif //__INTERACTABLE_H__

@@ -12,7 +12,7 @@ Door::Door(Collider_Type type, iPoint pos, int width, int height, bool vertical,
     x = position.x;
     y = position.y;
     physBody = app->physics->CreateRectangle(x, y, width, height, b2_staticBody, b2Color{ 255,125,125,255 });
-   
+    Open = false;
     if (isVertical)
         direction = { 0,1 };
     else
@@ -54,7 +54,7 @@ bool Door::Cleanup()
     return true;
 }
 
-bool Door::OpenDoor()
+bool Door::InvertDoorState()
 {
     Open = !Open;
     //if closed and not moving
@@ -68,5 +68,19 @@ bool Door::OpenDoor()
         physBody->body->SetActive(false);
     }
 
+    return Open;
+}
+
+bool Door::OpenDoor()
+{
+    Open = true;
+    physBody->body->SetActive(false);
     return true;
+}
+
+bool Door::CloseDoor()
+{
+    Open = false;
+    physBody->body->SetActive(true);
+    return false;
 }

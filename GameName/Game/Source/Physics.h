@@ -59,7 +59,9 @@ enum Collider_Type {
 	SHOP_ENTRANCE,
 	DOOR_BUTTON,
 	DOOR,
-	EXIT
+	EXIT,
+	LEVER,
+	LEVER_SYS
 };
 
 struct Color {

@@ -97,7 +97,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LeverSystem.cpp" />
     <ClCompile Include="Source\BattlePanel.cpp" />
     <ClCompile Include="Source\BattleSpace.cpp" />
     <ClCompile Include="Source\BattleTestScene.cpp" />
@@ -136,6 +135,7 @@
     <ClCompile Include="Source\Knight.cpp" />
     <ClCompile Include="Source\LevelManagement.cpp" />
     <ClCompile Include="Source\Lever.cpp" />
+    <ClCompile Include="Source\LeverSystem.cpp" />
     <ClCompile Include="Source\Mage.cpp" />
     <ClCompile Include="Source\MageRoom.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -184,7 +184,6 @@
     <ClCompile Include="Source\NpcWizard.cpp" />
     <ClCompile Include="Source\WorldSpace.cpp" />
     <ClCompile Include="Source\WorldTestScene.cpp" />
-    <ClInclude Include="LeverSystem.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\BattlePanel.h" />
@@ -225,6 +224,7 @@
     <ClInclude Include="Source\Knight.h" />
     <ClInclude Include="Source\LevelManagement.h" />
     <ClInclude Include="Source\Lever.h" />
+    <ClInclude Include="Source\LeverSystem.h" />
     <ClInclude Include="Source\Mage.h" />
     <ClInclude Include="Source\MageRoom.h" />
     <ClInclude Include="Source\MainMenuPanel.h" />

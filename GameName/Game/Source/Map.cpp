@@ -22,6 +22,10 @@
 #include "Key.h"
 
 #include "DoorButton.h"
+#include "Lever.h"
+
+#include "LeverSystem.h"
+
 using namespace std;
 
 Map::Map(bool isActive) : Module(isActive), mapLoaded(false)
@@ -774,6 +778,14 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			obj->type = Collider_Type::DOOR;
 		}
+		else if (strcmp(object.attribute("type").as_string(), "lever") == 0)
+		{
+			obj->type = Collider_Type::LEVER;
+		}
+		else if (strcmp(object.attribute("type").as_string(), "lever_sys") == 0)
+		{
+			obj->type = Collider_Type::LEVER_SYS;
+		}
 		layer->objects.add(obj);
 		//send current object node and obj to store the properties
 		LoadObject(object, obj);
@@ -1051,6 +1063,22 @@ bool Map::SetMapColliders()
 					app->entities->entities.add(d); 
 				}
 				break;
+			case LEVER:
+			{
+				Lever* l = new Lever(object->data->type,spawnPos);
+				l->id = object->data->properties.GetProperty("id");
+				app->entities->listLever.add(l);
+				app->entities->entities.add(l);
+			}
+			break;
+			case LEVER_SYS:
+			{
+				LeverSystem* ls = new LeverSystem(object->data->type, spawnPos);
+				ls->id = object->data->properties.GetProperty("id");
+				app->entities->listLeverSystem.add(ls);
+				app->entities->entities.add(ls);
+			}
+			break;
 			default:
 				break; 
 			}

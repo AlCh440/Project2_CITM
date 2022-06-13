@@ -40,6 +40,9 @@ class NpcWoVillager;
 class DoorButton;
 class Door;
 
+class Lever;
+class LeverSystem;
+
 class NpcArchmage;
 class NpcArchmageComb;
 class NpcWizard;
@@ -144,9 +147,13 @@ public:
 	Trigger* mageEntrance;
 	Trigger* shopEntrance;
 	p2List<Trigger*> listOfCombatTriggers;
+
 	p2List<Door*> listDoors;
 	p2List<DoorButton*> listButtonDoor;
-	//triggers to enter locations
+
+	p2List<Lever*> listLever;
+	p2List<LeverSystem*> listLeverSystem;
+
 
 
 	int enemiesAlive;

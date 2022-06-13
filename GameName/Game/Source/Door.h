@@ -10,7 +10,9 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 	bool Cleanup() override;
+	bool InvertDoorState();
 	bool OpenDoor();
+	bool CloseDoor();
 	int id;
 	int size;
 	int x, y, width, height;

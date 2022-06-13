@@ -10,6 +10,8 @@ public:
 	bool Update(float dt) override;
 	bool PostUpdate() override;
 	void Interact() override;
+
+
 	Door* door;
 	bool Pressed;
 	int id;

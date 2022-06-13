@@ -30,7 +30,11 @@
 #include "NpcRangerVill.h"
 #include "NpcWizard.h"
 #include "Chest.h"
+
 #include "DoorButton.h"
+#include "Lever.h"
+
+#include "LeverSystem.h"
 
 ModuleEntities::ModuleEntities(bool isActive) : Module(isActive)
 {
@@ -409,7 +413,7 @@ void ModuleEntities::LinkDoors()
     {
         while (doorItem != nullptr)
         {
-            if (doorButtonItem->data->id == doorItem->data->id)
+            if (doorButtonItem->data->door == nullptr && doorButtonItem->data->id == doorItem->data->id)
             {
 
                 doorButtonItem->data->door = doorItem->data;
@@ -421,6 +425,36 @@ void ModuleEntities::LinkDoors()
         doorButtonItem = doorButtonItem->next;
     }
 
+    p2ListItem<Lever*>* leverItem = listLever.start;
+    p2ListItem<LeverSystem*>* leverSystemItem = listLeverSystem.start;
+
+    while (leverSystemItem != nullptr)
+    {
+
+        while (leverItem != nullptr)
+        {
+
+            if (leverItem->data->id == leverSystemItem->data->id)
+            {
+                leverSystemItem->data->levers.add(leverItem->data);
+            }
+
+            leverItem = leverItem->next;
+        }
+        //add the door
+        while (doorItem != nullptr)
+        {
+            if (leverSystemItem->data->door == nullptr && leverSystemItem->data->id == doorItem->data->id)
+            {
+
+                leverSystemItem->data->door = doorItem->data;
+                doorItem = listDoors.getFirst();
+                break;
+            }
+            doorItem = doorItem->next;
+        }
+        leverSystemItem = leverSystemItem->next;
+    }
 
 }
 

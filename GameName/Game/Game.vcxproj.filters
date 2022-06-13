@@ -257,7 +257,9 @@
     <ClCompile Include="Source\Lever.cpp">
       <Filter>Entities\Interactable\Interactables</Filter>
     </ClCompile>
-    <ClCompile Include="LeverSystem.cpp" />
+    <ClCompile Include="Source\LeverSystem.cpp">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -546,7 +548,9 @@
     <ClInclude Include="Source\Lever.h">
       <Filter>Entities\Interactable\Interactables</Filter>
     </ClInclude>
-    <ClInclude Include="LeverSystem.h" />
+    <ClInclude Include="Source\LeverSystem.h">
+      <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
