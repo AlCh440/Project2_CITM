@@ -14,6 +14,10 @@
 #include "Interactable.h"
 #include "ModuleParticles.h"
 
+#include "HPPotion.h"
+#include "ManaPotion.h"
+#include "Key.h"
+
 // Update Code
 OpenWorldPlayer::OpenWorldPlayer(Collider_Type type, iPoint pos) : Player(type, pos)
 {
@@ -411,17 +415,78 @@ bool OpenWorldPlayer::LoadState(pugi::xml_node& data)
 	physBody->body->SetTransform(pos, 0);
 	mapPlayerUpdate = false;
 
+	pugi::xml_node node_01 = data.child("player").child("inventory");
+
+	if (node_01 != NULL)
+	{
+		for (pugi::xml_node node_02 = node_01.child("item"); node_02 != NULL; node_02 = node_02.next_sibling())
+		{
+			int aux_01 = node_02.attribute("id").as_int();
+			switch (aux_01)
+			{
+			case 1:
+			{
+				HPPotion* hp = new HPPotion(HP_POTION);
+				hp->CreateButton();
+				inventory.add(hp);
+				
+			} break;
+			case 2:
+			{
+				ManaPotion* mp = new ManaPotion(MANA_POTION);
+				mp->CreateButton();
+				inventory.add(mp);
+			} break;
+			case 3:
+			{
+				int aux_02 = node_02.attribute("keyId").as_int();
+				
+				Key* k = new Key(aux_02);
+				k->CreateButton();
+				inventory.add(k);
+			} break;
+			}
+		}
+	}
 	return true;
 }
 
 bool OpenWorldPlayer::SaveState(pugi::xml_node& data) const
 {
-	pugi::xml_node enemy_ = data.append_child("player");
+	pugi::xml_node node_01 = data.append_child("player");
 	
 	iPoint pos(position.x, position.y);
 
-	enemy_.append_attribute("x") = position.x;
-	enemy_.append_attribute("y") = position.y;
+	node_01.append_attribute("x") = position.x;
+	node_01.append_attribute("y") = position.y;
+
+	if (inventory.getFirst() != NULL)
+	{
+		pugi::xml_node node_02 = node_01.append_child("inventory");
+		pugi::xml_node node_03;
+		for (p2ListItem<Item*>* aux = inventory.getFirst(); aux != nullptr; aux = aux->next)
+		{
+			switch (aux->data->itemType)
+			{
+			case itemType::POTION_HP_:
+			{
+				node_03 = node_02.append_child("item");
+				node_03.append_attribute("id") = 1;
+			} break;
+			case itemType::POTION_MANA_:
+			{
+				node_03 = node_02.append_child("item");
+				node_03.append_attribute("id") = 2;
+			} break;
+			case itemType::KEY_:
+			{
+				node_03 = node_02.append_child("item");
+				node_03.append_attribute("id") = 3;
+				node_03.append_attribute("keyId") = aux->data->GetKeyId();
+			}
+			}
+		}
+	}
 
 	return true;
 }
