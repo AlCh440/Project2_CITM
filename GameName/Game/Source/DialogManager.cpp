@@ -1,5 +1,6 @@
 #include "DialogManager.h"
-
+#include "GuiManager.h"
+#include "QuestManager.h"
 
 DialogManager::DialogManager(bool isActive) : Module(isActive)
 {
@@ -88,17 +89,8 @@ bool DialogManager::PostUpdate()
 				blackSquareAlpha -= 2;
 			else {
 				blackSquareAlpha = 0;
-			}
-
-			
+			}	
 		}
-
-
-		
-
-		
-
-		
 		}
 	
 	if (app->greenPath->active)
@@ -159,6 +151,9 @@ bool DialogManager::PostUpdate()
 			{
 				if (player != nullptr) player->SetMotion(true);
 				dialogActive_Wizard = false;
+				app->guiManager->OpenPanel(P_QUEST);
+				app->questManager->CompleteQuest(0);
+				app->questManager->ActivateQuest(1);
 			}
 		}
 
