@@ -24,4 +24,3 @@ public:
 
 	SDL_Rect normalRec,selectedRec;
 };
-

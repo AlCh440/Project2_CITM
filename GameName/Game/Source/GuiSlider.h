@@ -40,4 +40,3 @@ public:
 	Animation* hoverAnim, pressedAnim;
 	Animation* currentAnim;
 };
-
