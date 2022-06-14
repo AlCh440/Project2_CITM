@@ -91,16 +91,16 @@ bool QuestPanel::Draw()
 	{
 		switch (currentQuest->data->progress)
 		{
-		case Quest::NOT_AVAILABLE:
-
-			if (notAvailableTex != nullptr)
-				app->render->DrawTexture(notAvailableTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &notavailable, 0, 0, 0, 0, 0.5f);
-
-			break;
+		//case Quest::NOT_AVAILABLE:
+		//
+		//	if (notAvailableTex != nullptr)
+		//		app->render->DrawTexture(notAvailableTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &notavailable, 0, 0, 0, 0, 0.5f);
+		//
+		//	break;
 		case Quest::AVAILABLE:
 
 			if (availableTex != nullptr)
-				app->render->DrawTexture(availableTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &rAvailable, 0, 0, 0, 0, 0.5f);
+				app->render->DrawTexture(notAvailableTex, 330 / app->win->GetScale(), 390 / app->win->GetScale(), &notavailable, 0, 0, 0, 0, 0.5f);
 
 			break;
 		case Quest::ACTIVE:

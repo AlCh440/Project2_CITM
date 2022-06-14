@@ -33,19 +33,18 @@ public:
 	void CompleteQuest(int questID);
 
 	//Finish Quest
-	void FinishQuest(int questID);
-
+	
 	//Add item
 	void AddItem();
 
 	//Get available quest 
-	bool GetAvailableQuest(int questID);
+	bool GetAvailableQuest(int questID)const;
 
 	//Get active quest
-	bool GetActiveQuest(int questID);
+	bool GetActiveQuest(int questID)const;
 
 	//Get complete quest but not Done (get rewards etc)
-	bool GetCompletedQuest(int questID);
+	bool GetCompletedQuest(int questID)const;
 
 	//Load quest files 
 	bool QuestManager::Load(const char* path);

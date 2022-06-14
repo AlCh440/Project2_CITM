@@ -7,7 +7,7 @@ class Quest
 {
 
 public:
-	enum QuestProgress { NOT_AVAILABLE, AVAILABLE, ACTIVE, COMPLETE, DONE }; //States a quest can have
+	enum QuestProgress {  AVAILABLE, ACTIVE, COMPLETE}; //States a quest can have
 
 
 	int id;							//Quest identification

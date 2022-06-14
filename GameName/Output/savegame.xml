@@ -3,12 +3,20 @@
 	<window />
 	<input />
 	<Level_manager>
-		<levelManager currentLevel="6" />
+		<levelManager currentLevel="8" />
 	</Level_manager>
 	<entities>
-		<player x="1914" y="1097" />
+		<player x="2265" y="1257" />
 	</entities>
 	<renderer>
-		<camera x="-3182" y="-1834" />
+		<camera x="-3890" y="-2154" />
 	</renderer>
+	<quest>
+		<first state ="0" />
+		<second state ="0" />
+		<third state ="0" />
+		<fourth state ="0" />
+		<fifth state ="0" />
+		<sixth state ="0" />
+	</quest>
 </saveState>
