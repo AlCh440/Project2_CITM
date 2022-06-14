@@ -39,12 +39,12 @@ bool QuestPanel::Start()
 	nextButton->focusedRec = { 0,349,56,52 };
 	nextButton->pressedRec = { 0,349,56,52 };
 
-	completeButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 200 / windowScale, 535 / windowScale,52,56 });
-
-	completeButton->texture = app->guiManager->UItexture2;
-	completeButton->normalRec = { 0,613,56,52 };
-	completeButton->focusedRec = { 0,664,56,52 };
-	completeButton->pressedRec = { 0,664,56,52 };
+	//completeButton = (GuiButton*)CreateGuiButton(1, app->guiManager, this, { 200 / windowScale, 535 / windowScale,52,56 });
+	//
+	//completeButton->texture = app->guiManager->UItexture2;
+	//completeButton->normalRec = { 0,613,56,52 };
+	//completeButton->focusedRec = { 0,664,56,52 };
+	//completeButton->pressedRec = { 0,664,56,52 };
 	
 	offQuestPanel = (GuiButton*)CreateGuiButton(2, app->guiManager, this, { 1000 / windowScale, 535 / windowScale,52,56 });
 	
@@ -169,11 +169,11 @@ bool QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
 			currentQuest = app->questManager->questList->start;
 		}
 	}
-	else if (control->id == completeButton->id)
-	{
-		app->questManager->CompleteQuest(currentQuest->data->id);
-		//app->questManager->CancelQuest(currentQuest->data->id);
-	}
+	//else if (control->id == completeButton->id)
+	//{
+	//	app->questManager->CompleteQuest(currentQuest->data->id);
+	//	//app->questManager->CancelQuest(currentQuest->data->id);
+	//}
 	else if (control->id == offQuestPanel->id)
 	{
 		app->gamePaused = false;

@@ -99,6 +99,14 @@ void QuestManager::CompleteQuest(int questID)
 		{
 			currentQuestList->add(currentQuest->data);
 			currentQuest->data->progress = Quest::COMPLETE;
+
+			switch (questID) // for rewards
+			{
+			case 1:
+
+				break;
+
+			}
 		}
 
 		currentQuest = currentQuest->next;

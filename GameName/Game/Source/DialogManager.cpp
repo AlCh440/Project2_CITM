@@ -151,9 +151,13 @@ bool DialogManager::PostUpdate()
 			{
 				if (player != nullptr) player->SetMotion(true);
 				dialogActive_Wizard = false;
-				app->guiManager->OpenPanel(P_QUEST);
-				app->questManager->CompleteQuest(0);
-				app->questManager->ActivateQuest(1);
+
+				if (app->questManager->GetActiveQuest(0) == true)
+				{
+					app->guiManager->OpenPanel(P_QUEST);
+					app->questManager->CompleteQuest(0);
+					app->questManager->ActivateQuest(1);
+				}
 			}
 		}
 
@@ -185,6 +189,14 @@ bool DialogManager::PostUpdate()
 			{
 				if (player != nullptr) player->SetMotion(true);
 				dialogActive_General = false;
+
+				if (app->questManager->GetCompletedQuest(0) == true)
+				{
+					app->guiManager->OpenPanel(P_QUEST);
+					app->questManager->CompleteQuest(1);
+					app->questManager->ActivateQuest(2);
+				}
+				
 			}
 		}
 	}
