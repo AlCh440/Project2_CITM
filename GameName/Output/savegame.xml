@@ -3,12 +3,21 @@
 	<window />
 	<input />
 	<Level_manager>
-		<levelManager currentLevel="6" />
+		<levelManager currentLevel="5" />
 	</Level_manager>
 	<entities>
-		<player x="1914" y="1097" />
+		<player x="449" y="913">
+			<inventory>
+				<item id="1" />
+				<item id="2" />
+				<item id="3" keyId="1" />
+				<item id="3" keyId="2" />
+				<item id="3" keyId="3" />
+				<item id="3" keyId="4" />
+			</inventory>
+		</player>
 	</entities>
 	<renderer>
-		<camera x="-3182" y="-1834" />
+		<camera x="-258" y="-1466" />
 	</renderer>
 </saveState>

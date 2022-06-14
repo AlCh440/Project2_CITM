@@ -157,14 +157,14 @@ bool InventoryPanel::OnGuiMouseClickEvent(GuiControl* control)
 
 iPoint InventoryPanel::InitializeItemPos()
 {
-	iPoint ret(position.x + 444, position.y + 340);
+	iPoint ret(position.x + 444, position.y + 340 + (132 * columnCounter));
 
 	if (rowCounter == 5)
 	{
 		rowCounter = 0;
 		columnCounter++;
 		ret.x = position.x + (444);
-		ret.y = position.y + (340) + (131 * columnCounter);
+		ret.y = position.y + (340) + (132 * columnCounter);
 	}
 
 	ret.x += 131 * rowCounter;
