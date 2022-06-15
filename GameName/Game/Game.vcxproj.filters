@@ -263,6 +263,9 @@
     <ClCompile Include="Source\EnemySnake.cpp">
       <Filter>Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Credits.cpp">
+      <Filter>Scenes\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -556,6 +559,9 @@
     </ClInclude>
     <ClInclude Include="Source\EnemySnake.h">
       <Filter>Entities\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Credits.h">
+      <Filter>Scenes\Menus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
