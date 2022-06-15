@@ -7,9 +7,9 @@
 	</Level_manager>
 	<quest_manager />
 	<entities>
-		<player x="516" y="440" />
+		<player x="516" y="324" />
 	</entities>
 	<renderer>
-		<camera x="-392" y="-520" />
+		<camera x="-392" y="-288" />
 	</renderer>
 </saveState>

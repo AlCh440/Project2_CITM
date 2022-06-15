@@ -179,6 +179,9 @@ bool QuestManager::GetCompletedQuest(int questID) const
 
 bool QuestManager::Load(const char* path) 
 {
+	questList->clear();
+	currentQuestList->clear();
+
 	bool ret = true;
 	SString tmp("%s%s", folder.GetString(), path);
 
@@ -225,157 +228,59 @@ bool QuestManager::Load(const char* path)
 
 bool QuestManager::LoadState(pugi::xml_node& data)
 {
+	bool ret = true;
 	
-	//gameScene = lm.attribute("first").as_int();
 
-	//loadLevel = true;
+	pugi::xml_document questsFile;
+	pugi::xml_parse_result result = questsFile.load_file("quests.xml");
+	pugi::xml_node currentQuest;
 
-	p2ListItem<Quest*>* currentQuest = questList->start;
+	if (result == NULL)
+	{
+		LOG("Could not load map xml file. pugi error: %s", result.description());
+		ret = false;
+	}
+	else {
 
-	// 1 available
-	// 2 active
-	// 3 complete
+		currentQuest = questsFile.child("questList").child("quest");
+		
+		while (currentQuest != NULL)
+		{
+			Quest* quest = new Quest();
 
-	//while (currentQuest != NULL)
-	//{
-	//	switch (currentQuest->data->id)
-	//	{
-	//	case 0:
-	//
-	//		if (lm.attribute("first").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("first").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("first").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	case 1:
-	//
-	//		if (lm.attribute("second").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("second").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("second").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	case 2:
-	//
-	//		if (lm.attribute("third").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("third").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("third").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	case 3:
-	//
-	//		if (lm.attribute("fourth").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("fourth").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("fourth").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	case 4:
-	//
-	//		if (lm.attribute("fifth").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("fifth").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("fifth").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	case 5:
-	//
-	//		if (lm.attribute("sixth").as_int() == 1)
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//		else if (lm.attribute("sixth").as_int() == 2)
-	//		{
-	//			currentQuest->data->progress = Quest::ACTIVE;
-	//		}
-	//		else if (lm.attribute("sixth").as_int() == 3)
-	//		{
-	//			currentQuest->data->progress = Quest::COMPLETE;
-	//		}
-	//		else
-	//		{
-	//			currentQuest->data->progress = Quest::AVAILABLE;
-	//		}
-	//
-	//		break;
-	//
-	//	default:
-	//
-	//		currentQuest->data->progress = Quest::AVAILABLE;
-	//
-	//		break;
-	//	}
-	//
-	//	currentQuest = currentQuest->next;
-	//}
+			//load properties
+			quest->id = currentQuest.attribute("id").as_int();
+			if (currentQuest.attribute("complete").as_int() == 0)
+			{
+				quest->progress = Quest::COMPLETE;
+			}
+			else if (currentQuest.attribute("complete").as_int() == 1)
+			{
+				quest->progress = Quest::AVAILABLE;
+			}
+			else
+			{
+				quest->progress = Quest::ACTIVE;
+			}
+			
+			quest->title = currentQuest.attribute("title").as_string();
+			quest->description = currentQuest.child("description").attribute("text").as_string();
+			quest->objective = currentQuest.child("objective").attribute("text").as_string();
+			quest->coinsReward = currentQuest.child("rewards").child("coins").attribute("number").as_int();
 
+			//generate text textures
+			quest->titleTex = app->fonts->LoadRenderedText(quest->rTitle, app->fonts->titles, quest->title.GetString(), SDL_Color{ 32,27,46 });
+			quest->descriptionTex = app->fonts->LoadRenderedParagraph(quest->rDescription, 0, quest->description.GetString(), SDL_Color{ 32,27,46 }, 500);
+			quest->objectiveTex = app->fonts->LoadRenderedParagraph(quest->rObjective, 0, quest->objective.GetString(), SDL_Color{ 32,27,46 }, 500);
+
+			questList->add(quest);
+
+			currentQuest = currentQuest.next_sibling();
+		}
+	}
+
+	return ret;
+	
 	return true;
 }
 
@@ -389,6 +294,7 @@ bool QuestManager::SaveState(pugi::xml_node& data) const
 	pugi::xml_node node_01;
 	pugi::xml_node node_02;
 	pugi::xml_node node_03;
+
 	for (p2ListItem<Quest*>* currentQuest = questList->start; currentQuest != nullptr; currentQuest = currentQuest->next)
 	{
 		node_01 = saveStateNode.append_child("quest");
@@ -396,14 +302,19 @@ bool QuestManager::SaveState(pugi::xml_node& data) const
 		node_01.append_attribute("id") = currentQuest->data->id;
 		if (currentQuest->data->progress == Quest::COMPLETE)
 		{
-			node_01.append_attribute("complete").set_name("true");
+			node_01.append_attribute("complete") = 0;
 		}
-		else
+		else if (currentQuest->data->progress == Quest::AVAILABLE)
 		{
-			node_01.append_attribute("complete").set_name("false");
+			node_01.append_attribute("complete") = 1;
+		}
+		else if (currentQuest->data->progress == Quest::ACTIVE)
+		{
+			node_01.append_attribute("complete") = 2;
 		}
 
 		node_02 = node_01.append_child("description");
+		//currentQuest->data->description.Cut(0, 1);
 		node_02.append_attribute("text").set_value(currentQuest->data->description.GetString());
 
 		node_02 = node_01.append_child("objective");
@@ -415,171 +326,8 @@ bool QuestManager::SaveState(pugi::xml_node& data) const
 	}
 	
 	saveDoc->save_file("quests.xml");
-	p2ListItem<Quest*>* currentQuest = questList->start;
 	
-	// 1 available
-	// 2 active
-	// 3 complete
-
-	//while (currentQuest != NULL)
-	//{
-	//	switch (currentQuest->data->id)
-	//	{
-	//	case 0:
-	//
-	//		if( GetAvailableQuest(currentQuest->data->id) ==true)
-	//		{
-	//			manager.append_attribute("first") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("first") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("first") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("first") = -1;
-	//		}
-	//
-	//		break;
-	//	case 1:
-	//
-	//		if (GetAvailableQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("second") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("second") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("second") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("second") = -1;
-	//		}
-	//
-	//		break;
-	//	case 2:
-	//
-	//		if (GetAvailableQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("third") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("third") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("third") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("third") = -1;
-	//		}
-	//
-	//		break;
-	//	case 3:
-	//
-	//		if (GetAvailableQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fourth") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fourth") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fourth") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("fourth") = -1;
-	//		}
-	//
-	//		break;
-	//	case 4:
-	//
-	//		if (GetAvailableQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fifth") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fifth") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("fifth") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("fifth") = -1;
-	//		}
-	//
-	//		break;
-	//	case 5:
-	//
-	//		if (GetAvailableQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("sixth") = 1;
-	//		}
-	//		else if (GetActiveQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("sixth") = 2;
-	//		}
-	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
-	//		{
-	//			manager.append_attribute("sixth") = 3;
-	//		}
-	//		else
-	//		{
-	//			manager.append_attribute("sixth") = -1;
-	//		}
-	//
-	//		break;
-	//	default:
-	//		manager.append_attribute("first") = -1;
-	//		manager.append_attribute("second") = -1;
-	//		manager.append_attribute("third") = -1;
-	//		manager.append_attribute("fourth") = -1;
-	//		manager.append_attribute("fifth") = -1;
-	//		manager.append_attribute("sixth") = -1;
-	//
-	//		break;
-	//	}
-	//	
-	//
-	//	currentQuest = currentQuest->next;
-	//}
 
 	return true;
 }
 
-//bool LevelManagement::LoadState(pugi::xml_node& data)
-//{
-//
-//	pugi::xml_node lm = data.child("levelManager");
-//
-//	gameScene = static_cast<GameScene>(lm.attribute("currentLevel").as_int());
-//
-//	loadLevel = true;
-//	return true;
-//}
-//
-//bool LevelManagement::SaveState(pugi::xml_node& data) const
-//{
-//	pugi::xml_node manager = data.append_child("levelManager");
-//
-//	manager.append_attribute("currentLevel") = gameScene;
-//
-//
-//	return true;
-//}
