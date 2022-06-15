@@ -28,15 +28,15 @@ bool LeverSystem::PreUpdate()
 
 bool LeverSystem::Update(float dt)
 {
-	p2ListItem<Lever*>* currentLever = levers.start;
-
-	Lever* lever1;
-	Lever* lever2;
-	Lever* lever3;
+	Lever* lever1 = new Lever();
+	Lever* lever2 = new Lever();
+	Lever* lever3 = new Lever();
 
 	levers.at(0, lever1);
 	levers.at(1, lever2);
 	levers.at(2, lever3);
+
+
 
 
 	switch (state)

@@ -20,6 +20,8 @@ public :
 	//to identify what system is and match the levers and the door;
 	int id;
 
+	int leversCount;
+
 	enum State {
 		NONE,
 		T1,

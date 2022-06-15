@@ -51,6 +51,7 @@ bool Door::PostUpdate()
 
 bool Door::Cleanup()
 {
+    physBody->pendingToDelete = true;
     return true;
 }
 

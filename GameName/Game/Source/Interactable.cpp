@@ -5,6 +5,9 @@ Interactable::Interactable(Collider_Type type, iPoint pos) : Entity(type, pos) {
 
 	interactTex = app->tex->Load("Assets/Sprites/characters/NPC.png");
 }
+Interactable::Interactable()
+{
+}
 Interactable::~Interactable() {
 	app->tex->UnLoad(interactTex);
 }

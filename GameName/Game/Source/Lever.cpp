@@ -12,6 +12,10 @@ Lever::Lever(Collider_Type type, iPoint pos) : Interactable(type,pos)
 	message = "Lever interact!";
 }
 
+Lever::Lever() : Interactable()
+{
+}
+
 Lever::~Lever()
 {
 }

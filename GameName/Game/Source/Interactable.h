@@ -9,6 +9,7 @@ class  Interactable : public Entity
 {
 public:
 	Interactable(Collider_Type type, iPoint pos);
+	Interactable();
 	~Interactable();
 
 	void BaseInteract() { Interact(); };

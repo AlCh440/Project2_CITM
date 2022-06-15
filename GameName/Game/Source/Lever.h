@@ -7,6 +7,7 @@ class Lever :  public Interactable
 {
 public:
 	Lever(Collider_Type type, iPoint pos);
+	Lever();
 	~Lever();
 
 	bool Start() override;

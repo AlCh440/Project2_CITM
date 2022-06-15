@@ -128,6 +128,10 @@ bool ModuleEntities::CleanUp()
     listButtonDoor.clear();
     listDoors.clear();
 
+    listLever.clear();
+    listLeverSystem.clear();
+
+
     players.clear();
     entities.clear();
     return true;
