@@ -32,6 +32,7 @@
 #include "GeneralRoom.h"
 #include "MageRoom.h"
 #include "ShopRoom.h"
+#include "Credits.h"
 
 #include "BattleTestScene.h"
 #include "WorldTestScene.h"
@@ -82,6 +83,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	generalRoom = new GeneralRoom(false);
 	mageRoom = new MageRoom(false);
 	shopRoom = new ShopRoom(false);
+	credits = new Credits(false);
 
 	//test
 	worldTest = new WorldTestScene(false);

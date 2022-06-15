@@ -36,9 +36,9 @@ bool Credits::Awake()
 bool Credits::Start()
 {
 
-	music = music = app->audio->PlayMusic("assets/audio/music/song_menu.wav", 0.5f); // to change
+	music = app->audio->PlayMusic("assets/audio/music/song_menu.wav", 0.5f); // to change
 	waitTime = 200;
-	img = app->tex->Load("Assets/Sprites/UI/screen_logo.jpg");// change the image
+	img = app->tex->Load("Assets/Sprites/UI/Matucana Studios_PostCreditos.png");
 	rect = { 0, 0, 1280, 720 };
 	logoXpos = -100;
 	return true;
@@ -74,6 +74,7 @@ bool Credits::Update(float dt)
 
 	if (SDL_SCANCODE_SPACE == KEY_DOWN)
 		app->levelManagement->LoadScene(GameScene::START);
+	
 
 	return true;
 }

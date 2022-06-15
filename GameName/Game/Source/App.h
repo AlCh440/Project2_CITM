@@ -45,6 +45,7 @@ class DragonCliff;
 class GeneralRoom;
 class MageRoom;
 class ShopRoom;
+class Credits;
 
 class WorldTestScene;
 class BattleTestScene;
@@ -151,6 +152,7 @@ public:
 	GeneralRoom* generalRoom;
 	MageRoom* mageRoom;
 	ShopRoom* shopRoom;
+	Credits* credits;
 
 	//test
 	WorldTestScene* worldTest;

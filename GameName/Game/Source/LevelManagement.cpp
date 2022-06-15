@@ -241,7 +241,7 @@ bool LevelManagement::Update(float dt)
 			}
 		}
 		break;
-	case WORLD_TEST:
+	case GameScene::WORLD_TEST:
 		if (currentScene != (Module*)app->worldTest) {
 
 			if (app->fade->Fade(currentScene, (Module*)app->worldTest, 30))
@@ -252,7 +252,7 @@ bool LevelManagement::Update(float dt)
 			}
 		}
 		break;
-	case COMBAT:
+	case GameScene::COMBAT:
 		if (currentScene != (Module*)app->battleTest) {
 
 			if (app->fade->Fade(currentScene, (Module*)app->battleTest, 30))
@@ -262,6 +262,17 @@ bool LevelManagement::Update(float dt)
 				LOG("Battle Test");
 			}
 		}
+		break;
+	case GameScene::CREDITS:
+
+		
+			if (app->fade->Fade(currentScene, (Module*)app->battleTest, 30))
+			{
+				currentScene = (Module*)app->credits;
+				currentLevel = (Module*)app->credits;
+				LOG("Credits");
+			}
+		
 		break;
 	default:
 		break;
