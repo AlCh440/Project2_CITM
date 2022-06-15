@@ -108,6 +108,7 @@
     <ClCompile Include="Source\Door.cpp" />
     <ClCompile Include="Source\DoorButton.cpp" />
     <ClCompile Include="Source\Ease.cpp" />
+    <ClCompile Include="Source\EnemyArchmage.cpp" />
     <ClCompile Include="Source\EnemySnake.cpp" />
     <ClCompile Include="Source\Goblin.cpp" />
     <ClCompile Include="Source\HPPotion.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Source\Door.h" />
     <ClInclude Include="Source\DoorButton.h" />
     <ClInclude Include="Source\Ease.h" />
+    <ClInclude Include="Source\EnemyArchmage.h" />
     <ClInclude Include="Source\EnemySnake.h" />
     <ClInclude Include="Source\Goblin.h" />
     <ClInclude Include="Source\HPPotion.h" />

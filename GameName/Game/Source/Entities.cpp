@@ -181,6 +181,12 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         enemies.add(snakeInstance);
         snakeInstance->Start();
         break;
+    case ARCHMAGE:
+        archmageInstance = new EnemyArchmage(type, spawnPos);
+        entities.add(archmageInstance);
+        enemies.add(archmageInstance);
+        archmageInstance->Start();
+        break;
     
     case GOBLIN:
         goblinInstance = new Goblin(type, spawnPos);

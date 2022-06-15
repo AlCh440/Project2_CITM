@@ -678,6 +678,11 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::NPCDUMMY;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "archmage") == 0) {
+
+			obj->type = Collider_Type::ARCHMAGE;
+
+		}
 
 		else if (strcmp(object.attribute("type").as_string(), "guardNPC") == 0) {
 
@@ -925,6 +930,10 @@ bool Map::SetMapColliders()
 			case SNAKE:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn snake...");
+				break;
+			case ARCHMAGE:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn archmage...");
 				break;
 			case GOBLIN:
 				app->entities->AddEntity(object->data->type, spawnPos);

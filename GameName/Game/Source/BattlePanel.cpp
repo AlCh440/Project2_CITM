@@ -181,6 +181,13 @@ void BattlePanel::LoadEntityUi()
 			bt_endTurn->state = GuiControlState::DISABLED;
 
 			break;
+		case ARCHMAGE:
+			entityFace = { 7 * 48 ,0,48,48 };
+			bt_attack->state = GuiControlState::DISABLED;
+			bt_move->state = GuiControlState::DISABLED;
+			bt_endTurn->state = GuiControlState::DISABLED;
+
+			break;
 		default:
 			break;
 		}
