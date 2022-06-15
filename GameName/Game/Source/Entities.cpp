@@ -124,6 +124,7 @@ bool ModuleEntities::CleanUp()
     dummyNpcInstance = nullptr;
     goblinInstance = nullptr;
     kingGoblinInstance = nullptr;
+    snakeInstance = nullptr;
     
     listButtonDoor.clear();
     listDoors.clear();
@@ -139,6 +140,7 @@ bool ModuleEntities::CleanUp()
 
 Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
 {
+    
     switch (type)
     {
     case PLAYER:
@@ -172,6 +174,12 @@ Entity* ModuleEntities::AddEntity(Collider_Type type, iPoint spawnPos)
         entities.add(dummyInstance);
         enemies.add(dummyInstance);
         dummyInstance->Start();
+        break;
+    case SNAKE:
+        snakeInstance = new EnemySnake(type, spawnPos);
+        entities.add(snakeInstance);
+        enemies.add(snakeInstance);
+        snakeInstance->Start();
         break;
     
     case GOBLIN:

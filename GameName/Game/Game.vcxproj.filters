@@ -260,6 +260,9 @@
     <ClCompile Include="Source\LeverSystem.cpp">
       <Filter>Entities\Interactable\Interactables</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EnemySnake.cpp">
+      <Filter>Entities\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -550,6 +553,9 @@
     </ClInclude>
     <ClInclude Include="Source\LeverSystem.h">
       <Filter>Entities\Interactable\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemySnake.h">
+      <Filter>Entities\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

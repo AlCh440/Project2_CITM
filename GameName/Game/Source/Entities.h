@@ -13,6 +13,7 @@
 #include "Enemy.h"
 #include "EnemyDummy.h"
 #include "Goblin.h"
+#include "EnemySnake.h"
 #include "KingGoblin.h"
 #include "Npc.h"
 #include "NpcDummy.h"
@@ -129,6 +130,7 @@ public:
 	OpenWorldPlayer* openWorldInstance;
 	EnemyDummy* dummyInstance;
 	Goblin* goblinInstance;
+	EnemySnake* snakeInstance;
 	KingGoblin* kingGoblinInstance;
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;

@@ -658,6 +658,11 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::DUMMY;
 
 		}
+		else if (strcmp(object.attribute("type").as_string(), "snake") == 0) {
+
+			obj->type = Collider_Type::SNAKE;
+
+		}
 		else if (strcmp(object.attribute("type").as_string(), "goblin") == 0) {
 
 			obj->type = Collider_Type::GOBLIN;
@@ -673,6 +678,7 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			obj->type = Collider_Type::NPCDUMMY;
 
 		}
+
 		else if (strcmp(object.attribute("type").as_string(), "guardNPC") == 0) {
 
 			obj->type = Collider_Type::NPCGUARD;
@@ -916,12 +922,18 @@ bool Map::SetMapColliders()
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn dummy...");
 				break;
+			case SNAKE:
+				app->entities->AddEntity(object->data->type, spawnPos);
+				LOG("spawn snake...");
+				break;
 			case GOBLIN:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn goblin...");
+				break;
 			case KINGGOBLIN:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				LOG("spawn King goblin");
+				break;
 			case NPCDUMMY:
 				app->entities->AddEntity(object->data->type, spawnPos);
 				break;

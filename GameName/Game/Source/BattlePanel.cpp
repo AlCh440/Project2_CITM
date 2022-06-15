@@ -174,6 +174,13 @@ void BattlePanel::LoadEntityUi()
 			bt_endTurn->state = GuiControlState::DISABLED;
 
 			break;
+		case SNAKE:
+			entityFace = { 6 * 48 ,0,48,48 };
+			bt_attack->state = GuiControlState::DISABLED;
+			bt_move->state = GuiControlState::DISABLED;
+			bt_endTurn->state = GuiControlState::DISABLED;
+
+			break;
 		default:
 			break;
 		}
