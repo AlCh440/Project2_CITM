@@ -1,41 +1,41 @@
 <?xml version="1.0"?>
 <questList>
-	<quest title="Once upon a time..." id="0" false="">
+	<quest title="Once upon a time..." id="0" complete="2">
 		<description text="&#10;			You have just awakened in an unknown cave! I suppose it would be wise to find a way out...&#10;		" />
 		<objective text="&#10;			Reach the underground village&#10;		" />
 		<rewards>
 			<items />
 		</rewards>
 	</quest>
-	<quest title="Strange deepthes" id="1" false="">
+	<quest title="Strange deepthes" id="1" complete="1">
 		<description text="&#10;			These villages seem unknown, perhaps seeking answers would be wise&#10;		" />
 		<objective text="&#10;			Talk with the villagers&#10;		" />
 		<rewards>
 			<items />
 		</rewards>
 	</quest>
-	<quest title="Defeat Gomak the giant" id="2" false="">
+	<quest title="Defeat Gomak the giant" id="2" complete="1">
 		<description text="&#10;			Reach the goblin camp and defeat Gomak&#10;		" />
 		<objective text="&#10;			Defeat Gomak&#10;		" />
 		<rewards>
 			<items />
 		</rewards>
 	</quest>
-	<quest title="Monster haunter" id="3" false="">
+	<quest title="Monster haunter" id="3" complete="1">
 		<description text="&#10;			You Won!&#10;		" />
 		<objective text="&#10;			Report about your victory to the mague&#10;		" />
 		<rewards>
 			<items />
 		</rewards>
 	</quest>
-	<quest title="Star Gate" id="4" false="">
+	<quest title="Star Gate" id="4" complete="1">
 		<description text="&#10;			Cross the portal to reach your destiny, but be ready&#10;		" />
 		<objective text="&#10;			Cross the portal&#10;		" />
 		<rewards>
 			<items />
 		</rewards>
 	</quest>
-	<quest title="The four Keys of the apocalypse" id="5" false="">
+	<quest title="The four Keys of the apocalypse" id="5" complete="1">
 		<description text="&#10;			You have found one of the four keys, I suppose the other three raided somewhere else, I wonder where…&#10;		" />
 		<objective text="&#10;			Find the remaining keys&#10;		" />
 		<rewards>

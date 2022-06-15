@@ -59,6 +59,7 @@ public:
 	Particle leaf;
 	Particle dust;
 	Particle spark;
+	Particle archmage_spark;
 };
 
 #endif // !__MODULEPARTICLES_H__

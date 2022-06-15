@@ -14,6 +14,7 @@
 #include "EnemyDummy.h"
 #include "Goblin.h"
 #include "EnemySnake.h"
+#include "EnemyArchmage.h"
 #include "KingGoblin.h"
 #include "Npc.h"
 #include "NpcDummy.h"
@@ -131,6 +132,7 @@ public:
 	EnemyDummy* dummyInstance;
 	Goblin* goblinInstance;
 	EnemySnake* snakeInstance;
+	EnemyArchmage* archmageInstance;
 	KingGoblin* kingGoblinInstance;
 	NpcDummy* dummyNpcInstance;
 	NpcGuard* dummyNpcGuardInstance;

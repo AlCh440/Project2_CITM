@@ -46,6 +46,17 @@ ModuleParticles::ModuleParticles(bool isActive) : Module(isActive)
 	spark.lifetime = 0;
 	spark.anim.loop = false;
 	spark.anim.speed = 0.1f;
+
+	archmage_spark.anim.PushBack({ 8 * 0, 8 * 2, 8, 8 });
+	archmage_spark.anim.PushBack({ 8 * 1, 8 * 2, 8, 8 });
+	archmage_spark.anim.PushBack({ 8 * 2, 8 * 2, 8, 8 });
+	archmage_spark.anim.PushBack({ 8 * 3, 8 * 2, 8, 8 });
+	archmage_spark.anim.PushBack({ 8 * 4, 8 * 2, 8, 8 });
+	archmage_spark.speed = fPoint(0, 0);
+	archmage_spark.accel = fPoint(0, 0);
+	archmage_spark.lifetime = 0;
+	archmage_spark.anim.loop = false;
+	archmage_spark.anim.speed = 0.1f;
 }
 
 ModuleParticles::~ModuleParticles()

@@ -1,633 +1,202 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Source\BattlePanel.cpp" />
+    <ClCompile Include="Source\BattleSpace.cpp" />
+    <ClCompile Include="Source\BattleTestScene.cpp" />
+    <ClCompile Include="Source\Chest.cpp" />
+    <ClCompile Include="Source\Consumable.cpp" />
+    <ClCompile Include="Source\Credits.cpp" />
+    <ClCompile Include="Source\DialogButton.cpp" />
+    <ClCompile Include="Source\CheckPoint.cpp" />
+    <ClCompile Include="Source\Door.cpp" />
+    <ClCompile Include="Source\DoorButton.cpp" />
+    <ClCompile Include="Source\Ease.cpp" />
+    <ClCompile Include="Source\EnemyArchmage.cpp" />
+    <ClCompile Include="Source\EnemySnake.cpp" />
+    <ClCompile Include="Source\Goblin.cpp" />
+    <ClCompile Include="Source\HPPotion.cpp" />
+    <ClCompile Include="Source\Interactable.cpp" />
+    <ClCompile Include="Source\InventoryPanel.cpp" />
+    <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\Dialog.cpp" />
+    <ClCompile Include="Source\DialogFonts.cpp" />
+    <ClCompile Include="Source\DialogManager.cpp" />
+    <ClCompile Include="Source\DragonCliff.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\EnemyDummy.cpp" />
+    <ClCompile Include="Source\Entity.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
+    <ClCompile Include="Source\FracturedRoad.cpp" />
+    <ClCompile Include="Source\GameOver.cpp" />
+    <ClCompile Include="Source\GeneralRoom.cpp" />
+    <ClCompile Include="Source\GreenPath.cpp" />
+    <ClCompile Include="Source\GuiButton.cpp" />
+    <ClCompile Include="Source\GuiManager.cpp" />
+    <ClCompile Include="Source\GuiPanel.cpp" />
+    <ClCompile Include="Source\GuiSlider.cpp" />
+    <ClCompile Include="Source\GuiToggle.cpp" />
+    <ClCompile Include="Source\Intro.cpp" />
+    <ClCompile Include="Source\Key.cpp" />
+    <ClCompile Include="Source\KingGoblin.cpp" />
+    <ClCompile Include="Source\Knight.cpp" />
+    <ClCompile Include="Source\LevelManagement.cpp" />
+    <ClCompile Include="Source\Lever.cpp" />
+    <ClCompile Include="Source\LeverSystem.cpp" />
+    <ClCompile Include="Source\Mage.cpp" />
+    <ClCompile Include="Source\MageRoom.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
-    <ClCompile Include="Source\Log.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp">
-      <Filter>External\PugiXml</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LevelManagement.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CheckPoint.cpp">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiManager.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Window.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Textures.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Render.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Physics.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entities.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Map.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Input.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Audio.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Pathfinding.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Timer.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PerfTimer.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FadeToBlack.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Fonts.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GreenPath.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TheFall.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TheRuins.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TheVillage.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DragonCliff.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FracturedRoad.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameOver.cpp">
-      <Filter>Scenes\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Intro.cpp">
-      <Filter>Scenes\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StartMenu.cpp">
-      <Filter>Scenes\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiButton.cpp">
-      <Filter>GUI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiToggle.cpp">
-      <Filter>GUI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiSlider.cpp">
-      <Filter>GUI\Controls</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BattleTestScene.cpp">
-      <Filter>Scenes\Game\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\WorldTestScene.cpp">
-      <Filter>Scenes\Game\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\QuestPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\QuestManager.cpp">
-      <Filter>Quests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MainMenuPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PausePanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SettingsPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Knight.cpp">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EnemyDummy.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Ranger.cpp">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mage.cpp">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Npc.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcDummy.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Dialog.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DialogManager.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OpenWorldPlayer.cpp">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Trigger.cpp">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DialogButton.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DialogFonts.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tweening.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BattleSpace.cpp">
-      <Filter>Entities\Spaces</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\WorldSpace.cpp">
-      <Filter>Entities\Spaces</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcGuard.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcWoVillager.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BattlePanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GeneralRoom.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MageRoom.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ShopRoom.cpp">
-      <Filter>Scenes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Key.cpp">
-      <Filter>Entities\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Consumable.cpp">
-      <Filter>Entities\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Item.cpp">
-      <Filter>Entities\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Weapon.cpp">
-      <Filter>Entities\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Chest.cpp">
-      <Filter>Entities\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InventoryPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\HPPotion.cpp">
-      <Filter>Entities\Items\Potions</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ManaPotion.cpp">
-      <Filter>Entities\Items\Potions</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Ease.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Goblin.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\KingGoblin.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MatchResultPanel.cpp">
-      <Filter>GUI\Panels</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Interactable.cpp">
-      <Filter>Entities\Interactable</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DoorButton.cpp">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Door.cpp">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcGeneral.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcRanger.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcRangerVill.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcWizard.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcArchmage.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\NpcArchmageComb.cpp">
-      <Filter>Entities\NPC</Filter>
-    </ClCompile>
+    <ClCompile Include="Source\Audio.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\MainMenuPanel.cpp" />
+    <ClCompile Include="Source\ManaPotion.cpp" />
+    <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\Entities.cpp" />
+    <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\MatchResultPanel.cpp" />
     <ClCompile Include="Source\ModuleParticles.cpp" />
+    <ClCompile Include="Source\Npc.cpp" />
+    <ClCompile Include="Source\NpcArchmage.cpp" />
+    <ClCompile Include="Source\NpcArchmageComb.cpp" />
+    <ClCompile Include="Source\NpcDummy.cpp" />
+    <ClCompile Include="Source\NpcGeneral.cpp" />
+    <ClCompile Include="Source\NpcGuard.cpp" />
+    <ClCompile Include="Source\NpcRanger.cpp" />
+    <ClCompile Include="Source\NpcRangerVill.cpp" />
+    <ClCompile Include="Source\NpcWoVillager.cpp" />
+    <ClCompile Include="Source\OpenWorldPlayer.cpp" />
     <ClCompile Include="Source\Particle.cpp" />
-    <ClCompile Include="Source\Lever.cpp">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LeverSystem.cpp">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EnemySnake.cpp">
-      <Filter>Entities\Enemy</Filter>
-    </ClCompile>
+    <ClCompile Include="Source\PausePanel.cpp" />
+    <ClCompile Include="Source\Physics.cpp" />
+    <ClCompile Include="Source\Pathfinding.cpp" />
+    <ClCompile Include="Source\PerfTimer.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Ranger.cpp" />
+    <ClCompile Include="Source\QuestManager.cpp" />
+    <ClCompile Include="Source\QuestPanel.cpp" />
+    <ClCompile Include="Source\Render.cpp" />
+    <ClCompile Include="Source\SettingsPanel.cpp" />
+    <ClCompile Include="Source\ShopRoom.cpp" />
+    <ClCompile Include="Source\StartMenu.cpp" />
+    <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\TheFall.cpp" />
+    <ClCompile Include="Source\TheRuins.cpp" />
+    <ClCompile Include="Source\TheVillage.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Trigger.cpp" />
+    <ClCompile Include="Source\Tweening.cpp" />
+    <ClCompile Include="Source\Weapon.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\NpcWizard.cpp" />
+    <ClCompile Include="Source\WorldSpace.cpp" />
+    <ClCompile Include="Source\WorldTestScene.cpp" />
+    <ClCompile Include="Source\Log.cpp" />
+    <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\App.h" />
-    <ClInclude Include="Source\Defs.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DynArray.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Log.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Point.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SString.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp">
-      <Filter>External\PugiXml</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp">
-      <Filter>External\PugiXml</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LevelManagement.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CheckPoint.h">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Player.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiManager.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Window.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Textures.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Render.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Physics.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entities.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Module.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Map.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Input.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Audio.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Pathfinding.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Timer.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Queue.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PQueue.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PerfTimer.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\p2List.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FadeToBlack.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Animation.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Fonts.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GreenPath.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TheFall.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TheRuins.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TheVillage.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DragonCliff.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FracturedRoad.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameOver.h">
-      <Filter>Scenes\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Intro.h">
-      <Filter>Scenes\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StartMenu.h">
-      <Filter>Scenes\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiButton.h">
-      <Filter>GUI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiToggle.h">
-      <Filter>GUI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiSlider.h">
-      <Filter>GUI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiControl.h">
-      <Filter>GUI\Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BattleTestScene.h">
-      <Filter>Scenes\Game\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\WorldTestScene.h">
-      <Filter>Scenes\Game\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\QuestPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\QuestManager.h">
-      <Filter>Quests</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MainMenuPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PausePanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SettingsPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Source\Knight.h">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemyDummy.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Ranger.h">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mage.h">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Npc.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcDummy.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Dialog.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DialogManager.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\OpenWorldPlayer.h">
-      <Filter>Entities\SpecificPlayers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Trigger.h">
-      <Filter>Entities\CheckPoints</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DialogFonts.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Tweening.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BattleSpace.h">
-      <Filter>Entities\Spaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\WorldSpace.h">
-      <Filter>Entities\Spaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcGuard.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcWoVillager.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BattlePanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GeneralRoom.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MageRoom.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ShopRoom.h">
-      <Filter>Scenes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Key.h">
-      <Filter>Entities\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Consumable.h">
-      <Filter>Entities\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Item.h">
-      <Filter>Entities\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Weapon.h">
-      <Filter>Entities\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Chest.h">
-      <Filter>Entities\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InventoryPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\HPPotion.h">
-      <Filter>Entities\Items\Potions</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ManaPotion.h">
-      <Filter>Entities\Items\Potions</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Ease.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Goblin.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\KingGoblin.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MatchResultPanel.h">
-      <Filter>GUI\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Interactable.h">
-      <Filter>Entities\Interactable</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DoorButton.h">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Door.h">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcGeneral.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcRanger.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcRangerVill.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcWizard.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcArchmage.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NpcArchmageComb.h">
-      <Filter>Entities\NPC</Filter>
-    </ClInclude>
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\BattlePanel.h" />
+    <ClInclude Include="Source\BattleSpace.h" />
+    <ClInclude Include="Source\BattleTestScene.h" />
+    <ClInclude Include="Source\CheckPoint.h" />
+    <ClInclude Include="Source\Chest.h" />
+    <ClInclude Include="Source\Consumable.h" />
+    <ClInclude Include="Source\Credits.h" />
+    <ClInclude Include="Source\Door.h" />
+    <ClInclude Include="Source\DoorButton.h" />
+    <ClInclude Include="Source\Ease.h" />
+    <ClInclude Include="Source\EnemyArchmage.h" />
+    <ClInclude Include="Source\EnemySnake.h" />
+    <ClInclude Include="Source\Goblin.h" />
+    <ClInclude Include="Source\HPPotion.h" />
+    <ClInclude Include="Source\Interactable.h" />
+    <ClInclude Include="Source\InventoryPanel.h" />
+    <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\Dialog.h" />
+    <ClInclude Include="Source\DialogFonts.h" />
+    <ClInclude Include="Source\DialogManager.h" />
+    <ClInclude Include="Source\DragonCliff.h" />
+    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\EnemyDummy.h" />
+    <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
+    <ClInclude Include="Source\FracturedRoad.h" />
+    <ClInclude Include="Source\GameOver.h" />
+    <ClInclude Include="Source\GeneralRoom.h" />
+    <ClInclude Include="Source\GreenPath.h" />
+    <ClInclude Include="Source\GuiButton.h" />
+    <ClInclude Include="Source\GuiControl.h" />
+    <ClInclude Include="Source\GuiManager.h" />
+    <ClInclude Include="Source\GuiPanel.h" />
+    <ClInclude Include="Source\GuiSlider.h" />
+    <ClInclude Include="Source\GuiToggle.h" />
+    <ClInclude Include="Source\Intro.h" />
+    <ClInclude Include="Source\Key.h" />
+    <ClInclude Include="Source\KingGoblin.h" />
+    <ClInclude Include="Source\Knight.h" />
+    <ClInclude Include="Source\LevelManagement.h" />
+    <ClInclude Include="Source\Lever.h" />
+    <ClInclude Include="Source\LeverSystem.h" />
+    <ClInclude Include="Source\Mage.h" />
+    <ClInclude Include="Source\MageRoom.h" />
+    <ClInclude Include="Source\MainMenuPanel.h" />
+    <ClInclude Include="Source\ManaPotion.h" />
+    <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\Entities.h" />
+    <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\MatchResultPanel.h" />
     <ClInclude Include="Source\ModuleParticles.h" />
+    <ClInclude Include="Source\Npc.h" />
+    <ClInclude Include="Source\NpcArchmage.h" />
+    <ClInclude Include="Source\NpcArchmageComb.h" />
+    <ClInclude Include="Source\NpcDummy.h" />
+    <ClInclude Include="Source\NpcGeneral.h" />
+    <ClInclude Include="Source\NpcGuard.h" />
+    <ClInclude Include="Source\NpcRanger.h" />
+    <ClInclude Include="Source\NpcRangerVill.h" />
+    <ClInclude Include="Source\NpcWoVillager.h" />
+    <ClInclude Include="Source\OpenWorldPlayer.h" />
     <ClInclude Include="Source\Particle.h" />
-    <ClInclude Include="Source\Lever.h">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LeverSystem.h">
-      <Filter>Entities\Interactable\Interactables</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemySnake.h">
-      <Filter>Entities\Enemy</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="External">
-      <UniqueIdentifier>{83a966c7-b4bb-4eff-9c2c-3ff3c7b55a60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{2cad778a-d356-48b0-9fee-587f1bbb187e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="External\PugiXml">
-      <UniqueIdentifier>{2855ff7f-53a1-413d-a75b-18b4ade921dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities">
-      <UniqueIdentifier>{538c89f4-09ae-48d0-9d13-0e89784302f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Enemy">
-      <UniqueIdentifier>{2ea328f9-2aca-40e2-badd-9295c7fb965e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Collectable">
-      <UniqueIdentifier>{70aaa4f5-e922-4544-8337-d67f0d0479be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{4eca5673-1e50-465a-8fc9-48117793e985}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\CheckPoints">
-      <UniqueIdentifier>{48fe75bd-cfe2-427b-abe7-75a2e400aa13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{956303e3-fcf3-4b8e-bead-19259a2eb9c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules">
-      <UniqueIdentifier>{65327206-328c-4a47-bca9-88f401283938}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\SpecificPlayers">
-      <UniqueIdentifier>{dd0d00cd-c042-4d64-9a1e-35aae425b14e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes\Game">
-      <UniqueIdentifier>{2c26f1f8-c8b6-442e-af73-14229ff3f52f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes\Menus">
-      <UniqueIdentifier>{396ab872-0fc4-4f8d-9eb7-1954a9fbb08d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Panels">
-      <UniqueIdentifier>{122196db-1032-4dee-b0c1-30bf34c5e870}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Controls">
-      <UniqueIdentifier>{89c55ae2-b5f1-476f-b410-90a6cab08a5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes\Game\Test">
-      <UniqueIdentifier>{9034a389-e168-4c51-9078-e1c1754ace1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quests">
-      <UniqueIdentifier>{b29a12b9-812b-48fa-9b22-d52346b1edb2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\NPC">
-      <UniqueIdentifier>{90d9e84d-d5f4-4e68-acec-1603885f9cc2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Spaces">
-      <UniqueIdentifier>{15baa1cf-7f86-4962-83ee-9787be276a5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Items">
-      <UniqueIdentifier>{04157ca5-52d7-42d2-bb12-bdd58d5b18cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Items\Potions">
-      <UniqueIdentifier>{b548daa0-02fa-414c-81f2-504cd71968b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Interactable">
-      <UniqueIdentifier>{7e528158-d843-4fb7-a664-f0a16a9848b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entities\Interactable\Interactables">
-      <UniqueIdentifier>{cecfccd4-ad56-4bcc-bbd6-73f0bd8c62b7}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Source\PausePanel.h" />
+    <ClInclude Include="Source\Physics.h" />
+    <ClInclude Include="Source\p2List.h" />
+    <ClInclude Include="Source\Pathfinding.h" />
+    <ClInclude Include="Source\PerfTimer.h" />
+    <ClInclude Include="Source\Audio.h" />
+    <ClInclude Include="Source\Input.h" />
+    <ClInclude Include="Source\App.h" />
+    <ClInclude Include="Source\Module.h" />
+    <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PQueue.h" />
+    <ClInclude Include="Source\QuestManager.h" />
+    <ClInclude Include="Source\QuestPanel.h" />
+    <ClInclude Include="Source\Queue.h" />
+    <ClInclude Include="Source\Ranger.h" />
+    <ClInclude Include="Source\Render.h" />
+    <ClInclude Include="Source\SettingsPanel.h" />
+    <ClInclude Include="Source\ShopRoom.h" />
+    <ClInclude Include="Source\StartMenu.h" />
+    <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\TheFall.h" />
+    <ClInclude Include="Source\TheRuins.h" />
+    <ClInclude Include="Source\TheVillage.h" />
+    <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Trigger.h" />
+    <ClInclude Include="Source\Tweening.h" />
+    <ClInclude Include="Source\Weapon.h" />
+    <ClInclude Include="Source\Window.h" />
+    <ClInclude Include="Source\Defs.h" />
+    <ClInclude Include="Source\Log.h" />
+    <ClInclude Include="Source\Point.h" />
+    <ClInclude Include="Source\SString.h" />
+    <ClInclude Include="Source\DynArray.h" />
+    <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
+    <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Source\NpcWizard.h" />
+    <ClInclude Include="Source\WorldSpace.h" />
+    <ClInclude Include="Source\WorldTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />

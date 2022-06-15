@@ -32,6 +32,7 @@
 #include "GeneralRoom.h"
 #include "MageRoom.h"
 #include "ShopRoom.h"
+#include "Credits.h"
 
 #include "BattleTestScene.h"
 #include "WorldTestScene.h"
@@ -82,6 +83,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	generalRoom = new GeneralRoom(false);
 	mageRoom = new MageRoom(false);
 	shopRoom = new ShopRoom(false);
+	credits = new Credits(false);
 
 	//test
 	worldTest = new WorldTestScene(false);
@@ -339,7 +341,7 @@ void App::FinishUpdate()
 		averageFps = (averageFps + framesPerSecond) / 2;
 	}
 
-	LOG("FPS: %f", (float)framesPerSecond);
+	//LOG("FPS: %f", (float)framesPerSecond);
 
 	static char title[256];
 	//sprintf_s(title, 256, "Av.FPS: %.2f FPS: %i Delta Time: %.3f Time since startup: %.3f Frame Count: %I64u ",

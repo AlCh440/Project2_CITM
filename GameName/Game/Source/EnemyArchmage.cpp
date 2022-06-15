@@ -1,4 +1,4 @@
-#include "EnemySnake.h"
+#include "EnemyArchmage.h"
 
 #include "App.h"
 #include "Textures.h"
@@ -8,12 +8,13 @@
 #include "Player.h"
 #include "Physics.h"
 #include "Pathfinding.h"
+#include "ModuleParticles.h"
 
 #include "Log.h"
 
-EnemySnake::EnemySnake(iPoint pos) : Enemy(pos)
+EnemyArchmage::EnemyArchmage(iPoint pos) : Enemy(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");	
+	texture = app->tex->Load("Assets/Sprites/characters/archmage_spritesheet.png");	
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
@@ -22,17 +23,17 @@ EnemySnake::EnemySnake(iPoint pos) : Enemy(pos)
 
 }
 
-EnemySnake::EnemySnake(Collider_Type type, iPoint pos) : Enemy(type, pos)
+EnemyArchmage::EnemyArchmage(Collider_Type type, iPoint pos) : Enemy(type, pos)
 {
 
-	name.Create("Snake");
-	texture = app->tex->Load("Assets/Sprites/characters/EnemigosProvisional.png");
+	name.Create("Archmage");
+	texture = app->tex->Load("Assets/Sprites/characters/archmage_spritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_dynamicBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 	
 	stats.hp = 35;
-	stats.movement = 4;
+	stats.movement = 2;
 	stats.baseDamage = 11;
 	moveTime = 32; //milisec
 	counter = moveTime;
@@ -41,15 +42,15 @@ EnemySnake::EnemySnake(Collider_Type type, iPoint pos) : Enemy(type, pos)
 }
 
 
-void EnemySnake::UpdatePath()
+void EnemyArchmage::UpdatePath()
 {
 }
 
-bool EnemySnake::Start()
+bool EnemyArchmage::Start()
 {
 	tileMove = app->audio->LoadFx("Assets/audio/fx/battleTileMovement.wav");
 	mummyDeath = app->audio->LoadFx("Assets/audio/fx/mummyDeath.wav");
-	mummyAttack = app->audio->LoadFx("Assets/audio/fx/snake_attack.wav");
+	mummyAttack = app->audio->LoadFx("Assets/audio/fx/magic_attack.wav");
 
 	stepCounter = 0;
 	moveRange = 5;
@@ -71,43 +72,87 @@ bool EnemySnake::Start()
 
 
 	inter_speed = 0.02f;
+	float movSpeed = 0.07;
 
-	for(int i = 0; i < 13; i++)
+	idle.PushBack({ 0, 256, 40, 40 });
+	idle.PushBack({ 40, 256, 40, 40 });
+	idle.speed = 0.03f;
+	idle.loop = true;
+
+	walkSide.PushBack({ 40 * 7, 256, 40, 40 });
+	walkSide.PushBack({ 40 * 8, 256, 40, 40 });
+	walkSide.PushBack({ 40 * 9, 256, 40, 40 });
+	walkSide.PushBack({ 40 * 9, 256, 40, 40 });
+	walkSide.pingpong = true;
+	walkSide.speed = movSpeed;
+	walkSide.loop = true;
+
+	walkUp.PushBack({ 40 * 7, 256, 40, 40 });
+	walkUp.PushBack({ 40 * 8, 256, 40, 40 });
+	walkUp.PushBack({ 40 * 9, 256, 40, 40 });
+	walkUp.pingpong = true;
+	walkUp.speed = movSpeed;
+	walkUp.loop = true;
+
+	walkDown.PushBack({ 40 * 7, 256, 40, 40 });
+	walkDown.PushBack({ 40 * 8, 256, 40, 40 }); 
+	walkDown.PushBack({ 40 * 9, 256, 40, 40 });
+	walkDown.pingpong = true;
+	walkDown.speed = movSpeed;
+	walkDown.loop = true;
+
+	dead.PushBack({ 40 * 6, 256, 40, 40 });
+	dead.loop = false;
+	dead.speed = 0.3f;
+
+	hit.PushBack({ 40 * 10, 256, 40, 40 });
+	hit.PushBack({ 40 * 10, 256, 40, 40 });
+	hit.loop = false;
+	hit.speed = 0.2f;
+
+	attack.PushBack({ 40 * 0, 256, 40, 40 });
+	attack.PushBack({ 40 * 1, 256, 40, 40 });
+	attack.PushBack({ 40 * 0, 256, 40, 40 });
+	attack.PushBack({ 40 * 1, 256, 40, 40 });
+	attack.loop = false;
+	attack.speed = 0.1f;
+
+	/*for(int i = 0; i < 21; i++)
 	{
 		if (i <= 7)
 		{
-			idle.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			idle.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			idle.speed = 0.1f;
 			idle.loop = true;
-			walkSide.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			walkSide.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			walkSide.speed = 0.1f;
 			walkSide.loop = true;
-			walkDown.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			walkDown.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			walkDown.speed = 0.1f;
 			walkDown.loop = true;
-			walkUp.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			walkUp.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			walkUp.speed = 0.1f;
 			walkUp.loop = true;
 		}
-		else if (i >= 8 && i <= 10)
+		else if (i >= 8 && i <= 13)
 		{
-			dead.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			dead.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			dead.loop = false;
 			dead.speed = 0.3f;
 		}
-		else if (i == 11)
+		else if (i >= 14 && i <= 16)
 		{
-			hit.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			hit.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			hit.loop = false;
 			hit.speed = 0.2f;
 		}
-		else if (i == 12)
+		else if (i <= 17)
 		{
-			attack.PushBack({ 48 * i, 48 * 2, 48, 48 });
+			attack.PushBack({ 48 * i, 48 * 3, 48, 48 });
 			attack.loop = false;
 			attack.speed = 0.1f;
 		}
-	}
+	}*/
 
 
 	inter_speed = 0.02f;
@@ -117,7 +162,7 @@ bool EnemySnake::Start()
 	return true;
 }
 
-bool EnemySnake::PreUpdate()
+bool EnemyArchmage::PreUpdate()
 {
 
 
@@ -161,11 +206,12 @@ bool EnemySnake::PreUpdate()
 			}
 			else {
 				
-				if ( HasAttackAction &&  pathfinding->CreatePath(tilePos, target->tilePos ) <=  2)
+				if ( HasAttackAction &&  pathfinding->CreatePath(tilePos, target->tilePos ) <=  6)
 				{
 					battleState = ATTACK;
 					attack.Reset();
 					currentAnim = &attack;
+					HasMoveAction = false;
 				}
 				else if (HasMoveAction)
 				{
@@ -200,7 +246,7 @@ bool EnemySnake::PreUpdate()
 	return true;
 }
 
-bool EnemySnake::Update(float dt)
+bool EnemyArchmage::Update(float dt)
 {	
 	switch (battleState)
 	{
@@ -265,7 +311,22 @@ bool EnemySnake::Update(float dt)
 			currentAnim = &idle;
 			battleState = IDLE;
 
+			for (int i = 0; i < app->RandomRange(5,20); i++)
+			{
+				fPoint p_pos = {(float)target->position.x, (float)target->position.y};
+				float p_offset_x = 0;
+				float p_offset_y = 0;
+
+				Particle* p = app->particles->AddParticle(app->particles->archmage_spark,
+					 app->RandomRange(p_pos.x + p_offset_x / 2, p_pos.x - p_offset_x / 2),
+					app->RandomRange(p_pos.y + p_offset_y / 2, p_pos.y - p_offset_y / 2));
+
+				p->speed = fPoint(app->RandomRange(0.3f, -0.5f), app->RandomRange(0.3f, -0.5f));
+				p->anim.speed = app->RandomRange(0.1f, 0.17f);
+			}
+
 			app->audio->PlayFx(mummyAttack);
+			target = nullptr;
 		}
 		break;
 	case DEATH:
@@ -279,7 +340,7 @@ bool EnemySnake::Update(float dt)
 	return true;
 }
 
-bool EnemySnake::PostUpdate()
+bool EnemyArchmage::PostUpdate()
 {
 	//render current tile pos
 	SDL_Rect r;
@@ -325,36 +386,36 @@ bool EnemySnake::PostUpdate()
 	}
 	
 	//render entity
-	app->render->DrawTexture(texture, position.x - 24, position.y - 32, &currentAnim->GetCurrentFrame());
+	app->render->DrawTexture(texture, position.x - 24 + 8, position.y - 32 + 8, &currentAnim->GetCurrentFrame());
 
 	return true;
 }
 
-bool EnemySnake::CleanUp()
+bool EnemyArchmage::CleanUp()
 {
 	physBody->pendingToDelete = true;
 	
 	return true;
 }
 
-bool EnemySnake::BasicAttack() // pass an Player
+bool EnemyArchmage::BasicAttack() // pass an Player
 {
 	return true;
 }
 
 // 
-void EnemySnake::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+void EnemyArchmage::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
 }
 
 // Load / Save
-bool EnemySnake::LoadState(pugi::xml_node& data)
+bool EnemyArchmage::LoadState(pugi::xml_node& data)
 {
 	return true;
 }
 
-bool EnemySnake::SaveState(pugi::xml_node& data) const
+bool EnemyArchmage::SaveState(pugi::xml_node& data) const
 {
 	return true;
 }
