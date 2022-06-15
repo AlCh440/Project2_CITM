@@ -61,6 +61,36 @@ After such encounter, the party awakes in a cave, without remembering who they a
 <p>&nbsp;</p>
 
 
+## Game Screenshots
+### Main Page
+![](mainpageimage.jpg)
+<p>&nbsp;</p>
+
+### Settings
+![](settingsimage.jpg)
+<p>&nbsp;</p>
+
+### Pause
+![](pauseimage.jpg)
+<p>&nbsp;</p>
+
+### Ingame
+![](gameimage.jpg)
+<p>&nbsp;</p>
+
+### Dialogs
+![](gameimage3.jpg)
+<p>&nbsp;</p>
+
+### Rooms
+![](gameimage2.jpg)
+
+### Inventory
+![](inventoryimage.jpg)
+
+<p>&nbsp;</p>
+
+
 ## Game Features
 - An Innovating Narrative, with interesting and curious dialogs.
 - Open world to explore.
