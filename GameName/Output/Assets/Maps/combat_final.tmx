@@ -751,6 +751,6 @@
  <objectgroup id="13" name="entities">
   <object id="98" name="knight" type="knight" x="224" y="320" width="32" height="32"/>
   <object id="99" name="ranger" type="ranger" x="352" y="320" width="32" height="32"/>
-  <object id="106" name="archmage" type="v" x="288" y="64" width="32" height="32"/>
+  <object id="106" name="archmage" type="archmage" x="288" y="64" width="32" height="32"/>
  </objectgroup>
 </map>

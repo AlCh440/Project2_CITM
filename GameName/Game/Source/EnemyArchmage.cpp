@@ -32,9 +32,9 @@ EnemyArchmage::EnemyArchmage(Collider_Type type, iPoint pos) : Enemy(type, pos)
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 	
-	stats.hp = 35;
+	stats.hp = 150;
 	stats.movement = 2;
-	stats.baseDamage = 11;
+	stats.baseDamage = 25;
 	moveTime = 32; //milisec
 	counter = moveTime;
 	moveRange = 5;
@@ -349,7 +349,7 @@ bool EnemyArchmage::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	//app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	switch (battleState)
 	{
 	case IDLE:
@@ -371,7 +371,7 @@ bool EnemyArchmage::PostUpdate()
 				rect.y = (pos.y);
 				rect.w = (app->map->mapData.tileWidth);
 				rect.h = (app->map->mapData.tileHeight);
-				app->render->DrawRectangle(rect, 255, 125, 125, 150);
+				//app->render->DrawRectangle(rect, 255, 125, 125, 150);
 			}
 		}
 	}

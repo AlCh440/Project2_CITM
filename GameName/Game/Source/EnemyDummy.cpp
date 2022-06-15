@@ -288,7 +288,7 @@ bool EnemyDummy::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	//app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 	switch (battleState)
 	{
 	case IDLE:
@@ -310,7 +310,10 @@ bool EnemyDummy::PostUpdate()
 				rect.y = (pos.y);
 				rect.w = (app->map->mapData.tileWidth);
 				rect.h = (app->map->mapData.tileHeight);
-				app->render->DrawRectangle(rect, 255, 125, 125, 150);
+				if (app->physics->debug)
+				{
+					app->render->DrawRectangle(rect, 255, 125, 125, 150);
+				}
 			}
 		}
 	}

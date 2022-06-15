@@ -116,7 +116,7 @@ bool NpcRangerVill::PostUpdate()
 
 	rect = { 134, 54, 24, 38 };
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	//app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
 	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 

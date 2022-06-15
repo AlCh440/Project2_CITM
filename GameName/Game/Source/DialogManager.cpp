@@ -1,6 +1,7 @@
 #include "DialogManager.h"
 #include "GuiManager.h"
 #include "QuestManager.h"
+#include "LevelManagement.h"
 
 DialogManager::DialogManager(bool isActive) : Module(isActive)
 {
@@ -214,6 +215,8 @@ bool DialogManager::PostUpdate()
 			{
 				if (player != nullptr) player->SetMotion(true);
 				dialogActive_ArchmageCombat = false;
+				app->levelManagement->combatScene = FINALBATTLE;
+				app->levelManagement->gameScene = COMBAT;
 			}
 		}
 	}

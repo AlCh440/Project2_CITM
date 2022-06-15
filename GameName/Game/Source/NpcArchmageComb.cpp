@@ -14,17 +14,20 @@
 
 NpcArchmageComb::NpcArchmageComb(iPoint pos) : Npc(pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/archmage spritesheet.png");
+	texture = app->tex->Load("Assets/Sprites/characters/archmage_spritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 16.0f, b2_staticBody);
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
+	/*physBody->body->GetFixtureList()->SetSensor(true);*/
+
 
 }
 
 NpcArchmageComb::NpcArchmageComb(Collider_Type type, iPoint pos) : Npc(type, pos)
 {
-	texture = app->tex->Load("Assets/Sprites/characters/archmage spritesheet.png");
+	texture = app->tex->Load("Assets/Sprites/characters/archmage_spritesheet.png");
 	physBody = app->physics->CreateCircle(pos.x, pos.y, 32.f * 0.5f, b2_staticBody);
+	/*physBody->body->GetFixtureList()->SetSensor(true);*/
 	physBody->entityPtr = this;
 	physBody->body->SetGravityScale(0);
 }
@@ -115,7 +118,7 @@ bool NpcArchmageComb::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 255, 100, 255, 150, true);
+	//app->render->DrawRectangle(r, 255, 100, 255, 150, true);
 
 	app->render->DrawTexture(texture, position.x - 15, position.y - 20, &rect);
 

@@ -65,8 +65,16 @@ bool MatchResultPanel::OnGuiMouseClickEvent(GuiControl* control)
 
 	if (control->id == bt_finish->id)
 	{
-		app->levelManagement->inCombat = false;
-		app->levelManagement->gameScene = app->levelManagement->lastOpenWorldScene;
+		if (finalBattleWon)
+		{
+			app->levelManagement->inCombat = false;
+			app->levelManagement->gameScene = CREDITS;
+		}
+		else
+		{
+			app->levelManagement->inCombat = false;
+			app->levelManagement->gameScene = app->levelManagement->lastOpenWorldScene;
+		}
 		Disable();
 	}
 
@@ -78,8 +86,16 @@ void MatchResultPanel::LoadTitle(bool BattleWon)
 	if (BattleWon)
 	{
 		title = app->fonts->LoadRenderedText(r_title, app->fonts->titles, "Victory", app->fonts->c_Menus);
+		if (app->levelManagement->gameScene == DRAGON_CLIFF)
+		{
+			finalBattleWon = true;
+		}
 	}
 	else {
 		title = app->fonts->LoadRenderedText(r_title, app->fonts->titles, "Defeat", app->fonts->c_Menus);
+		if (app->levelManagement->gameScene == DRAGON_CLIFF)
+		{
+			finalBattleWon = false;
+		}
 	}
 }

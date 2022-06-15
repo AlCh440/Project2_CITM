@@ -103,6 +103,11 @@ bool LevelManagement::PreUpdate()
 
 bool LevelManagement::Update(float dt)
 {
+
+
+
+
+
 //	LOG("%s",currentScene->name.GetString());
 	switch (gameScene)
 	{

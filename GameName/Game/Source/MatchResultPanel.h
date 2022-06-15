@@ -18,6 +18,7 @@ private:
 public:
 	void LoadTitle(bool BattleWon);
 	SDL_Texture* title;
+	bool finalBattleWon = false;
 	SDL_Rect r_title;
 };
 

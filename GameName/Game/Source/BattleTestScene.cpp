@@ -49,6 +49,9 @@ bool BattleTestScene::Start()
 	case CAVES:
 		app->map->Load("combat_caves.tmx");
 		break;
+	case FINALBATTLE:
+		app->map->Load("combat_final.tmx");
+		break;
 	default:
 		app->map->Load("BattleGroundTest.tmx");
 		break;

@@ -260,7 +260,7 @@ bool Ranger::PostUpdate()
 	r.w = app->map->mapData.tileWidth;
 	r.h = app->map->mapData.tileHeight;
 
-	app->render->DrawRectangle(r, 125, 255, 0, 150, true);
+	//app->render->DrawRectangle(r, 125, 255, 0, 150, true);
 
 
 	switch (battleState)

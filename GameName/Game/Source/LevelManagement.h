@@ -31,8 +31,9 @@ enum GameScene {
 	SHOP_ROOM = 15,
 	PLAIN = 16,
 	CASTLE = 17,
-	CAVES = 18, 
-	CREDITS = 19
+	CAVES = 18,
+	FINALBATTLE = 19,
+	CREDITS = 20
 };
 
 class LevelManagement : public Module
