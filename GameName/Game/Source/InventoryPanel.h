@@ -9,6 +9,8 @@ enum statsPlayer
 	RANGER
 };
 
+class Item;
+
 class InventoryPanel : public GuiPanel
 {
 
@@ -51,10 +53,15 @@ public:
 
 	GuiButton* bt_to_knight;
 	GuiButton* bt_to_ranger;
+	GuiButton* bt_to_use;
+	GuiButton* bt_to_exit;
 
 	int numberButtons = 0;
 	int rowCounter = 0;
 	int columnCounter = 0;
+
+	bool showUseButton = false;
+	Item* itemToUse;
 
 	statsPlayer statsShowing;
 };

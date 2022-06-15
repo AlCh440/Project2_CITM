@@ -112,44 +112,91 @@ bool InventoryPanel::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		statsShowing = RANGER;
 	}
+	else if (bt_to_use != NULL && control->id == bt_to_use->id)
+	{
+
+		//bool ret = controls.del(controls.findNode(bt_to_use));
+		showUseButton = false;
+		control->pendingToDelete = true;
+		control->updateControl = false;
+		bt_to_exit->pendingToDelete = true;
+		bt_to_exit->updateControl = false;
+
+		if (statsShowing == KNIGHT)
+		{
+			itemToUse->UseItem(app->entities->knightPointer);
+		}
+		else if (statsShowing == RANGER)
+		{
+			itemToUse->UseItem(app->entities->rangerPointer);
+		}
+	}
+	else if (bt_to_exit != NULL && control->id == bt_to_exit->id)
+	{
+		showUseButton = false;
+		control->pendingToDelete = true;
+		control->updateControl = false;
+		bt_to_use->pendingToDelete = true;
+		bt_to_use->updateControl = false;
+	}
 	else
 	{
-		for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next)
+		if (showUseButton == false)
 		{
-			if (aux->data->button != NULL)
+			for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux != NULL; aux = aux->next)
 			{
-				if (control->id == aux->data->button->id)
+				if (aux->data->button != NULL)
 				{
-					if (statsShowing == KNIGHT)
+					if (control->id == aux->data->button->id)
 					{
-						aux->data->UseItem(app->entities->knightPointer);
-					}
-					else if (statsShowing == RANGER)
-					{
-						aux->data->UseItem(app->entities->rangerPointer);
+						showUseButton = true;
+						itemToUse = aux->data;
+						int  mouseX, mouseY;
+						app->input->GetMousePosition(mouseX, mouseY);
+						bt_to_use = (GuiButton*)CreateGuiButton(53, app->guiManager, this, { mouseX, mouseY, 88, 56 }, "");
+						bt_to_use->texture = app->guiManager->UItexture2;
+						bt_to_use->normalRec = { 348, 4, 88, 56 };
+						bt_to_use->focusedRec = { 444, 4, 88, 56 };
+						bt_to_use->pressedRec = { 444, 4, 88, 56 };
+
+						bt_to_exit = (GuiButton*)CreateGuiButton(50, app->guiManager, this, { mouseX, mouseY + 56, 88, 56 }, "");
+						bt_to_exit->texture = app->guiManager->UItexture2;
+						bt_to_exit->normalRec = { 348, 68, 88, 56 };
+						bt_to_exit->focusedRec = { 444, 68, 88, 56 };
+						bt_to_exit->pressedRec = { 444, 68, 88, 56 };
+						//if (statsShowing == KNIGHT)
+						//{
+						//	aux->data->UseItem(app->entities->knightPointer);
+						//}
+						//else if (statsShowing == RANGER)
+						//{
+						//	aux->data->UseItem(app->entities->rangerPointer);
+						//}
 					}
 				}
 			}
-		}
-		for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
-		{
-			if (aux->data->pendingToDelete == true)
+
+			for (p2ListItem<Item*>* aux = app->entities->openWorld->inventory.getFirst(); aux->data->button != NULL, aux != NULL; aux = aux->next)
 			{
-				for (p2ListItem<GuiControl*>* btnDel = controls.getFirst(); btnDel != NULL; btnDel = btnDel->next)
+				if (aux->data->pendingToDelete == true)
 				{
- 					if (btnDel->data == (GuiControl*)aux->data->button)
+					for (p2ListItem<GuiControl*>* btnDel = controls.getFirst(); btnDel != NULL; btnDel = btnDel->next)
 					{
-						aux->data->button->updateControl = false;
-						//controls.del(btnDel);
-						//break;
+						if (btnDel->data == (GuiControl*)aux->data->button)
+						{
+							aux->data->button->updateControl = false;
+							//controls.del(btnDel);
+							//break;
+						}
+
 					}
-					
+
+					app->entities->openWorld->RemoveFromInventory(aux->data);
+					break;
 				}
-				
-				app->entities->openWorld->RemoveFromInventory(aux->data);
-				break;
 			}
 		}
+		
 	}
 
 	return true;

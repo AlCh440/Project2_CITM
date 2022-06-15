@@ -1,10 +1,11 @@
 #include "QuestManager.h"
 #include "Log.h"
+#include "Quest.h"
 
 QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
 	name.Create("quest_manager");
-	toSave = false;
+	toSave = true;
 	saveConfigs = false;
 }
 
@@ -224,8 +225,7 @@ bool QuestManager::Load(const char* path)
 
 bool QuestManager::LoadState(pugi::xml_node& data)
 {
-	pugi::xml_node lm = data.child("quest");
-
+	
 	//gameScene = lm.attribute("first").as_int();
 
 	//loadLevel = true;
@@ -236,298 +236,329 @@ bool QuestManager::LoadState(pugi::xml_node& data)
 	// 2 active
 	// 3 complete
 
-	while (currentQuest != NULL)
-	{
-		switch (currentQuest->data->id)
-		{
-		case 0:
-
-			if (lm.attribute("first").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("first").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("first").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		case 1:
-
-			if (lm.attribute("second").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("second").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("second").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		case 2:
-
-			if (lm.attribute("third").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("third").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("third").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		case 3:
-
-			if (lm.attribute("fourth").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("fourth").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("fourth").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		case 4:
-
-			if (lm.attribute("fifth").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("fifth").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("fifth").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		case 5:
-
-			if (lm.attribute("sixth").as_int() == 1)
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-			else if (lm.attribute("sixth").as_int() == 2)
-			{
-				currentQuest->data->progress = Quest::ACTIVE;
-			}
-			else if (lm.attribute("sixth").as_int() == 3)
-			{
-				currentQuest->data->progress = Quest::COMPLETE;
-			}
-			else
-			{
-				currentQuest->data->progress = Quest::AVAILABLE;
-			}
-
-			break;
-
-		default:
-
-			currentQuest->data->progress = Quest::AVAILABLE;
-
-			break;
-		}
-
-		currentQuest = currentQuest->next;
-	}
+	//while (currentQuest != NULL)
+	//{
+	//	switch (currentQuest->data->id)
+	//	{
+	//	case 0:
+	//
+	//		if (lm.attribute("first").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("first").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("first").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	case 1:
+	//
+	//		if (lm.attribute("second").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("second").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("second").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	case 2:
+	//
+	//		if (lm.attribute("third").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("third").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("third").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	case 3:
+	//
+	//		if (lm.attribute("fourth").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("fourth").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("fourth").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	case 4:
+	//
+	//		if (lm.attribute("fifth").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("fifth").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("fifth").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	case 5:
+	//
+	//		if (lm.attribute("sixth").as_int() == 1)
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//		else if (lm.attribute("sixth").as_int() == 2)
+	//		{
+	//			currentQuest->data->progress = Quest::ACTIVE;
+	//		}
+	//		else if (lm.attribute("sixth").as_int() == 3)
+	//		{
+	//			currentQuest->data->progress = Quest::COMPLETE;
+	//		}
+	//		else
+	//		{
+	//			currentQuest->data->progress = Quest::AVAILABLE;
+	//		}
+	//
+	//		break;
+	//
+	//	default:
+	//
+	//		currentQuest->data->progress = Quest::AVAILABLE;
+	//
+	//		break;
+	//	}
+	//
+	//	currentQuest = currentQuest->next;
+	//}
 
 	return true;
 }
 
 bool QuestManager::SaveState(pugi::xml_node& data) const
 {
-	pugi::xml_node manager = data.append_child("quest");
-
 	
+	pugi::xml_document* saveDoc = new pugi::xml_document();
+	pugi::xml_node  saveStateNode = saveDoc->append_child("questList");
+
+
+	pugi::xml_node node_01;
+	pugi::xml_node node_02;
+	pugi::xml_node node_03;
+	for (p2ListItem<Quest*>* currentQuest = questList->start; currentQuest != nullptr; currentQuest = currentQuest->next)
+	{
+		node_01 = saveStateNode.append_child("quest");
+		node_01.append_attribute("title").set_value(currentQuest->data->title.GetString());
+		node_01.append_attribute("id") = currentQuest->data->id;
+		if (currentQuest->data->progress == Quest::COMPLETE)
+		{
+			node_01.append_attribute("complete").set_name("true");
+		}
+		else
+		{
+			node_01.append_attribute("complete").set_name("false");
+		}
+
+		node_02 = node_01.append_child("description");
+		node_02.append_attribute("text").set_value(currentQuest->data->description.GetString());
+
+		node_02 = node_01.append_child("objective");
+		node_02.append_attribute("text").set_value(currentQuest->data->objective.GetString());
+
+		node_02 = node_01.append_child("rewards");
+		node_03 = node_02.append_child("items");
+
+	}
+	
+	saveDoc->save_file("quests.xml");
 	p2ListItem<Quest*>* currentQuest = questList->start;
 	
 	// 1 available
 	// 2 active
 	// 3 complete
 
-	while (currentQuest != NULL)
-	{
-		switch (currentQuest->data->id)
-		{
-		case 0:
-
-			if( GetAvailableQuest(currentQuest->data->id) ==true)
-			{
-				manager.append_attribute("first") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("first") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("first") = 3;
-			}
-			else
-			{
-				manager.append_attribute("first") = -1;
-			}
-
-			break;
-		case 1:
-
-			if (GetAvailableQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("second") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("second") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("second") = 3;
-			}
-			else
-			{
-				manager.append_attribute("second") = -1;
-			}
-
-			break;
-		case 2:
-
-			if (GetAvailableQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("third") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("third") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("third") = 3;
-			}
-			else
-			{
-				manager.append_attribute("third") = -1;
-			}
-
-			break;
-		case 3:
-
-			if (GetAvailableQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fourth") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fourth") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fourth") = 3;
-			}
-			else
-			{
-				manager.append_attribute("fourth") = -1;
-			}
-
-			break;
-		case 4:
-
-			if (GetAvailableQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fifth") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fifth") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("fifth") = 3;
-			}
-			else
-			{
-				manager.append_attribute("fifth") = -1;
-			}
-
-			break;
-		case 5:
-
-			if (GetAvailableQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("sixth") = 1;
-			}
-			else if (GetActiveQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("sixth") = 2;
-			}
-			else if (GetCompletedQuest(currentQuest->data->id) == true)
-			{
-				manager.append_attribute("sixth") = 3;
-			}
-			else
-			{
-				manager.append_attribute("sixth") = -1;
-			}
-
-			break;
-		default:
-			manager.append_attribute("first") = -1;
-			manager.append_attribute("second") = -1;
-			manager.append_attribute("third") = -1;
-			manager.append_attribute("fourth") = -1;
-			manager.append_attribute("fifth") = -1;
-			manager.append_attribute("sixth") = -1;
-
-			break;
-		}
-		
-
-		currentQuest = currentQuest->next;
-	}
+	//while (currentQuest != NULL)
+	//{
+	//	switch (currentQuest->data->id)
+	//	{
+	//	case 0:
+	//
+	//		if( GetAvailableQuest(currentQuest->data->id) ==true)
+	//		{
+	//			manager.append_attribute("first") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("first") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("first") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("first") = -1;
+	//		}
+	//
+	//		break;
+	//	case 1:
+	//
+	//		if (GetAvailableQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("second") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("second") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("second") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("second") = -1;
+	//		}
+	//
+	//		break;
+	//	case 2:
+	//
+	//		if (GetAvailableQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("third") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("third") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("third") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("third") = -1;
+	//		}
+	//
+	//		break;
+	//	case 3:
+	//
+	//		if (GetAvailableQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fourth") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fourth") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fourth") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("fourth") = -1;
+	//		}
+	//
+	//		break;
+	//	case 4:
+	//
+	//		if (GetAvailableQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fifth") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fifth") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("fifth") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("fifth") = -1;
+	//		}
+	//
+	//		break;
+	//	case 5:
+	//
+	//		if (GetAvailableQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("sixth") = 1;
+	//		}
+	//		else if (GetActiveQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("sixth") = 2;
+	//		}
+	//		else if (GetCompletedQuest(currentQuest->data->id) == true)
+	//		{
+	//			manager.append_attribute("sixth") = 3;
+	//		}
+	//		else
+	//		{
+	//			manager.append_attribute("sixth") = -1;
+	//		}
+	//
+	//		break;
+	//	default:
+	//		manager.append_attribute("first") = -1;
+	//		manager.append_attribute("second") = -1;
+	//		manager.append_attribute("third") = -1;
+	//		manager.append_attribute("fourth") = -1;
+	//		manager.append_attribute("fifth") = -1;
+	//		manager.append_attribute("sixth") = -1;
+	//
+	//		break;
+	//	}
+	//	
+	//
+	//	currentQuest = currentQuest->next;
+	//}
 
 	return true;
 }

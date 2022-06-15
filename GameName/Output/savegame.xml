@@ -5,27 +5,11 @@
 	<Level_manager>
 		<levelManager currentLevel="5" />
 	</Level_manager>
+	<quest_manager />
 	<entities>
-		<player x="449" y="913">
-			<inventory>
-				<item id="1" />
-				<item id="2" />
-				<item id="3" keyId="1" />
-				<item id="3" keyId="2" />
-				<item id="3" keyId="3" />
-				<item id="3" keyId="4" />
-			</inventory>
-		</player>
+		<player x="516" y="440" />
 	</entities>
 	<renderer>
-		<camera x="-258" y="-1466" />
+		<camera x="-392" y="-520" />
 	</renderer>
-	<quest>
-		<first state ="0" />
-		<second state ="0" />
-		<third state ="0" />
-		<fourth state ="0" />
-		<fifth state ="0" />
-		<sixth state ="0" />
-	</quest>
 </saveState>
