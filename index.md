@@ -62,6 +62,10 @@ After such encounter, the party awakes in a cave, without remembering who they a
 
 
 ## Game Features
+- An Innovating Narrative, with interesting and curious dialogs.
+- Open world to explore.
+- Have a clear target: RPG players of Killer Bartle Type.
+- Accessible in low performance Devices (for windows)
 
 <p>&nbsp;</p>
 
