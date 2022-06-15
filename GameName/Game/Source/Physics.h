@@ -52,6 +52,7 @@ enum Collider_Type {
 	ENEMY,
 	ENTRANCE,
 	CHEST,
+	CHEST_01,
 	POTION_HP,
 	POTION_MANA,
 	KEY_01,

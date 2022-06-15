@@ -643,6 +643,10 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 
 			obj->type = Collider_Type::PLAYEROPENWORLD;
 		}
+		else if (strcmp(object.attribute("type").as_string(), "chest_01") == 0)
+		{
+			obj->type = Collider_Type::CHEST_01;
+		}
 		else if (strcmp(object.attribute("type").as_string(), "knight") == 0) {
 
 			obj->type = Collider_Type::PLAYERKNIGHT;
@@ -764,21 +768,6 @@ bool Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		else if (strcmp(object.attribute("type").as_string(), "chest") == 0)
 		{
 			obj->type = Collider_Type::CHEST;
-			/*if (object.first_child().name() == "properties");
-			{
-				pugi::xml_node prop;
-				prop = object.first_child().first_child();
-				while (prop != nullptr)
-				{
-					pugi::xml_attribute att = prop.attribute("name");
-					if (att.value() == string("hpPotion"))
-					{
-						obj->properties.CreateProperty("hp_potion", 1);
-					}
-					prop = prop.next_sibling();
-				}
-				
-			}*/
 			
 		}
 		else if (strcmp(object.attribute("type").as_string(), "door_button") == 0)
@@ -912,6 +901,21 @@ bool Map::SetMapColliders()
 				{
 					Key* k = new Key(4);
 					chestIns->AddItem(k);
+				}
+				LOG("spawn chest...");
+				break;
+			case CHEST_01:
+				chestIns = app->entities->AddEntity(CHEST, spawnPos);
+
+				if (object->data->properties.GetProperty_("hp_potion"), 1)
+				{
+					HPPotion* hp = new HPPotion(HP_POTION);
+					chestIns->AddItem(hp);
+				}
+				if (object->data->properties.GetProperty("mana_potion", 1))
+				{
+					ManaPotion* mp = new ManaPotion(MANA_POTION);
+					chestIns->AddItem(mp);
 				}
 				LOG("spawn chest...");
 				break;
