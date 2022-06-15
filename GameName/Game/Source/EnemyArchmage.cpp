@@ -313,7 +313,7 @@ bool EnemyArchmage::Update(float dt)
 
 			for (int i = 0; i < app->RandomRange(5,20); i++)
 			{
-				fPoint p_pos = { (float)target->GetPosition().x + 12, (float)target->GetPosition().y + 12};
+				fPoint p_pos = {(float)target->position.x, (float)target->position.y};
 				float p_offset_x = 0;
 				float p_offset_y = 0;
 
@@ -321,11 +321,12 @@ bool EnemyArchmage::Update(float dt)
 					 app->RandomRange(p_pos.x + p_offset_x / 2, p_pos.x - p_offset_x / 2),
 					app->RandomRange(p_pos.y + p_offset_y / 2, p_pos.y - p_offset_y / 2));
 
-				p->speed = fPoint(app->RandomRange(0.2f, -0.4f), app->RandomRange(0.2f, -0.4f));
+				p->speed = fPoint(app->RandomRange(0.3f, -0.5f), app->RandomRange(0.3f, -0.5f));
 				p->anim.speed = app->RandomRange(0.1f, 0.17f);
 			}
 
 			app->audio->PlayFx(mummyAttack);
+			target = nullptr;
 		}
 		break;
 	case DEATH:
